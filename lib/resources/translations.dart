@@ -23,7 +23,30 @@ class Translations {
       'enterEmail': 'Enter the email address you used when you created your account.',
       'checkEmail': 'Check your email',
       'weSentInstruction': 'We sent you instructions on how to recover your password.',
-      'continueCaps': 'CONTINUE'
+      'continueCaps': 'CONTINUE',
+      'funded': 'Funded',
+      'profileCaps': 'PROFILE',
+      'showsCaps': 'SHOWS',
+      'emptyUsername': 'Empty username',
+      'emptyPassword': 'Empty password',
+      'serverNotRepsonding': 'Server not responding',
+      'pleaseTryAgain': 'Please, try again later',
+      'unauthorized': 'Unauthorized',
+      'ok': 'OK',
+      'wrongUsernameOrPass': 'Wrong username or password',
+      'wrongEmailFormat': 'Wrong email format',
+      'wrongPassSize': 'Enter more than 6 symbols',
+      'wrongPassSymbols': 'Only letters, numbers and symbols _-. allowed',
+      'passwordsNotMatched': 'Passwords not matched',
+      'wrongUsernameSize': 'Username can be from 3 to 30 symbols',
+      'wrongUsernameSymbols': 'Only letters, numbers and symbols _. allowed',
+      'wrongNameSize': 'Name can be from 1 to 50 symbols',
+      'cannotRegister': 'Cannot register',
+      'emailAlreadyTaken': 'Email already taken',
+      'usernameAlreadyTaken ': 'Username already taken',
+      'promoCaps': 'PROMO',
+      'startingFrom': 'Starting from',
+      'buyTicketCaps': 'BUY TICKET'
     }
   };
 
@@ -47,5 +70,28 @@ class Translations {
   static String get checkEmail => words[locale]['checkEmail'];
   static String get weSentInstruction => words[locale]['weSentInstruction'];
   static String get continueCaps => words[locale]['continueCaps'];
+  static String get profileCaps => words[locale]['profileCaps'];
+  static String get showsCaps => words[locale]['showsCaps'];
+  static String get emptyUsername => words[locale]['emptyUsername'];
+  static String get emptyPassword => words[locale]['emptyPassword'];
+  static String get serverNotRepsonding => words[locale]['serverNotRepsonding'];
+  static String get pleaseTryAgain => words[locale]['pleaseTryAgain'];
+  static String get ok => words[locale]['ok'];
+  static String get wrongUsernameOrPass => words[locale]['wrongUsernameOrPass'];
+  static String get wrongEmailFormat => words[locale]['wrongEmailFormat'];
+  static String get wrongPassSize => words[locale]['wrongPassSize'];
+  static String get wrongPassSymbols => words[locale]['wrongPassSymbols'];
+  static String get passwordsNotMatched => words[locale]['passwordsNotMatched'];
+  static String get wrongUsernameSize => words[locale]['wrongUsernameSize'];
+  static String get wrongUsernameSymbols => words[locale]['wrongUsernameSymbols'];
+  static String get wrongNameSize => words[locale]['wrongNameSize'];
+  static String get cannotRegister => words[locale]['cannotRegister'];
+  static String get emailAlreadyTaken => words[locale]['emailAlreadyTaken'];
+  static String get usernameAlreadyTaken => words[locale]['usernameAlreadyTaken'];
+  static String get promoCaps => words[locale]['promoCaps'];
+  static String get startingFrom => words[locale]['startingFrom'];
+  static String get buyTicketCaps => words[locale]['buyTicketCaps'];
+  static String get unauthorized => words[locale]['unauthorized'];
+  static String get funded => words[locale]['funded'];
 
 }

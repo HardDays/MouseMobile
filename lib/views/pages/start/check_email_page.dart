@@ -75,20 +75,21 @@ class CheckEmailPageState extends State<CheckEmailPage> {
                     ),
                     Container(
                       margin: EdgeInsets.only(top: 10.0),
-                      height: 38.0,
+                      padding: EdgeInsets.only(left: 4.0, right: 4.0),
                       color: Colors.black,
                       child: Text(Translations.mouseCaps,
                         style: TextStyle(
                           fontSize: 38.0,
                           letterSpacing: 1.1,
                           fontWeight: FontWeight.w900,
-                          color: AppColors.secondRed
+                          color: AppColors.secondRed,
+                          
                         ),
                       )
                     ),
                     Form(
                       child: Container(
-                        margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 65.0),
+                        margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 55.0),
                         child: Column(
                           children: <Widget>[
                             Container(

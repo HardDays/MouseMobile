@@ -22,6 +22,7 @@ dependencies:
   path_provider: ^0.4.1
   cached_network_image: any
   intl: ^0.15.7
+  image_picker: ^0.4.10
 
 dev_dependencies:
   flutter_test:
@@ -52,6 +53,13 @@ flutter:
    - assets/images/start/signup_bg.png
    - assets/images/start/mouse_pic.png
    - assets/images/start/forgot_bg.png
+
+   - assets/images/main/tickets_tab_icon.svg
+   - assets/images/main/feed_tab_icon.svg
+   - assets/images/main/shows_tab_icon.svg
+   - assets/images/main/campaigns_tab_icon.svg
+   - assets/images/main/profile_tab_icon.svg
+   - assets/images/main/filters_icon.svg
 
    - assets/images/main/shows/play_button.png
 

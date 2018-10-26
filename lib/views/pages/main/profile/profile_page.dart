@@ -6,14 +6,16 @@ import '../../start/start_page.dart';
 
 import '../../../routes/default_page_route.dart';
 
+import '../../../../resources/app_colors.dart';
+import '../../../../resources/translations.dart';
+
 import '../../../../helpers/storage/database.dart';
 import '../../../../helpers/storage/cache.dart';
 
-import '../../../../resources/app_colors.dart';
-
 class ProfilePage extends StatefulWidget  {
 
-  final String title = 'PROFILE';
+  final String title = Translations.profileCaps;
+  final String icon = 'assets/images/main/profile_tab_icon.svg';
 
   Widget appBar;
   Function(Widget) onLoad;

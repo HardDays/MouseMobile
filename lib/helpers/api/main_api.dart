@@ -114,7 +114,7 @@ class MainAPI {
   //EVENTS
 
   static Future<List<Event>> searchEvents() async {
-    var res = await http.get(url + events + search,
+    var res = await http.get(url + events + search + '?mobile=true',
       headers: {
         'Content-type': 'application/json', 
         'Authorization': token

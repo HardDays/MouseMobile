@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import 'shows/shows_page.dart';
 
@@ -121,8 +122,15 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
                       child: Column(
                         children: [
                           Padding(padding: EdgeInsets.only(top: 3.0)),
-                          Icon(Icons.crop_square,
+                          /*Icon(Icons.crop_square,
                             color: tabController.index == ind ? AppColors.mainRed : Colors.white,
+                          ),*/
+                          Container(
+                            width: 20.0,
+                            height: 20.0,
+                            child: SvgPicture.asset(pages[ind].icon,
+                              color: tabController.index == ind ? AppColors.mainRed : Colors.white,
+                            )
                           ),
                           Padding(padding: EdgeInsets.only(top: 2.0)),
                           Text(pages[ind].title,

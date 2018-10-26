@@ -45,13 +45,13 @@ class LoginPageState extends State<LoginPage> {
 
   String validateUserName(String userName){
     if (userName.isEmpty){
-      return 'Empty username';
+      return Translations.emptyUsername;
     }
   }
 
   String validatePassword(String pass){
     if (pass.isEmpty){
-      return 'Empty password';
+      return Translations.emptyPassword;
     }
   } 
 
@@ -62,7 +62,7 @@ class LoginPageState extends State<LoginPage> {
       MainAPI.authorize(userName, password).timeout(Duration(seconds: 10), 
         onTimeout: (){
           Navigator.pop(context);
-          Dialogs.showMessage(context, 'Server not responding', 'Please, try again later', 'Ok');
+          Dialogs.showMessage(context, Translations.serverNotRepsonding, Translations.pleaseTryAgain, Translations.ok);
         }
       ).then(
         (token){
@@ -87,7 +87,7 @@ class LoginPageState extends State<LoginPage> {
               }
             );
           } else {
-            Dialogs.showMessage(context, 'Unauthorized', 'Wrong username or password', 'Ok');
+            Dialogs.showMessage(context, Translations.unauthorized, Translations.wrongUsernameOrPass, Translations.ok);
           }
         }
       );
@@ -149,21 +149,21 @@ class LoginPageState extends State<LoginPage> {
                     ),
                     Container(
                       margin: EdgeInsets.only(top: 10.0),
-                      height: 38.0,
+                      padding: EdgeInsets.only(left: 4.0, right: 4.0),
                       color: Colors.black,
                       child: Text(Translations.mouseCaps,
                         style: TextStyle(
                           fontSize: 38.0,
                           letterSpacing: 1.1,
                           fontWeight: FontWeight.w900,
-                          color: AppColors.secondRed
+                          color: AppColors.secondRed,                         
                         ),
                       )
                     ),
                     Form(
                       key: formKey,
                       child: Container(
-                        margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 25.0),
+                        margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 10.0),
                         child: Column(
                           children: <Widget>[
                             TextFormField(

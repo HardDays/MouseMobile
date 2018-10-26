@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';  
+import 'package:image_picker/image_picker.dart';
 
 import '../main/main_page.dart';
 
@@ -44,6 +47,8 @@ class CreateUserPageState extends State<CreateUserPage> {
   String firstName;
   String lastName;
 
+  File image;
+
   User user;
 
   @override
@@ -54,31 +59,31 @@ class CreateUserPageState extends State<CreateUserPage> {
 
   String validateEmail(String email){
     if (!RegExp(r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+').hasMatch(email) || email.length > 75){
-      return 'Wrong email';
+      return Translations.wrongEmailFormat;
     }
   }
 
   String validatePasswords(String pass){
     if (pass.length < 6){
-      return 'Enter more than 6 symbols';
+      return Translations.wrongPassSize;
     } else if (!RegExp(r'^[a-zA-Z0-9\._-]+$').hasMatch(pass)){
-      return 'Only letters, numbers and symbols _-. allowed';
+      return Translations.wrongPassSymbols;
     } else if (password != passwordConfirmation){
-      return 'Passwords not matched';
+      return Translations.passwordsNotMatched;
     }
   }
 
   String validateUserName(String username){
     if (username.length < 3 || username.length > 30){
-      return 'Username can be from 3 to 30 symbols';
+      return Translations.wrongUsernameSize;
     } else if (!RegExp(r'^[a-zA-Z0-9\._]+$').hasMatch(username)){
-      return 'Only letters, numbers and symbols _. allowed';
+      return Translations.wrongUsernameSymbols;
     }
   }
 
   String validateName(String name){
     if (name.length < 1 || name.length > 50){
-      return 'Name can be from 1 to 50 symbols';
+      return Translations.wrongNameSize;
     }
   }
   //a@a.aa1
@@ -86,7 +91,7 @@ class CreateUserPageState extends State<CreateUserPage> {
     MainAPI.createUser(User(email: email, password: password, passwordConfirmation: passwordConfirmation)).timeout(Duration(seconds: 10),
       onTimeout: (){
         Navigator.pop(context);
-        Dialogs.showMessage(context, 'Server not responding', 'Please, try again later', 'Ok');
+        Dialogs.showMessage(context, Translations.serverNotRepsonding, Translations.pleaseTryAgain, Translations.ok);
       }
     ).then(
       (res){
@@ -99,7 +104,7 @@ class CreateUserPageState extends State<CreateUserPage> {
             createAccount();
           } else {
             Navigator.pop(context);
-            Dialogs.showMessage(context, 'Cannot register', 'Email already taken', 'Ok');
+            Dialogs.showMessage(context, Translations.cannotRegister, Translations.emailAlreadyTaken, Translations.ok);
           }
         }
       }
@@ -111,7 +116,7 @@ class CreateUserPageState extends State<CreateUserPage> {
     MainAPI.createAccount(Account(userName: userName, firstName: firstName, lastName: lastName, accountType: AccountType.fan)).timeout(Duration(seconds: 10), 
       onTimeout: (){
         Navigator.pop(context);
-        Dialogs.showMessage(context, 'Server not responding', 'Please, try again later', 'Ok');
+        Dialogs.showMessage(context, Translations.serverNotRepsonding, Translations.pleaseTryAgain, Translations.ok);
       }
     ).then(
       (res){
@@ -125,7 +130,7 @@ class CreateUserPageState extends State<CreateUserPage> {
             DefaultPageRoute(builder: (context) => MainPage()),
           );
         } else {
-          Dialogs.showMessage(context, 'Cannot register', 'Username already taken', 'Ok');
+          Dialogs.showMessage(context, Translations.cannotRegister, Translations.usernameAlreadyTaken, Translations.ok);
         }
       }
     );
@@ -141,6 +146,15 @@ class CreateUserPageState extends State<CreateUserPage> {
         createAccount();
       }
     }
+  }
+
+  void onImageSelect() async {
+    var res = await ImagePicker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      if (res != null){
+        image = res;                                        
+      }
+    });
   }
 
   @override
@@ -207,17 +221,40 @@ class CreateUserPageState extends State<CreateUserPage> {
                         iconSize: 28.0,
                       ),
                     ),
-                    Container(
-                      alignment: Alignment.topCenter,
-                      child: Container(
-                        width: 140.0,
-                        height: 140.0, 
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage('assets/images/start/mouse_pic.png')
-                          )
+                    Stack(
+                      children: <Widget>[
+                        Container(
+                          alignment: Alignment.topCenter,
+                          child: Container(
+                            width: 140.0,
+                            height: 140.0, 
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: image == null ? AssetImage('assets/images/start/mouse_pic.png') : FileImage(image)
+                              )
+                            ),
+                          ),
                         ),
-                      ),
+                        Container(
+                          height: 140.0,
+                          alignment: Alignment.bottomCenter,
+                          margin: EdgeInsets.only(left: 100.0),
+                          child: IconButton(
+                            onPressed: onImageSelect,
+                            icon: Container(
+                              width: 30.0,
+                              height: 30.0,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: AppColors.mainRed
+                              ),
+                              child: Icon(Icons.add, color: Colors.white),
+                            ),
+                          )
+                        )
+                      ]
                     ),
                     Form(
                       key: formKey,

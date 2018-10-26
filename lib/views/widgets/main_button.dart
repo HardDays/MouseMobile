@@ -9,7 +9,7 @@ class MainButton extends StatelessWidget {
   final Function onTap;
   LinearGradient gradient;
   
-  MainButton(this.text, {this.gradient, this.onTap}) : assert(text != null){
+  MainButton(this.text, {this.gradient, this.onTap}) : assert(text != null) {
     if (gradient == null){
       gradient = LinearGradient(
         colors: [

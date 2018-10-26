@@ -104,7 +104,7 @@ class StartPageState extends State<StartPage> with SingleTickerProviderStateMixi
                   child: TabPageSelector(
                     controller: tabController,
                     selectedColor: AppColors.mainRed,
-                    color: AppColors.unselectedTab,
+                    color: Colors.transparent
                   )
                 ),
               ]
