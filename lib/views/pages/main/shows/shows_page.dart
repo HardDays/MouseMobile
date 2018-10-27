@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -9,6 +10,12 @@ import '../../../widgets/main_tagbox.dart';
 import '../../../widgets/main_checkbox.dart';
 
 import '../../../dialogs/dialogs.dart';
+import '../../../dialogs/genres_filter_dialog.dart';
+import '../../../dialogs/location_filter_dialog.dart';
+
+import '../../../routes/default_page_route.dart';
+
+import '../../../../models/api/genre.dart';
 
 import '../../../../resources/app_colors.dart';
 import '../../../../resources/translations.dart';
@@ -46,38 +53,21 @@ class ShowsPageState extends State<ShowsPage> {
       );
     }
     
-    WidgetsBinding.instance.addPostFrameCallback((_) => buildAppBar(context));
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) {
+        if (context != null){
+          buildAppBar(context);
+        }
+      }
+    );
   }
   
   void showGenres(){
-    Dialogs.showThemedDialog(context,
-      Container(
-        width: MediaQuery.of(context).size.width * 1.0,
-        height: MediaQuery.of(context).size.height * 0.3,
-        padding: EdgeInsets.only(left: 20.0, right: 20.0, top: 15.0),
-        decoration: BoxDecoration(
-          color: AppColors.dialogBg,
-          borderRadius: BorderRadius.all(Radius.circular(5.0))
-        ),
-        child: Column(
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                MainCheckbox(),
-                Padding(padding: EdgeInsets.only(left: 15.0)),
-                Text('Hip hop',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.w300
-                  ),
-                )
-              ],
-            )
-          ],
-        )
-      ) 
-    );
+    Dialogs.showThemedDialog(context, 'GENRE', GenresFilterDialog());
+  }
+
+  void showLocation(){
+    Dialogs.showThemedDialog(context, 'LOCATION', LocationFilterDialog());
   }
 
   void buildAppBar(BuildContext context){
@@ -177,7 +167,9 @@ class ShowsPageState extends State<ShowsPage> {
                     Container(
                       margin: EdgeInsets.only(right: 3.0, left: 3.0),
                       height: 30.0,
-                      child: MainTagbox('LOCATION'),
+                      child: MainTagbox('LOCATION',
+                        onTap: showLocation,
+                      ),
                     ),
                     Container(
                       margin: EdgeInsets.only(right: 3.0, left: 3.0),

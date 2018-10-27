@@ -30,9 +30,13 @@ class ProfilePageState extends State<ProfilePage> {
   void initState() {
     super.initState();
     
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState((){
-      buildAppBar(context);
-    }));
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) {
+        if (context != null){
+          buildAppBar(context);
+        }
+      }
+    );
   }
 
   void buildAppBar(BuildContext context){

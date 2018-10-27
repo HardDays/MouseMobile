@@ -60,6 +60,8 @@ flutter:
    - assets/images/main/campaigns_tab_icon.svg
    - assets/images/main/profile_tab_icon.svg
    - assets/images/main/filters_icon.svg
+   - assets/images/main/pin.png
+   - assets/images/main/blured_rect.png
 
    - assets/images/main/shows/play_button.png
 

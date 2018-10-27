@@ -20,4 +20,5 @@ class AppColors {
   static Color promoBg = Color(0xFFFFC200);
 
   static Color dialogBg = Color(0xFF32294A);
+  static Color dialogBack = Color(0xFF281442).withOpacity(0.7);
 }
