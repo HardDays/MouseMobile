@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -40,7 +39,7 @@ class LocationFilterDialogState extends State<LocationFilterDialog> {
   Widget build(BuildContext ctx){
     return Container(
       width: MediaQuery.of(context).size.width * 1.0,
-      height: MediaQuery.of(context).size.height * 0.4,
+     // height: MediaQuery.of(context).size.height * 0.37,
       decoration: BoxDecoration(
         color: AppColors.dialogBg,
         borderRadius: BorderRadius.all(Radius.circular(5.0))
@@ -118,11 +117,11 @@ class LocationFilterDialogState extends State<LocationFilterDialog> {
           ),
           Container(
             alignment: Alignment.center,
-            margin: EdgeInsets.only(top: 30.0),
+            margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
             width: MediaQuery.of(context).size.width * 1.0,
             height: 40.0,
             child: Container(
-              width: MediaQuery.of(context).size.width * 0.4,
+              width: MediaQuery.of(context).size.width * 0.3,
               child: MainButton('SAVE')
             )
           )

@@ -34,6 +34,7 @@ class MainAPI {
     var res = await http.post(url + auth + login, 
       body: json.encode({
         'user_name': userName,
+        'email': userName,
         'password': password
       }),
       headers: {
@@ -42,9 +43,9 @@ class MainAPI {
     );
     //TODO: better error check
     if (res.statusCode == HttpStatus.ok){
-      return json.decode(res.body)['token'];
-    } 
-  }
+     return json.decode(res.body)['token'];
+   } 
+ }
 
   // USERS
 

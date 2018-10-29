@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -42,7 +41,7 @@ class GenresFilterDialogState extends State<GenresFilterDialog> {
   Widget build(BuildContext ctx){
     return Container(
        width: MediaQuery.of(context).size.width * 1.0,
-       height: MediaQuery.of(context).size.height * 0.7,
+       //height: MediaQuery.of(context).size.height * 0.7,
        decoration: BoxDecoration(
          color: AppColors.dialogBg,
          borderRadius: BorderRadius.all(Radius.circular(5.0))
@@ -84,7 +83,7 @@ class GenresFilterDialogState extends State<GenresFilterDialog> {
              margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
              child: GridView.count(
                crossAxisCount: 2,
-               childAspectRatio: 3.0,
+               childAspectRatio: 4.0,
                children: List.generate(genres.length, 
                  (ind) {
                    return Container(
@@ -108,8 +107,8 @@ class GenresFilterDialogState extends State<GenresFilterDialog> {
              )
            ),
            Container(
-             margin: EdgeInsets.only(top: 20.0),
-             width: MediaQuery.of(context).size.width * 0.4,
+             margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
+             width: MediaQuery.of(context).size.width * 0.3,
              height: 40.0,
              child: MainButton('SAVE')
            )

@@ -9,15 +9,16 @@ class MainButton extends StatelessWidget {
   final Function onTap;
   LinearGradient gradient;
   
-  MainButton(this.text, {this.gradient, this.onTap}) : assert(text != null) {
-    if (gradient == null){
-      gradient = LinearGradient(
+  MainButton(this.text, {this.gradient = const LinearGradient(
         colors: [
           AppColors.redRightGradButton,
           AppColors.redLeftGradButton,
         ]
-      );
+      ), 
+      this.onTap
     }
+  ) {
+    
   }
   
   Widget build(BuildContext context) {

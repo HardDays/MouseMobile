@@ -5,47 +5,37 @@ import '../../resources/app_colors.dart';
 
 class MainTagbox extends StatefulWidget {
   
-  bool checked;
-  String text;
-  Function onTap;
-  LinearGradient checkedGradient;
-  LinearGradient uncheckedGradient;
+  final bool checked;
+  final String text;
+  final Function onTap;
+  final LinearGradient checkedGradient;
+  final LinearGradient uncheckedGradient;
 
-  MainTagbox(this.text, {this.checkedGradient, this.uncheckedGradient,  this.onTap, this.checked}){
-    if (checkedGradient == null){
-      checkedGradient = LinearGradient(
+  MainTagbox(this.text, {this.checkedGradient = const LinearGradient(
         colors: [
           AppColors.redRightGradButton,
           AppColors.redLeftGradButton,
         ]
-      );
-    }
-    if (uncheckedGradient == null){
-      uncheckedGradient = LinearGradient(
+      ), 
+      this.uncheckedGradient = const LinearGradient(
         colors: [
-          Colors.white.withOpacity(0.07),
-          Colors.white.withOpacity(0.07),
+          Color(0x16FFFFFF),
+          Color(0x16FFFFFF),
         ]
-      );
-    }
-    if (checked == null){
-      checked = false;
-    }
-  }
+      ),  
+      this.onTap, 
+      this.checked = false});
+
 
   @override
-  MainTagboxState  createState() => MainTagboxState();
+  MainTagboxState  createState() =>  MainTagboxState();
 }
 
 class MainTagboxState extends State<MainTagbox> {
-  
-  bool checked;
 
   @override
   void initState(){
     super.initState();
-
-    checked = widget.checked;
   }
   
   Widget build(BuildContext context) {
@@ -54,7 +44,7 @@ class MainTagboxState extends State<MainTagbox> {
       child: Container(
         padding: EdgeInsets.only(left: 12.0, right: 12.0),
         decoration: BoxDecoration(
-          gradient: checked ? widget.checkedGradient : widget.uncheckedGradient,
+          gradient: widget.checked ? widget.checkedGradient : widget.uncheckedGradient,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(3.0),
             bottomRight: Radius.circular(3.0),
@@ -76,7 +66,7 @@ class MainTagboxState extends State<MainTagbox> {
               style: TextStyle(
                 fontWeight: FontWeight.w400,
                 color: Colors.white,
-                fontSize: 14.0
+                fontSize: 16.0
               ),
             ),
           ),

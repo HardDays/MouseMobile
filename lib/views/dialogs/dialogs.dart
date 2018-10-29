@@ -1,9 +1,19 @@
-import 'dart:ui';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+
+import 'calendar_filter_dialog.dart';
+import 'genres_filter_dialog.dart';
+import 'location_filter_dialog.dart';
+import 'other_filter_dialog.dart';
 
 import '../../resources/app_colors.dart';
 
+import '../../helpers/storage/filters/dates_filter.dart';
+
+
 class Dialogs {
+
   static void showLoader(BuildContext context){
     showDialog(context: context, 
       child: WillPopScope(
@@ -28,8 +38,8 @@ class Dialogs {
     );
   }
   
-  static void showThemedDialog(BuildContext context, String title, Widget child){
-    showDialog(context: context, 
+  static Future showThemedDialog(BuildContext context, String title, Widget child) async {
+    return await showDialog(context: context, 
       builder: (BuildContext context) {
         return Center(
           child: Material(
@@ -85,7 +95,7 @@ class Dialogs {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(top: 10.0),
+                          margin: EdgeInsets.only(top: 15.0),
                           child: child
                         )
                       ]
@@ -99,6 +109,24 @@ class Dialogs {
       }
     );
   }
+
+  static Future showCalendarFilterDialog(BuildContext context, {DateTime startDate, DateTime endDate, Function(DatesFilter) onSave}) async {
+    var widget = CalendarFilterDialog(startDate: startDate, endDate: endDate, onSave: onSave);
+    return await showThemedDialog(context, 'DATE', widget);
+  }
+
+  static void showGenresFilterDialog(BuildContext context){
+    Dialogs.showThemedDialog(context, 'GENRE', GenresFilterDialog());
+  }
+
+  static void showLocationFilterDialog(BuildContext context){
+    Dialogs.showThemedDialog(context, 'LOCATION', LocationFilterDialog());
+  }
+
+  static void showOtherFilterDialog(BuildContext context){
+    Dialogs.showThemedDialog(context, 'OTHER FILTERS', OtherFilterDialog());
+  }
+
 
   static void showMessage(BuildContext context, String title, String body, String ok){
     showDialog(context: context, 

@@ -9,6 +9,7 @@ import '../../models/api/account.dart';
 
 class Database {
 
+
   static Map<String, dynamic> _db = {};
 
   static File _file;

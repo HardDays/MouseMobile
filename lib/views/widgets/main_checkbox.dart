@@ -11,26 +11,20 @@ class MainCheckbox extends StatefulWidget {
   LinearGradient checkedGradient;
   LinearGradient uncheckedGradient;
 
-  MainCheckbox({this.checkedGradient, this.uncheckedGradient,  this.onTap, this.checked}){
-    if (checkedGradient == null){
-      checkedGradient = LinearGradient(
+  MainCheckbox({this.checkedGradient = const LinearGradient(
         colors: [
           AppColors.redRightGradButton,
           AppColors.redLeftGradButton,
         ]
-      );
-    }
-    if (uncheckedGradient == null){
-      uncheckedGradient = LinearGradient(
+      ), 
+      this.uncheckedGradient = const LinearGradient(
         colors: [
           Colors.transparent,
-          Colors.transparent
+          Colors.transparent,
         ]
-      );
-    }
-    if (checked == null){
-      checked = false;
-    }
+      ),  
+      this.onTap, 
+      this.checked = false}){
   }
 
   @override
@@ -68,9 +62,9 @@ class MainCheckboxState extends State<MainCheckbox> {
         child: Center(
           child: InkWell(
             onTap: (){
-              setState(() {
+              /*setState(() {
                 checked = !checked;                
-              });
+              });*/
               if (widget.onTap != null){
                 widget.onTap();
               }

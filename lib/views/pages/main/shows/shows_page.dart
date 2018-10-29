@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
 
 import '../../../widgets/main_button.dart';
 import '../../../widgets/main_tagbox.dart';
@@ -12,6 +13,7 @@ import '../../../widgets/main_checkbox.dart';
 import '../../../dialogs/dialogs.dart';
 import '../../../dialogs/genres_filter_dialog.dart';
 import '../../../dialogs/location_filter_dialog.dart';
+import '../../../dialogs/other_filter_dialog.dart';
 
 import '../../../routes/default_page_route.dart';
 
@@ -22,6 +24,7 @@ import '../../../../resources/translations.dart';
 
 import '../../../../helpers/api/main_api.dart';
 import '../../../../helpers/storage/cache.dart';
+import '../../../../helpers/storage/filters/shows_filter.dart';
 
 class ShowsPage extends StatefulWidget  {
 
@@ -38,19 +41,24 @@ class ShowsPage extends StatefulWidget  {
 class ShowsPageState extends State<ShowsPage> {
 
   bool showFilters = false;
+  
+  ShowsFilter filter;
 
   @override
   void initState() {
     super.initState();
 
+    filter = Cache.showsFilter;
+
     if (Cache.events == null){
-      MainAPI.searchEvents().then(
+      Cache.events = [];
+      /*MainAPI.searchEvents().then(
         (res){
           setState(() {
             Cache.events = res;            
           });
         }
-      );
+      );*/
     }
     
     WidgetsBinding.instance.addPostFrameCallback(
@@ -61,14 +69,27 @@ class ShowsPageState extends State<ShowsPage> {
       }
     );
   }
+
+  void showCalendar()  {
+    Dialogs.showCalendarFilterDialog(context, startDate: filter.datesFilter.dateFrom, endDate: filter.datesFilter.dateTo, onSave: (dates){
+      setState(() {
+        Cache.showsFilter.datesFilter = dates;            
+      });
+    });
+  }
   
   void showGenres(){
-    Dialogs.showThemedDialog(context, 'GENRE', GenresFilterDialog());
+    Dialogs.showGenresFilterDialog(context);
   }
 
   void showLocation(){
-    Dialogs.showThemedDialog(context, 'LOCATION', LocationFilterDialog());
+    Dialogs.showLocationFilterDialog(context);
   }
+
+  void showOther(){
+    Dialogs.showOtherFilterDialog(context);
+  }
+
 
   void buildAppBar(BuildContext context){
     widget.appBar = PreferredSize( 
@@ -147,20 +168,28 @@ class ShowsPageState extends State<ShowsPage> {
           child: Column(
             children: <Widget>[
               showFilters ? Container(
-                height: 30.0,
-                margin: EdgeInsets.only(top: 12.0, bottom: 5.0, left: 2.0),
+                height: 60.0,
+                alignment: Alignment.center,
+                color: AppColors.appBar,
+                padding: EdgeInsets.only(top: 12.0, bottom: 12.0, left: 2.0),
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
                     Container(
                       margin: EdgeInsets.only(right: 3.0, left: 3.0),
                       height: 30.0,
-                      child: MainTagbox('DATE'),
+                      child: MainTagbox(filter.datesFilter.isNotEmpty ? 
+                        '${DateFormat('dd.MM.yyyy').format(filter.datesFilter.dateFrom)} - ${DateFormat('dd.MM.yyyy').format(filter.datesFilter.dateTo)}' : 
+                        'DATE',
+                        checked: filter.datesFilter.isNotEmpty,
+                        onTap: showCalendar,
+                      ),
                     ),
                     Container(
                       margin: EdgeInsets.only(right: 3.0, left: 3.0),
                       height: 30.0,
                       child: MainTagbox('GENRE',
+                        checked: !filter.genresFilter.isEmpty,
                         onTap: showGenres,
                       ),
                     ),
@@ -168,13 +197,17 @@ class ShowsPageState extends State<ShowsPage> {
                       margin: EdgeInsets.only(right: 3.0, left: 3.0),
                       height: 30.0,
                       child: MainTagbox('LOCATION',
+                        checked: !filter.locationFilter.isEmpty,
                         onTap: showLocation,
                       ),
                     ),
                     Container(
                       margin: EdgeInsets.only(right: 3.0, left: 3.0),
                       height: 30.0,
-                      child: MainTagbox('OTHER FILTERS'),
+                      child: MainTagbox('OTHER FILTERS',
+                        checked: !filter.otherFilter.isEmpty,
+                        onTap: showOther
+                      ),
                     ),
                   ]                  
                 ),
