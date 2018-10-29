@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 import 'dart:convert';
 
@@ -28,6 +29,28 @@ class MainAPI {
   static const String preview = '/preview';
 
   static String token;
+
+  static Future<http.Response> basePostRequest(String method, String body) async
+  {
+    return await http.post(url + method, body:body, headers:{
+      'Content-type' : 'application/json', 
+      'Authorization': token
+    });
+  }
+
+  static Future<http.Response> baseGetRequest(String method, Map<String, String> params) async
+  {
+    var queryParams = "?";
+
+    params.forEach(
+      (String key,  String val) => queryParams += key + "=" + val+ "&"
+    );
+
+    return await http.get(url + method + queryParams, headers:{
+      'Content-type' : 'application/json', 
+      'Authorization': token
+    });
+  }
 
   // AUTH
   static Future<String> authorize(String userName, String password) async {
@@ -114,12 +137,14 @@ class MainAPI {
   //EVENTS
 
   static Future<List<Event>> searchEvents() async {
-    var res = await http.get(url + events + search + '?mobile=true',
-      headers: {
-        'Content-type': 'application/json', 
-        'Authorization': token
-      }
-    );
+    // var res = await http.get(url + events + search + '?mobile=true',
+    //   headers: {
+    //     'Content-type': 'application/json', 
+    //     'Authorization': token
+    //   }
+    // );
+
+    var res = await baseGetRequest(events + search, {'mobile':'true'});
     //TODO: better error check
     if (res.statusCode == HttpStatus.ok){
       List body = json.decode(res.body);
