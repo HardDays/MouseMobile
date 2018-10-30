@@ -23,6 +23,7 @@ dependencies:
   cached_network_image: any
   intl: ^0.15.7
   image_picker: ^0.4.10
+  google_maps_webservice: ^0.0.7
 
 dev_dependencies:
   flutter_test:

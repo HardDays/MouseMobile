@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'calendar_filter_dialog.dart';
+import 'dates_filter_dialog.dart';
 import 'genres_filter_dialog.dart';
 import 'location_filter_dialog.dart';
 import 'other_filter_dialog.dart';
@@ -10,6 +10,9 @@ import 'other_filter_dialog.dart';
 import '../../resources/app_colors.dart';
 
 import '../../helpers/storage/filters/dates_filter.dart';
+import '../../helpers/storage/filters/genres_filter.dart';
+import '../../helpers/storage/filters/location_filter.dart';
+import '../../helpers/storage/filters/other_filter.dart';
 
 
 class Dialogs {
@@ -110,21 +113,20 @@ class Dialogs {
     );
   }
 
-  static Future showCalendarFilterDialog(BuildContext context, {DateTime startDate, DateTime endDate, Function(DatesFilter) onSave}) async {
-    var widget = CalendarFilterDialog(startDate: startDate, endDate: endDate, onSave: onSave);
-    return await showThemedDialog(context, 'DATE', widget);
+  static Future showDatesFilterDialog(BuildContext context, {DatesFilter filter, Function(DatesFilter) onSave}) async {
+    return await showThemedDialog(context, 'DATE', DatesFilterDialog(filter: filter, onSave: onSave));
   }
 
-  static void showGenresFilterDialog(BuildContext context){
-    Dialogs.showThemedDialog(context, 'GENRE', GenresFilterDialog());
+  static void showGenresFilterDialog(BuildContext context, {GenresFilter filter, Function(GenresFilter) onSave}){
+    Dialogs.showThemedDialog(context, 'GENRE', GenresFilterDialog(filter: filter, onSave: onSave));
   }
 
-  static void showLocationFilterDialog(BuildContext context){
-    Dialogs.showThemedDialog(context, 'LOCATION', LocationFilterDialog());
+  static void showLocationFilterDialog(BuildContext context, {LocationFilter filter, Function(LocationFilter) onSave}){
+    Dialogs.showThemedDialog(context, 'LOCATION', LocationFilterDialog(filter: filter, onSave: onSave));
   }
 
-  static void showOtherFilterDialog(BuildContext context){
-    Dialogs.showThemedDialog(context, 'OTHER FILTERS', OtherFilterDialog());
+  static void showOtherFilterDialog(BuildContext context, {OtherFilter filter, Function(OtherFilter) onSave}){
+    Dialogs.showThemedDialog(context, 'OTHER FILTERS', OtherFilterDialog(filter: filter, onSave: onSave));
   }
 
 

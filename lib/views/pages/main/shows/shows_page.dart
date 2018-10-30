@@ -1,10 +1,11 @@
 import 'dart:math';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
+
+import 'search_page.dart';
 
 import '../../../widgets/main_button.dart';
 import '../../../widgets/main_tagbox.dart';
@@ -51,14 +52,14 @@ class ShowsPageState extends State<ShowsPage> {
     filter = Cache.showsFilter;
 
     if (Cache.events == null){
-      Cache.events = [];
-      /*MainAPI.searchEvents().then(
+      //Cache.events = [];
+      MainAPI.searchEvents(filter: Cache.showsFilter).then(
         (res){
           setState(() {
             Cache.events = res;            
           });
         }
-      );*/
+      );
     }
     
     WidgetsBinding.instance.addPostFrameCallback(
@@ -71,25 +72,52 @@ class ShowsPageState extends State<ShowsPage> {
   }
 
   void showCalendar()  {
-    Dialogs.showCalendarFilterDialog(context, startDate: filter.datesFilter.dateFrom, endDate: filter.datesFilter.dateTo, onSave: (dates){
+    Dialogs.showDatesFilterDialog(context, filter: filter.datesFilter, onSave: (dates){
       setState(() {
-        Cache.showsFilter.datesFilter = dates;            
+        Cache.showsFilter.datesFilter = dates;   
+        update();         
       });
     });
   }
   
   void showGenres(){
-    Dialogs.showGenresFilterDialog(context);
+    Dialogs.showGenresFilterDialog(context, filter: filter.genresFilter, onSave: (genres){
+      setState(() {
+        Cache.showsFilter.genresFilter = genres;
+        update();            
+      });
+    });
   }
 
   void showLocation(){
-    Dialogs.showLocationFilterDialog(context);
+    Dialogs.showLocationFilterDialog(context, filter: filter.locationFilter, onSave: (loc){
+      setState(() {
+        Cache.showsFilter.locationFilter = loc;  
+        update();          
+      });
+    });
   }
 
   void showOther(){
-    Dialogs.showOtherFilterDialog(context);
+    Dialogs.showOtherFilterDialog(context, filter: filter.otherFilter, onSave: (other){
+      setState(() {
+        Cache.showsFilter.otherFilter = other;      
+        update();      
+      });
+    });
   }
 
+  void update(){
+    Dialogs.showLoader(context);
+    MainAPI.searchEvents(filter: Cache.showsFilter).then(
+      (res){
+        Navigator.pop(context);
+        setState(() {
+          Cache.events = res;            
+        });
+      }
+    );
+  }
 
   void buildAppBar(BuildContext context){
     widget.appBar = PreferredSize( 
@@ -128,7 +156,11 @@ class ShowsPageState extends State<ShowsPage> {
         actions: [
           IconButton(
             icon: Icon(Icons.search, color: Colors.white),
-            onPressed: () {                   
+            onPressed: () {    
+              Navigator.push(
+                this.context,
+                DefaultPageRoute(builder: (context) => SearchPage()),
+              );               
             }
           ),
           IconButton(
@@ -152,13 +184,90 @@ class ShowsPageState extends State<ShowsPage> {
     widget.onLoad(widget.appBar);
   } 
 
+  Widget buildFilters(){
+    return showFilters ? 
+      Container(
+        height: 60.0,
+        alignment: Alignment.center,
+        color: AppColors.appBar,
+        padding: EdgeInsets.only(top: 12.0, bottom: 12.0, left: 2.0),
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: [
+            Container(
+              margin: EdgeInsets.only(right: 3.0, left: 3.0),
+              height: 30.0,
+              child: MainTagbox(filter.datesFilter.isNotEmpty ? 
+                '${DateFormat('dd.MM.yyyy').format(filter.datesFilter.dateFrom)} - ${DateFormat('dd.MM.yyyy').format(filter.datesFilter.dateTo)}' : 
+                'DATE',
+                checked: filter.datesFilter.isNotEmpty,
+                onTap: showCalendar,
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(right: 3.0, left: 3.0),
+              height: 30.0,
+              child: MainTagbox(filter.genresFilter.isNotEmpty ?
+                'GENRE • ${filter.genresFilter.genres.length}':
+                'GENRE',
+                checked: filter.genresFilter.isNotEmpty,
+                onTap: showGenres,
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(right: 3.0, left: 3.0),
+              height: 30.0,
+              child: MainTagbox(filter.locationFilter.isNotEmpty ?
+                '${filter.locationFilter.address}':
+                'LOCATION',
+                checked: filter.locationFilter.isNotEmpty,
+                onTap: showLocation,
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(right: 3.0, left: 3.0),
+              height: 30.0,
+              child: MainTagbox(filter.otherFilter.isNotEmpty ?
+                'OTHER FILTERS • ${filter.otherFilter.ticketTypes.length + filter.otherFilter.venueTypes.length}':
+                'OTHER FILTERS',
+                checked: filter.otherFilter.isNotEmpty,
+                onTap: showOther
+              ),
+            ),
+          ]                  
+        ),
+      ) : 
+      Container();
+  }
+
   @override 
-  Widget build(BuildContext ctx){
-    if (Cache.events == null){
+  Widget build(BuildContext ctx) {
+    if (Cache.events == null) {
       return Container(
         color: AppColors.mainBg,
         child: Center(
           child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(AppColors.mainRed)),         
+        ),        
+      );
+    } else if (Cache.events.isEmpty) {
+      return Container(
+        color: AppColors.mainBg,
+        child: Stack(
+          children: <Widget>[
+            buildFilters(),
+            Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              alignment: Alignment.center,
+              child: Text('No shows found',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w300
+                ),
+              ),
+            )
+          ],        
         ),        
       );
     } else {
@@ -167,52 +276,7 @@ class ShowsPageState extends State<ShowsPage> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              showFilters ? Container(
-                height: 60.0,
-                alignment: Alignment.center,
-                color: AppColors.appBar,
-                padding: EdgeInsets.only(top: 12.0, bottom: 12.0, left: 2.0),
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(right: 3.0, left: 3.0),
-                      height: 30.0,
-                      child: MainTagbox(filter.datesFilter.isNotEmpty ? 
-                        '${DateFormat('dd.MM.yyyy').format(filter.datesFilter.dateFrom)} - ${DateFormat('dd.MM.yyyy').format(filter.datesFilter.dateTo)}' : 
-                        'DATE',
-                        checked: filter.datesFilter.isNotEmpty,
-                        onTap: showCalendar,
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(right: 3.0, left: 3.0),
-                      height: 30.0,
-                      child: MainTagbox('GENRE',
-                        checked: !filter.genresFilter.isEmpty,
-                        onTap: showGenres,
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(right: 3.0, left: 3.0),
-                      height: 30.0,
-                      child: MainTagbox('LOCATION',
-                        checked: !filter.locationFilter.isEmpty,
-                        onTap: showLocation,
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(right: 3.0, left: 3.0),
-                      height: 30.0,
-                      child: MainTagbox('OTHER FILTERS',
-                        checked: !filter.otherFilter.isEmpty,
-                        onTap: showOther
-                      ),
-                    ),
-                  ]                  
-                ),
-              ) : 
-              Container(),
+              buildFilters(),
               Column(
                 children: List.generate(Cache.events.length, 
                   (ind){

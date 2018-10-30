@@ -9,6 +9,8 @@ import '../../models/api/user.dart';
 import '../../models/api/account.dart';
 import '../../models/api/event.dart';
 
+import '../../helpers/storage/filters/shows_filter.dart';
+
 class MainAPI {
   //static const String url = 'https://protected-island-7029.herokuapp.com/';
   
@@ -30,28 +32,40 @@ class MainAPI {
 
   static String token;
 
-  static Future<http.Response> basePostRequest(String method, String body) async
-  {
-    return await http.post(url + method, body:body, headers:{
+  static Map <String, String> defaultHeader = {
+    'Content-type' : 'application/json', 
+  };
+
+  static void updateToken(String tk){
+    token = tk;
+    defaultHeader = {
       'Content-type' : 'application/json', 
       'Authorization': token
-    });
+    };
+  }
+  
+  static Future<http.Response> basePostRequest(String method, String body) async {
+    return await http.post(url + method, body: body, headers: defaultHeader);
   }
 
-  static Future<http.Response> baseGetRequest(String method, Map<String, String> params) async
-  {
-    var queryParams = "?";
+  static Future<http.Response> baseGetRequest(String method, Map<String, dynamic> params) async {
+    var queryParams = '';
+    if (params.isNotEmpty){
+      queryParams = '?';
 
-    params.forEach(
-      (String key,  String val) => queryParams += key + "=" + val+ "&"
-    );
-
-    return await http.get(url + method + queryParams, headers:{
-      'Content-type' : 'application/json', 
-      'Authorization': token
-    });
+      for (var param in params.keys){
+        var val = params[param];
+        if (val is List<String>){
+          for (var arr in val){
+            queryParams += '$param%5B%5D=$arr';
+          }
+        } else {
+          queryParams += '$param=$val&';
+        }
+      }
+    }
+    return await http.get(url + method + queryParams, headers: defaultHeader);
   }
-
   // AUTH
   static Future<String> authorize(String userName, String password) async {
     var res = await http.post(url + auth + login, 
@@ -74,10 +88,7 @@ class MainAPI {
 
   static Future<User> getMe() async {
     var res = await http.get(url + users + me,
-      headers: {
-        'Content-type' : 'application/json', 
-        'Authorization': token
-      }
+      headers: defaultHeader
     );
     //TODO: better error check
     if (res.statusCode == HttpStatus.ok){
@@ -104,10 +115,7 @@ class MainAPI {
 
   static Future<Account> getMyAccount() async {
     var res = await http.get(url + accounts + my,
-      headers: {
-        'Content-type': 'application/json', 
-        'Authorization': token
-      }
+      headers: defaultHeader
     );
     //TODO: better error check
     if (res.statusCode == HttpStatus.ok){
@@ -122,10 +130,7 @@ class MainAPI {
   static Future<Account> createAccount(Account user) async {
     var res = await http.post(url + accounts, 
       body: json.encode(user.toJson()),
-      headers: {
-        'Content-type' : 'application/json', 
-        'Authorization': token
-      }
+      headers: defaultHeader
     );
     //TODO: better error check
     if (res.statusCode == HttpStatus.created){
@@ -137,21 +142,22 @@ class MainAPI {
 
   //EVENTS
 
-  static Future<List<Event>> searchEvents() async {
-    // var res = await http.get(url + events + search + '?mobile=true',
-    //   headers: {
-    //     'Content-type': 'application/json', 
-    //     'Authorization': token
-    //   }
-    // );
-
-    var res = await baseGetRequest(events + search, {'mobile':'true'});
+  static Future<List<Event>> searchEvents({ShowsFilter filter}) async {
+    Map<String, dynamic> params = {
+      'mobile':'true'
+    };
+    if (filter != null){
+      params.addAll(filter.toJson());
+    }
+    var res = await baseGetRequest(events + search, params);
     //TODO: better error check
     if (res.statusCode == HttpStatus.ok){
       List body = json.decode(res.body);
       var list = body.map<Event>((x) => Event.fromJson(x)).toList();
       return list;
-    } 
+    } else {
+      return [];
+    }
   }
 
   // IMAGES

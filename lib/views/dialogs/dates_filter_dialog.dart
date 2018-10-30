@@ -19,19 +19,18 @@ import '../../resources/translations.dart';
 import '../../helpers/api/main_api.dart';
 import '../../helpers/storage/filters/dates_filter.dart';
 
-class CalendarFilterDialog extends StatefulWidget  {
-  DateTime startDate;
-  DateTime endDate;
+class DatesFilterDialog extends StatefulWidget  {
+  DatesFilter filter;
 
   Function (DatesFilter) onSave;
 
-  CalendarFilterDialog({this.startDate, this.endDate, this.onSave});
+  DatesFilterDialog({this.filter, this.onSave});
 
   @override
-  CalendarFilterDialogState createState() => CalendarFilterDialogState();
+  DatesFilterDialogState createState() => DatesFilterDialogState();
 }
 
-class CalendarFilterDialogState extends State<CalendarFilterDialog> {
+class DatesFilterDialogState extends State<DatesFilterDialog> {
 
   DatesFilter result;
 
@@ -43,11 +42,11 @@ class CalendarFilterDialogState extends State<CalendarFilterDialog> {
 
     result = DatesFilter();
 
-    if (widget.startDate != null){
-      selectedDates.add(widget.startDate);
+    if (widget.filter.dateFrom != null){
+      selectedDates.add(widget.filter.dateFrom);
     }
-    if (widget.endDate != null){
-      selectedDates.add(widget.endDate);      
+    if (widget.filter.dateTo != null){
+      selectedDates.add(widget.filter.dateTo);      
     }
 
     if (selectedDates.isNotEmpty){
@@ -122,10 +121,10 @@ class CalendarFilterDialogState extends State<CalendarFilterDialog> {
               width: MediaQuery.of(context).size.width * 0.3,
               child: MainButton('SAVE',
                 onTap: (){
+                  Navigator.pop(context);     
                   if (widget.onSave != null){
                     widget.onSave(result);
                   }
-                  Navigator.pop(context);
                 },
               )
             )

@@ -68,7 +68,7 @@ class LoginPageState extends State<LoginPage> {
         (token){
           Navigator.pop(context);
           if (token != null){
-            MainAPI.token = token;
+            MainAPI.updateToken(token);
             MainAPI.getMe().then(
               (user){
                 user.token = token;

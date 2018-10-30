@@ -6,7 +6,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../widgets/main_button.dart';
 import '../widgets/main_tagbox.dart';
-import '../widgets/main_checkbox.dart';
+import '../widgets/address_autocomplete.dart';
 
 import '../dialogs/dialogs.dart';
 
@@ -18,10 +18,15 @@ import '../../resources/app_colors.dart';
 import '../../resources/translations.dart';
 
 import '../../helpers/api/main_api.dart';
-import '../../helpers/storage/cache.dart';
+import '../../helpers/storage/filters/location_filter.dart';
 
 class LocationFilterDialog extends StatefulWidget  {
 
+  LocationFilter filter;
+
+  Function(LocationFilter) onSave;
+
+  LocationFilterDialog({this.filter, this.onSave});
 
   @override
   LocationFilterDialogState createState() => LocationFilterDialogState();
@@ -29,10 +34,24 @@ class LocationFilterDialog extends StatefulWidget  {
 
 class LocationFilterDialogState extends State<LocationFilterDialog> {
 
-  double radius = 10.0;
+  double radius;
+  double lat;
+  double lng;
+  String address;
+
+  AddressAutocompleteController autcompleteController;
+  TextEditingController addressController;
 
   void initState(){
     super.initState();
+
+    radius = widget.filter?.radius ?? 10.0;
+    lat = widget.filter?.lat;
+    lng = widget.filter?.lng;
+    address = widget.filter?.address;
+
+    autcompleteController = AddressAutocompleteController();
+    addressController = TextEditingController(text: address);
   }
 
   @override 
@@ -65,6 +84,7 @@ class LocationFilterDialogState extends State<LocationFilterDialog> {
                   margin: EdgeInsets.only(left: 15.0),
                   width: MediaQuery.of(context).size.width * 1.0 - 115,
                   child: TextField(
+                    controller: addressController,
                     style: TextStyle(
                       color: Colors.white
                     ),
@@ -82,12 +102,33 @@ class LocationFilterDialogState extends State<LocationFilterDialog> {
                     ),
                     onChanged: (val){
                       setState(() {
-                            
+                        lat = null;
+                        lng = null;
+                        address = val;
+                        autcompleteController.setAddress(address);
                       });
                     },
                   ),
                 ),
               ]
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(left: 55.0, top: 5.0),
+            child: AddressAutocomplete(
+              onSelect: (address){
+                setState(() {
+                  this.address = address.address;
+                  this.lat = address.location.lat;
+                  this.lng = address.location.lng;       
+                  addressController.text = this.address;          
+                });
+              },
+              controller: autcompleteController,
+              textStyle: TextStyle(
+                color: Colors.white,
+                fontSize: 14.0
+              ),
             ),
           ),
           Container(
@@ -122,7 +163,14 @@ class LocationFilterDialogState extends State<LocationFilterDialog> {
             height: 40.0,
             child: Container(
               width: MediaQuery.of(context).size.width * 0.3,
-              child: MainButton('SAVE')
+              child: MainButton('SAVE',
+                onTap: (){
+                  Navigator.pop(context);     
+                  if (widget.onSave != null){
+                    widget.onSave(LocationFilter(lat: lat, lng: lng, radius: radius, address: address));
+                  }
+                },
+              )
             )
           )
         ],

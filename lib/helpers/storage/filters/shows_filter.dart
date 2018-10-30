@@ -10,4 +10,13 @@ class ShowsFilter {
   GenresFilter genresFilter = GenresFilter();
   LocationFilter locationFilter = LocationFilter();
 
+  Map <String, dynamic> toJson(){
+    Map <String, dynamic> res = {};
+    res.addAll(datesFilter.toJson());
+    res.addAll(otherFilter.toJson());
+    res.addAll(genresFilter.toJson());
+    res.addAll(locationFilter.toJson());
+    return res;
+  }
+
 }

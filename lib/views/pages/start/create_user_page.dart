@@ -112,7 +112,7 @@ class CreateUserPageState extends State<CreateUserPage> {
   }
 
   void createAccount(){
-    MainAPI.token = user.token;
+    MainAPI.updateToken(user.token);
     MainAPI.createAccount(Account(userName: userName, firstName: firstName, lastName: lastName, accountType: AccountType.fan)).timeout(Duration(seconds: 10), 
       onTimeout: (){
         Navigator.pop(context);

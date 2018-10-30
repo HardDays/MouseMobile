@@ -19,10 +19,15 @@ import '../../resources/app_colors.dart';
 import '../../resources/translations.dart';
 
 import '../../helpers/api/main_api.dart';
-import '../../helpers/storage/cache.dart';
+import '../../helpers/storage/filters/other_filter.dart';
 
 class OtherFilterDialog extends StatefulWidget  {
 
+  OtherFilter filter;
+
+  Function(OtherFilter) onSave;
+
+  OtherFilterDialog({this.filter, this.onSave});
 
   @override
   OtherFilterDialogState createState() => OtherFilterDialogState();
@@ -30,8 +35,14 @@ class OtherFilterDialog extends StatefulWidget  {
 
 class OtherFilterDialogState extends State<OtherFilterDialog> {
 
+  Set <String> venueTypes;
+  Set <String> ticketTypes;
+
   void initState(){
     super.initState();
+
+    venueTypes = widget.filter?.venueTypes?.toSet() ?? Set();
+    ticketTypes = widget.filter?.ticketTypes?.toSet() ?? Set();
   }
 
   Widget buildCheckBox(String title){
@@ -90,7 +101,19 @@ class OtherFilterDialogState extends State<OtherFilterDialog> {
                     //   margin: EdgeInsets.only(bottom: 15.0),
                       child: Row(
                         children: <Widget>[ 
-                          MainCheckbox(),
+                          MainCheckbox(
+                            checked: ticketTypes.contains(TicketType.all[ind]),
+                            onTap: (){
+                              setState(() { 
+                                var type = TicketType.all[ind];
+                                if (ticketTypes.contains(type)){
+                                  ticketTypes.remove(type);
+                                } else {
+                                  ticketTypes.add(type);
+                                }
+                              });
+                            },
+                          ),
                           Padding(padding: EdgeInsets.only(left: 15.0)),
                           Text(TicketType.all[ind],
                             style: TextStyle(
@@ -127,7 +150,19 @@ class OtherFilterDialogState extends State<OtherFilterDialog> {
                     //   margin: EdgeInsets.only(bottom: 15.0),
                       child: Row(
                         children: <Widget>[ 
-                          MainCheckbox(),
+                          MainCheckbox(
+                            checked: venueTypes.contains(VenueType.all[ind]),
+                            onTap: (){
+                              setState(() {                                                          
+                                var type = VenueType.all[ind];
+                                if (venueTypes.contains(type)){
+                                  venueTypes.remove(type);
+                                } else {
+                                  venueTypes.add(type);
+                                }
+                              });
+                            },
+                          ),
                           Padding(padding: EdgeInsets.only(left: 15.0)),
                           Text(VenueType.all[ind],
                             style: TextStyle(
@@ -150,7 +185,14 @@ class OtherFilterDialogState extends State<OtherFilterDialog> {
               height: 40.0,
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.3,
-                child: MainButton('SAVE')
+                child: MainButton('SAVE',
+                  onTap: (){
+                    Navigator.pop(context);     
+                    if (widget.onSave != null){
+                      widget.onSave(OtherFilter(ticketTypes: ticketTypes.toList(), venueTypes: venueTypes.toList()));
+                    }
+                  }
+                )
               )
             )
           ],

@@ -33,13 +33,10 @@ class MainCheckbox extends StatefulWidget {
 
 class MainCheckboxState extends State<MainCheckbox> {
   
-  bool checked;
-
   @override
   void initState(){
     super.initState();
 
-    checked = widget.checked;
   }
   
   Widget build(BuildContext context) {
@@ -50,14 +47,14 @@ class MainCheckboxState extends State<MainCheckbox> {
         height: 23.0,
         //padding: EdgeInsets.only(left: 12.0, right: 12.0),
         decoration: BoxDecoration(
-          gradient: checked ? widget.checkedGradient : widget.uncheckedGradient,
+          gradient: widget.checked ? widget.checkedGradient : widget.uncheckedGradient,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(3.0),
             bottomRight: Radius.circular(3.0),
             topRight: Radius.circular(3.0),
             bottomLeft: Radius.circular(3.0)
           ),
-          border: Border.all(color: checked ? Colors.transparent : Colors.grey.withOpacity(0.5))
+          border: Border.all(color: widget.checked ? Colors.transparent : Colors.grey.withOpacity(0.5))
         ),
         child: Center(
           child: InkWell(
@@ -69,7 +66,7 @@ class MainCheckboxState extends State<MainCheckbox> {
                 widget.onTap();
               }
             },
-            child: checked ? 
+            child: widget.checked ? 
             Icon(Icons.check,
               size: 20.0,
               color: Colors.white,

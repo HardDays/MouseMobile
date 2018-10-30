@@ -1,8 +1,22 @@
 class OtherFilter {
   
-  List <String> ticketTypes = [];
-  List <String> venueTypes = [];
+  List <String> ticketTypes;
+  List <String> venueTypes;
 
-  bool get isEmpty => ticketTypes.isEmpty && venueTypes.isEmpty;
+  OtherFilter({this.ticketTypes = const [], this.venueTypes = const []});
+
+  bool get isNotEmpty => ticketTypes.isNotEmpty || venueTypes.isNotEmpty;
   
+  Map <String, dynamic> toJson(){
+    Map <String, dynamic> res = {};
+
+    if (ticketTypes.isNotEmpty){
+      res['ticket_types'] = ticketTypes;
+    }
+    if (venueTypes.isNotEmpty){
+      res['size'] = venueTypes;
+    } 
+    
+    return res;
+  }
 }

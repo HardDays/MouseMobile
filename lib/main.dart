@@ -4,6 +4,7 @@ import 'views/pages/start/start_page.dart';
 import 'views/pages/main/main_page.dart';
 
 import 'helpers/storage/database.dart';
+import 'helpers/api/main_api.dart';
 
 void main() => runApp(App());
 
@@ -47,7 +48,7 @@ class AppState extends State<App> {
           home: StartPage(),
         );
       } else {
-        
+        MainAPI.updateToken(Database.getCurrentUser().token);
         return MaterialApp(
           theme: ThemeData(
             primarySwatch: Colors.blue,
