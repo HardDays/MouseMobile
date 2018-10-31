@@ -54,7 +54,7 @@ class Dialogs {
               height: MediaQuery.of(context).size.height * 1.0,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/images/main/blured_rect.png'),
+                  image: AssetImage('assets/images/common/blured_rect.png'),
                   fit: BoxFit.cover
                 )
               ),

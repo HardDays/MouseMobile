@@ -46,7 +46,62 @@ class Translations {
       'usernameAlreadyTaken ': 'Username already taken',
       'promoCaps': 'PROMO',
       'startingFrom': 'Starting from',
-      'buyTicketCaps': 'BUY TICKET'
+      'buyTicketCaps': 'BUY TICKET',
+
+      // enums
+      'fan': 'Fan',
+      'artist': 'Artist',
+      'venue': 'Venue',
+      'vr': 'VR',
+      'in_person': 'In person',
+      'blues': 'Blues',
+      'children_music': 'Children music',
+      'classical': 'Classical',
+      'country': 'Country',
+      'electronic': 'Electronic',
+      'holiday': 'Holiday',
+      'opera': 'Opera',
+      'singer': 'Singer',
+      'latino': 'Latino',
+      'jazz': 'Jazz',
+      'pop': 'Pop',
+      'soul': 'Soul',
+      'musicals': 'Musicals',
+      'dance': 'Dance',
+      'world': 'World',
+      'hip_hop': 'Hip hop',
+      'alternative': 'Alternative',
+      'christian_gospel': 'Christian gospel',
+      'rock': 'Rock',
+      'vocal': 'Vocal',
+      'reggae': 'Reggae',
+      'easy_listening': 'Easy listening',
+      'j_pop': 'J-pop',
+      'enka': 'Enka',
+      'anime': 'Anime',
+      'kayokyoku': 'Kayokyoku',
+      'k_pop': 'K-pop',
+      'karaoke': 'Karaoke',
+      'instrumental': 'Instrumental',
+      'brazilian': 'Brazilian',
+      'spoken_word': 'Spoken word',
+      'disney': 'Disney',
+      'french_pop': 'French pop',
+      'german_pop': 'German pop',
+      'german_folk': 'German folk',
+      'new_age': 'New age',
+      'night_club': 'Night club',
+      'concert_hall': 'Concert hall',
+      'event_space': 'Event space',
+      'additional_room': 'Additional room',
+      'theatre': 'Theatre',
+      'other': 'Other',
+      'stadium_arena': 'Stadium arena',
+      'outdoor_space': 'Outdoor space',
+      'restaurant': 'Restaurant',
+      'bar': 'Bar',
+      'private_residence': 'Private residence',
+
     }
   };
 
@@ -94,4 +149,12 @@ class Translations {
   static String get unauthorized => words[locale]['unauthorized'];
   static String get funded => words[locale]['funded'];
 
+
+  static String translateEnum(String word){
+    if (words[locale].containsKey(word)){
+      return words[locale][word];
+    } else {
+      return words[locale]['other'];
+    }
+  }
 }

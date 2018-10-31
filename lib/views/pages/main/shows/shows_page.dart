@@ -9,7 +9,7 @@ import 'search_page.dart';
 
 import '../../../widgets/main_button.dart';
 import '../../../widgets/main_tagbox.dart';
-import '../../../widgets/main_checkbox.dart';
+import '../../../widgets/event_card.dart';
 
 import '../../../dialogs/dialogs.dart';
 import '../../../dialogs/genres_filter_dialog.dart';
@@ -121,10 +121,10 @@ class ShowsPageState extends State<ShowsPage> {
 
   void buildAppBar(BuildContext context){
     widget.appBar = PreferredSize( 
-      preferredSize: Size(MediaQuery.of(context).size.width, 40.0),
+      preferredSize: Size(MediaQuery.of(context).size.width, 45.0),
       child: AppBar(
         iconTheme: IconThemeData(color: Colors.white),
-        elevation: 1.0,
+        elevation: 0.0,
         title: Row(
           children:[
             Container(
@@ -145,8 +145,8 @@ class ShowsPageState extends State<ShowsPage> {
             Text(widget.title,
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 16.0,
-                fontWeight: FontWeight.w500
+                fontSize: 18.0,
+                fontWeight: FontWeight.w700
                // fontStyle: FontStyle.italic
               ),
             )
@@ -167,7 +167,7 @@ class ShowsPageState extends State<ShowsPage> {
             icon: Container(
               width: 20.0,
               height: 20.0,
-              child: SvgPicture.asset('assets/images/main/filters_icon.svg',
+              child: SvgPicture.asset('assets/images/common/filters_icon.svg',
                 color: showFilters ? AppColors.mainRed : Colors.white
               ),
             ),
@@ -187,7 +187,7 @@ class ShowsPageState extends State<ShowsPage> {
   Widget buildFilters(){
     return showFilters ? 
       Container(
-        height: 60.0,
+        height: 55.0,
         alignment: Alignment.center,
         color: AppColors.appBar,
         padding: EdgeInsets.only(top: 12.0, bottom: 12.0, left: 2.0),
@@ -280,229 +280,7 @@ class ShowsPageState extends State<ShowsPage> {
               Column(
                 children: List.generate(Cache.events.length, 
                   (ind){
-                    var event = Cache.events[ind];
-                    return Container(
-                      margin: EdgeInsets.only(top: 10.0, left: 7.0, right: 7.0),
-                      decoration: BoxDecoration(
-                        color: AppColors.showCard,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(8.0),
-                          topRight: Radius.circular(8.0),
-                          bottomLeft: Radius.circular(8.0),
-                          bottomRight: Radius.circular(50.0),
-                        )
-                      ),
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.width,
-                      child: Stack(
-                        children: <Widget>[
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.width - 70.0,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(8.0),
-                                topRight: Radius.circular(8.0),
-                              ),
-                            ),
-                            child: CachedNetworkImage(  
-                              fadeOutDuration: Duration(milliseconds: 100),
-                              fadeInDuration: Duration(milliseconds: 100),
-                              alignment: Alignment.topCenter,
-                              fit: BoxFit.cover,
-                              imageUrl: event.imageId != null ? MainAPI.getImageUrl(event.imageId) : 'https://s3-alpha.figma.com/img/337a/eef7/6dacc3363f98f9ba67035e134c404f02',
-                              placeholder: Image(fit: BoxFit.cover, image: NetworkImage('https://s3-alpha.figma.com/img/337a/eef7/6dacc3363f98f9ba67035e134c404f02')),
-                              errorWidget: Image(fit: BoxFit.cover, image: NetworkImage('https://s3-alpha.figma.com/img/337a/eef7/6dacc3363f98f9ba67035e134c404f02'))
-                            ), //NetworkImage('https://s3-alpha.figma.com/img/337a/eef7/6dacc3363f98f9ba67035e134c404f02')
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(top: 0.0),
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.width - 20.0,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                bottomRight: Radius.circular(25.0),
-                              ),
-                              gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: [
-                                  AppColors.showCard.withOpacity(0.2),
-                                  AppColors.showCard.withOpacity(1.0)
-                                ]
-                              )
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(left: 10.0),
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.width - 70.0,
-                            alignment: Alignment.bottomLeft,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: <Widget>[
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: <Widget>[
-                                    event.dateFrom != null ?
-                                    Container(
-                                      margin: EdgeInsets.only(right: 10.0),
-                                      height: 65.0,
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.end,
-                                        children: <Widget>[
-                                          Container(
-                                            height: 26.0,
-                                            child: Text(event.dateFrom.month.toString().padLeft(2, '0'),
-                                              style: TextStyle(
-                                                color: AppColors.textRed,
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 27.0
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            height: 26.0,
-                                            child: Text(event.dateFrom.day.toString().padLeft(2, '0'),
-                                              style: TextStyle(
-                                                color: AppColors.textRed,
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 27.0
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            height: 13.0,
-                                            child: Text(event.dateFrom.year.toString(),
-                                              style: TextStyle(
-                                                color: AppColors.textRed,
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 12.0
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      )
-                                    ) :
-                                    Container(),
-                                    Container(
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        mainAxisAlignment: MainAxisAlignment.end,
-                                        children: <Widget>[
-                                          event.isCrowdfunding ? 
-                                          Container(
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: <Widget>[
-                                                Container(
-                                                  child: Text('${(100 * min(event.founded / max(1.0, event.fundingGoal), 1.0)).floor()}% ${Translations.funded}',
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 12.0,
-                                                      fontWeight: FontWeight.w400
-                                                    ),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  width: MediaQuery.of(context).size.width * 0.6 * min(event.founded / max(1.0, event.fundingGoal), 1.0),
-                                                  height: 5.0,
-                                                  color: AppColors.promoBg,
-                                                )
-                                              ],
-                                            ),
-                                          ) :
-                                          Container(
-                                            padding: EdgeInsets.only(left: 2.0, right: 2.0),
-                                            color: AppColors.promoBg,
-                                            child: Text(Translations.promoCaps,
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.black,
-                                                fontSize: 13.0
-                                              ),
-                                            ),
-                                          ),                             
-                                          Container(
-                                            width: MediaQuery.of(context).size.width * 0.6,
-                                            child: Text(event.name.toUpperCase(),
-                                              maxLines: 1,
-                                              style: TextStyle(
-                                                fontSize: 24.0,
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.white
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context).size.width * 0.6,
-                                            child: Text(event.venue != null ? (event.venue.displayName + ' - ' + event.venue.address) : event.address,
-                                              overflow: TextOverflow.ellipsis,
-                                              maxLines: 1,
-                                              style: TextStyle(
-                                                fontSize: 14.0,
-                                                fontWeight: FontWeight.w400,
-                                                color: Colors.white
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ]
-                                ),
-                                Container(
-                                  alignment: Alignment.bottomRight,
-                                  child: Container(
-                                    width: MediaQuery.of(context).size.width * 0.11,
-                                    height: MediaQuery.of(context).size.width * 0.11,
-                                    margin: EdgeInsets.only(bottom: 15.0, right: 15.0),
-                                    alignment: Alignment.bottomRight,
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage('assets/images/main/shows/play_button.png')
-                                      )
-                                    ),
-                                  )
-                                )
-                              ]  
-                            )
-                          ),
-                          Container(
-                            height: 70.0,
-                            margin: EdgeInsets.only(top: MediaQuery.of(context).size.width - 70.0),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                event.tickets.isNotEmpty ? 
-                                Container(
-                                  width: MediaQuery.of(context).size.width * 0.45,
-                                  margin: EdgeInsets.only(right: 15.0),
-                                  alignment: Alignment.centerRight,
-                                  child: Text('${Translations.startingFrom} \$${event.tickets[0].price.floor()}',
-                                    maxLines: 1,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12.0,
-                                      fontWeight: FontWeight.w200
-                                    ),
-                                  ),
-                                ) :
-                                Container(),
-                                Container(
-                                  margin: EdgeInsets.only(right: 15.0),
-                                  width: MediaQuery.of(context).size.width * 0.35,
-                                  height: 36.0,
-                                  child: MainButton(Translations.buyTicketCaps),
-                                )
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    );
+                    return EventCard(event: Cache.events[ind]);
                   }
                 )
               )

@@ -55,12 +55,14 @@ class MainAPI {
 
       for (var param in params.keys){
         var val = params[param];
-        if (val is List<String>){
-          for (var arr in val){
-            queryParams += '$param%5B%5D=$arr';
+        if (val != null){
+          if (val is List<String>){
+            for (var arr in val){
+              queryParams += '$param%5B%5D=$arr';
+            }
+          } else {
+            queryParams += '$param=$val&';
           }
-        } else {
-          queryParams += '$param=$val&';
         }
       }
     }
@@ -140,15 +142,35 @@ class MainAPI {
     }
   }
 
+  static Future<List<Account>> searchAccounts({String text, String accountType, int limit, int offset}) async {
+    Map <String, dynamic> params = {
+      'text': text, 
+      'type': accountType ?? AccountType.fan,
+      'limit': limit,
+      'offset': offset
+    };
+    var res = await baseGetRequest(accounts + search, params);
+    //TODO: better error check
+    if (res.statusCode == HttpStatus.ok){
+      List body = json.decode(res.body);
+      var list = body.map<Account>((x) => Account.fromJson(x)).toList();
+      return list;
+    } else {
+      return [];
+    }
+  }
+
   //EVENTS
 
-  static Future<List<Event>> searchEvents({ShowsFilter filter}) async {
+  static Future<List<Event>> searchEvents({String text, ShowsFilter filter}) async {
     Map<String, dynamic> params = {
-      'mobile':'true'
+      'mobile':'true',
+      'text': text
     };
     if (filter != null){
       params.addAll(filter.toJson());
     }
+  
     var res = await baseGetRequest(events + search, params);
     //TODO: better error check
     if (res.statusCode == HttpStatus.ok){

@@ -91,7 +91,7 @@ class OtherFilterDialogState extends State<OtherFilterDialog> {
             Container(
              width: MediaQuery.of(context).size.width * 1.0,
              height: 40.0,
-             margin: EdgeInsets.only(left: 10.0, right: 10.0, top: 15.0),
+             margin: EdgeInsets.only(left: 0.0, right: 0.0, top: 15.0),
              child: GridView.count(
                crossAxisCount: 2,
                childAspectRatio: 4.0,
@@ -115,13 +115,16 @@ class OtherFilterDialogState extends State<OtherFilterDialog> {
                             },
                           ),
                           Padding(padding: EdgeInsets.only(left: 15.0)),
-                          Text(TicketType.all[ind],
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15.0,
-                              fontWeight: FontWeight.w300
-                            ),
-                          )
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.25,
+                            child: Text(Translations.translateEnum(TicketType.all[ind]),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15.0,
+                                fontWeight: FontWeight.w300
+                              ),
+                            )
+                          ),
                         ],
                       )
                     );
@@ -140,7 +143,7 @@ class OtherFilterDialogState extends State<OtherFilterDialog> {
             Container(
               width: MediaQuery.of(context).size.width * 1.0,
               height: MediaQuery.of(context).size.height * 0.36,
-              margin: EdgeInsets.only(left: 10.0, right: 10.0, top: 15.0),
+              margin: EdgeInsets.only(left: 0.0, right: 0.0, top: 15.0),
               child: GridView.count(
                 crossAxisCount: 2,
                 childAspectRatio: 4.0,
@@ -164,12 +167,15 @@ class OtherFilterDialogState extends State<OtherFilterDialog> {
                             },
                           ),
                           Padding(padding: EdgeInsets.only(left: 15.0)),
-                          Text(VenueType.all[ind],
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15.0,
-                              fontWeight: FontWeight.w300
-                            ),
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.29,
+                            child: Text(Translations.translateEnum(VenueType.all[ind]),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15.0,
+                                fontWeight: FontWeight.w300
+                              ),
+                            )
                           )
                         ],
                       )

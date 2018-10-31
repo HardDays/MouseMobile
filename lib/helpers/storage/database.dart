@@ -22,7 +22,12 @@ class Database {
 
     if (exists){
       String body = await _file.readAsString(); 
-      _db = json.decode(body);     
+      try {
+        _db = json.decode(body);     
+      } catch (Exception){
+        _db = Map <String, String>();
+        await _file.writeAsString('{}');
+      }
     } else {
       await _file.create();
       await _file.writeAsString('{}');

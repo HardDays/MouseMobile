@@ -10,8 +10,12 @@ class MainTagbox extends StatefulWidget {
   final Function onTap;
   final LinearGradient checkedGradient;
   final LinearGradient uncheckedGradient;
+  final TextStyle textStyle;
 
-  MainTagbox(this.text, {this.checkedGradient = const LinearGradient(
+  MainTagbox(this.text, 
+    {
+      this.onTap, 
+      this.checkedGradient = const LinearGradient(
         colors: [
           AppColors.redRightGradButton,
           AppColors.redLeftGradButton,
@@ -23,8 +27,14 @@ class MainTagbox extends StatefulWidget {
           Color(0x16FFFFFF),
         ]
       ),  
-      this.onTap, 
-      this.checked = false});
+      this.checked = false,
+      this.textStyle = const TextStyle(
+        fontWeight: FontWeight.w500,
+        color: Colors.white,
+        fontSize: 15.0
+      ),
+    }
+  );
 
 
   @override
@@ -42,7 +52,7 @@ class MainTagboxState extends State<MainTagbox> {
     return GestureDetector(
       onTap: widget.onTap,
       child: Container(
-        padding: EdgeInsets.only(left: 12.0, right: 12.0),
+        padding: EdgeInsets.only(left: 15.0, right: 15.0),
         decoration: BoxDecoration(
           gradient: widget.checked ? widget.checkedGradient : widget.uncheckedGradient,
           borderRadius: BorderRadius.only(
@@ -63,11 +73,7 @@ class MainTagboxState extends State<MainTagbox> {
               }
             },
             child: Text(widget.text,
-              style: TextStyle(
-                fontWeight: FontWeight.w400,
-                color: Colors.white,
-                fontSize: 16.0
-              ),
+              style: widget.textStyle
             ),
           ),
         )

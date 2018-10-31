@@ -110,11 +110,14 @@ class GenresFilterDialogState extends State<GenresFilterDialog> {
                           },
                         ),
                         Padding(padding: EdgeInsets.only(left: 15.0)),
-                        Text(genres[ind],
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.w300
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.29,
+                          child: Text(Translations.translateEnum(genres[ind]),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.w300
+                            ),
                           ),
                         )
                       ],

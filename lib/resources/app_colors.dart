@@ -21,4 +21,6 @@ class AppColors {
 
   static const Color dialogBg = Color(0xFF32294A);
   static const Color dialogBack = Color(0xC8281442);
+
+  static const Color genresText = Color(0xFF847D97);
 }

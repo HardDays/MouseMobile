@@ -11,7 +11,6 @@ class PredictPlace {
   PredictPlace({this.id, this.address, this.location});
 }
 
-
 class AddressAutocompleteController {
   String address;
 

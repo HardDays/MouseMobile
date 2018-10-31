@@ -76,7 +76,7 @@ class LocationFilterDialogState extends State<LocationFilterDialog> {
                   height: 20.0,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assets/images/main/pin.png')
+                      image: AssetImage('assets/images/common/pin.png')
                     )
                   ),
                 ),
