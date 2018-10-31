@@ -79,7 +79,9 @@ class BottomLoginWidget extends StatelessWidget {
           ),
           FlatButton(
             onPressed: (){
-              Navigator.pop(context);
+              if (Navigator.canPop(context)){
+                Navigator.pop(context);
+              }
               Navigator.pushReplacement(
                 context, 
                 DefaultPageRoute(builder: (context) => MainPage()),
