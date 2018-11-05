@@ -1,7 +1,8 @@
 import 'package:intl/intl.dart';
 
-import '../api/venue.dart';
-import '../api/ticket.dart';
+import 'ticket.dart';
+import 'account.dart';
+import 'comment.dart';
 
 enum EventError { ok, unknownError }
 
@@ -14,6 +15,8 @@ class Event {
   String name;
   String description;
   String address;
+  String hashtag;
+  String currency;
 
   bool isCrowdfunding;
 
@@ -29,13 +32,18 @@ class Event {
   double fundingGoal;
   double founded;
 
-  Venue venue;
+  Account venue;
   List<Ticket> tickets;
+  List <String> genres;
+  List <Account> artists;
+  List <Comment> comments;
 
-  Event({this.id, this.error, this.name, this.description, this.address, 
-        this.imageId, this.fundingGoal, this.founded, this.backers,
-        this.fundingFrom, this.fundingTo, this.dateFrom, this.dateTo, this.isCrowdfunding,
-        this.venue, this.tickets}){
+  Event({this.id, this.error, this.name, this.description, this.address, this.hashtag,
+      this.imageId, this.fundingGoal, this.founded, this.backers, this.currency,
+      this.fundingFrom, this.fundingTo, this.dateFrom, this.dateTo, this.isCrowdfunding,
+      this.venue, this.tickets, this.genres, this.artists, this.comments = const []
+    }
+  ) {
     tickets.sort((t1, t2) => t1.price.compareTo(t2.price));
   }
 
@@ -44,16 +52,22 @@ class Event {
       id: json['id'],
       name: json['name'],
       description: json['description'] ?? '',
+      hashtag: json['hashtag'],
       address: json['address'] ?? '',
       imageId: json['image_id'],
-      backers: json['backers'],
-      fundingGoal: json['funding_goal'].toDouble(),
-      founded: json['founded'].toDouble(),
+      backers: json['backers'] ?? 0,
+      currency: json['currency'],
+      fundingGoal: json['funding_goal'].toDouble() ?? 0.0,
+      founded: json['founded'].toDouble() ?? 0.0,
       isCrowdfunding: json['is_crowdfunding_event'] ?? false,
       dateFrom: json['date_from'] != null ? DateTime.parse(json['date_from']) : null,
       dateTo: json['date_to'] != null ? DateTime.parse(json['date_to']) : null,
-      venue: json['venue'] != null ? Venue.fromJson(json['venue']) : null,
+      fundingFrom: json['funding_from'] != null ? DateTime.parse(json['funding_from']) : null,
+      fundingTo: json['funding_to'] != null ? DateTime.parse(json['funding_to']) : null,
+      venue: json['venue'] != null ? Account.fromJson(json['venue']) : null,
       tickets: json['tickets'] != null ? json['tickets'].map<Ticket>((x) => Ticket.fromJson(x)).toList() : [],
+      genres: json['genres'] != null ? List<String>.from(json['genres']) : [],
+      artists: json['artist'] != null ? json['artist'].map<Account>((x) => Account(id: x['artist_id'])).toList() : [],
       error: EventError.ok
     );
   }

@@ -190,14 +190,12 @@ class SearchPageState extends State<SearchPage> with SingleTickerProviderStateMi
           backgroundColor: AppColors.appBar,
           title: TextField(
             style: TextStyle(
-              fontFamily: 'Lato',
               color: Colors.white,
               fontSize: 17.0
             ),
             decoration: InputDecoration.collapsed(
               hintText: 'Search',       
               hintStyle: TextStyle(
-                fontFamily: 'Lato',
                 color: Colors.grey.withOpacity(0.5)
               )     
             ),

@@ -450,7 +450,7 @@ class CreateUserPageState extends State<CreateUserPage> {
                                 children: <Widget>[
                                   Container(
                                     height: 50.0,
-                                    child: MainButton(Translations.continueCaps,
+                                    child: MainButton(Translations.continuew.toUpperCase(),
                                       onTap: onContinue
                                     )
                                   ),

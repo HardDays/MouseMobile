@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 import '../../models/api/user.dart';
 import '../../models/api/account.dart';
 import '../../models/api/event.dart';
+import '../../models/api/comment.dart';
 
 import '../../helpers/storage/filters/shows_filter.dart';
 
@@ -29,6 +30,8 @@ class MainAPI {
   static const String events = '/events';
   static const String search = '/search';
   static const String preview = '/preview';
+  static const String comments = '/comments';
+  static const String upcoming = '/upcoming_shows';
 
   static String token;
 
@@ -68,7 +71,9 @@ class MainAPI {
     }
     return await http.get(url + method + queryParams, headers: defaultHeader);
   }
+
   // AUTH
+
   static Future<String> authorize(String userName, String password) async {
     var res = await http.post(url + auth + login, 
       body: json.encode({
@@ -129,6 +134,14 @@ class MainAPI {
     } 
   }
 
+  static Future<Account> getAccount(int id) async {
+    var res = await baseGetRequest(accounts + '/$id', {'extended': true});
+    //TODO: better error check
+    if (res.statusCode == HttpStatus.ok){
+      return Account.fromJson(json.decode(res.body));
+    }
+  }
+
   static Future<Account> createAccount(Account user) async {
     var res = await http.post(url + accounts, 
       body: json.encode(user.toJson()),
@@ -160,6 +173,22 @@ class MainAPI {
     }
   }
 
+  static Future<List<Event>> upcomingShows(int id, {int limit, int offset}) async {
+    Map <String, dynamic> params = {
+      'limit': limit,
+      'offset': offset
+    };
+    var res = await baseGetRequest(accounts + '/$id' + upcoming, params);
+    //TODO: better error check
+    if (res.statusCode == HttpStatus.ok){
+      List body = json.decode(res.body);
+      var list = body.map<Event>((x) => Event.fromJson(x)).toList();
+      return list;
+    } else {
+      return [];
+    }
+  }
+
   //EVENTS
 
   static Future<List<Event>> searchEvents({String text, ShowsFilter filter}) async {
@@ -175,8 +204,26 @@ class MainAPI {
     //TODO: better error check
     if (res.statusCode == HttpStatus.ok){
       List body = json.decode(res.body);
-      var list = body.map<Event>((x) => Event.fromJson(x)).toList();
-      return list;
+      return body.map<Event>((x) => Event.fromJson(x)).toList();
+    } else {
+      return [];
+    }
+  }
+
+  static Future<Event> getEvent(int id) async {
+    var res = await baseGetRequest(events + '/$id', {});
+    //TODO: better error check
+    if (res.statusCode == HttpStatus.ok){
+      return Event.fromJson(json.decode(res.body));
+    }
+  }
+
+   static Future<List<Comment>> getEventComments(int id) async {
+    var res = await baseGetRequest(events + '/$id' + comments, {});
+    //TODO: better error check
+    if (res.statusCode == HttpStatus.ok){
+      List body = json.decode(res.body);
+      return  body.map<Comment>((x) => Comment.fromJson(x)).toList();
     } else {
       return [];
     }
@@ -187,6 +234,11 @@ class MainAPI {
   static String getImageUrl(int imageId){
     return url + images + '/$imageId' + preview + '?width=1024&height=768';
   }
+
+  static String getAccountImageUrl(int imageId){
+    return url + images + '/$imageId' + preview + '?width=512&height=384';
+  }
+
 
 
 }

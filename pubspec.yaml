@@ -24,6 +24,7 @@ dependencies:
   intl: ^0.15.7
   image_picker: ^0.4.10
   google_maps_webservice: ^0.0.7
+  flutter_youtube: ^1.1.2
 
 dev_dependencies:
   flutter_test:
@@ -59,15 +60,28 @@ flutter:
    - assets/images/main/feed_tab_icon.svg
    - assets/images/main/shows_tab_icon.svg
    - assets/images/main/campaigns_tab_icon.svg
+
    - assets/images/main/profile_tab_icon.svg
+   - assets/images/main/profile/account_header.png
+   - assets/images/main/profile/fan_icon.png
+   - assets/images/main/profile/artist_icon.png
+   - assets/images/main/profile/venue_icon.png
+   - assets/images/main/profile/expansion_icon.png
+   - assets/images/main/profile/expainsion_up_icon.png
 
    - assets/images/main/shows/play_button.png
+   - assets/images/main/shows/ticket_form.png
+   - assets/images/main/shows/check_form.png
+   - assets/images/main/shows/paypal_logo.png
+   - assets/images/main/shows/credit_card.png
 
    - assets/images/common/pin.png
    - assets/images/common/follow_icon.png
+   - assets/images/common/follow_button_icon.png
    - assets/images/common/filters_icon.svg
    - assets/images/common/blured_rect.png
    - assets/images/common/empty_account.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

@@ -4,29 +4,29 @@ class Translations {
 
   static Map <String, Map <String, String>> words = {
     'en': {
-      'campaingToBringCaps': 'CAMPAIGN TO BRING\n YOUR FAVE ARTISTS\n CLOSER TO YOU',
-      'watchLiveShowsCaps': 'WATCH LIVE SHOWS\n IN 360°\n VIRTUAL REALITY',
-      'discoverMusicCaps': 'DISCOVER MUSIC\n SHARE SHOWS\n GET REWARDS',
-      'loginCaps': 'LOGIN',
-      'signUpCaps': 'SIGN UP',
-      'continueAsGuestCaps': 'CONTINUE AS GUEST',
+      'campaingToBring': 'CAMPAIGN TO BRING\n YOUR FAVE ARTISTS\n CLOSER TO YOU',
+      'watchLiveShows': 'WATCH LIVE SHOWS\n IN 360°\n VIRTUAL REALITY',
+      'discoverMusic': 'DISCOVER MUSIC\n SHARE SHOWS\n GET REWARDS',
+      'login': 'Login',
+      'signUp': 'Sign Up',
+      'continueAsGuest': 'Continue as guest',
       'loginWith': 'Login with',
-      'mouseCaps': 'MOUSE',
+      'mouse': 'Mouse',
       'username': 'Username',
       'password': 'Password',
-      'forgotYourPasswordCaps': 'FORGOT YOUR PASSWORD?',
+      'forgotYourPassword': 'Forgot your password',
       'email': 'Email',
-      'restoreCaps': 'RESTORE',
+      'restore': 'restore',
       'firstName': 'First name',
       'lastName': 'Last name',
       'confirmPassword': 'Confirm password',
       'enterEmail': 'Enter the email address you used when you created your account.',
       'checkEmail': 'Check your email',
       'weSentInstruction': 'We sent you instructions on how to recover your password.',
-      'continueCaps': 'CONTINUE',
+      'continue': 'Continue',
       'funded': 'Funded',
-      'profileCaps': 'PROFILE',
-      'showsCaps': 'SHOWS',
+      'profile': 'Profile',
+      'shows': 'SHOWS',
       'emptyUsername': 'Empty username',
       'emptyPassword': 'Empty password',
       'serverNotRepsonding': 'Server not responding',
@@ -44,11 +44,12 @@ class Translations {
       'cannotRegister': 'Cannot register',
       'emailAlreadyTaken': 'Email already taken',
       'usernameAlreadyTaken ': 'Username already taken',
-      'promoCaps': 'PROMO',
+      'promo': 'PROMO',
       'startingFrom': 'Starting from',
-      'buyTicketCaps': 'BUY TICKET',
+      'buyTicket': 'Buy ticket',
 
       // enums
+
       'fan': 'Fan',
       'artist': 'Artist',
       'venue': 'Venue',
@@ -102,31 +103,55 @@ class Translations {
       'bar': 'Bar',
       'private_residence': 'Private residence',
 
+
+      //weekdays
+
+      'Sunday': 'Sunday',
+      'Monday': 'Monday',
+      'Tuesday': 'Tuesday',
+      'Wednesday': 'Wednesday',
+      'Thursday': 'Thursday',
+      'Friday': 'Friday',
+      'Saturday': 'Saturday',
+
+      //months
+      'September': 'September',
+      'October': 'October',
+      'November': 'November',
+      'December': 'December',
+      'January': 'January',
+      'February': 'February',
+      'March': 'March',
+      'April': 'April',
+      'May': 'May',
+      'June': 'June',
+      'July': 'July',
+      'August': 'August',
     }
   };
 
-  static String get campaingToBringCaps => words[locale]['campaingToBringCaps'];
-  static String get watchLiveShowsCaps => words[locale]['watchLiveShowsCaps'];
-  static String get discoverMusicCaps => words[locale]['discoverMusicCaps'];
-  static String get loginCaps => words[locale]['loginCaps'];
-  static String get signUpCaps => words[locale]['signUpCaps'];
-  static String get continueAsGuestCaps => words[locale]['continueAsGuestCaps'];
+  static String get campaingToBring => words[locale]['campaingToBring'];
+  static String get watchLiveShows => words[locale]['watchLiveShows'];
+  static String get discoverMusic => words[locale]['discoverMusic'];
+  static String get login => words[locale]['login'];
+  static String get signUp => words[locale]['signUp'];
+  static String get continueAsGuest => words[locale]['continueAsGuest'];
   static String get loginWith => words[locale]['loginWith'];
-  static String get mouseCaps => words[locale]['mouseCaps'];
+  static String get mouse => words[locale]['mouse'];
   static String get username => words[locale]['username'];
   static String get password => words[locale]['password'];
-  static String get forgotYourPasswordCaps => words[locale]['forgotYourPasswordCaps'];
+  static String get forgotYourPassword => words[locale]['forgotYourPassword'];
   static String get email => words[locale]['email'];
-  static String get restoreCaps => words[locale]['restoreCaps'];
+  static String get restore => words[locale]['restore'];
   static String get firstName => words[locale]['firstName'];
   static String get lastName => words[locale]['lastName'];
   static String get confirmPassword => words[locale]['confirmPassword'];
   static String get enterEmail => words[locale]['enterEmail'];
   static String get checkEmail => words[locale]['checkEmail'];
   static String get weSentInstruction => words[locale]['weSentInstruction'];
-  static String get continueCaps => words[locale]['continueCaps'];
-  static String get profileCaps => words[locale]['profileCaps'];
-  static String get showsCaps => words[locale]['showsCaps'];
+  static String get continuew => words[locale]['continue'];
+  static String get profile => words[locale]['profile'];
+  static String get shows => words[locale]['shows'];
   static String get emptyUsername => words[locale]['emptyUsername'];
   static String get emptyPassword => words[locale]['emptyPassword'];
   static String get serverNotRepsonding => words[locale]['serverNotRepsonding'];
@@ -143,9 +168,9 @@ class Translations {
   static String get cannotRegister => words[locale]['cannotRegister'];
   static String get emailAlreadyTaken => words[locale]['emailAlreadyTaken'];
   static String get usernameAlreadyTaken => words[locale]['usernameAlreadyTaken'];
-  static String get promoCaps => words[locale]['promoCaps'];
+  static String get promo => words[locale]['promo'];
   static String get startingFrom => words[locale]['startingFrom'];
-  static String get buyTicketCaps => words[locale]['buyTicketCaps'];
+  static String get buyTicket => words[locale]['buyTicket'];
   static String get unauthorized => words[locale]['unauthorized'];
   static String get funded => words[locale]['funded'];
 

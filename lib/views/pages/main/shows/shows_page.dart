@@ -29,7 +29,7 @@ import '../../../../helpers/storage/filters/shows_filter.dart';
 
 class ShowsPage extends StatefulWidget  {
 
-  final String title = Translations.showsCaps;
+  final String title = Translations.shows.toUpperCase();
   final String icon = 'assets/images/main/shows_tab_icon.svg';
 
   Widget appBar;

@@ -13,7 +13,7 @@ import '../dialogs/dialogs.dart';
 import '../routes/default_page_route.dart';
 
 import '../../models/api/venue_type.dart';
-import '../../models/api/ticket_type.dart';
+import '../../models/api/ticket.dart';
 
 import '../../resources/app_colors.dart';
 import '../../resources/translations.dart';

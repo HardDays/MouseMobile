@@ -79,7 +79,7 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       margin: EdgeInsets.only(top: 10.0),
                       padding: EdgeInsets.only(left: 4.0, right: 4.0),
                       color: Colors.black,
-                      child: Text(Translations.mouseCaps,
+                      child: Text(Translations.mouse.toUpperCase(),
                         style: TextStyle(
                           fontSize: 38.0,
                           letterSpacing: 1.1,
@@ -133,7 +133,7 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                 children: <Widget>[
                                   Container(
                                     height: 50.0,
-                                    child: MainButton(Translations.restoreCaps,
+                                    child: MainButton(Translations.restore.toUpperCase(),
                                       onTap: (){
                                         Navigator.push(
                                           this.context,

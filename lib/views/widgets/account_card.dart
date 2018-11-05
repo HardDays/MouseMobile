@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-import 'main_button.dart';
+import 'account_image.dart';
 import 'main_tagbox.dart';
 
 import '../../helpers/api/main_api.dart';
@@ -35,39 +35,7 @@ class AccountCard extends StatelessWidget {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Container(
-                        height: 60.0,
-                        width: 60.0,  
-                        child: ClipOval(
-                          child: account.imageid != null ?
-                          CachedNetworkImage(
-                            fadeInDuration: Duration(milliseconds: 100),
-                            imageUrl: MainAPI.getImageUrl(account.imageid),
-                            fit: BoxFit.cover,
-                            errorWidget: Container(
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage('assets/images/common/empty_account.png')
-                                )
-                              ),
-                            ),
-                            placeholder: Container(
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage('assets/images/common/empty_account.png')
-                                )
-                              ),
-                            ),
-                          ) : 
-                          Container(
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage('assets/images/common/empty_account.png')
-                              )
-                            ),
-                          )
-                        ),
-                      ),
+                      AccountImage(account: account),
                       Container(
                         width: MediaQuery.of(context).size.width * 0.6,
                         margin: EdgeInsets.only(left: 12.0),

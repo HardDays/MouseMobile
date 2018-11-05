@@ -14,7 +14,7 @@ import '../../../../helpers/storage/cache.dart';
 
 class ProfilePage extends StatefulWidget  {
 
-  final String title = Translations.profileCaps;
+  final String title = Translations.profile.toUpperCase();
   final String icon = 'assets/images/main/profile_tab_icon.svg';
 
   Widget appBar;

@@ -87,7 +87,7 @@ class BottomLoginWidget extends StatelessWidget {
                 DefaultPageRoute(builder: (context) => MainPage()),
               );
             },
-            child: Text(Translations.continueAsGuestCaps,
+            child: Text(Translations.continueAsGuest.toUpperCase(),
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16.0,

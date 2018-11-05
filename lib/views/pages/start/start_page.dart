@@ -22,7 +22,7 @@ class StartPage extends StatefulWidget {
 
 class StartPageState extends State<StartPage> with SingleTickerProviderStateMixin {
   List <String> bgImages = ['assets/images/start/start1_bg.png', 'assets/images/start/start2_bg.png', 'assets/images/start/start3_bg.png'];
-  List <String> texts = [Translations.campaingToBringCaps, Translations.watchLiveShowsCaps, Translations.discoverMusicCaps];
+  List <String> texts = [Translations.campaingToBring.toUpperCase(), Translations.watchLiveShows.toUpperCase(), Translations.discoverMusic.toUpperCase()];
 
   TabController tabController;
 
@@ -124,7 +124,7 @@ class StartPageState extends State<StartPage> with SingleTickerProviderStateMixi
                       Container(
                         width: MediaQuery.of(context).size.width * 0.42,
                         height: 50.0,
-                        child: MainButton(Translations.loginCaps,
+                        child: MainButton(Translations.login.toUpperCase(),
                           gradient: LinearGradient(
                             colors: [
                               AppColors.purpleGradButton,
@@ -142,7 +142,7 @@ class StartPageState extends State<StartPage> with SingleTickerProviderStateMixi
                       Container(
                         width: MediaQuery.of(context).size.width * 0.42,
                         height: 50.0,
-                        child: MainButton(Translations.signUpCaps,
+                        child: MainButton(Translations.signUp.toUpperCase(),
                           onTap: (){
                             Navigator.push(
                               this.context,

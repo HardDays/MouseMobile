@@ -77,7 +77,7 @@ class CheckEmailPageState extends State<CheckEmailPage> {
                       margin: EdgeInsets.only(top: 10.0),
                       padding: EdgeInsets.only(left: 4.0, right: 4.0),
                       color: Colors.black,
-                      child: Text(Translations.mouseCaps,
+                      child: Text(Translations.mouse.toUpperCase(),
                         style: TextStyle(
                           fontSize: 38.0,
                           letterSpacing: 1.1,
@@ -121,7 +121,7 @@ class CheckEmailPageState extends State<CheckEmailPage> {
                                 children: <Widget>[
                                   Container(
                                     height: 50.0,
-                                    child: MainButton(Translations.continueCaps,
+                                    child: MainButton(Translations.continuew.toUpperCase(),
                                       onTap: (){
                                         Navigator.pop(context);
                                         Navigator.pop(context);

@@ -151,7 +151,7 @@ class LoginPageState extends State<LoginPage> {
                       margin: EdgeInsets.only(top: 10.0),
                       padding: EdgeInsets.only(left: 4.0, right: 4.0),
                       color: Colors.black,
-                      child: Text(Translations.mouseCaps,
+                      child: Text(Translations.mouse.toUpperCase(),
                         style: TextStyle(
                           fontSize: 38.0,
                           letterSpacing: 1.1,
@@ -231,7 +231,7 @@ class LoginPageState extends State<LoginPage> {
                                     DefaultPageRoute(builder: (context) => ForgotPasswordPage()),
                                   );
                                 },
-                                child: Text(Translations.forgotYourPasswordCaps,
+                                child: Text(Translations.forgotYourPassword.toUpperCase(),
                                   style: TextStyle(
                                     color: AppColors.orangeText,
                                     fontSize: 12.0
@@ -255,7 +255,7 @@ class LoginPageState extends State<LoginPage> {
                     Container(
                       margin: EdgeInsets.only(left: 30.0, right: 30.0),
                       height: 50.0,
-                      child: MainButton(Translations.loginCaps,
+                      child: MainButton(Translations.login.toUpperCase(),
                         onTap: onLogin,
                       )
                     ),
