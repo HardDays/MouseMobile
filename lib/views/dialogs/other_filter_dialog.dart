@@ -84,8 +84,8 @@ class OtherFilterDialogState extends State<OtherFilterDialog> {
             Text('TICKET TYPE', 
               style: TextStyle(
                 color: Colors.white,
-                fontWeight: FontWeight.w500,
-                fontSize: 16.0
+                fontFamily: 'Avenir-Heavy', 
+                fontSize: 14.0
               )
             ),
             Container(
@@ -136,8 +136,8 @@ class OtherFilterDialogState extends State<OtherFilterDialog> {
             Text('VENUE TYPE', 
               style: TextStyle(
                 color: Colors.white,
-                fontWeight: FontWeight.w500,
-                fontSize: 16.0
+                fontFamily: 'Avenir-Heavy', 
+                fontSize: 14.0
               )
             ),
             Container(
@@ -146,7 +146,7 @@ class OtherFilterDialogState extends State<OtherFilterDialog> {
               margin: EdgeInsets.only(left: 0.0, right: 0.0, top: 15.0),
               child: GridView.count(
                 crossAxisCount: 2,
-                childAspectRatio: 4.0,
+                childAspectRatio: 3.5,
                 children: List.generate(VenueType.all.length, 
                   (ind) {
                     return Container(
@@ -168,12 +168,12 @@ class OtherFilterDialogState extends State<OtherFilterDialog> {
                           ),
                           Padding(padding: EdgeInsets.only(left: 15.0)),
                           Container(
-                            width: MediaQuery.of(context).size.width * 0.29,
+                            width: MediaQuery.of(context).size.width * 0.28,
                             child: Text(Translations.translateEnum(VenueType.all[ind]),
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 15.0,
-                                fontWeight: FontWeight.w300
+                                fontSize: 14.0,
+                                fontFamily: 'Avenir-Book', 
                               ),
                             )
                           )

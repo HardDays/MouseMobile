@@ -95,12 +95,13 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
                         child: Column(
                           children: <Widget>[
                             Container(
-                              margin: EdgeInsets.only(left: 20.0, right: 20.0),
+                              margin: EdgeInsets.only(left: 10.0, right: 10.0),
                               child: Text(Translations.enterEmail,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 18.0,
+                                  fontFamily: 'Avenir-Medium',
                                 ),
                               ),
                             ),
@@ -109,13 +110,13 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 18.0,
-                                fontWeight: FontWeight.w500
+                                fontFamily: 'Avenir-Heavy',
                               ),
                               decoration: InputDecoration(
                                 hintStyle: TextStyle(
                                   color: Colors.white.withOpacity(0.5),
                                   fontSize: 18.0,
-                                  fontWeight: FontWeight.w500
+                                  fontFamily: 'Avenir-Heavy',
                                 ),
                                 focusedBorder: UnderlineInputBorder(      
                                   borderSide: BorderSide(color: Colors.white, width: 1.7),   

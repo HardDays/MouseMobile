@@ -34,6 +34,11 @@ class Database {
     }
   }
 
+  static bool authorized(){
+    return getCurrentUser() != null && getCurrentAccount() != null;
+  }
+
+
   static User getCurrentUser() {
     if (_db.containsKey('current_user')) {
       return User.fromJson(json.decode(_db['current_user']));

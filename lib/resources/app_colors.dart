@@ -29,4 +29,5 @@ class AppColors {
   static const Color inPersonTicket = Color(0xFFED447C);
   static const Color promoTicket = Color(0xFFFFC200);
 
+  static const Color editProfile = Color(0xFFFFC200);
 }

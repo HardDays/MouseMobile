@@ -12,7 +12,9 @@ import '../../../widgets/account_image.dart';
 import '../../../widgets/default_image.dart';
 import '../../../widgets/youtube_image.dart';
 import '../../../widgets/event_card.dart';
-import '../../../widgets/event_list.dart';
+import '../../../widgets/followers_buttons.dart';
+
+import 'widgets/account_header.dart';
 
 import '../../../routes/default_page_route.dart';
 
@@ -53,7 +55,7 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
     tabController = TabController(length: 2, vsync: this);
 
     if (!showsLoaded){
-      MainAPI.upcomingShows(account.id).then(
+      MainAPI.getUpcomingShows(account.id).then(
         (res){
           setState(() {
             showsLoaded = true;
@@ -79,7 +81,8 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
           child: Text('No upcoming shows',
             style: TextStyle(
               color: Colors.grey,
-              fontSize: 18.0
+              fontSize: 18.0,
+              fontFamily: 'Avenir-Book', 
             ),
           )
         ),
@@ -107,7 +110,8 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
           child: Text('No media',
             style: TextStyle(
               color: Colors.grey,
-              fontSize: 18.0
+              fontSize: 18.0,
+              fontFamily: 'Avenir-Book', 
             ),
           )
         ),
@@ -153,7 +157,7 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
                             maxLines: 1,
                             style: TextStyle(
                               color: Colors.white,
-                              fontWeight: FontWeight.w600,
+                              fontFamily: 'Avenir-Black', 
                               fontSize: 16.0
                             ),
                           ),
@@ -165,7 +169,7 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
                             maxLines: 1,
                             style: TextStyle(
                               color: Colors.white,
-                              fontWeight: FontWeight.w400,
+                              fontFamily: 'Avenir-Book', 
                               fontSize: 16.0
                             ),
                           ),
@@ -221,112 +225,7 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Stack(
-            children: <Widget>[
-              Container(
-                height: 100.0,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage('assets/images/main/profile/account_header.png')
-                  )
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 50.0, left: 15.0, right: 15.0),
-                width: 100.0,
-                height: 100.0,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                  child: AccountImage(account: account)
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 110.0, right: 15.0),
-                width: MediaQuery.of(context).size.width,
-                alignment: Alignment.centerRight,
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.3,
-                  height: 30.0,
-                  child: FollowButton()
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 70.0, right: 15.0),
-                width: MediaQuery.of(context).size.width,
-                alignment: Alignment.centerRight,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    Container(
-                      width: 20.0,
-                      height: 20.0,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/images/main/profile/venue_icon.png')
-                        )
-                      ),
-                    ),
-                    Padding(padding: EdgeInsets.only(left: 5.0)),
-                    Text('VENUE',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.w500
-                      ),
-                    )
-                  ],
-                )
-              ),
-            ]
-          ),
-          Container(
-            margin: EdgeInsets.only(right: 15.0, left: 15.0, top: 15.0),
-            child: Text(account.displayName ?? 'Unnamed',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16.0,
-                fontWeight: FontWeight.w600
-              ),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(right: 15.0, left: 15.0, top: 10.0),
-            child: Row(
-              children: <Widget>[
-                Text('@',
-                  maxLines: 1,
-                  style: TextStyle(
-                    color: AppColors.mainRed,
-                    fontSize: 16.0
-                  ),
-                ),
-                Text(account.userName ?? '',
-                  maxLines: 1,
-                  style: TextStyle(
-                    color: Colors.white.withOpacity(0.7),
-                    fontWeight: FontWeight.w300,
-                    fontSize: 16.0
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          account.description != null ? 
-          Container(
-            margin: EdgeInsets.only(right: 15.0, left: 15.0, top: 15.0),
-            child: Text(account.description,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16.0,
-                fontWeight: FontWeight.w400
-              ),
-            ),
-          ) : 
-          Container(),
-
+          AccountHeader(account: account),
           Container(
             //width: MediaQuery.of(context).size.width * 0.5,
             child: ExpansionTile(
@@ -343,9 +242,9 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
                 children: <Widget>[
                   Text('CONTACT INFO',
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.7),
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16.0
+                      color: Colors.white,
+                      fontFamily: 'Avenir-Book', 
+                      fontSize: 14.0
                     ),
                   ),
                   Container(
@@ -372,7 +271,7 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
                             child: Text('Phone: ',
                               style: TextStyle(
                                 color: Colors.white,
-                                fontWeight: FontWeight.w500,
+                                fontFamily: 'Avenir-Medium', 
                                 fontSize: 14.0
                               ),
                             ),
@@ -383,7 +282,7 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
                               maxLines: 1,
                               style: TextStyle(
                                 color: Colors.white,
-                                fontWeight: FontWeight.w400,
+                                fontFamily: 'Avenir-Book', 
                                 fontSize: 14.0
                               ),
                             ),
@@ -401,7 +300,7 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
                               child: Text('Fax: ',
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontWeight: FontWeight.w500,
+                                  fontFamily: 'Avenir-Medium', 
                                   fontSize: 14.0
                                 ),
                               ),
@@ -412,7 +311,7 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
                                 maxLines: 1,
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontWeight: FontWeight.w400,
+                                  fontFamily: 'Avenir-Book', 
                                   fontSize: 14.0
                                 ),
                               ),
@@ -433,7 +332,7 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
                                   child: Text('${account.emails[ind].name}: ',
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontWeight: FontWeight.w500,
+                                      fontFamily: 'Avenir-Medium', 
                                       fontSize: 14.0
                                     ),
                                   ),
@@ -444,7 +343,7 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
                                     maxLines: 1,
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontWeight: FontWeight.w400,
+                                      fontFamily: 'Avenir-Book', 
                                       fontSize: 14.0
                                     ),
                                   ),
@@ -454,6 +353,7 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
                           }
                         )
                       ),
+
                       account.address != null ?
                       Row(
                         children: <Widget>[
@@ -474,7 +374,7 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
                             child: Text(account.address ?? '',
                               style: TextStyle(
                                 color: Colors.white,
-                                fontWeight: FontWeight.w400,
+                                fontFamily: 'Avenir-Book', 
                                 height: 16.0 / 14.0,
                                 fontSize: 14.0
                               )
@@ -495,35 +395,45 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
             margin: EdgeInsets.only(left: 15.0, right: 15.0),
             child: Row(
               children: <Widget>[
-                Container(
-                  padding: EdgeInsets.only(bottom: 5.0),
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(color: Colors.white, width: 3.0)
+                GestureDetector(
+                  onTap: (){
+                    Dialogs.showHoursDialog(context, title: 'OFFICE HOURS', hours: account.officeHours);
+                  },
+                  child: Container(
+                    padding: EdgeInsets.only(bottom: 5.0),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(color: Colors.white, width: 2.0)
+                      )
+                    ),
+                    child: Text('OFFICE HOURS',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14.0,
+                        fontFamily: 'Avenir-Black', 
+                      ),
                     )
                   ),
-                  child: Text('OFFICE HOURS',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  )
                 ),
-                Container(
-                  margin: EdgeInsets.only(left: 20.0),
-                  padding: EdgeInsets.only(bottom: 5.0),
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(color: Colors.white, width: 3.0)
-                    )
-                  ),
-                  child: Text('OPERATING HOURS',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w600,
+                GestureDetector(
+                  onTap: (){
+                    Dialogs.showHoursDialog(context, title: 'OPERATING HOURS', hours: account.operatingHours);
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(left: 20.0),
+                    padding: EdgeInsets.only(bottom: 5.0),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(color: Colors.white, width: 2.0)
+                      )
                     ),
+                    child: Text('OPERATING HOURS',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14.0,
+                        fontFamily: 'Avenir-Black', 
+                      ),
+                    )
                   )
                 )
               ],
@@ -531,54 +441,8 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
           ),
 
           Container(
-            margin: EdgeInsets.only(right: 15.0, left: 15.0, top: 25.0),
-            child: Row(
-              children: <Widget>[ 
-                GestureDetector(
-                  child: Row(
-                    children: <Widget>[
-                      Text('${account.followersCount}',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16.0
-                        ),
-                      ),
-                      Padding(padding: EdgeInsets.only(left: 5.0)),
-                      Text('Followers',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w300,
-                          fontSize: 16.0
-                        ),
-                      )
-                    ],
-                  )
-                ),
-                Padding(padding: EdgeInsets.only(left: 25.0)),
-                GestureDetector(
-                  child: Row(
-                    children: <Widget>[
-                      Text('${account.followingCount}',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16.0
-                        ),
-                      ),
-                      Padding(padding: EdgeInsets.only(left: 5.0)),
-                      Text('Following',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w300,
-                          fontSize: 16.0
-                        ),
-                      )
-                    ],
-                  )
-                )
-              ],
-            )
+            margin: EdgeInsets.only(right: 15.0, left: 15.0, top: 20.0),
+            child: FollowersButton(account: account)
           ),
           Container(
              margin: EdgeInsets.only(top: 20.0),
@@ -591,7 +455,9 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
                    margin: EdgeInsets.only(top: 12.0, bottom: 12.0),
                    child: Text('UPCOMING SHOWS',
                      style: TextStyle(
-                       color: Colors.white
+                       color: Colors.white,
+                       fontFamily: 'Avenir-Heavy',
+                       fontSize: 13.0 
                      ),
                    ),
                  ),
@@ -599,7 +465,9 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
                    margin: EdgeInsets.only(top: 12.0, bottom: 12.0),
                    child: Text('MEDIA',
                      style: TextStyle(
-                       color: Colors.white
+                       color: Colors.white,
+                       fontFamily: 'Avenir-Heavy',
+                       fontSize: 13.0 
                      ),
                    ),
                  ),

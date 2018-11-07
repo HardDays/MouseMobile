@@ -114,6 +114,14 @@ class Translations {
       'Friday': 'Friday',
       'Saturday': 'Saturday',
 
+      'sunday': 'Sunday',
+      'monday': 'Monday',
+      'tuesday': 'Tuesday',
+      'wednesday': 'Wednesday',
+      'thursday': 'Thursday',
+      'friday': 'Friday',
+      'saturday': 'Saturday',
+
       //months
       'September': 'September',
       'October': 'October',

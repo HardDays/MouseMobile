@@ -29,7 +29,7 @@ class MainTagbox extends StatefulWidget {
       ),  
       this.checked = false,
       this.textStyle = const TextStyle(
-        fontWeight: FontWeight.w500,
+        fontFamily: 'AvenirNext-Medium',
         color: Colors.white,
         fontSize: 15.0
       ),

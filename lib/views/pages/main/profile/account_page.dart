@@ -49,7 +49,11 @@ class AccountPageState extends State<AccountPage> with SingleTickerProviderState
       MainAPI.getAccount(widget.id).then(
         (account) async {
           if (account == null){
-            Dialogs.showMessage(context, 'Can\'t load account', 'Account is suspended', Translations.ok).then(
+            Dialogs.showMessage(context, 
+              title: 'Can\'t load account', 
+              body: 'Account is suspended',
+              ok: Translations.ok
+            ).then(
               (res){
                 Navigator.pop(context);
               }
@@ -87,7 +91,7 @@ class AccountPageState extends State<AccountPage> with SingleTickerProviderState
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16.0,
-                  fontWeight: FontWeight.w500
+                  fontFamily: 'Avenir-Black', 
                 // fontStyle: FontStyle.italic
                 ),
               )

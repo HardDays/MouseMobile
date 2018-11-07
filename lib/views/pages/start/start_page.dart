@@ -71,9 +71,10 @@ class StartPageState extends State<StartPage> with SingleTickerProviderStateMixi
                           child: Text(texts[ind],
                             textAlign: TextAlign.center,
                             style: TextStyle(
+                              fontFamily: 'Raleway-ExtraBold',
                               color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 34.0
+                              height: 40.0 /33.0,
+                              fontSize: 33.0
                             ),
                           )
                         )

@@ -24,7 +24,7 @@ class BottomLoginWidget extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16.0,
-                    fontWeight: FontWeight.w500
+                    fontFamily: 'Avenir-Heavy',
                   ),
                 ),
               ],
@@ -91,7 +91,7 @@ class BottomLoginWidget extends StatelessWidget {
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16.0,
-                fontWeight: FontWeight.w500
+                fontFamily: 'Avenir-Heavy',
               ),
             ),
           )

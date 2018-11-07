@@ -5,6 +5,8 @@ import 'shows/shows_page.dart';
 
 import 'profile/profile_page.dart';
 
+import '../../dialogs/dialogs.dart';
+
 import '../../../resources/app_colors.dart';
 
 class MainPage extends StatefulWidget {
@@ -25,13 +27,35 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
   @override
   void initState() {
     super.initState();
-    
-    pages = [ShowsPage(), ShowsPage(), ShowsPage(), ShowsPage(), ProfilePage()];
+        
+    tabController = TabController(length: 5, vsync: this, initialIndex: 2);
+
+   /* tabController.addListener(
+      (){
+        if (tabController.index == 4){
+          Dialogs.showYesNo(context, 
+            title: 'Unauthorized', 
+            body: 'Please, login for this action', 
+            yes: 'Yes', 
+            no: 'No', 
+            onYes: (){
+              Navigator.pop(context); 
+              tabController.index = 2;
+            }, 
+            onNo: (){
+              Navigator.pop(context);
+              tabController.index = 2;
+            }
+          );
+        }
+      }
+    );*/
+
+    pages = [ShowsPage(), ShowsPage(), ShowsPage(), ShowsPage(), ProfilePage(bottomController: tabController)];
     for (var page in pages){
       page.onLoad = onAppBarLoad;
     }
 
-    tabController = TabController(length: 5, vsync: this, initialIndex: 2);
   }
   
   void onAppBarLoad(Widget appbar){
@@ -137,7 +161,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
                             maxLines: 1,
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              fontWeight: FontWeight.w300,
+                              fontFamily: 'Avenir-Medium',
                               color: tabController.index == ind ? AppColors.mainRed : Colors.white,
                               fontSize: 9.0
                             ),

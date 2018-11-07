@@ -11,26 +11,32 @@ class MainCalendar extends StatefulWidget {
   );
   final TextStyle defaultPrevDaysTextStyle = TextStyle(
     color: Colors.grey,
+    fontFamily: 'Avenir-Book', 
     fontSize: 16.0,
   );
   final TextStyle defaultNextDaysTextStyle = TextStyle(
     color: Colors.grey,
+    fontFamily: 'Avenir-Book', 
     fontSize: 16.0,
   );
   final TextStyle defaultDaysTextStyle = TextStyle(
     color: Colors.white,
+    fontFamily: 'Avenir-Book', 
     fontSize: 16.0,
   );
   final TextStyle defaultTodayTextStyle = TextStyle(
     color: Colors.white,
+    fontFamily: 'Avenir-Book', 
     fontSize: 16.0,
   );
   final TextStyle defaultSelectedDayTextStyle = TextStyle(
     color: Colors.white,
+    fontFamily: 'Avenir-Book', 
     fontSize: 16.0,
   );
   final TextStyle defaultWeekdayTextStyle = TextStyle(
     color: Colors.white,
+    fontFamily: 'Avenir-Medium', 
     fontSize: 14.0,
   );
   final TextStyle defaultWeekendTextStyle = TextStyle(

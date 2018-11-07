@@ -59,12 +59,16 @@ class GenresFilterDialogState extends State<GenresFilterDialog> {
             margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 5.0),
             child: TextField(
               style: TextStyle(
-                color: Colors.white
+                color: Colors.white,
+                fontFamily: 'Avenir-Book', 
+                fontSize: 16.0
               ),
               decoration: InputDecoration(
                 hintText: 'Search',
                 hintStyle: TextStyle(
-                  color: Colors.white.withOpacity(0.5)
+                  color: Colors.white.withOpacity(0.5),
+                  fontFamily: 'Avenir-Book', 
+                  fontSize: 16.0
                 ),
                 focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
                 enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.transparent))
@@ -90,7 +94,7 @@ class GenresFilterDialogState extends State<GenresFilterDialog> {
             margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
             child: GridView.count(
               crossAxisCount: 2,
-              childAspectRatio: 4.0,
+              childAspectRatio: 3.0,
               children: List.generate(genres.length, 
                 (ind) {
                   return Container(
@@ -111,12 +115,13 @@ class GenresFilterDialogState extends State<GenresFilterDialog> {
                         ),
                         Padding(padding: EdgeInsets.only(left: 15.0)),
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.29,
+                          alignment: Alignment.centerLeft,
+                          width: MediaQuery.of(context).size.width * 0.28,
                           child: Text(Translations.translateEnum(genres[ind]),
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 15.0,
-                              fontWeight: FontWeight.w300
+                              fontSize: 14.0,
+                              fontFamily: 'Avenir-Book', 
                             ),
                           ),
                         )

@@ -137,7 +137,11 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
         tickets[ticket]++;                                                
       });
     } else {
-      Dialogs.showMessage(context, 'No tickets left!', 'Please, select another tickets', 'OK');
+      Dialogs.showMessage(context, 
+        title: 'No tickets left!', 
+        body: 'Please, select another tickets', 
+        ok: 'OK'
+      );
     }
   }
 
@@ -149,7 +153,11 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
       }
     } 
     if (filtered.isEmpty){
-      Dialogs.showMessage(context, 'Empty cart', 'Please, select some tickets', 'Ok');
+      Dialogs.showMessage(context, 
+      title: 'Empty cart', 
+      body: 'Please, select some tickets', 
+      ok: 'Ok'
+    );
     } else {
       Navigator.push(
         this.context,
@@ -174,25 +182,26 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                 maxLines: 1,
                 style: TextStyle(
                   color: Colors.white,
-                  fontWeight: FontWeight.w500,
+                  fontFamily: 'Avenir-Heavy', 
                   fontSize: 16.0
                 ),
               ),
-              Padding(padding: EdgeInsets.only(top: 7.0)),  
+              Padding(padding: EdgeInsets.only(top: 3.0)),  
               Row(
                 children: <Widget>[
                   Text('@',
                     maxLines: 1,
                     style: TextStyle(
                       color: AppColors.mainRed,
+                      fontFamily: 'Avenir-Book', 
                       fontSize: 13.0
                     ),
                   ),
                   Text(account.userName ?? '',
                     maxLines: 1,
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.9),
-                      fontWeight: FontWeight.w300,
+                      color: Colors.white,
+                      fontFamily: 'Avenir-Book', 
                       fontSize: 13.0
                     ),
                   ),
@@ -214,7 +223,8 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
           child: Text('No tickets',
             style: TextStyle(
               color: Colors.grey,
-              fontSize: 18.0
+              fontSize: 18.0,
+              fontFamily: 'Avenir-Book', 
             ),
           )
         ),
@@ -285,14 +295,14 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                                           style: TextStyle(
                                             color: Colors.black,
                                             fontSize: 14.0,
-                                            fontWeight: FontWeight.w600
+                                            fontFamily: 'Avenir-Heavy', 
                                           ),
                                         ),
                                         Text('${ticket.price.toStringAsFixed(2)} ${ticket.currency}',
                                           style: TextStyle(
                                             color: AppColors.textRed,
                                             fontSize: 14.0,
-                                            fontWeight: FontWeight.w500
+                                            fontFamily: 'Avenir-Black', 
                                           ),
                                         ),
                                         Text(ticket.isPromotional ? Translations.promo.toUpperCase() : 'GENERAL',
@@ -300,7 +310,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                                           style: TextStyle(
                                             color: Colors.black,
                                             fontSize: 14.0,
-                                            fontWeight: FontWeight.w400
+                                            fontFamily: 'Avenir-Book', 
                                           ),
                                         ),
                                         Text(ticket.isPersonal ? '(Special)' : '(Regular)',
@@ -308,7 +318,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                                           style: TextStyle(
                                             color: Colors.black,
                                             fontSize: 14.0,
-                                            fontWeight: FontWeight.w400
+                                            fontFamily: 'Avenir-Book', 
                                           ),
                                         ),                                         
                                       ],
@@ -339,7 +349,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                                           style: TextStyle(
                                             color: Colors.black,
                                             fontSize: 50.0,
-                                            fontWeight: FontWeight.w300
+                                            fontFamily: 'Avenir-Book', 
                                           ),
                                         ),
                                         GestureDetector(
@@ -367,7 +377,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 25.0,
-                                          fontWeight: FontWeight.w400
+                                          fontFamily: 'Avenir-Book', 
                                         ),
                                       )
                                     )
@@ -384,8 +394,8 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
               )
             ),
             Container(
-              height: 50.0,
-              margin: EdgeInsets.only(top: 15.0, bottom: 15.0, left: 15.0, right: 15.0),
+              height: 45.0,
+              margin: EdgeInsets.only(top: 30.0, bottom: 20.0, left: 15.0, right: 15.0),
               child: MainButton('BUY TICKETS',
                 onTap: () {
                   onBuy();
@@ -407,7 +417,8 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
           child: Text('No artists',
             style: TextStyle(
               color: Colors.grey,
-              fontSize: 18.0
+              fontSize: 18.0,
+              fontFamily: 'Avenir-Book', 
             ),
           )
         ),
@@ -432,13 +443,13 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                       },
                       child: Container(
                         //width: MediaQuery.of(context).size.width * 0.4,
-                        margin: EdgeInsets.only(right: 20.0, top: 10.0, bottom: 15.0),
+                        margin: EdgeInsets.only(right: 20.0, top: 5.0, bottom: 15.0),
                         child: Text(event.artists[ind].displayName.toUpperCase() ?? 'UNNAMED',
                           maxLines: 1,
                           style: TextStyle(
                             color: ind == artistIndex ? AppColors.textRed : Colors.white,
                             fontSize: 14.0,
-                            fontWeight: FontWeight.w500
+                            fontFamily: 'Avenir-Heavy', 
                           ),
                         )
                       )
@@ -455,7 +466,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                 Container(
                   margin: EdgeInsets.only(top: 5.0),
                   height: 30.0,
-                  child: FollowButton()
+                  child: FollowButton(account: event.artists[artistIndex])
                 )
               ],
             ),
@@ -467,7 +478,8 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                 style: TextStyle(
                   height: 18.0 / 14.0,
                   color: Colors.white,
-                  fontSize: 14.0
+                  fontSize: 14.0,
+                  fontFamily: 'Avenir-Book', 
                 ),
               ),
             ) :
@@ -483,8 +495,8 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                   Text('VIDEO',
                     style: TextStyle(
                       color: Colors.white,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 15.0
+                      fontFamily: 'Avenir-Black', 
+                      fontSize: 14.0
                     ),
                   ),
                   Padding(padding: EdgeInsets.only(top: 10.0)),
@@ -508,8 +520,8 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                   Text('PHOTOS',
                     style: TextStyle(
                       color: Colors.white,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 15.0
+                      fontFamily: 'Avenir-Black', 
+                      fontSize: 14.0
                     ),
                   ),
                   Container(
@@ -549,7 +561,8 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
           child: Text('Loading...',
             style: TextStyle(
               color: Colors.grey,
-              fontSize: 18.0
+              fontSize: 18.0,
+              fontFamily: 'Avenir-Book', 
             ),
           )
         ),
@@ -572,12 +585,14 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                       keyboardType: TextInputType.multiline,
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 15.0
+                        fontSize: 14.0,
+                        fontFamily: 'Avenir-Book', 
                       ),
                       decoration: InputDecoration.collapsed(
                         hintText: 'Add comment',       
                         hintStyle: TextStyle(
-                          color: Colors.grey.withOpacity(0.5)
+                          color: Colors.grey.withOpacity(0.5),
+                          fontFamily: 'Avenir-Book', 
                         )     
                       ),
                     )
@@ -604,7 +619,8 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                 child: Text('No comments yet...',
                   style: TextStyle(
                     color: Colors.grey,
-                    fontSize: 18.0
+                    fontSize: 18.0,
+                    fontFamily: 'Avenir-Book', 
                   ),
                 )
               ),
@@ -627,7 +643,8 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                                 margin: EdgeInsets.only(left: 68.0, top: 5.0, bottom: 20.0),
                                 child: Text(event.comments[ind].text,
                                   style: TextStyle(
-                                    color: Colors.white
+                                    color: Colors.white,
+                                    fontFamily: 'Avenir-Book', 
                                   ),
                                 ),
                               ),
@@ -660,8 +677,8 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
             Text('SHOW PREVIEW',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 18.0,
-                fontWeight: FontWeight.w500
+                fontSize: 16.0,
+                fontFamily: 'Avenir-Black', 
               // fontStyle: FontStyle.italic
               ),
             )
@@ -724,19 +741,19 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                         maxLines: 1,
                         style: TextStyle(
                           fontSize: 24.0,
-                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Avenir-Black', 
                           color: Colors.white
                         ),
                       ),
                     ),
                     !event.isCrowdfunding ? 
                     Container(
-                      margin: EdgeInsets.only(top: 2.0),
+                      margin: EdgeInsets.only(top: 0.0),
                       padding: EdgeInsets.only(left: 2.0, right: 2.0),
                       color: AppColors.promoBg,
                       child: Text(Translations.promo.toUpperCase(),
                         style: TextStyle(
-                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Montserrat-SemiBold', 
                           color: Colors.black,
                           fontSize: 13.0
                         ),
@@ -751,7 +768,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                           Text('${Translations.translateEnum(DateFormat.EEEE().format(event.dateFrom)).toUpperCase()},',
                             style: TextStyle(
                               color: Colors.white,
-                              fontWeight: FontWeight.w500,
+                              fontFamily: 'Avenir-Black',
                               fontSize: 15.0
                             )
                           ),
@@ -759,7 +776,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                           Text('${Translations.translateEnum(DateFormat.MMMM().format(event.dateFrom)).toUpperCase().substring(0, 3)} ${DateFormat('dd yyyy').format(event.dateFrom)}',
                             style: TextStyle(
                               color: AppColors.textRed,
-                              fontWeight: FontWeight.w500,
+                              fontFamily: 'Avenir-Black',
                               fontSize: 15.0
                             )
                           ),
@@ -767,7 +784,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                           Text('- ${DateFormat('h:mma').format(event.dateFrom).toUpperCase()}',
                             style: TextStyle(
                               color: Colors.white,
-                              fontWeight: FontWeight.w500,
+                              fontFamily: 'Avenir-Black', 
                               fontSize: 15.0
                             )
                           ),
@@ -811,7 +828,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                                 child: Text(event?.venue?.displayName?.toUpperCase() ?? '',
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontWeight: FontWeight.w500,
+                                    fontFamily: 'Avenir-Black', 
                                     fontSize: 16.0
                                   )
                                 )
@@ -826,7 +843,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                                 height: 16.0 / 14.0,
                                 fontSize: 14.0,
                                 color: Colors.white,
-                                fontWeight: FontWeight.w400,
+                                fontFamily: 'Avenir-Book', 
                               )
                             )
                           ),
@@ -835,7 +852,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                     ) : 
                     Container(),
                     Container(
-                      margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
+                      margin: EdgeInsets.only(top: 20.0, bottom: 0.0),
                       child: Divider(
                         color: Colors.grey.withOpacity(0.3), 
                         height: 2.0
@@ -846,26 +863,26 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                         fontSize: 14.0,
                         height: 18.0 / 14.0,
                         color: Colors.white,
-                        fontWeight: FontWeight.w400,
+                        fontFamily: 'Avenir-Book', 
                       )
                     ),
                     event.hashtag != null ? 
                     Container(
-                      margin: EdgeInsets.only(top: 15.0),
+                      margin: EdgeInsets.only(top: 0.0),
                       child: Row(
                         children: <Widget>[
                           Text('#',
                             style: TextStyle(
                               fontSize: 14.0, 
                               color: AppColors.textRed,
-                              fontWeight: FontWeight.w600,
+                              fontFamily: 'Avenir-Heavy', 
                             )
                           ),
                           Text(event.hashtag,
                             style: TextStyle(
                               fontSize: 14.0,
                               color: Colors.white,
-                              fontWeight: FontWeight.w600,
+                              fontFamily: 'Avenir-Heavy', 
                             )
                           ),                       
                         ]
@@ -884,6 +901,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                               child: MainTagbox(Translations.translateEnum(event.genres[ind]).toUpperCase(),
                                 textStyle: TextStyle(
                                   color: Colors.white,
+                                  fontFamily: 'Avenir-Book', 
                                   fontSize: 12.0
                                 ),
                                 uncheckedGradient: LinearGradient(
@@ -922,7 +940,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 14.0,
-                                          fontWeight: FontWeight.w400
+                                          fontFamily: 'Avenir-Book', 
                                         ),
                                       ),
                                     ),
@@ -931,8 +949,8 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                                       child: Text('${(100 * min(event.founded / max(1.0, event.fundingGoal), 1.0)).floor()}%',
                                         style: TextStyle(
                                           color: AppColors.promoBg,
-                                          fontSize: 16.0,
-                                          fontWeight: FontWeight.w600
+                                          fontSize: 14.0,
+                                          fontFamily: 'Avenir-Black', 
                                         ),
                                       ),
                                     ),
@@ -942,7 +960,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 14.0,
-                                          fontWeight: FontWeight.w400
+                                          fontFamily: 'Avenir-Book', 
                                         ),
                                       ),
                                     ),
@@ -974,7 +992,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 14.0,
-                                          fontWeight: FontWeight.w400
+                                          fontFamily: 'Avenir-Book', 
                                         ),
                                       ),
                                       Row(
@@ -983,7 +1001,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 14.0,
-                                              fontWeight: FontWeight.w600
+                                              fontFamily: 'Avenir-Black', 
                                             ),
                                           ),
                                           Padding(padding: EdgeInsets.only(left: 5.0)),
@@ -991,7 +1009,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 14.0,
-                                              fontWeight: FontWeight.w400
+                                              fontFamily: 'Avenir-Book', 
                                             ),
                                           )
                                         ],
@@ -1004,7 +1022,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 14.0,
-                                              fontWeight: FontWeight.w600
+                                              fontFamily: 'Avenir-Heavy', 
                                             ),
                                           ),
                                           Padding(padding: EdgeInsets.only(left: 5.0)),
@@ -1012,7 +1030,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 14.0,
-                                              fontWeight: FontWeight.w400
+                                              fontFamily: 'Avenir-Black', 
                                             ),
                                           )
                                         ],
@@ -1022,7 +1040,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 14.0,
-                                            fontWeight: FontWeight.w400
+                                            fontFamily: 'Avenir-Book', 
                                           ),
                                         )
                                       ),
@@ -1050,7 +1068,9 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                       margin: EdgeInsets.only(top: 12.0, bottom: 12.0),
                       child: Text('TICKETS',
                         style: TextStyle(
-                          color: Colors.white
+                          color: Colors.white, 
+                          fontFamily: 'Avenir-Heavy',
+                          fontSize: 13.0 
                         ),
                       ),
                     ),
@@ -1058,7 +1078,9 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                       margin: EdgeInsets.only(top: 12.0, bottom: 12.0),
                       child: Text('INFO',
                         style: TextStyle(
-                          color: Colors.white
+                          color: Colors.white,
+                          fontFamily: 'Avenir-Heavy',
+                          fontSize: 13.0 
                         ),
                       ),
                     ) ,
@@ -1067,7 +1089,9 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                       child: Text('COMMENTS (${event.comments.length})',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color: Colors.white
+                          color: Colors.white,
+                          fontFamily: 'Avenir-Heavy',
+                          fontSize: 13.0 
                         ),
                       ),
                     ) 

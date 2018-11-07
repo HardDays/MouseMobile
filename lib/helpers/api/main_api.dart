@@ -31,7 +31,9 @@ class MainAPI {
   static const String search = '/search';
   static const String preview = '/preview';
   static const String comments = '/comments';
-  static const String upcoming = '/upcoming_shows';
+  static const String upcomingShowws = '/upcoming_shows';
+  static const String followers = '/followers';
+  static const String following = '/following';
 
   static String token;
 
@@ -142,13 +144,48 @@ class MainAPI {
     }
   }
 
+  static Future<List<Account>> getFollowers(int id) async {
+    var res = await baseGetRequest(accounts + '/$id' + followers, {'extended': true});
+    //TODO: better error check
+    if (res.statusCode == HttpStatus.ok){
+      var body = json.decode(res.body);
+      return body['followers'].map<Account>((x) => Account.fromJson(x)).toList();
+    } else {
+      return [];
+    }
+  }
+
+  static Future<List<Account>> getFollowing(int id) async {
+    var res = await baseGetRequest(accounts + '/$id' + following, {'extended': true});
+    //TODO: better error check
+    if (res.statusCode == HttpStatus.ok){
+      var body = json.decode(res.body);
+      return body['following'].map<Account>((x) => Account.fromJson(x)).toList();
+    } else {
+      return [];
+    }
+  }
+
   static Future<Account> createAccount(Account user) async {
     var res = await http.post(url + accounts, 
-      body: json.encode(user.toJson()),
+      body: json.encode(user.toAPIJson()),
       headers: defaultHeader
     );
     //TODO: better error check
     if (res.statusCode == HttpStatus.created){
+      return Account.fromJson(json.decode(res.body));
+    } else {
+      return Account(error: AccountError.userNameTaken);
+    }
+  }
+
+  static Future<Account> updateAccount(Account user) async {
+    var res = await http.patch(url + accounts + '/${user.id}', 
+      body: json.encode(user.toAPIJson()),
+      headers: defaultHeader
+    );
+    //TODO: better error check
+    if (res.statusCode == HttpStatus.ok){
       return Account.fromJson(json.decode(res.body));
     } else {
       return Account(error: AccountError.userNameTaken);
@@ -166,19 +203,18 @@ class MainAPI {
     //TODO: better error check
     if (res.statusCode == HttpStatus.ok){
       List body = json.decode(res.body);
-      var list = body.map<Account>((x) => Account.fromJson(x)).toList();
-      return list;
+      return body.map<Account>((x) => Account.fromJson(x)).toList();
     } else {
       return [];
     }
   }
 
-  static Future<List<Event>> upcomingShows(int id, {int limit, int offset}) async {
+  static Future<List<Event>> getUpcomingShows(int id, {int limit, int offset}) async {
     Map <String, dynamic> params = {
       'limit': limit,
       'offset': offset
     };
-    var res = await baseGetRequest(accounts + '/$id' + upcoming, params);
+    var res = await baseGetRequest(accounts + '/$id' + upcomingShowws, params);
     //TODO: better error check
     if (res.statusCode == HttpStatus.ok){
       List body = json.decode(res.body);

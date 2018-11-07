@@ -99,7 +99,7 @@ class CheckEmailPageState extends State<CheckEmailPage> {
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 25.0,
-                                  fontWeight: FontWeight.w500
+                                  fontFamily: 'Avenir-Medium',
                                 ),
                               ),
                             ),
@@ -111,6 +111,7 @@ class CheckEmailPageState extends State<CheckEmailPage> {
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 18.0,
+                                  fontFamily: 'Avenir-Medium',
                                 ),
                               ),
                             ),

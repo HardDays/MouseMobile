@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
 
-import '../../../widgets/main_button.dart';
+import 'widgets/account_header.dart';
 
 import '../../start/start_page.dart';
 
+import '../../../dialogs/dialogs.dart';
+
+import '../../../widgets/follow_button.dart';
+import '../../../widgets/main_tagbox.dart';
+import '../../../widgets/account_image.dart';
+import '../../../widgets/default_image.dart';
+import '../../../widgets/youtube_image.dart';
+import '../../../widgets/followers_buttons.dart';
+import '../../../widgets/main_button.dart';
+
 import '../../../routes/default_page_route.dart';
 
+import '../../../../models/api/account.dart';
+
+import '../../../../helpers/api/main_api.dart';
 import '../../../../resources/app_colors.dart';
 import '../../../../resources/translations.dart';
 
@@ -17,26 +30,76 @@ class ProfilePage extends StatefulWidget  {
   final String title = Translations.profile.toUpperCase();
   final String icon = 'assets/images/main/profile_tab_icon.svg';
 
+  TabController bottomController;
+
   Widget appBar;
   Function(Widget) onLoad;
+
+  ProfilePage({this.bottomController});
 
   @override
   ProfilePageState createState() => ProfilePageState();
 }
 
-class ProfilePageState extends State<ProfilePage> {
+class ProfilePageState extends State<ProfilePage> with SingleTickerProviderStateMixin {
+  
+  Account account;
+  TabController tabController;
 
   @override
   void initState() {
     super.initState();
+
+    tabController = TabController(length: 3, vsync: this);
+    tabController.addListener((){
+      setState(() { });
+    });
+
+    account = Database.getCurrentAccount();
     
     WidgetsBinding.instance.addPostFrameCallback(
-      (_) {
-        if (context != null){
+    (_) {
+      if (context != null){
+        if (Database.authorized()){
+          MainAPI.getAccount(account.id).then(
+            (res){
+              if (res != null){
+                setState(() {
+                  account = res;
+                  Database.setCurrentAccount(res);              
+                });
+              }
+            }
+          );
           buildAppBar(context);
+        } else {
+         if (widget.bottomController.index == 4){
+          //widget.bottomController.index = 2;
+          if (!widget.bottomController.indexIsChanging){
+              Dialogs.showYesNo(context, 
+                title: 'Unauthorized', 
+                body: 'Please, login for this action', 
+                yes: 'Yes', 
+                no: 'No', 
+                onYes: (){
+                  Navigator.pushReplacement(
+                    this.context,
+                    DefaultPageRoute(builder: (context) => StartPage()),
+                  );
+                }, 
+                onNo: (){
+                  widget.bottomController.index = 2;
+                }
+              );
+            }
+          }
+         /* Navigator.pushReplacement(
+            this.context,
+            DefaultPageRoute(builder: (context) => StartPage()),
+          ); */
         }
       }
-    );
+    });
   }
 
   void buildAppBar(BuildContext context){
@@ -66,8 +129,7 @@ class ProfilePageState extends State<ProfilePage> {
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16.0,
-                fontWeight: FontWeight.w500
-               // fontStyle: FontStyle.italic
+                fontFamily: 'Avenir-Black', 
               ),
             )
           ]
@@ -77,7 +139,7 @@ class ProfilePageState extends State<ProfilePage> {
           IconButton(
             icon: Icon(Icons.exit_to_app, color: Colors.white),
             onPressed: () {   
-              Cache.events = null;
+              MainAPI.updateToken(null);
               Database.deleteCurrentAccount();
               Database.deleteCurrentUser();
               Navigator.pushReplacement(
@@ -92,13 +154,116 @@ class ProfilePageState extends State<ProfilePage> {
     widget.onLoad(widget.appBar);
   } 
 
+  Widget buildRewards(){
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height * 0.5,
+      child: Center(
+        child: Text('No rewards yet',
+          style: TextStyle(
+            color: Colors.grey,
+            fontSize: 18.0,
+            fontFamily: 'Avenir-Book', 
+          ),
+        )
+      ),
+    ); 
+  }
+
+  Widget buildFavorites(){
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height * 0.5,
+      child: Center(
+        child: Text('No favorites yet',
+          style: TextStyle(
+            color: Colors.grey,
+            fontSize: 18.0,
+            fontFamily: 'Avenir-Book', 
+          ),
+        )
+      ),
+    ); 
+  }
+
+  Widget buildCampaigns(){
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height * 0.5,
+      child: Center(
+        child: Text('No campaigns yet',
+          style: TextStyle(
+            color: Colors.grey,
+            fontSize: 18.0,
+            fontFamily: 'Avenir-Book', 
+          ),
+        )
+      ),
+    ); 
+  }
+
   @override 
   Widget build(BuildContext ctx) {
-    return Container(
-      color: AppColors.mainBg,
-      child: SingleChildScrollView(
-        
-      ),
-    );
+    if (Database.authorized()){
+      return Container(
+        color: AppColors.mainBg,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              AccountHeader(account: account),
+              Container(
+                margin: EdgeInsets.only(top: 20.0),
+                color: AppColors.appBar,
+                child: TabBar(
+                  indicatorColor: Colors.white,
+                  controller: tabController,
+                  tabs: <Widget>[
+                    Container(
+                      margin: EdgeInsets.only(top: 12.0, bottom: 12.0),
+                      child: Text('REWARDS',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'Avenir-Heavy',
+                          fontSize: 13.0 
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 12.0, bottom: 12.0),
+                      child: Text('FAVORITES',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'Avenir-Heavy',
+                          fontSize: 13.0 
+                        ),
+                      ),
+                    ),
+                     Container(
+                      margin: EdgeInsets.only(top: 12.0, bottom: 12.0),
+                      child: Text('CAMPAIGNS',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'Avenir-Heavy',
+                          fontSize: 13.0 
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ),
+              tabController.index == 0 ? buildRewards() : (tabController.index == 1 ? buildFavorites() : buildCampaigns())
+            ],
+          ),
+        )
+      );
+    } else {
+      return Container(
+        color: AppColors.mainBg,
+        child: SingleChildScrollView(
+          
+        ),
+      );
+    }
   }
 }

@@ -145,8 +145,8 @@ class ShowsPageState extends State<ShowsPage> {
             Text(widget.title,
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 18.0,
-                fontWeight: FontWeight.w700
+                fontSize: 16.0,
+                fontFamily: 'Avenir-Black', 
                // fontStyle: FontStyle.italic
               ),
             )

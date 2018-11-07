@@ -94,7 +94,7 @@ class EventCard extends StatelessWidget {
                       event.dateFrom != null ?
                       Container(
                         margin: EdgeInsets.only(right: 10.0),
-                        height: 65.0,
+                        height: 75.0,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
@@ -103,27 +103,27 @@ class EventCard extends StatelessWidget {
                               child: Text(event.dateFrom.month.toString().padLeft(2, '0'),
                                 style: TextStyle(
                                   color: AppColors.textRed,
-                                  fontWeight: FontWeight.w700,
+                                  fontFamily: 'Avenir-Black',
                                   fontSize: 27.0
                                 ),
                               ),
                             ),
                             Container(
-                              height: 26.0,
+                              height: 30.0,
                               child: Text(event.dateFrom.day.toString().padLeft(2, '0'),
                                 style: TextStyle(
                                   color: AppColors.textRed,
-                                  fontWeight: FontWeight.w700,
+                                  fontFamily: 'Avenir-Black',
                                   fontSize: 27.0
                                 ),
                               ),
                             ),
                             Container(
-                              height: 13.0,
+                              height: 17.0,
                               child: Text(event.dateFrom.year.toString(),
                                 style: TextStyle(
                                   color: AppColors.textRed,
-                                  fontWeight: FontWeight.w700,
+                                  fontFamily: 'Avenir-Black',
                                   fontSize: 12.0
                                 ),
                               ),
@@ -147,7 +147,7 @@ class EventCard extends StatelessWidget {
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 12.0,
-                                        fontWeight: FontWeight.w400
+                                        fontFamily: 'Montserrat-Regular'
                                       ),
                                     ),
                                   ),
@@ -164,7 +164,7 @@ class EventCard extends StatelessWidget {
                               color: AppColors.promoBg,
                               child: Text(Translations.promo.toUpperCase(),
                                 style: TextStyle(
-                                  fontWeight: FontWeight.w600,
+                                  fontFamily: 'Montserrat-SemiBold',
                                   color: Colors.black,
                                   fontSize: 13.0
                                 ),
@@ -176,7 +176,7 @@ class EventCard extends StatelessWidget {
                                 maxLines: 1,
                                 style: TextStyle(
                                   fontSize: 24.0,
-                                  fontWeight: FontWeight.w600,
+                                  fontFamily: 'Avenir-Black',
                                   color: Colors.white
                                 ),
                               ),
@@ -188,7 +188,7 @@ class EventCard extends StatelessWidget {
                                 maxLines: 1,
                                 style: TextStyle(
                                   fontSize: 14.0,
-                                  fontWeight: FontWeight.w400,
+                                  fontFamily: 'AvenirNext-Medium',
                                   color: Colors.white
                                 ),
                               ),
@@ -232,14 +232,14 @@ class EventCard extends StatelessWidget {
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 12.0,
-                        fontWeight: FontWeight.w200
+                        fontFamily: 'Montserrat-Light',
                       ),
                     ),
                   ) :
                   Container(),
                   Container(
                     margin: EdgeInsets.only(right: 15.0),
-                    width: MediaQuery.of(context).size.width * 0.35,
+                    //width: MediaQuery.of(context).size.width * 0.4,
                     height: 36.0,
                     child: MainButton(Translations.buyTicket.toUpperCase()),
                   )

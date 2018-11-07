@@ -81,7 +81,8 @@ class PaymentPageState extends State<PaymentPage> {
                 Text('Credit Card',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 16.0
+                    fontSize: 16.0,
+                    fontFamily: 'Avenir-Book', 
                   ),
                 )
               ],
@@ -115,7 +116,8 @@ class PaymentPageState extends State<PaymentPage> {
                 Text('PayPal',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 16.0
+                    fontSize: 16.0,
+                    fontFamily: 'Avenir-Book', 
                   ),
                 )
               ],
@@ -139,7 +141,8 @@ class PaymentPageState extends State<PaymentPage> {
             child: TextField(
               style: TextStyle(
                 color: Colors.black.withOpacity(0.7),
-                fontSize: 14.0
+                fontSize: 14.0,
+                fontFamily: 'Avenir-Book', 
               ),
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.only(top: 10.0, bottom: 10.0, left: 10.0, right: 10.0),
@@ -150,12 +153,13 @@ class PaymentPageState extends State<PaymentPage> {
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
-                    color: Colors.grey.withOpacity(0.3)
+                    color: Colors.grey.withOpacity(0.3),
                   )
                 ),
                 hintText: 'Credit Card',       
                 hintStyle: TextStyle(
-                  color: Colors.grey.withOpacity(0.7)
+                  color: Colors.grey.withOpacity(0.7),
+                  fontFamily: 'Avenir-Book', 
                 ),     
               ),
             )
@@ -170,6 +174,7 @@ class PaymentPageState extends State<PaymentPage> {
                 child: TextField(
                   style: TextStyle(
                     color: Colors.black.withOpacity(0.7),
+                    fontFamily: 'Avenir-Book', 
                     fontSize: 14.0
                   ),
                   decoration: InputDecoration(
@@ -186,6 +191,7 @@ class PaymentPageState extends State<PaymentPage> {
                     ),
                     hintText: 'Expiry Date',       
                     hintStyle: TextStyle(
+                      fontFamily: 'Avenir-Book', 
                       color: Colors.grey.withOpacity(0.7)
                     ),     
                   ),
@@ -197,6 +203,7 @@ class PaymentPageState extends State<PaymentPage> {
                 child: TextField(
                   style: TextStyle(
                     color: Colors.black.withOpacity(0.7),
+                    fontFamily: 'Avenir-Book', 
                     fontSize: 14.0
                   ),
                   decoration: InputDecoration(
@@ -213,6 +220,7 @@ class PaymentPageState extends State<PaymentPage> {
                     ),
                     hintText: 'CVV',       
                     hintStyle: TextStyle(
+                      fontFamily: 'Avenir-Book', 
                       color: Colors.grey.withOpacity(0.7)
                     ),     
                   ),
@@ -226,6 +234,7 @@ class PaymentPageState extends State<PaymentPage> {
             child: TextField(
               style: TextStyle(
                 color: Colors.black.withOpacity(0.7),
+                fontFamily: 'Avenir-Book', 
                 fontSize: 14.0
               ),
               decoration: InputDecoration(
@@ -242,6 +251,7 @@ class PaymentPageState extends State<PaymentPage> {
                 ),
                 hintText: 'Card Holder Name',       
                 hintStyle: TextStyle(
+                  fontFamily: 'Avenir-Book', 
                   color: Colors.grey.withOpacity(0.7)
                 ),     
               ),
@@ -342,7 +352,7 @@ class PaymentPageState extends State<PaymentPage> {
                                             style: TextStyle(
                                               color: Colors.black,
                                               fontSize: 18.0,
-                                              fontWeight: FontWeight.w600
+                                              fontFamily: 'Avenir-Black', 
                                             ),
                                           ),
                                         ),
@@ -352,7 +362,7 @@ class PaymentPageState extends State<PaymentPage> {
                                             style: TextStyle(
                                               color: Colors.black,
                                               fontSize: 18.0,
-                                              fontWeight: FontWeight.w600
+                                              fontFamily: 'Avenir-Heavy', 
                                             ),
                                           ),
                                         )
@@ -363,7 +373,7 @@ class PaymentPageState extends State<PaymentPage> {
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 14.0,
-                                        fontWeight: FontWeight.w400
+                                        fontFamily: 'Avenir-Book', 
                                       ),
                                     ),
                                     Padding(padding: EdgeInsets.only(top: 5.0)),
@@ -372,7 +382,7 @@ class PaymentPageState extends State<PaymentPage> {
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 14.0,
-                                        fontWeight: FontWeight.w400
+                                        fontFamily: 'Avenir-Book', 
                                       ),
                                     ),     
                                     Padding(padding: EdgeInsets.only(top: 5.0)),
@@ -381,7 +391,7 @@ class PaymentPageState extends State<PaymentPage> {
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 14.0,
-                                          fontWeight: FontWeight.w400
+                                          fontFamily: 'Avenir-Book', 
                                         ),
                                       ),
                                     ),
@@ -393,7 +403,7 @@ class PaymentPageState extends State<PaymentPage> {
                                           Text('${Translations.translateEnum(DateFormat.EEEE().format(widget.event.dateFrom)).toUpperCase()},',
                                             style: TextStyle(
                                               color: Colors.black,
-                                              fontWeight: FontWeight.w500,
+                                              fontFamily: 'Avenir-Medium', 
                                               fontSize: 14.0
                                             )
                                           ),
@@ -401,7 +411,7 @@ class PaymentPageState extends State<PaymentPage> {
                                           Text('${Translations.translateEnum(DateFormat.MMMM().format(widget.event.dateFrom)).toUpperCase().substring(0, 3)} ${DateFormat('dd yyyy').format(widget.event.dateFrom)}',
                                             style: TextStyle(
                                               color: Colors.black,
-                                              fontWeight: FontWeight.w500,
+                                              fontFamily: 'Avenir-Medium', 
                                               fontSize: 14.0
                                             )
                                           ),
@@ -409,7 +419,7 @@ class PaymentPageState extends State<PaymentPage> {
                                           Text('- ${DateFormat('h:mma').format(widget.event.dateFrom).toUpperCase()}',
                                             style: TextStyle(
                                               color: Colors.black,
-                                              fontWeight: FontWeight.w500,
+                                              fontFamily: 'Avenir-Medium', 
                                               fontSize: 14.0
                                             )
                                           ),
@@ -442,7 +452,7 @@ class PaymentPageState extends State<PaymentPage> {
                             Text('Total: ',
                               style: TextStyle(
                                 color: Colors.black,
-                                fontWeight: FontWeight.w400,
+                                fontFamily: 'Avenir-Book', 
                                 fontSize: 16.0
                               ),
                             ),
@@ -450,7 +460,7 @@ class PaymentPageState extends State<PaymentPage> {
                             Text('${totalPrice().toStringAsFixed(2)} ${widget.tickets.keys.toList()[0].currency}',
                               style: TextStyle(
                                 color: Colors.black,
-                                fontWeight: FontWeight.w500,
+                                fontFamily: 'Avenir-Heavy', 
                                 fontSize: 16.0
                               ),
                             ),

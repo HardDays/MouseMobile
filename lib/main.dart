@@ -4,6 +4,8 @@ import 'views/pages/start/start_page.dart';
 import 'views/pages/main/main_page.dart';
 
 import 'helpers/storage/database.dart';
+import 'helpers/storage/cache.dart';
+
 import 'helpers/api/main_api.dart';
 
 void main() => runApp(App());
@@ -40,20 +42,31 @@ class AppState extends State<App> {
         home: Container(),
       );
     } else {
-      if (Database.getCurrentUser() == null || Database.getCurrentAccount() == null){
-        return MaterialApp(
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-          ),
-          home: StartPage(),
-        );
-      } else {
+      if (Database.authorized()){
         MainAPI.updateToken(Database.getCurrentUser().token);
+
+        var account = Database.getCurrentAccount();
+        MainAPI.getAccount(account.id).then((res) {
+          if (res != null){
+            Database.setCurrentAccount(res);
+          }
+        });
+        MainAPI.getFollowing(account.id).then((res) {
+          Cache.following = res.map((acc) => acc.id).toList();
+        });
+        
         return MaterialApp(
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
           home: MainPage(),
+        );
+      } else {
+        return MaterialApp(
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home: StartPage(),
         );
       }
     }

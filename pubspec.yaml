@@ -43,45 +43,78 @@ flutter:
   uses-material-design: true
 
   assets:
-   - assets/images/start/start1_bg.png
-   - assets/images/start/start2_bg.png
-   - assets/images/start/start3_bg.png
-   - assets/images/start/mouse_logo.png
-   - assets/images/start/google_logo.png
-   - assets/images/start/vk_logo.png
-   - assets/images/start/twitter_logo.png
-   - assets/images/start/fb_logo.png
-   - assets/images/start/login_bg.png
-   - assets/images/start/signup_bg.png
-   - assets/images/start/mouse_pic.png
-   - assets/images/start/forgot_bg.png
+    - assets/images/start/start1_bg.png
+    - assets/images/start/start2_bg.png
+    - assets/images/start/start3_bg.png
+    - assets/images/start/mouse_logo.png
+    - assets/images/start/google_logo.png
+    - assets/images/start/vk_logo.png
+    - assets/images/start/twitter_logo.png
+    - assets/images/start/fb_logo.png
+    - assets/images/start/login_bg.png
+    - assets/images/start/signup_bg.png
+    - assets/images/start/mouse_pic.png
+    - assets/images/start/forgot_bg.png
 
-   - assets/images/main/tickets_tab_icon.svg
-   - assets/images/main/feed_tab_icon.svg
-   - assets/images/main/shows_tab_icon.svg
-   - assets/images/main/campaigns_tab_icon.svg
+    - assets/images/main/tickets_tab_icon.svg
+    - assets/images/main/feed_tab_icon.svg
+    - assets/images/main/shows_tab_icon.svg
+    - assets/images/main/campaigns_tab_icon.svg
 
-   - assets/images/main/profile_tab_icon.svg
-   - assets/images/main/profile/account_header.png
-   - assets/images/main/profile/fan_icon.png
-   - assets/images/main/profile/artist_icon.png
-   - assets/images/main/profile/venue_icon.png
-   - assets/images/main/profile/expansion_icon.png
-   - assets/images/main/profile/expainsion_up_icon.png
+    - assets/images/main/profile_tab_icon.svg
+    - assets/images/main/profile/account_header.png
+    - assets/images/main/profile/fan_icon.png
+    - assets/images/main/profile/artist_icon.png
+    - assets/images/main/profile/venue_icon.png
+    - assets/images/main/profile/expansion_icon.png
+    - assets/images/main/profile/expainsion_up_icon.png
 
-   - assets/images/main/shows/play_button.png
-   - assets/images/main/shows/ticket_form.png
-   - assets/images/main/shows/check_form.png
-   - assets/images/main/shows/paypal_logo.png
-   - assets/images/main/shows/credit_card.png
+    - assets/images/main/shows/play_button.png
+    - assets/images/main/shows/ticket_form.png
+    - assets/images/main/shows/check_form.png
+    - assets/images/main/shows/paypal_logo.png
+    - assets/images/main/shows/credit_card.png
 
-   - assets/images/common/pin.png
-   - assets/images/common/follow_icon.png
-   - assets/images/common/follow_button_icon.png
-   - assets/images/common/filters_icon.svg
-   - assets/images/common/blured_rect.png
-   - assets/images/common/empty_account.png
+    - assets/images/common/pin.png
+    - assets/images/common/follow_icon.png
+    - assets/images/common/follow_button_icon.png
+    - assets/images/common/filters_icon.svg
+    - assets/images/common/blured_rect.png
+    - assets/images/common/empty_account.png
 
+  fonts:
+    - family: Avenir-Black
+      fonts:
+        - asset: assets/fonts/Avenir-Black.ttf
+    - family: Avenir-Book
+      fonts:
+        - asset: assets/fonts/Avenir-Book.ttf
+    - family: Avenir-Heavy
+      fonts:
+        - asset: assets/fonts/Avenir-Heavy.ttf
+    - family: Avenir-Medium
+      fonts:
+        - asset: assets/fonts/Avenir-Medium.ttf
+    - family: AvenirNext-Medium
+      fonts:
+        - asset: assets/fonts/AvenirNext-Medium.ttf
+    - family: AvenirNextCyr-Heavy
+      fonts:
+        - asset: assets/fonts/AvenirNextCyr-Heavy.ttf
+
+    - family: Raleway-ExtraBold
+      fonts:
+        - asset: assets/fonts/Raleway-ExtraBold.ttf
+
+    - family: Montserrat-Regular
+      fonts:
+        - asset: assets/fonts/Montserrat-Regular.ttf
+    - family: Montserrat-SemiBold
+      fonts:
+        - asset: assets/fonts/Montserrat-SemiBold.ttf
+    - family: Montserrat-Light
+      fonts:
+        - asset: assets/fonts/Montserrat-Light.ttf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

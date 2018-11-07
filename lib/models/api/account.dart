@@ -2,6 +2,7 @@ import 'image.dart';
 import 'video.dart';
 import 'event.dart';
 import 'email.dart';
+import 'hour.dart';
 
 class AccountType {
   
@@ -32,6 +33,7 @@ class Account {
   String description;
   String phone;
   String fax;
+  String image;
 
   String accountType;
 
@@ -43,12 +45,14 @@ class Account {
   List <Video> videos;
   List <Event> upcomingShows;
   List <Email> emails;
+  List <Hour> officeHours;
+  List <Hour> operatingHours;
 
   Account({
       this.error, this.id, this.imageid, this.followersCount, this.followingCount, this.phone, this.fax,
       this.userName, this.firstName, this.displayName, this.lastName, this.about, this.bio, this.description,
       this.address, this.preferredAddress, this.accountType,
-      this.genres, this.images, this.videos, this.upcomingShows, this.emails
+      this.genres, this.images, this.videos, this.upcomingShows, this.emails, this.officeHours, this.operatingHours
     }
   ) { 
     if (videos != null){
@@ -56,13 +60,32 @@ class Account {
     }
   }
   
-   Map <String, dynamic> toJson(){
+  Map <String, dynamic> toJson(){
     return {
       'id': id,
       'user_name': userName,
       'first_name': firstName,
       'last_name': lastName,
-      'account_type': accountType
+      'account_type': accountType,
+      'display_name': firstName + ' ' + lastName,
+      'bio': bio,
+      'genres': genres,
+      'image_id': imageid
+    };
+  }
+
+   Map <String, dynamic> toAPIJson(){
+    return {
+      'id': id,
+      'user_name': userName,
+      'first_name': firstName,
+      'last_name': lastName,
+      'account_type': accountType,
+      'display_name': firstName + ' ' + lastName,
+      'bio': bio,
+      'genres': genres,
+      'image_base64': image,
+      'image_id': imageid
     };
   }
 
@@ -82,13 +105,15 @@ class Account {
       about: json['about'],
       bio: json['bio'],
       description: json['description'],
+      phone: json['phone'],
+      fax: json['fax'],
       genres: json['genres'] != null ? List<String>.from(json['genres']) : [],
       videos: json['videos'] != null ? json['videos'].map<Video>((x) => Video.fromJson(x)).toList() : [],
       images: json['images'] != null ? json['images'].map<Image>((x) => Image.fromJson(x)).toList() : [],
-      phone: json['phone'],
-      fax: json['fax'],
-      upcomingShows: [],
       emails: json['emails'] != null ? json['emails'].map<Email>((x) => Email.fromJson(x)).toList() : [],
+      officeHours: json['office_hours'] != null ? json['office_hours'].map<Hour>((x) => Hour.fromJson(x)).toList() : [],
+      operatingHours: json['operating_hours'] != null ? json['operating_hours'].map<Hour>((x) => Hour.fromJson(x)).toList() : [],
+      upcomingShows: [],
       error: AccountError.ok
     );
   }

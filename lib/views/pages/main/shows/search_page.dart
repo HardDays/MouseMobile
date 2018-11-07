@@ -191,12 +191,14 @@ class SearchPageState extends State<SearchPage> with SingleTickerProviderStateMi
           title: TextField(
             style: TextStyle(
               color: Colors.white,
-              fontSize: 17.0
+              fontSize: 20.0,
+              fontFamily: 'Avenir-Book', 
             ),
             decoration: InputDecoration.collapsed(
               hintText: 'Search',       
               hintStyle: TextStyle(
-                color: Colors.grey.withOpacity(0.5)
+                color: Colors.grey.withOpacity(0.6),
+                fontFamily: 'Avenir-Book', 
               )     
             ),
             onChanged: (value) {

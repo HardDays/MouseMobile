@@ -6,8 +6,12 @@ import 'dates_filter_dialog.dart';
 import 'genres_filter_dialog.dart';
 import 'location_filter_dialog.dart';
 import 'other_filter_dialog.dart';
+import 'hours_dialog.dart';
 
 import '../../resources/app_colors.dart';
+import '../../resources/translations.dart';
+
+import '../../models/api/hour.dart';
 
 import '../../helpers/storage/filters/dates_filter.dart';
 import '../../helpers/storage/filters/genres_filter.dart';
@@ -60,7 +64,6 @@ class Dialogs {
               ),
               //filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
               child: Container(
-               
                 //color: AppColors.dialogBack,
                 padding: EdgeInsets.only(left: 20.0, right: 20.0),
                   child: Stack(
@@ -91,14 +94,14 @@ class Dialogs {
                             margin: EdgeInsets.only(left: 3.0),
                             child: Text(title,
                             style: TextStyle(
-                              fontWeight: FontWeight.w700,
+                              fontFamily: 'Avenir-Black', 
                               fontSize: 20.0,
                               color: Colors.white
                             ),
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(top: 15.0),
+                          margin: EdgeInsets.only(top: 10.0),
                           child: child
                         )
                       ]
@@ -129,8 +132,11 @@ class Dialogs {
     Dialogs.showThemedDialog(context, 'OTHER FILTERS', OtherFilterDialog(filter: filter, onSave: onSave));
   }
 
+  static void showHoursDialog(BuildContext context, {String title, List<Hour> hours}){
+    Dialogs.showThemedDialog(context, title, HoursDialog(hours: hours));
+  }
 
-  static Future showMessage(BuildContext context, String title, String body, String ok) async {
+  static Future showMessage(BuildContext context, {String title, String body, String ok}) async {
     return await showDialog(context: context, 
       child: AlertDialog(
         title: Text(title),
@@ -147,7 +153,7 @@ class Dialogs {
     );
   }
 
-  static void showYesNo(BuildContext context, String title, String body, String yes, String no, Function onYes, Function onNo){
+  static void showYesNo(BuildContext context, {String title, String body, String yes, String no, Function onYes, Function onNo}){
     showDialog(context: context, 
       child: AlertDialog(
         title: Text(title),
@@ -155,14 +161,22 @@ class Dialogs {
         actions: [
           FlatButton(
             child: Text(yes),
-            onPressed: onYes
+            onPressed: (){
+              Navigator.pop(context);
+              onYes();
+            }           
           ),
           FlatButton(
             child: Text(no),
-            onPressed: onNo                               
+            onPressed: (){
+              Navigator.pop(context);
+              onNo();
+            }                               
           ),               
         ],
       )
-    );
+    ).then((val){
+      onNo();
+    });;
   }
 }

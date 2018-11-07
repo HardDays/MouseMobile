@@ -3,28 +3,39 @@ import 'package:flutter/material.dart';
 
 import '../../resources/app_colors.dart';
 
-class FollowButton extends StatelessWidget {
+import '../../models/api/account.dart';
+
+import '../../helpers/storage/cache.dart';
+import '../../helpers/api/main_api.dart';
+
+class FollowButton extends StatefulWidget {
   
-  final Function onTap;
   LinearGradient gradient;
+
+  Account account;
   
-  FollowButton({this.gradient = const LinearGradient(
+  FollowButton({
+      this.gradient = const LinearGradient(
         colors: [
           AppColors.redRightGradButton,
           AppColors.redLeftGradButton,
         ]
       ), 
-      this.onTap
+      this.account
     }
   );
-  
+
+  FollowButtonState createState()=> FollowButtonState();
+}
+
+class FollowButtonState extends State<FollowButton> {
+
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
       child: Container(
         padding: EdgeInsets.only(left: 20.0, right: 20.0),
         decoration: BoxDecoration(
-          gradient: gradient,
+          gradient: widget.gradient,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(50.0),
             bottomRight: Radius.circular(50.0),
@@ -34,7 +45,15 @@ class FollowButton extends StatelessWidget {
         ),
         child: Center(
           child: InkWell(
-            onTap: onTap,
+            onTap: (){
+              setState(() {                      
+                if (Cache.following.contains(widget.account.id)){
+                  Cache.following.remove(widget.account.id);
+                } else {
+                  Cache.following.add(widget.account.id);
+                }
+              });
+            },
             child: Row(
               children: <Widget>[
                 Container(
@@ -48,7 +67,7 @@ class FollowButton extends StatelessWidget {
                   ),
                 ),
                 Padding(padding: EdgeInsets.only(left: 7.0)),
-                Text('Follow',
+                Text(Cache.following.contains(widget.account.id) ? 'Unollow' : 'Follow',
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
                     color: Colors.white,

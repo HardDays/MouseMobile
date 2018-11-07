@@ -86,12 +86,16 @@ class LocationFilterDialogState extends State<LocationFilterDialog> {
                   child: TextField(
                     controller: addressController,
                     style: TextStyle(
-                      color: Colors.white
+                      color: Colors.white,
+                      fontFamily: 'Avenir-Book',
+                      fontSize: 16.0
                     ),
                     decoration: InputDecoration(
                       hintText: 'Address',
                       hintStyle: TextStyle(
-                        color: Colors.white.withOpacity(0.5)
+                        color: Colors.white.withOpacity(0.5),
+                        fontFamily: 'Avenir-Book', 
+                        fontSize: 16.0
                       ),
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
@@ -127,6 +131,7 @@ class LocationFilterDialogState extends State<LocationFilterDialog> {
               controller: autcompleteController,
               textStyle: TextStyle(
                 color: Colors.white,
+                fontFamily: 'Avenir-Book',  
                 fontSize: 14.0
               ),
             ),
@@ -137,7 +142,7 @@ class LocationFilterDialogState extends State<LocationFilterDialog> {
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 14.0,
-                fontWeight: FontWeight.w300
+                fontFamily: 'Avenir-Book', 
               ),
             ),
           ),

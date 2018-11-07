@@ -62,7 +62,7 @@ class LoginPageState extends State<LoginPage> {
       MainAPI.authorize(userName, password).timeout(Duration(seconds: 10), 
         onTimeout: (){
           Navigator.pop(context);
-          Dialogs.showMessage(context, Translations.serverNotRepsonding, Translations.pleaseTryAgain, Translations.ok);
+          Dialogs.showMessage(context, title: Translations.serverNotRepsonding, body: Translations.pleaseTryAgain, ok: Translations.ok);
         }
       ).then(
         (token){
@@ -87,7 +87,7 @@ class LoginPageState extends State<LoginPage> {
               }
             );
           } else {
-            Dialogs.showMessage(context, Translations.unauthorized, Translations.wrongUsernameOrPass, Translations.ok);
+            Dialogs.showMessage(context, title: Translations.unauthorized, body: Translations.wrongUsernameOrPass, ok: Translations.ok);
           }
         }
       );
@@ -170,13 +170,13 @@ class LoginPageState extends State<LoginPage> {
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 18.0,
-                                fontWeight: FontWeight.w500
+                                fontFamily: 'Avenir-Heavy',
                               ),
                               decoration: InputDecoration(
                                 hintStyle: TextStyle(
                                   color: Colors.white.withOpacity(0.5),
                                   fontSize: 18.0,
-                                  fontWeight: FontWeight.w500
+                                  fontFamily: 'Avenir-Heavy',
                                 ),
                                 focusedBorder: UnderlineInputBorder(      
                                   borderSide: BorderSide(color: Colors.white, width: 1.7),   
@@ -201,13 +201,13 @@ class LoginPageState extends State<LoginPage> {
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 18.0,
-                                fontWeight: FontWeight.w500
+                                fontFamily: 'Avenir-Heavy',
                               ),
                               decoration: InputDecoration(
                                 hintStyle: TextStyle(
                                   color: Colors.white.withOpacity(0.5),
                                   fontSize: 18.0,
-                                  fontWeight: FontWeight.w500
+                                  fontFamily: 'Avenir-Heavy',
                                 ),
                                 focusedBorder: UnderlineInputBorder(      
                                   borderSide: BorderSide(color: Colors.white, width: 1.7),   
@@ -234,7 +234,8 @@ class LoginPageState extends State<LoginPage> {
                                 child: Text(Translations.forgotYourPassword.toUpperCase(),
                                   style: TextStyle(
                                     color: AppColors.orangeText,
-                                    fontSize: 12.0
+                                    fontSize: 12.0,
+                                    fontFamily: 'AvenirNext-Medium',
                                   ),
                                 ),
                               ),

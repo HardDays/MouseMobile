@@ -1,4 +1,3 @@
-import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 
 import '../../resources/app_colors.dart';
@@ -40,7 +39,7 @@ class MainButton extends StatelessWidget {
             onTap: onTap,
             child: Text(text,
               style: TextStyle(
-                fontWeight: FontWeight.w500,
+                fontFamily: 'Avenir-Heavy',
                 color: Colors.white,
                 fontSize: 15.0
               ),
