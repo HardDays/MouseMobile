@@ -3,7 +3,7 @@ import 'other_filter.dart';
 import 'location_filter.dart';
 import 'genres_filter.dart';
 
-class ShowsFilter {
+class EventsFilter {
 
   DatesFilter datesFilter = DatesFilter();
   OtherFilter otherFilter = OtherFilter();

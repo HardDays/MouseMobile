@@ -13,8 +13,7 @@ import '../../dialogs/dialogs.dart';
 import '../../widgets/shadow_text.dart';
 import '../../widgets/main_button.dart';
 
-import '../../../helpers/api/main_api.dart';
-import '../../../helpers/storage/database.dart';
+import '../../../helpers/storage/data_provider.dart';
 
 import '../../../models/api/user.dart';
 import '../../../models/api/account.dart';
@@ -88,32 +87,28 @@ class CreateUserPageState extends State<CreateUserPage> {
   }
   //a@a.aa1
   void createUser(){
-    MainAPI.createUser(User(email: email, password: password, passwordConfirmation: passwordConfirmation)).timeout(Duration(seconds: 10),
+    DataProvider.createUser(User(email: email, password: password, passwordConfirmation: passwordConfirmation)).timeout(Duration(seconds: 10),
       onTimeout: (){
         Navigator.pop(context);
         Dialogs.showMessage(context, title: Translations.serverNotRepsonding, body: Translations.pleaseTryAgain, ok: Translations.ok);
       }
     ).then(
       (res){
-        if (res == null){
+        if (res.status == DataStatus.ok){
+          setState(() {
+            user = res.result;
+          });
+          createAccount();
         } else {
-          if (res.error == UserError.ok){
-            setState(() {
-              user = res;
-            });
-            createAccount();
-          } else {
-            Navigator.pop(context);
-            Dialogs.showMessage(context, title: Translations.cannotRegister, body: Translations.emailAlreadyTaken, ok: Translations.ok);
-          }
+          Navigator.pop(context);
+          Dialogs.showMessage(context, title: Translations.cannotRegister, body: Translations.emailAlreadyTaken, ok: Translations.ok);
         }
       }
     );
   }
 
   void createAccount(){
-    MainAPI.updateToken(user.token);
-    MainAPI.createAccount(Account(userName: userName, firstName: firstName, lastName: lastName, accountType: AccountType.fan)).timeout(Duration(seconds: 10), 
+    DataProvider.createAccount(Account(userName: userName, firstName: firstName, lastName: lastName, accountType: AccountType.fan)).timeout(Duration(seconds: 10), 
       onTimeout: (){
         Navigator.pop(context);
         Dialogs.showMessage(context, title: Translations.serverNotRepsonding, body: Translations.pleaseTryAgain, ok: Translations.ok);
@@ -121,9 +116,7 @@ class CreateUserPageState extends State<CreateUserPage> {
     ).then(
       (res){
         Navigator.pop(context);
-        if (res.error == AccountError.ok){
-          Database.setCurrentUser(user);
-          Database.setCurrentAccount(res);
+        if (res.status == DataStatus.ok){
           Navigator.pop(context);
           Navigator.pushReplacement(
             context, 

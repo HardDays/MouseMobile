@@ -7,8 +7,7 @@ import '../../models/api/event.dart';
 import '../../resources/app_colors.dart';
 import '../../resources/translations.dart';
 
-import '../../helpers/api/main_api.dart';
-import '../../helpers/storage/cache.dart';
+import '../../helpers/storage/data_provider.dart';
 
 class EventListController {
   String text;
@@ -51,10 +50,10 @@ class EventListState extends State<EventList> with AutomaticKeepAliveClientMixin
   bool get wantKeepAlive => true;
 
   void update() {
-    MainAPI.searchEvents(text: widget.controller?.text).then(
+    DataProvider.getEvents(text: widget.controller?.text).then(
       (events){
         setState(() {
-          this.events = events;
+          this.events = events.result;
         });
       }
     );

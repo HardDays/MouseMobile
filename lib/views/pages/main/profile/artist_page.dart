@@ -25,8 +25,7 @@ import '../../../../models/api/ticket.dart';
 import '../../../../resources/app_colors.dart';
 import '../../../../resources/translations.dart';
 
-import '../../../../helpers/api/main_api.dart';
-import '../../../../helpers/storage/cache.dart';
+import '../../../../helpers/storage/data_provider.dart';
 
 class ArtistPage extends StatefulWidget {
 
@@ -54,11 +53,11 @@ class ArtistPageState extends State<ArtistPage> with SingleTickerProviderStateMi
     tabController = TabController(length: 2, vsync: this);
 
     if (!showsLoaded){
-      MainAPI.getUpcomingShows(account.id).then(
+      DataProvider.getUpcomingEvents(account.id).then(
         (res){
           setState(() {
             showsLoaded = true;
-            account.upcomingShows = res;          
+            account.upcomingShows = res.result;          
           });
         }
       );

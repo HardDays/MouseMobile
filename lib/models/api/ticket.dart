@@ -8,6 +8,11 @@ class TicketType {
   ];
 }
 
+class TicketTime {
+  static const String past = 'past';
+  static const String current = 'current';
+}
+
 class Ticket {
 
   int id;
@@ -30,7 +35,7 @@ class Ticket {
     return Ticket(
       id: json['id'],
       name: json['name'] ?? '',
-      price: json['price'] ?? 0,
+      price: json['price'] != null ? json['price'].toDouble() : 0.0,
       description: json['description'] ?? '',
       currency: json['currency'] ?? '',
       isPromotional: json['is_promotional'] ?? false,

@@ -5,8 +5,12 @@ import '../../models/api/account.dart';
 
 class Cache {
 
-  static ShowsFilter showsFilter = ShowsFilter(); 
+  static EventsFilter eventsFilter; 
+  static EventsFilter ticketsFilter; 
 
-  static List<int> following = [];
+  static Set<int> following;
   static List<Event> events;
+  
+  static Map<String, List<Event>> fanTickets;
+
 }

@@ -28,8 +28,7 @@ import '../../../../models/api/ticket.dart';
 import '../../../../resources/app_colors.dart';
 import '../../../../resources/translations.dart';
 
-import '../../../../helpers/api/main_api.dart';
-import '../../../../helpers/storage/cache.dart';
+import '../../../../helpers/storage/data_provider.dart';
 
 class ShowPage extends StatefulWidget {
 
@@ -41,7 +40,6 @@ class ShowPage extends StatefulWidget {
 }
 
 class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin {
-
 
   bool artistsLoaded = false;
   bool commentsLoaded = false;
@@ -69,19 +67,19 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
     );
 
     if (event == null){
-      MainAPI.getEvent(widget.id).then(
-        (event) {
+      DataProvider.getEvent(widget.id).then(
+        (res) {
           setState(() {
-            this.event = event;             
+            this.event = res.result;             
           });
 
           List <Account> artists = [];
 
           for (var art in event.artists) {
-            MainAPI.getAccount(art.id).then(
+            DataProvider.getAccount(art.id).then(
               (account) {
-                if (account != null) {
-                  artists.add(account);
+                if (account.status == DataStatus.ok) {
+                  artists.add(account.result);
                 }
               }
             );
@@ -98,10 +96,10 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
             }            
           });
 
-          MainAPI.getEventComments(widget.id).then(
+          DataProvider.getEventComments(widget.id).then(
             (res){
               setState(() {
-                this.event.comments = res;
+                this.event.comments = res.result;
                 commentsLoaded = true;              
               });
             }
@@ -110,18 +108,6 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
       );
     }
   }
-  /*
-  double tabViewSize(){
-    if (tabController.index == 0){
-      if (event.tickets.isNotEmpty){
-        return 130.0 * event.tickets.length + 90.0;
-      } else {
-        return MediaQuery.of(context).size.height * 0.6;
-      }
-    } else {
-      return MediaQuery.of(context).size.height * 0.6;
-    }
-  }*/
 
   void onTicketMinus(Ticket ticket){
     if (tickets[ticket] > 0){
@@ -159,10 +145,14 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
       ok: 'Ok'
     );
     } else {
-      Navigator.push(
-        this.context,
-        DefaultPageRoute(builder: (context) => PaymentPage(event, filtered)),
-      );   
+      if (DataProvider.isAuthorized()){
+        Navigator.push(
+          this.context,
+          DefaultPageRoute(builder: (context) => PaymentPage(event: event, tickets: filtered)),
+        );   
+      } else {
+        Dialogs.showMessage(context, title: 'Unauthorized', body: 'Please, log in for this action', ok: 'Ok');
+      }
     }
   }
 
@@ -171,7 +161,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
       children: <Widget>[
         AccountImage(account: account, size: size),
         Container(
-          width: MediaQuery.of(context).size.width * 0.4,
+          width: MediaQuery.of(context).size.width * 0.37,
           height: 60.0,
           margin: EdgeInsets.only(left: 12.0),
           child: Column(
@@ -761,7 +751,8 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                     ) : 
                     Container(),
                   
-                    event.dateFrom != null ? Container(
+                    event.dateFrom != null ? 
+                    Container(
                       margin: EdgeInsets.only(top: 10.0),
                       child: Row(
                         children: <Widget>[

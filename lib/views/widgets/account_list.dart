@@ -8,7 +8,7 @@ import '../../models/api/event.dart';
 import '../../resources/app_colors.dart';
 import '../../resources/translations.dart';
 
-import '../../helpers/api/main_api.dart';
+import '../../helpers/storage/data_provider.dart';
 import '../../helpers/storage/cache.dart';
 
 class AccountListController {
@@ -73,7 +73,7 @@ class AccountListState extends State<AccountList> with AutomaticKeepAliveClientM
   }
 
   void update() {
-    MainAPI.searchAccounts(
+    DataProvider.getAccounts(
       text: widget.controller?.text, 
       accountType: widget.controller?.accountType,
       limit: limit,
@@ -84,10 +84,10 @@ class AccountListState extends State<AccountList> with AutomaticKeepAliveClientM
           if (accounts == null){
             accounts = [];
           }
-          accounts.addAll(res);
+          accounts.addAll(res.result);
           offset += limit;
           loading = false;
-          full = res.length < limit;
+          full = res.result.length < limit;
         });
       }
     );

@@ -1,41 +1,74 @@
-import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
+
+import '../dialogs/dialogs.dart';
 
 import '../../resources/app_colors.dart';
 
 import '../../models/api/account.dart';
 
-import '../../helpers/storage/cache.dart';
-import '../../helpers/api/main_api.dart';
+import '../../helpers/storage/data_provider.dart';
+
 
 class FollowButton extends StatefulWidget {
   
-  LinearGradient gradient;
-
   Account account;
-  
-  FollowButton({
-      this.gradient = const LinearGradient(
-        colors: [
-          AppColors.redRightGradButton,
-          AppColors.redLeftGradButton,
-        ]
-      ), 
-      this.account
-    }
-  );
+    
+  FollowButton({this.account}){
+
+  }
 
   FollowButtonState createState()=> FollowButtonState();
 }
 
 class FollowButtonState extends State<FollowButton> {
+  bool loading = false;
+
+  @override
+  void initState(){
+    super.initState();
+  }
+
+  void onFollow(){
+    if (DataProvider.isAuthorized()){
+      if (!loading){
+        loading = true;
+        if (DataProvider.getMyFollowing().contains(widget.account.id)){
+          DataProvider.unfollow(widget.account.id).then(
+            (res){
+              setState(() {
+                loading = false;                                       
+              });
+            }
+          );
+        } else {
+          DataProvider.follow(widget.account.id).then(
+            (res){
+              setState(() {
+                loading = false;                                       
+              });
+            }
+          );
+        }
+      }
+    } else {
+      Dialogs.showMessage(context, title: 'Unauthorized', body: 'Please, log in for this action', ok: 'Ok');
+    }
+  }
 
   Widget build(BuildContext context) {
+    bool followed = DataProvider.getMyFollowing().contains(widget.account.id);
+    
     return GestureDetector(
+      onTap: onFollow,
       child: Container(
         padding: EdgeInsets.only(left: 20.0, right: 20.0),
         decoration: BoxDecoration(
-          gradient: widget.gradient,
+          gradient: LinearGradient(
+            colors: [
+              AppColors.redRightGradButton,
+              AppColors.redLeftGradButton,
+            ]
+          ),
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(50.0),
             bottomRight: Radius.circular(50.0),
@@ -45,15 +78,7 @@ class FollowButtonState extends State<FollowButton> {
         ),
         child: Center(
           child: InkWell(
-            onTap: (){
-              setState(() {                      
-                if (Cache.following.contains(widget.account.id)){
-                  Cache.following.remove(widget.account.id);
-                } else {
-                  Cache.following.add(widget.account.id);
-                }
-              });
-            },
+            onTap: onFollow,
             child: Row(
               children: <Widget>[
                 Container(
@@ -62,12 +87,12 @@ class FollowButtonState extends State<FollowButton> {
                   width: 15.0,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assets/images/common/follow_button_icon.png')
+                      image: AssetImage(followed ? 'assets/images/common/unfollow_button_icon.png' : 'assets/images/common/follow_button_icon.png')
                     )
                   ),
                 ),
                 Padding(padding: EdgeInsets.only(left: 7.0)),
-                Text(Cache.following.contains(widget.account.id) ? 'Unollow' : 'Follow',
+                Text(followed ? 'Unollow' : 'Follow',
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
                     color: Colors.white,

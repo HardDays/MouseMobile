@@ -25,8 +25,7 @@ import '../../../../models/api/ticket.dart';
 import '../../../../resources/app_colors.dart';
 import '../../../../resources/translations.dart';
 
-import '../../../../helpers/api/main_api.dart';
-import '../../../../helpers/storage/cache.dart';
+import '../../../../helpers/storage/data_provider.dart';
 
 class AccountPage extends StatefulWidget {
 
@@ -46,9 +45,9 @@ class AccountPageState extends State<AccountPage> with SingleTickerProviderState
     super.initState();
 
     if (account == null){
-      MainAPI.getAccount(widget.id).then(
+      DataProvider.getAccount(widget.id).then(
         (account) async {
-          if (account == null){
+          if (account.status != DataStatus.ok) { 
             Dialogs.showMessage(context, 
               title: 'Can\'t load account', 
               body: 'Account is suspended',
@@ -60,7 +59,7 @@ class AccountPageState extends State<AccountPage> with SingleTickerProviderState
             );
           }
           setState(() {
-            this.account = account;             
+            this.account = account.result;             
           });
         }
       );

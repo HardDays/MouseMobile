@@ -17,8 +17,7 @@ import '../../dialogs/dialogs.dart';
 import '../../../resources/app_colors.dart';
 import '../../../resources/translations.dart';
 
-import '../../../helpers/api/main_api.dart';
-import '../../../helpers/storage/database.dart';
+import '../../../helpers/storage/data_provider.dart';
 
 import '../../../models/api/user.dart';
 import '../../../models/api/account.dart';
@@ -59,33 +58,21 @@ class LoginPageState extends State<LoginPage> {
     formKey.currentState.save();
     if (formKey.currentState.validate()){
       Dialogs.showLoader(context);
-      MainAPI.authorize(userName, password).timeout(Duration(seconds: 10), 
+      DataProvider.login(userName, password).timeout(Duration(seconds: 10), 
         onTimeout: (){
           Navigator.pop(context);
           Dialogs.showMessage(context, title: Translations.serverNotRepsonding, body: Translations.pleaseTryAgain, ok: Translations.ok);
         }
       ).then(
-        (token){
+        (res) {
           Navigator.pop(context);
-          if (token != null){
-            MainAPI.updateToken(token);
-            MainAPI.getMe().then(
-              (user){
-                user.token = token;
-                Database.setCurrentUser(user);
-              }
-            );
-            MainAPI.getMyAccount().then(
-              (account){
-                Database.setCurrentAccount(account);
-                Navigator.pop(context);
-                Navigator.pop(context);
-                Navigator.pushReplacement(
-                  context, 
-                  DefaultPageRoute(builder: (context) => MainPage()),
-                );
-              }
-            );
+          if (res.status == DataStatus.ok){
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pushReplacement(
+              context, 
+              DefaultPageRoute(builder: (context) => MainPage()),
+            );     
           } else {
             Dialogs.showMessage(context, title: Translations.unauthorized, body: Translations.wrongUsernameOrPass, ok: Translations.ok);
           }

@@ -18,12 +18,10 @@ import '../../../routes/default_page_route.dart';
 
 import '../../../../models/api/account.dart';
 
-import '../../../../helpers/api/main_api.dart';
 import '../../../../resources/app_colors.dart';
 import '../../../../resources/translations.dart';
 
-import '../../../../helpers/storage/database.dart';
-import '../../../../helpers/storage/cache.dart';
+import '../../../../helpers/storage/data_provider.dart';
 
 class ProfilePage extends StatefulWidget  {
 
@@ -46,6 +44,7 @@ class ProfilePageState extends State<ProfilePage> with SingleTickerProviderState
   Account account;
   TabController tabController;
 
+
   @override
   void initState() {
     super.initState();
@@ -55,27 +54,27 @@ class ProfilePageState extends State<ProfilePage> with SingleTickerProviderState
       setState(() { });
     });
 
-    account = Database.getCurrentAccount();
+    account = DataProvider.getCurrentAccount();
     
     WidgetsBinding.instance.addPostFrameCallback(
     (_) {
       if (context != null){
-        if (Database.authorized()){
-          MainAPI.getAccount(account.id).then(
+        if (DataProvider.isAuthorized()){
+          DataProvider.getCurrentAccount(onLoad: 
             (res){
               if (res != null){
-                setState(() {
-                  account = res;
-                  Database.setCurrentAccount(res);              
-                });
+                if (mounted){
+                  setState(() {
+                    account = res;
+                  });
+                }
               }
             }
           );
           buildAppBar(context);
         } else {
          if (widget.bottomController.index == 4){
-          //widget.bottomController.index = 2;
-          if (!widget.bottomController.indexIsChanging){
+            if (!widget.bottomController.indexIsChanging){
               Dialogs.showYesNo(context, 
                 title: 'Unauthorized', 
                 body: 'Please, login for this action', 
@@ -104,7 +103,7 @@ class ProfilePageState extends State<ProfilePage> with SingleTickerProviderState
 
   void buildAppBar(BuildContext context){
     widget.appBar = PreferredSize( 
-      preferredSize: Size(MediaQuery.of(context).size.width, 40.0),
+      preferredSize: Size(MediaQuery.of(context).size.width, 45.0),
       child: AppBar(
         iconTheme: IconThemeData(color: Colors.white),
         elevation: 1.0,
@@ -139,9 +138,9 @@ class ProfilePageState extends State<ProfilePage> with SingleTickerProviderState
           IconButton(
             icon: Icon(Icons.exit_to_app, color: Colors.white),
             onPressed: () {   
-              MainAPI.updateToken(null);
-              Database.deleteCurrentAccount();
-              Database.deleteCurrentUser();
+              DataProvider.flush();
+              //Database.deleteCurrentAccount();
+              //Database.deleteCurrentUser();
               Navigator.pushReplacement(
                 context, 
                 DefaultPageRoute(builder: (context) => StartPage()),
@@ -204,7 +203,7 @@ class ProfilePageState extends State<ProfilePage> with SingleTickerProviderState
 
   @override 
   Widget build(BuildContext ctx) {
-    if (Database.authorized()){
+    if (DataProvider.isAuthorized()){
       return Container(
         color: AppColors.mainBg,
         child: SingleChildScrollView(

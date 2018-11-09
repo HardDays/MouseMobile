@@ -8,26 +8,71 @@ import 'main_tagbox.dart';
 
 import '../pages/main/profile/account_page.dart';
 import '../routes/default_page_route.dart';
-
-import '../../helpers/api/main_api.dart';
+import '../dialogs/dialogs.dart';
 
 import '../../models/api/account.dart';
+
+import '../../helpers/storage/data_provider.dart';
 
 import '../../resources/app_colors.dart';
 import '../../resources/translations.dart';
 
-class AccountCard extends StatelessWidget {
+
+class AccountCard extends StatefulWidget {
   
   Account account;
+    
+  AccountCard({this.account}){
 
-  AccountCard({this.account});
+  }
+
+  AccountCardState createState()=> AccountCardState();
+}
+
+class AccountCardState extends State<AccountCard> {
+
+  bool loading = false;
+
+  @override
+  void initState(){
+    super.initState();
+  }
+
+   void onFollow(){
+    if (DataProvider.isAuthorized()){
+      if (!loading){
+        loading = true;
+        if (DataProvider.getMyFollowing().contains(widget.account.id)){
+          DataProvider.unfollow(widget.account.id).then(
+            (res){
+              setState(() {
+                loading = false;                                       
+              });
+            }
+          );
+        } else {
+          DataProvider.follow(widget.account.id).then(
+            (res){
+              setState(() {
+                loading = false;                                       
+              });
+            }
+          );
+        }
+      }
+    } else {
+      Dialogs.showMessage(context, title: 'Unauthorized', body: 'Please, log in for this action', ok: 'Ok');
+    }
+  }
   
   Widget build(BuildContext context) {
+    bool followed = DataProvider.getMyFollowing().contains(widget.account.id);
+
     return GestureDetector(
       onTap: (){
         Navigator.push(
           context,
-          DefaultPageRoute(builder: (context) => AccountPage(id: account.id)),
+          DefaultPageRoute(builder: (context) => AccountPage(id: widget.account.id)),
         );  
       },
       child: Container(
@@ -44,7 +89,7 @@ class AccountCard extends StatelessWidget {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        AccountImage(account: account),
+                        AccountImage(account: widget.account),
                         Container(
                           width: MediaQuery.of(context).size.width * 0.6,
                           margin: EdgeInsets.only(left: 12.0),
@@ -52,7 +97,7 @@ class AccountCard extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              Text(account.displayName ?? 'Unnamed',
+                              Text(widget.account.displayName ?? 'Unnamed',
                                 maxLines: 1,
                                 style: TextStyle(
                                   color: Colors.black,
@@ -71,7 +116,7 @@ class AccountCard extends StatelessWidget {
                                       fontSize: 13.0
                                     ),
                                   ),
-                                  Text(account.userName ?? '',
+                                  Text(widget.account.userName ?? '',
                                     maxLines: 1,
                                     style: TextStyle(
                                       fontFamily: 'Avenir-Book', 
@@ -82,7 +127,7 @@ class AccountCard extends StatelessWidget {
                                 ],
                               ),
                               Padding(padding: EdgeInsets.only(top: 0.0)),  
-                              Text((account.address ?? account.preferredAddress) ?? '',
+                              Text((widget.account.address ?? widget.account.preferredAddress) ?? '',
                                 maxLines: 1,
                                 style: TextStyle(
                                   color: Colors.grey,
@@ -97,13 +142,14 @@ class AccountCard extends StatelessWidget {
                     ),
                     Container(
                       child: IconButton(
+                        onPressed: onFollow,
                         icon: Container(
                           height: 20.0,
                           width: 20.0,
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: AssetImage('assets/images/common/follow_icon.png')
+                              image: AssetImage(followed ? 'assets/images/common/unfollow_icon.png' : 'assets/images/common/follow_icon.png')
                             )
                           ),
                         )
@@ -112,18 +158,18 @@ class AccountCard extends StatelessWidget {
                   ],
                 ),
               ),
-              account.accountType == AccountType.artist && account.genres.isNotEmpty ? 
+              widget.account.accountType == AccountType.artist && widget.account.genres.isNotEmpty ? 
               Container(
                 height: 35.0,
                 width: MediaQuery.of(context).size.width * 1.0 - 90,
                 margin: EdgeInsets.only(left: 90.0, right: 30.0),
                 child: ListView(
                   scrollDirection: Axis.horizontal,
-                  children: List.generate(account.genres.length, 
+                  children: List.generate(widget.account.genres.length, 
                     (ind) {
                       return Container(
                         margin: EdgeInsets.only(top: 0.0, bottom: 10.0, right: 7.0),
-                        child: MainTagbox(Translations.translateEnum(account.genres[ind]).toUpperCase(),
+                        child: MainTagbox(Translations.translateEnum(widget.account.genres[ind]).toUpperCase(),
                           textStyle: TextStyle(
                             color: AppColors.genresText,
                             fontSize: 12.0,

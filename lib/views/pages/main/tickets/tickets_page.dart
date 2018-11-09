@@ -1,15 +1,14 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 
-import 'search_page.dart';
+import 'ticket_page.dart';
+
+import 'widgets/ticket_header.dart';
 
 import '../../../widgets/main_button.dart';
 import '../../../widgets/main_tagbox.dart';
-import '../../../widgets/event_card.dart';
+import '../../../widgets/default_image.dart';
 
 import '../../../dialogs/dialogs.dart';
 import '../../../dialogs/genres_filter_dialog.dart';
@@ -18,6 +17,7 @@ import '../../../dialogs/other_filter_dialog.dart';
 
 import '../../../routes/default_page_route.dart';
 
+import '../../../../models/api/ticket.dart';
 import '../../../../models/api/event.dart';
 
 import '../../../../resources/app_colors.dart';
@@ -26,45 +26,36 @@ import '../../../../resources/translations.dart';
 import '../../../../helpers/storage/data_provider.dart';
 import '../../../../helpers/storage/filters/shows_filter.dart';
 
-class ShowsPage extends StatefulWidget  {
+class TicketsPage extends StatefulWidget  {
 
-  final String title = Translations.shows.toUpperCase();
+  final String title = 'TICKETS';
   final String icon = 'assets/images/main/shows_tab_icon.svg';
 
   Widget appBar;
   Function(Widget) onLoad;
 
   @override
-  ShowsPageState createState() => ShowsPageState();
+  TicketsPageState createState() => TicketsPageState();
 }
 
-class ShowsPageState extends State<ShowsPage> with AutomaticKeepAliveClientMixin {
+class TicketsPageState extends State<TicketsPage> with TickerProviderStateMixin {
 
   bool showFilters = false;
-  
-  List<Event> events;
-  
-  EventsFilter filter;
 
-  @override
-  bool get wantKeepAlive => true;
+  TabController tabController;
+  
+  EventsFilter filter; 
 
   @override
   void initState() {
     super.initState();
 
-    filter = DataProvider.getEventsFilter();
+    tabController = TabController(length: 2, vsync: this);
 
-    DataProvider.getEvents(filter: filter, cached: true).then(
-      (res){
-        if (mounted){
-          setState(() {                        
-            events = res.result;
-          });
-        }
-      }
-    );
+    filter = DataProvider.getTicketsFilter();
     
+    tabController.addListener((){setState(() {});});
+
     WidgetsBinding.instance.addPostFrameCallback(
       (_) {
         if (context != null){
@@ -78,7 +69,7 @@ class ShowsPageState extends State<ShowsPage> with AutomaticKeepAliveClientMixin
     Dialogs.showDatesFilterDialog(context, filter: filter.datesFilter, onSave: (dates) {
       setState(() {
         filter.datesFilter = dates;  
-        DataProvider.setEventsFilter(filter);
+        DataProvider.setTicketsFilter(filter);
         update();         
       });
     });
@@ -88,7 +79,7 @@ class ShowsPageState extends State<ShowsPage> with AutomaticKeepAliveClientMixin
     Dialogs.showGenresFilterDialog(context, filter: filter.genresFilter, onSave: (genres) {
       setState(() {
         filter.genresFilter = genres;  
-        DataProvider.setEventsFilter(filter);
+        DataProvider.setTicketsFilter(filter);
         update();            
       });
     });
@@ -98,7 +89,7 @@ class ShowsPageState extends State<ShowsPage> with AutomaticKeepAliveClientMixin
     Dialogs.showLocationFilterDialog(context, filter: filter.locationFilter, onSave: (loc) {
       setState(() {
         filter.locationFilter = loc;  
-        DataProvider.setEventsFilter(filter);
+        DataProvider.setTicketsFilter(filter);
         update();          
       });
     });
@@ -108,22 +99,61 @@ class ShowsPageState extends State<ShowsPage> with AutomaticKeepAliveClientMixin
     Dialogs.showOtherFilterDialog(context, filter: filter.otherFilter, onSave: (other) {
       setState(() {
         filter.otherFilter = other;  
-        DataProvider.setEventsFilter(filter);
+        DataProvider.setTicketsFilter(filter);
         update();      
       });
     });
   }
 
   void update(){
-    Dialogs.showLoader(context);
-    DataProvider.getEvents(filter: filter, cached: true).then(
-      (res){
-        Navigator.pop(context);
-        setState(() {
-          events = res.result;            
-        });
-      }
-    );
+    DataProvider.flushFanTickets(time: TicketTime.current);
+    DataProvider.flushFanTickets(time: TicketTime.past);
+    setState((){});
+  }
+
+  void onLoad(List<Event> evt){
+    setState(() {       
+    });
+  }
+
+
+  Widget buildEvents(List<Event> events){
+    if (events.isEmpty){
+      return Expanded(
+        child: Container(
+        //height: MediaQuery.of(context).size.height,
+        //width: MediaQuery.of(context).size.width,
+          alignment: Alignment.center,
+          child: Text('No tickets',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16.0,
+              fontWeight: FontWeight.w300
+            ),
+          )
+        ),       
+      );
+    } else {
+      return Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height - 160 - (showFilters ? 55 : 0),
+        child: ListView(
+          children: List.generate(events.length, 
+            (ind) {
+              return GestureDetector(
+                onTap: (){
+                  Navigator.push(
+                    this.context,
+                    DefaultPageRoute(builder: (context) => TicketPage(event: events[ind])),
+                  );  
+                },
+                child: TicketHeader(event: events[ind])
+              );
+            }
+          )
+        )
+      );
+    }
   }
 
   void buildAppBar(BuildContext context){
@@ -164,10 +194,10 @@ class ShowsPageState extends State<ShowsPage> with AutomaticKeepAliveClientMixin
           IconButton(
             icon: Icon(Icons.search, color: Colors.white),
             onPressed: () {    
-              Navigator.push(
+              /*Navigator.push(
                 this.context,
                 DefaultPageRoute(builder: (context) => SearchPage()),
-              );               
+              );*/               
             }
           ),
           IconButton(
@@ -249,48 +279,54 @@ class ShowsPageState extends State<ShowsPage> with AutomaticKeepAliveClientMixin
 
   @override 
   Widget build(BuildContext ctx) {
-    if (events == null) {
+    if (DataProvider.getFanTickets(time: TicketTime.current, filter: filter, onLoad: onLoad) == null || DataProvider.getFanTickets(time: TicketTime.past, filter: filter, onLoad: onLoad) == null){
+    //if (pastEvents == null || upcomingEvents == null) {
       return Container(
         color: AppColors.mainBg,
         child: Center(
           child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(AppColors.mainRed)),         
         ),        
       );
-    } else if (events.isEmpty) {
-      return Container(
-        color: AppColors.mainBg,
-        child: Stack(
-          children: <Widget>[
-            buildFilters(),
-            Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              alignment: Alignment.center,
-              child: Text('No shows found',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.w300
-                ),
-              ),
-            )
-          ],        
-        ),        
-      );
     } else {
       return Container(
         color: AppColors.mainBg,
-        child: SingleChildScrollView(
+        child: Container(
           child: Column(
             children: <Widget>[
               buildFilters(),
-              Column(
-                children: List.generate(events.length, 
-                  (ind){
-                    return EventCard(event: events[ind]);
-                  }
+              Container(
+                margin: EdgeInsets.only(top: 0.0),
+                color: AppColors.appBar,
+                child: TabBar(
+                  indicatorColor: Colors.white,
+                  controller: tabController,
+                  tabs: <Widget>[
+                    Container(
+                      margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                      child: Text('UPCOMING',
+                        style: TextStyle(
+                          color: Colors.white, 
+                          fontFamily: tabController.index == 0 ? 'Avenir-Black' : 'Avenir-Medium',
+                          fontSize: 16.0 
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                      child: Text('PAST',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: tabController.index == 1 ? 'Avenir-Black' : 'Avenir-Medium',
+                          fontSize: 16.0 
+                        ),
+                      ),
+                    ) ,
+                  ],
                 )
-              )
+              ),
+              tabController.index == 0 ? 
+              buildEvents(DataProvider.getFanTickets(time: TicketTime.current, filter: filter)) : 
+              buildEvents(DataProvider.getFanTickets(time: TicketTime.past, filter: filter))
             ]
           ),
         ),

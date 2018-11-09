@@ -27,8 +27,7 @@ import '../../../../models/api/genre.dart';
 import '../../../../resources/app_colors.dart';
 import '../../../../resources/translations.dart';
 
-import '../../../../helpers/api/main_api.dart';
-import '../../../../helpers/storage/database.dart';
+import '../../../../helpers/storage/data_provider.dart';
 
 class ProfileEditPage extends StatefulWidget {
 
@@ -56,7 +55,7 @@ class ProfileEditPageState extends State<ProfileEditPage> with SingleTickerProvi
   void initState(){
     super.initState();
     
-    account = Database.getCurrentAccount();
+    account = DataProvider.getCurrentAccount();
     genres = account.genres.toSet();
     formKey = GlobalKey<FormState>();
   }
@@ -73,12 +72,11 @@ class ProfileEditPageState extends State<ProfileEditPage> with SingleTickerProvi
       if (image != null){
         account.image = base64Encode(image.readAsBytesSync());
       }
-      MainAPI.updateAccount(account).then(
+      DataProvider.updateAccount(account).then(
         (res) {
           Navigator.pop(context);
-          if (res.error == AccountError.ok){
-            account = res;
-            Database.setCurrentAccount(account);
+          if (res.status == DataStatus.ok){
+            account = res.result;
             Dialogs.showMessage(context, title: 'Success', body: 'Profile was updated', ok: 'Ok');
           } else {
             Dialogs.showMessage(context, title: 'Cannot update profile', body: 'Username already taken', ok: 'Ok');

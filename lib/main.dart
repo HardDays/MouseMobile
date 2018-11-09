@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'views/pages/start/start_page.dart';
 import 'views/pages/main/main_page.dart';
 
-import 'helpers/storage/database.dart';
-import 'helpers/storage/cache.dart';
+import 'helpers/storage/data_provider.dart';
 
-import 'helpers/api/main_api.dart';
 
 void main() => runApp(App());
 
@@ -25,15 +23,17 @@ class AppState extends State<App> {
   @override
   void initState(){
     super.initState();
-    Database.init().then((onValue){
-      setState(() {
-        loading = false;              
-      });
+    DataProvider.init().then(
+      (onValue){
+        setState(() {
+          loading = false;              
+        }
+      );
     });
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {    
     if (loading){
       return MaterialApp(
         theme: ThemeData(
@@ -42,19 +42,7 @@ class AppState extends State<App> {
         home: Container(),
       );
     } else {
-      if (Database.authorized()){
-        MainAPI.updateToken(Database.getCurrentUser().token);
-
-        var account = Database.getCurrentAccount();
-        MainAPI.getAccount(account.id).then((res) {
-          if (res != null){
-            Database.setCurrentAccount(res);
-          }
-        });
-        MainAPI.getFollowing(account.id).then((res) {
-          Cache.following = res.map((acc) => acc.id).toList();
-        });
-        
+      if (DataProvider.isAuthorized()){        
         return MaterialApp(
           theme: ThemeData(
             primarySwatch: Colors.blue,

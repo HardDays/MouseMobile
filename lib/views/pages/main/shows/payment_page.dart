@@ -19,16 +19,15 @@ import '../../../../models/api/ticket.dart';
 import '../../../../resources/app_colors.dart';
 import '../../../../resources/translations.dart';
 
-import '../../../../helpers/api/main_api.dart';
-import '../../../../helpers/storage/cache.dart';
+import '../../../../helpers/storage/data_provider.dart';
 
 class PaymentPage extends StatefulWidget {
 
   Event event;
 
-  Map <Ticket, int> tickets;
+  Map<Ticket, int> tickets;
 
-  PaymentPage(this.event, this.tickets);
+  PaymentPage({this.event, this.tickets});
 
   PaymentPageState createState() => PaymentPageState();
 }
@@ -38,11 +37,11 @@ class PaymentPageState extends State<PaymentPage> {
   int payemntMethod = 0;
 
   @override
-  void initState(){
+  void initState() { 
     super.initState();
   }
 
-  double totalPrice(){
+  double totalPrice() {
     double res = 0.0;
 
     for (var ticket in widget.tickets.keys){
@@ -51,7 +50,23 @@ class PaymentPageState extends State<PaymentPage> {
     return res;
   }
 
-  Widget buildPaymmentMethod(){
+  void onBuy() {
+    Dialogs.showLoader(context);
+    DataProvider.createTickets(widget.tickets).then(
+      (res) async {
+        Navigator.pop(context);
+        if (res.status == DataStatus.ok){
+          await Dialogs.showMessage(context, title: 'Success', body: 'Tickets were added', ok: 'Ok').then((res){
+            Navigator.pop(context);
+          });
+        } else {
+          Dialogs.showMessage(context, title: 'Error', body: 'Unknown error', ok: 'Ok');
+        }
+      }
+    );
+  }
+
+  Widget buildPaymmentMethod() {
     return Column(
       children: <Widget>[
         Container(
@@ -260,7 +275,9 @@ class PaymentPageState extends State<PaymentPage> {
           Container(
             height: 50.0,
             margin: EdgeInsets.only(top: 50.0, right: 30.0, left: 30.0, bottom: 20.0),
-            child: MainButton('PAY')
+            child: MainButton('PAY',
+              onTap: onBuy,
+            )
           )
         ],
       ),
@@ -271,7 +288,9 @@ class PaymentPageState extends State<PaymentPage> {
     return Container(
       height: 50.0,
       margin: EdgeInsets.only(top: 50.0, right: 30.0, left: 30.0, bottom: 20.0),
-      child: MainButton('PAY WITH PAYPAL')
+      child: MainButton('PAY WITH PAYPAL',
+        onTap: onBuy,
+      )
     );
   }
 
@@ -387,7 +406,7 @@ class PaymentPageState extends State<PaymentPage> {
                                     ),     
                                     Padding(padding: EdgeInsets.only(top: 5.0)),
                                     Container(
-                                      child: Text((widget.event?.venue?.displayName ?? '') + ' ' + (widget.event.venue.address ?? ''), 
+                                      child: Text((widget.event?.venue?.displayName ?? '') + ' ' + (widget?.event?.venue?.address ?? ''), 
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 14.0,

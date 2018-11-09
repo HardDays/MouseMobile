@@ -7,12 +7,24 @@ import '../routes/default_page_route.dart';
 
 import '../../resources/app_colors.dart';
 
-class FollowersButton extends StatelessWidget {
-
+class FollowersButton extends StatefulWidget {
   Account account;
 
   FollowersButton({this.account});
+
+  FollowersButtonState createState() => FollowersButtonState();
+} 
+
+class FollowersButtonState extends State<FollowersButton> {
+
   
+  @override
+  void initState(){
+    super.initState();
+   // widget.onChange = setState;
+  }
+
+
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[ 
@@ -20,12 +32,12 @@ class FollowersButton extends StatelessWidget {
           onTap: (){
             Navigator.push(
               context,
-              DefaultPageRoute(builder: (context) => FollowersPage(id: account.id, showFollowing: false)),
+              DefaultPageRoute(builder: (context) => FollowersPage(id: widget.account.id, showFollowing: false)),
             );  
           },
           child: Row(
             children: <Widget>[
-              Text('${account.followersCount}',
+              Text('${widget.account.followersCount}',
                 style: TextStyle(
                   color: Colors.white,
                   fontFamily: 'Avenir-Black',
@@ -48,12 +60,12 @@ class FollowersButton extends StatelessWidget {
           onTap: (){
             Navigator.push(
               context,
-              DefaultPageRoute(builder: (context) => FollowersPage(id: account.id, showFollowing: true)),
+              DefaultPageRoute(builder: (context) => FollowersPage(id: widget.account.id, showFollowing: true)),
             );  
           },
           child: Row(
             children: <Widget>[
-              Text('${account.followingCount}',
+              Text('${widget.account.followingCount}',
                 style: TextStyle(
                   color: Colors.white,
                   fontFamily: 'Avenir-Black',

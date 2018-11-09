@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'shows/shows_page.dart';
 
 import 'profile/profile_page.dart';
+import 'tickets/tickets_page.dart';
 
 import '../../dialogs/dialogs.dart';
 
@@ -51,7 +52,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
       }
     );*/
 
-    pages = [ShowsPage(), ShowsPage(), ShowsPage(), ShowsPage(), ProfilePage(bottomController: tabController)];
+    pages = [TicketsPage(), ShowsPage(), ShowsPage(), ShowsPage(), ProfilePage(bottomController: tabController)];
     for (var page in pages){
       page.onLoad = onAppBarLoad;
     }

@@ -21,8 +21,7 @@ import '../../../../models/api/ticket.dart';
 import '../../../../resources/app_colors.dart';
 import '../../../../resources/translations.dart';
 
-import '../../../../helpers/api/main_api.dart';
-import '../../../../helpers/storage/cache.dart';
+import '../../../../helpers/storage/data_provider.dart';
 
 class FollowersPage extends StatefulWidget {
 
@@ -52,19 +51,19 @@ class FollowersPageState extends State<FollowersPage> with SingleTickerProviderS
     });
 
     if (followers == null){
-      MainAPI.getFollowers(widget.id).then(
+      DataProvider.getFollowers(widget.id).then(
         (res) {
           setState(() {
-            followers = res;                      
+            followers = res.result;                      
           });
         }
       );
     }
     if (following == null){
-      MainAPI.getFollowing(widget.id).then(
+      DataProvider.getFollowing(widget.id).then(
         (res) {
           setState(() {
-            following = res;                      
+            following = res.result;                      
           });
         }
       );

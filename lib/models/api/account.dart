@@ -70,7 +70,9 @@ class Account {
       'display_name': firstName + ' ' + lastName,
       'bio': bio,
       'genres': genres,
-      'image_id': imageid
+      'image_id': imageid,
+      'following_count': followingCount,
+      'followers_count': followersCount
     };
   }
 
