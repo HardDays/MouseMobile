@@ -21,9 +21,27 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>3</string>
+	<string>9</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>To increase level of personalization</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>To increase level of personalization</string>
+	<key>NSContactsUsageDescription</key>
+	<string>To increase level of personalization</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Need for suggestion places near</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Need for suggestion places near</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Need for suggestion places near</string>
+	<key>NSMotionUsageDescription</key>
+	<string>To increase level of personalization</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>To allow set your profile photo</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>To increase level of personalization</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
