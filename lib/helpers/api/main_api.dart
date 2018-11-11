@@ -9,6 +9,7 @@ import '../../models/api/account.dart';
 import '../../models/api/event.dart';
 import '../../models/api/comment.dart';
 import '../../models/api/ticket.dart';
+import '../../models/api/feed_item.dart';
 
 import '../../helpers/storage/filters/shows_filter.dart';
 
@@ -38,6 +39,7 @@ class MainAPI {
   static const String punfollow = '/unfollow';
   static const String fanTickets = '/fan_tickets';
   static const String many = '/many';
+  static const String feed = '/feed';
 
   static String token;
   static int accountId;
@@ -366,6 +368,18 @@ class MainAPI {
     }
   }
 
+  // FEED
+
+  static Future<List<FeedItem>> getFeed() async {
+    var res = await baseGetRequest(accounts + '/$accountId' + feed, params: {});
+    //TODO: better error check
+    if (res.statusCode == HttpStatus.ok){
+      List body = json.decode(res.body);
+      return  body.map<FeedItem>((x) => FeedItem.fromJson(x)).toList();
+    } else {
+      return [];
+    }
+  }
 
   // IMAGES
 

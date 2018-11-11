@@ -6,6 +6,8 @@ import 'ticket_page.dart';
 
 import 'widgets/ticket_header.dart';
 
+import '../../start/start_page.dart';
+
 import '../../../widgets/main_button.dart';
 import '../../../widgets/main_tagbox.dart';
 import '../../../widgets/default_image.dart';
@@ -28,17 +30,20 @@ import '../../../../helpers/storage/filters/shows_filter.dart';
 
 class TicketsPage extends StatefulWidget  {
 
+  TabController bottomController;
   final String title = 'TICKETS';
-  final String icon = 'assets/images/main/shows_tab_icon.svg';
+  final String icon = 'assets/images/main/tickets_tab_icon.svg';
 
   Widget appBar;
   Function(Widget) onLoad;
+
+  TicketsPage({this.bottomController});
 
   @override
   TicketsPageState createState() => TicketsPageState();
 }
 
-class TicketsPageState extends State<TicketsPage> with TickerProviderStateMixin {
+class TicketsPageState extends State<TicketsPage> with SingleTickerProviderStateMixin {
 
   bool showFilters = false;
 
@@ -50,19 +55,53 @@ class TicketsPageState extends State<TicketsPage> with TickerProviderStateMixin 
   void initState() {
     super.initState();
 
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) {
+        if (context != null){
+          if (DataProvider.isAuthorized()){
+            DataProvider.getFanTickets(time: TicketTime.current, filter: filter).then((res){
+              if (mounted){
+                setState(() { });
+              }
+            });
+
+            DataProvider.getFanTickets(time: TicketTime.past, filter: filter).then((res){
+              if (mounted){
+                setState(() { });
+              }
+            });
+
+            buildAppBar(context);
+          } else {
+            if (widget.bottomController.index == 0) {
+              if (!widget.bottomController.indexIsChanging) {
+                Dialogs.showYesNo(this.context, 
+                  title: 'Unauthorized', 
+                  body: 'Please, login for this action', 
+                  yes: 'Yes', 
+                  no: 'No', 
+                  onYes: (){
+                    Navigator.pushReplacement(
+                      context,
+                      DefaultPageRoute(builder: (context) => StartPage()),
+                    );
+                  }, 
+                  onNo: (){
+                    widget.bottomController.index = 2;
+                  }
+                );
+              }
+            }
+          }
+        }
+      }
+    );
+    
     tabController = TabController(length: 2, vsync: this);
 
     filter = DataProvider.getTicketsFilter();
     
     tabController.addListener((){setState(() {});});
-
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) {
-        if (context != null){
-          buildAppBar(context);
-        }
-      }
-    );
   }
 
   void showCalendar()  {
@@ -108,14 +147,14 @@ class TicketsPageState extends State<TicketsPage> with TickerProviderStateMixin 
   void update(){
     DataProvider.flushFanTickets(time: TicketTime.current);
     DataProvider.flushFanTickets(time: TicketTime.past);
-    setState((){});
-  }
+    DataProvider.getFanTickets(time: TicketTime.current, filter: filter).then((res){
+      setState(() { });
+    });
 
-  void onLoad(List<Event> evt){
-    setState(() {       
+    DataProvider.getFanTickets(time: TicketTime.past, filter: filter).then((res){
+      setState(() { });
     });
   }
-
 
   Widget buildEvents(List<Event> events){
     if (events.isEmpty){
@@ -191,15 +230,15 @@ class TicketsPageState extends State<TicketsPage> with TickerProviderStateMixin 
         ),
         backgroundColor: AppColors.appBar,
         actions: [
-          IconButton(
-            icon: Icon(Icons.search, color: Colors.white),
-            onPressed: () {    
-              /*Navigator.push(
-                this.context,
-                DefaultPageRoute(builder: (context) => SearchPage()),
-              );*/               
-            }
-          ),
+          // IconButton(
+          //   icon: Icon(Icons.search, color: Colors.white),
+          //   onPressed: () {    
+          //     /*Navigator.push(
+          //       this.context,
+          //       DefaultPageRoute(builder: (context) => SearchPage()),
+          //     );*/               
+          //   }
+          // ),
           IconButton(
             icon: Container(
               width: 20.0,
@@ -279,7 +318,7 @@ class TicketsPageState extends State<TicketsPage> with TickerProviderStateMixin 
 
   @override 
   Widget build(BuildContext ctx) {
-    if (DataProvider.getFanTickets(time: TicketTime.current, filter: filter, onLoad: onLoad) == null || DataProvider.getFanTickets(time: TicketTime.past, filter: filter, onLoad: onLoad) == null){
+    if (DataProvider.getCachedFanTickets(time: TicketTime.current) == null || DataProvider.getCachedFanTickets(time: TicketTime.past) == null){
     //if (pastEvents == null || upcomingEvents == null) {
       return Container(
         color: AppColors.mainBg,
@@ -325,8 +364,8 @@ class TicketsPageState extends State<TicketsPage> with TickerProviderStateMixin 
                 )
               ),
               tabController.index == 0 ? 
-              buildEvents(DataProvider.getFanTickets(time: TicketTime.current, filter: filter)) : 
-              buildEvents(DataProvider.getFanTickets(time: TicketTime.past, filter: filter))
+              buildEvents(DataProvider.getCachedFanTickets(time: TicketTime.current)) : 
+              buildEvents(DataProvider.getCachedFanTickets(time: TicketTime.past))
             ]
           ),
         ),

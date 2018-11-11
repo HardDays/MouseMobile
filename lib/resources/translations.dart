@@ -104,6 +104,17 @@ class Translations {
       'private_residence': 'Private residence',
 
 
+      //fields
+
+      'description': 'Description',
+      'address': 'Address',
+      'phone': 'Phone',
+      'about': 'About',
+      'user_name': 'Username',
+      'display_name': 'Name',
+      'stage_name': 'Stage name',
+      'genre': 'Genre',
+
       //weekdays
 
       'Sunday': 'Sunday',

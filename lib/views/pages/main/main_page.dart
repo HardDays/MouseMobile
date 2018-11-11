@@ -5,8 +5,7 @@ import 'shows/shows_page.dart';
 
 import 'profile/profile_page.dart';
 import 'tickets/tickets_page.dart';
-
-import '../../dialogs/dialogs.dart';
+import 'feed/feed_page.dart';
 
 import '../../../resources/app_colors.dart';
 
@@ -29,7 +28,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
   void initState() {
     super.initState();
         
-    tabController = TabController(length: 5, vsync: this, initialIndex: 2);
+    tabController = TabController(length: 4, vsync: this, initialIndex: 2);
 
    /* tabController.addListener(
       (){
@@ -52,7 +51,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
       }
     );*/
 
-    pages = [TicketsPage(), ShowsPage(), ShowsPage(), ShowsPage(), ProfilePage(bottomController: tabController)];
+    pages = [TicketsPage(bottomController: tabController), FeedPage(bottomController: tabController), ShowsPage(), ProfilePage(bottomController: tabController)];
     for (var page in pages){
       page.onLoad = onAppBarLoad;
     }

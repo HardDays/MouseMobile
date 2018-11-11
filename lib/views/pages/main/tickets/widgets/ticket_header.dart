@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../event_map_page.dart';
+
+import '../../../../routes/default_page_route.dart';
+
 import '../../../../widgets/default_image.dart';
 
 import '../../../../../models/api/ticket.dart';
@@ -89,18 +93,28 @@ class TicketHeader extends StatelessWidget {
                             Container(),         
                             
                             event.address != null ?
-                            Container(
-                              width: MediaQuery.of(context).size.width * 1.0 - 200.0,
-                              padding: EdgeInsets.only(left: 7.0, bottom: 10.0),
-                              child: Text(event.address ?? '',
-                                maxLines: 2,
-                                style: TextStyle(
-                                  height: 15.0 / 14.0,
-                                  fontSize: 14.0,
-                                  color: Colors.white,
-                                  fontFamily: 'Avenir-Book', 
+                            GestureDetector(
+                              onTap: (){
+                                if (event.venue != null){
+                                  Navigator.push(
+                                    context,
+                                    DefaultPageRoute(builder: (context) => EventMapPage(event: event)),
+                                  );  
+                                }
+                              },
+                              child: Container(
+                                width: MediaQuery.of(context).size.width * 1.0 - 200.0,
+                                padding: EdgeInsets.only(left: 7.0, bottom: 10.0),
+                                child: Text(event.address ?? '',
+                                  maxLines: 2,
+                                  style: TextStyle(
+                                    height: 15.0 / 14.0,
+                                    fontSize: 14.0,
+                                    color: Colors.white,
+                                    fontFamily: 'Avenir-Book', 
+                                  )
                                 )
-                              )
+                              )  
                             ) :
                             Container(),
                             

@@ -44,7 +44,6 @@ class ProfilePageState extends State<ProfilePage> with SingleTickerProviderState
   Account account;
   TabController tabController;
 
-
   @override
   void initState() {
     super.initState();
@@ -54,18 +53,17 @@ class ProfilePageState extends State<ProfilePage> with SingleTickerProviderState
       setState(() { });
     });
 
-    account = DataProvider.getCurrentAccount();
+    account = DataProvider.getCachedCurrentAccount();
     
-    WidgetsBinding.instance.addPostFrameCallback(
-    (_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       if (context != null){
         if (DataProvider.isAuthorized()){
-          DataProvider.getCurrentAccount(onLoad: 
+          DataProvider.getCurrentAccount().then(
             (res){
-              if (res != null){
+              if (res.status == DataStatus.ok){
                 if (mounted){
                   setState(() {
-                    account = res;
+                    account = res.result;
                   });
                 }
               }
@@ -73,7 +71,7 @@ class ProfilePageState extends State<ProfilePage> with SingleTickerProviderState
           );
           buildAppBar(context);
         } else {
-         if (widget.bottomController.index == 4){
+          if (widget.bottomController.index == 3){
             if (!widget.bottomController.indexIsChanging){
               Dialogs.showYesNo(context, 
                 title: 'Unauthorized', 

@@ -2,6 +2,7 @@ import 'filters/shows_filter.dart';
 
 import '../../models/api/event.dart';
 import '../../models/api/account.dart';
+import '../../models/api/feed_item.dart';
 
 class Cache {
 
@@ -10,7 +11,7 @@ class Cache {
 
   static Set<int> following;
   static List<Event> events;
-  
+  static List<FeedItem> feed;
   static Map<String, List<Event>> fanTickets;
-
+  
 }

@@ -55,7 +55,7 @@ class ProfileEditPageState extends State<ProfileEditPage> with SingleTickerProvi
   void initState(){
     super.initState();
     
-    account = DataProvider.getCurrentAccount();
+    account = DataProvider.getCachedCurrentAccount();
     genres = account.genres.toSet();
     formKey = GlobalKey<FormState>();
   }

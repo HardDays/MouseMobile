@@ -14,6 +14,7 @@ import '../../models/api/account.dart';
 import '../../models/api/user.dart';
 import '../../models/api/comment.dart';
 import '../../models/api/ticket.dart';
+import '../../models/api/feed_item.dart';
 
 enum DataStatus {
   ok, notFound, unknownError, unauthorized
@@ -45,6 +46,11 @@ class DataProvider {
     currentUser = null;
     currentAccount = null;
 
+    Cache.events = null;
+    Cache.fanTickets = {};
+    Cache.feed = null;
+    Cache.following = null;
+
     Database.deleteCurrentUser();
     Database.deleteCurrentUser();
 
@@ -55,7 +61,9 @@ class DataProvider {
   static void setCurrentUser(User user){
     if (user != null){
       currentUser = user;
-      MainAPI.setToken(currentUser.token);
+      if (user.token != null){
+        MainAPI.setToken(currentUser.token);
+      }
     }
   }
 
@@ -74,19 +82,22 @@ class DataProvider {
     }
   }
 
-  static Account getCurrentAccount({Function(Account) onLoad}) {
-    
-    MainAPI.getAccount(currentAccount.id).then(
-      (res){
-        if (res != null) {
-          setCurrentAccount(res);
-        }
-        if (onLoad != null){
-          onLoad(res);
-        }
-      }
-    );
+  static Future<DataResult<Account>> getCurrentAccount() async {
+    var result = DataResult<Account>();
 
+    var res = await MainAPI.getAccount(currentAccount.id);
+
+    if (res != null) {
+      setCurrentAccount(res);
+      result.result = res;
+    } else {
+      result.status = DataStatus.notFound;
+    }
+
+    return result;
+  }
+
+  static Account getCachedCurrentAccount() {
     return currentAccount;
   }
 
@@ -344,21 +355,40 @@ class DataProvider {
     return result;
   }
 
-  static List<Event> getFanTickets({Function(List<Event>) onLoad, String time = TicketTime.current, EventsFilter filter})  {
-    if (Cache.fanTickets[time] == null) { 
-      MainAPI.searchFanTickets(time: time, filter: filter).then(
-        (res){
-          Cache.fanTickets[time] = res;
-          if (onLoad != null){
-            onLoad(Cache.fanTickets[time]);
-          }
-        }
-      );
+   static Future<DataResult<List<Event>>> getFanTickets({String time = TicketTime.current, EventsFilter filter}) async {
+    var result = DataResult<List<Event>>();
+    if (Cache.fanTickets[time] != null) { 
+      result.result = Cache.fanTickets[time];
+    } else {
+      result.result = await MainAPI.searchFanTickets(time: time, filter: filter);
+      Cache.fanTickets[time] = result.result;
     }
+    return result;
+  }
+
+  static List<Event> getCachedFanTickets({String time = TicketTime.current}) {
     return Cache.fanTickets[time];
   }
 
   static void flushFanTickets({String time = TicketTime.current}){
     Cache.fanTickets[time] = null;
   }
+
+  // FEED
+
+   static Future<DataResult<List<FeedItem>>> getFeed() async {
+    var result = DataResult<List<FeedItem>>();
+    if (Cache.feed != null) { 
+      result.result = Cache.feed;
+    } else {
+      result.result = await MainAPI.getFeed();
+      Cache.feed = result.result.where((item) => !item.isDeleted).toList();
+    }
+    return result;
+  }
+
+  static List<FeedItem> getCachedFeed() {
+    return Cache.feed;
+  }
+
 }

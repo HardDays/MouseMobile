@@ -24,6 +24,9 @@ class Account {
   int followersCount;
   int followingCount;
 
+  double lat;
+  double lng;
+
   String userName;
   String firstName;
   String lastName;
@@ -51,7 +54,7 @@ class Account {
   Account({
       this.error, this.id, this.imageid, this.followersCount, this.followingCount, this.phone, this.fax,
       this.userName, this.firstName, this.displayName, this.lastName, this.about, this.bio, this.description,
-      this.address, this.preferredAddress, this.accountType,
+      this.address, this.preferredAddress, this.lat, this.lng,  this.accountType,
       this.genres, this.images, this.videos, this.upcomingShows, this.emails, this.officeHours, this.operatingHours
     }
   ) { 
@@ -109,6 +112,8 @@ class Account {
       description: json['description'],
       phone: json['phone'],
       fax: json['fax'],
+      lat: json['lat']?.toDouble(),
+      lng: json['lng']?.toDouble(),
       genres: json['genres'] != null ? List<String>.from(json['genres']) : [],
       videos: json['videos'] != null ? json['videos'].map<Video>((x) => Video.fromJson(x)).toList() : [],
       images: json['images'] != null ? json['images'].map<Image>((x) => Image.fromJson(x)).toList() : [],

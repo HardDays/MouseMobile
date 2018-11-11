@@ -15,6 +15,7 @@ class AppColors {
 
   static const Color appBar = Color(0xFF1D1928);
   static const Color mainBg = Color(0xFF191622);
+  static const Color feedBg = Color(0xFFE5E5E5);
 
   static const Color showCard = Color(0xFF2D2346);
   static const Color promoBg = Color(0xFFFFC200);

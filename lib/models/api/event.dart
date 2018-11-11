@@ -4,11 +4,7 @@ import 'ticket.dart';
 import 'account.dart';
 import 'comment.dart';
 
-enum EventError { ok, unknownError }
-
 class Event {
-
-  EventError error = EventError.ok;
 
   int id;
 
@@ -31,14 +27,14 @@ class Event {
 
   double fundingGoal;
   double founded;
-
+  
   Account venue;
   List<Ticket> tickets;
   List <String> genres;
   List <Account> artists;
   List <Comment> comments;
 
-  Event({this.id, this.error, this.name, this.description, this.address, this.hashtag,
+  Event({this.id, this.name, this.description, this.address, this.hashtag,
       this.imageId, this.fundingGoal, this.founded, this.backers, this.currency,
       this.fundingFrom, this.fundingTo, this.dateFrom, this.dateTo, this.isCrowdfunding,
       this.venue, this.tickets, this.genres, this.artists, this.comments = const []
@@ -68,7 +64,6 @@ class Event {
       tickets: json['tickets'] != null ? json['tickets'].map<Ticket>((x) => Ticket.fromJson(x)).toList() : [],
       genres: json['genres'] != null ? List<String>.from(json['genres']) : [],
       artists: json['artist'] != null ? json['artist'].map<Account>((x) => Account(id: x['artist_id'])).toList() : [],
-      error: EventError.ok
     );
   }
 

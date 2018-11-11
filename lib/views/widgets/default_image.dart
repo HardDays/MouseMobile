@@ -10,8 +10,9 @@ import '../../resources/app_colors.dart';
 class DefaultImage extends StatelessWidget {
 
   final int id;
+  final BoxFit fit;
 
-  DefaultImage({this.id});
+  DefaultImage({this.id, this.fit = BoxFit.cover});
 
   Widget emptyImage(){
     return Container(
@@ -29,7 +30,8 @@ class DefaultImage extends StatelessWidget {
       CachedNetworkImage(
         fadeInDuration: Duration(milliseconds: 100),
         imageUrl: MainAPI.getImageUrl(id),
-        fit: BoxFit.cover,
+        fit: fit,
+        alignment: Alignment.topCenter,
         errorWidget: emptyImage(),
         placeholder: emptyImage()
       ) : 
