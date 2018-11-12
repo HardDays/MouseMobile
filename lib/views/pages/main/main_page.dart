@@ -7,6 +7,13 @@ import 'profile/profile_page.dart';
 import 'tickets/tickets_page.dart';
 import 'feed/feed_page.dart';
 
+import '../start/start_page.dart';
+
+import '../../dialogs/dialogs.dart';
+
+import '../../routes/default_page_route.dart';
+
+import '../../../helpers/storage/data_provider.dart';
 import '../../../resources/app_colors.dart';
 
 class MainPage extends StatefulWidget {
@@ -30,26 +37,31 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
         
     tabController = TabController(length: 4, vsync: this, initialIndex: 2);
 
-   /* tabController.addListener(
+    tabController.addListener(
       (){
-        if (tabController.index == 4){
-          Dialogs.showYesNo(context, 
-            title: 'Unauthorized', 
-            body: 'Please, login for this action', 
-            yes: 'Yes', 
-            no: 'No', 
-            onYes: (){
-              Navigator.pop(context); 
-              tabController.index = 2;
-            }, 
-            onNo: (){
-              Navigator.pop(context);
-              tabController.index = 2;
-            }
-          );
+        if (tabController.index != 2){
+          if (!DataProvider.isAuthorized()){
+            Dialogs.showYesNo(context, 
+              title: 'Unauthorized', 
+              body: 'Please, login for this action', 
+              yes: 'Yes', 
+              no: 'No', 
+              onYes: (){
+                Navigator.pushReplacement(
+                  this.context,
+                  DefaultPageRoute(builder: (context) => StartPage()),
+                );
+              }, 
+              onNo: (){
+                setState(() {
+                  tabController.index = 2;
+                });
+              }
+            );
+          }
         }
       }
-    );*/
+    );
 
     pages = [TicketsPage(bottomController: tabController), FeedPage(bottomController: tabController), ShowsPage(), ProfilePage(bottomController: tabController)];
     for (var page in pages){
@@ -72,7 +84,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
 
   Widget buildAppBar(){
     return PreferredSize( 
-      preferredSize: Size(MediaQuery.of(context).size.width, 40.0),
+      preferredSize: Size(MediaQuery.of(context).size.width, 45.0),
       child: AppBar(
         elevation: 1.0,
         title: Row(
@@ -96,7 +108,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16.0,
-                fontWeight: FontWeight.w500
+                fontFamily: 'Avenir-Black'
                // fontStyle: FontStyle.italic
               ),
             )

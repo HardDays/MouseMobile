@@ -72,26 +72,6 @@ class TicketsPageState extends State<TicketsPage> with SingleTickerProviderState
             });
 
             buildAppBar(context);
-          } else {
-            if (widget.bottomController.index == 0) {
-              if (!widget.bottomController.indexIsChanging) {
-                Dialogs.showYesNo(this.context, 
-                  title: 'Unauthorized', 
-                  body: 'Please, login for this action', 
-                  yes: 'Yes', 
-                  no: 'No', 
-                  onYes: (){
-                    Navigator.pushReplacement(
-                      context,
-                      DefaultPageRoute(builder: (context) => StartPage()),
-                    );
-                  }, 
-                  onNo: (){
-                    widget.bottomController.index = 2;
-                  }
-                );
-              }
-            }
           }
         }
       }

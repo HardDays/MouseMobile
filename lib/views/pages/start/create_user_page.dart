@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';  
@@ -108,12 +109,11 @@ class CreateUserPageState extends State<CreateUserPage> {
   }
 
   void createAccount(){
-    DataProvider.createAccount(Account(userName: userName, firstName: firstName, lastName: lastName, accountType: AccountType.fan)).timeout(Duration(seconds: 10), 
-      onTimeout: (){
-        Navigator.pop(context);
-        Dialogs.showMessage(context, title: Translations.serverNotRepsonding, body: Translations.pleaseTryAgain, ok: Translations.ok);
-      }
-    ).then(
+    var acc = Account(userName: userName, firstName: firstName, lastName: lastName, accountType: AccountType.fan);
+    if (image != null){
+      acc.image = base64Encode(image.readAsBytesSync());
+    }
+    DataProvider.createAccount(acc).then(
       (res){
         Navigator.pop(context);
         if (res.status == DataStatus.ok){

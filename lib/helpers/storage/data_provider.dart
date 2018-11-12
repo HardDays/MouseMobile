@@ -159,7 +159,7 @@ class DataProvider {
       result.result = res;
 
       Database.setCurrentUser(res);
-      setCurrentUser(user);
+      setCurrentUser(res);
     } else {
       result.status = DataStatus.unauthorized;
     }
@@ -332,6 +332,16 @@ class DataProvider {
 
     return result;
   }
+
+  static Future<DataResult<Comment>> createEventComment(Comment comment) async {
+    var result = DataResult<Comment>();
+    
+    var res = await MainAPI.createEventComment(comment);
+    result.result = res;
+
+    return result;
+  }
+
 
   // TICKETS
 

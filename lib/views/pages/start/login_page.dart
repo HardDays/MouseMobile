@@ -55,6 +55,8 @@ class LoginPageState extends State<LoginPage> {
   } 
 
   void onLogin(){
+    DataProvider.init();
+    
     formKey.currentState.save();
     if (formKey.currentState.validate()){
       Dialogs.showLoader(context);

@@ -15,6 +15,13 @@ class Comment {
     account.id = fanId;
   }
 
+  Map <String, dynamic> toJson(){
+    return {
+      'event_id': eventId,
+      'text': text,
+    };
+  } 
+
   factory Comment.fromJson(Map<String, dynamic> json) {
     return Comment(
       id: json['id'],

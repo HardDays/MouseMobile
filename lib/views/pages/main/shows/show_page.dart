@@ -24,6 +24,7 @@ import '../../../routes/default_page_route.dart';
 import '../../../../models/api/account.dart';
 import '../../../../models/api/event.dart';
 import '../../../../models/api/ticket.dart';
+import '../../../../models/api/comment.dart';
 
 import '../../../../resources/app_colors.dart';
 import '../../../../resources/translations.dart';
@@ -45,9 +46,11 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
   bool commentsLoaded = false;
 
   int artistIndex = 0;
+  String comment;
 
   Event event;
   
+  TextEditingController commentController;
   TabController tabController;
 
   Map <Ticket, int> tickets;
@@ -57,6 +60,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
     super.initState();
 
     tabController = TabController(length: 3, vsync: this);
+    commentController = TextEditingController();
 
     tabController.addListener(
       () {
@@ -106,6 +110,19 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
           );
         }
       );
+    }
+  }
+
+  void onAddComment(){
+    if (comment != null && comment.isNotEmpty){
+      var comm = Comment(text: comment, account: DataProvider.currentAccount, eventId: event.id);
+      setState(() {
+        event.comments.insert(0, comm); 
+        comment = null;     
+        commentController.clear();
+        FocusScope.of(context).requestFocus(FocusNode());
+        DataProvider.createEventComment(comm);
+      });
     }
   }
 
@@ -561,16 +578,17 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
       return Container(
         child: Column(
           children: <Widget>[ 
-            Container(
+            DataProvider.isAuthorized() ? Container(
               margin: EdgeInsets.only(top: 15.0, left: 15.0, right: 10.0, bottom: 15.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  AccountImage(account: event.artists[0], size: 50.0),
+                  AccountImage(account: DataProvider.currentAccount, size: 50.0),
                   Container(
                     margin: EdgeInsets.only(left: 10.0),
                     width: MediaQuery.of(context).size.width * 0.6,
                     child: TextField(
+                      controller: commentController,
                       maxLines: null,
                       keyboardType: TextInputType.multiline,
                       style: TextStyle(
@@ -585,10 +603,16 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                           fontFamily: 'Avenir-Book', 
                         )     
                       ),
+                      onChanged: (val){
+                        setState(() {
+                          comment = val;                          
+                        });
+                      },
                     )
                   ),
                   Container(
                     child: IconButton(
+                      onPressed: onAddComment,
                       iconSize: 25.0,
                       icon: Icon(Icons.send, color: Colors.white),
                       color: Colors.white,
@@ -596,7 +620,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                   )
                 ],
               ),
-            ),
+            ) : Container(),
             Container(
               child: Divider(color: Colors.white.withOpacity(0.15), height: 2.0),
             ),

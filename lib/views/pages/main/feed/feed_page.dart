@@ -65,27 +65,7 @@ class FeedPageState extends State<FeedPage>  {
               }
             );
             buildAppBar(context);
-          } else {
-            if (widget.bottomController.index == 1) {
-              if (!widget.bottomController.indexIsChanging) {
-                Dialogs.showYesNo(context, 
-                  title: 'Unauthorized', 
-                  body: 'Please, login for this action', 
-                  yes: 'Yes', 
-                  no: 'No', 
-                  onYes: (){
-                    Navigator.pushReplacement(
-                      this.context,
-                      DefaultPageRoute(builder: (context) => StartPage()),
-                    );
-                  }, 
-                  onNo: (){
-                    widget.bottomController.index = 2;
-                  }
-                );
-              }
-            }
-          }
+          } 
         }
       }
     );

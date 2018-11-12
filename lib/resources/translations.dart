@@ -43,7 +43,7 @@ class Translations {
       'wrongNameSize': 'Name can be from 1 to 50 symbols',
       'cannotRegister': 'Cannot register',
       'emailAlreadyTaken': 'Email already taken',
-      'usernameAlreadyTaken ': 'Username already taken',
+      'usernameAlreadyTaken': 'Username already taken',
       'promo': 'PROMO',
       'startingFrom': 'Starting from',
       'buyTicket': 'Buy ticket',

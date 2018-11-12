@@ -220,9 +220,7 @@ class MainAPI {
     //TODO: better error check
     if (res.statusCode == HttpStatus.created){
       return Account.fromJson(json.decode(res.body));
-    } else {
-      return Account(error: AccountError.userNameTaken);
-    }
+    } 
   }
 
   static Future<Account> updateAccount(Account account) async {
@@ -308,6 +306,19 @@ class MainAPI {
       return  body.map<Comment>((x) => Comment.fromJson(x)).toList();
     } else {
       return [];
+    }
+  }
+
+  static Future<Comment> createEventComment(Comment comment) async {
+    var body = comment.toJson();
+    body['account_id'] = accountId;
+    var res = await http.post(url + events + '/${comment.eventId}' + comments, 
+      body: json.encode(body),
+      headers: defaultHeader
+    );
+    //TODO: better error check
+    if (res.statusCode == HttpStatus.ok){
+      return Comment.fromJson(json.decode(res.body));
     }
   }
 
