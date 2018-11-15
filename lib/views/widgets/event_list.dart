@@ -78,7 +78,7 @@ class EventListState extends State<EventList> with AutomaticKeepAliveClientMixin
       return Container(
         color: AppColors.mainBg,
         child: Center(
-          child: Text('No shows found',
+          child: Text(Translations.noShowsFound,
             style: TextStyle(
               color: Colors.white,
               fontSize: 18.0,

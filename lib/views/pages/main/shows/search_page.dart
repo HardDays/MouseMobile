@@ -93,7 +93,8 @@ class SearchPageState extends State<SearchPage> with SingleTickerProviderStateMi
   }
 
   Widget buildTabs(){
-    List <String> titles = ['SHOWS', 'FANS', 'ARTISTS', 'VENUES'];
+    List <String> titles = [Translations.shows.toUpperCase(), Translations.fans.toUpperCase(), 
+                            Translations.artists.toUpperCase(), Translations.venues.toUpperCase()];
     return Container(
       height: 55.0,
       alignment: Alignment.center,
@@ -134,47 +135,6 @@ class SearchPageState extends State<SearchPage> with SingleTickerProviderStateMi
     );
   }
 
-  //Widget buildContent(){
-    // /*if (index == 0){
-    //   if (shows == null){
-    //     loadShows();
-    //     return buildLoading();
-    //   } else {
-    //     return Expanded(
-    //       child: Container(
-    //         color: AppColors.mainBg,
-    //         child: ListView(
-    //           children: List.generate(shows.length, 
-    //             (ind) {
-    //               return EventCard(event: shows[ind]);
-    //             }
-    //           )
-    //         )
-    //       )
-    //     );
-    //   }
-    // } else {
-
-    //   return accountPages[2];
-
-    //   /*
-    //   if (accounts[index - 1] == null){
-    //     loadAccounts();
-    //     return buildLoading();
-    //   } else {
-    //     return Expanded(
-    //       child: ListView(
-    //         children: List.generate(accounts[index - 1].length, 
-    //           (ind) {
-    //             return AccountCard(account: accounts[index - 1][ind]);
-    //           }
-    //         )
-    //       )
-    //     );
-    //   }*/
-    // }
-  //}
-
   @override 
   Widget build(BuildContext ctx) {
     return Scaffold(
@@ -195,7 +155,7 @@ class SearchPageState extends State<SearchPage> with SingleTickerProviderStateMi
               fontFamily: 'Avenir-Book', 
             ),
             decoration: InputDecoration.collapsed(
-              hintText: 'Search',       
+              hintText: Translations.search,       
               hintStyle: TextStyle(
                 color: Colors.grey.withOpacity(0.6),
                 fontFamily: 'Avenir-Book', 
@@ -243,7 +203,7 @@ class SearchPageState extends State<SearchPage> with SingleTickerProviderStateMi
               margin: EdgeInsets.only(top: (MediaQuery.of(context).size.height - 130) - MediaQuery.of(context).viewInsets.bottom),
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.8,
-                child: MainButton('SEARCH',
+                child: MainButton(Translations.search.toUpperCase(),
                   onTap: (){
                     update();
                   },

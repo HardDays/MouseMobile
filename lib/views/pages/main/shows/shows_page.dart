@@ -209,7 +209,7 @@ class ShowsPageState extends State<ShowsPage> with AutomaticKeepAliveClientMixin
               height: 30.0,
               child: MainTagbox(filter.datesFilter.isNotEmpty ? 
                 '${Formatter.shortDate(filter.datesFilter.dateFrom)} - ${Formatter.shortDate(filter.datesFilter.dateTo)}' : 
-                'DATE',
+                Translations.date.toUpperCase(),
                 checked: filter.datesFilter.isNotEmpty,
                 onTap: showCalendar,
               ),
@@ -218,8 +218,8 @@ class ShowsPageState extends State<ShowsPage> with AutomaticKeepAliveClientMixin
               margin: EdgeInsets.only(right: 3.0, left: 3.0),
               height: 30.0,
               child: MainTagbox(filter.genresFilter.isNotEmpty ?
-                'GENRE • ${filter.genresFilter.genres.length}':
-                'GENRE',
+                '${Translations.genre.toUpperCase()} • ${filter.genresFilter.genres.length}':
+                Translations.genre.toUpperCase(),
                 checked: filter.genresFilter.isNotEmpty,
                 onTap: showGenres,
               ),
@@ -229,7 +229,7 @@ class ShowsPageState extends State<ShowsPage> with AutomaticKeepAliveClientMixin
               height: 30.0,
               child: MainTagbox(filter.locationFilter.isNotEmpty ?
                 '${filter.locationFilter.address}':
-                'LOCATION',
+                Translations.location.toUpperCase(),
                 checked: filter.locationFilter.isNotEmpty,
                 onTap: showLocation,
               ),
@@ -238,8 +238,8 @@ class ShowsPageState extends State<ShowsPage> with AutomaticKeepAliveClientMixin
               margin: EdgeInsets.only(right: 3.0, left: 3.0),
               height: 30.0,
               child: MainTagbox(filter.otherFilter.isNotEmpty ?
-                'OTHER FILTERS • ${filter.otherFilter.ticketTypes.length + filter.otherFilter.venueTypes.length}':
-                'OTHER FILTERS',
+                '${Translations.otherFilters.toUpperCase()} • ${filter.otherFilter.ticketTypes.length + filter.otherFilter.venueTypes.length}':
+                Translations.otherFilters.toUpperCase(),
                 checked: filter.otherFilter.isNotEmpty,
                 onTap: showOther
               ),
@@ -269,7 +269,7 @@ class ShowsPageState extends State<ShowsPage> with AutomaticKeepAliveClientMixin
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               alignment: Alignment.center,
-              child: Text('No shows found',
+              child: Text(Translations.noShowsFound,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16.0,

@@ -61,7 +61,11 @@ class AccountCardState extends State<AccountCard> {
         }
       }
     } else {
-      Dialogs.showMessageDialog(context, title: 'Unauthorized', body: 'Please, log in for this action', ok: 'Ok');
+      Dialogs.showMessageDialog(context, 
+        title: Translations.unauthorized, 
+        body: Translations.pleaseLogin, 
+        ok: Translations.ok
+      );
     }
   }
   
@@ -97,7 +101,7 @@ class AccountCardState extends State<AccountCard> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              Text(widget.account.displayName ?? 'Unnamed',
+                              Text(widget.account.displayName ?? Translations.unnamed,
                                 maxLines: 1,
                                 style: TextStyle(
                                   color: Colors.black,

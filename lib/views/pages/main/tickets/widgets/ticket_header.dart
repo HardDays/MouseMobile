@@ -53,7 +53,7 @@ class TicketHeader extends StatelessWidget {
                   children: <Widget>[
                     Container(
                       width: MediaQuery.of(context).size.width * 1.0 - 200.0,
-                      child: Text(event.name?.toUpperCase() ?? 'UNNAMED',
+                      child: Text(event.name?.toUpperCase() ?? Translations.unnamed.toUpperCase(),
                         maxLines: 1,
                         style: TextStyle(
                           color: Colors.white,

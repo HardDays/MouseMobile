@@ -70,7 +70,7 @@ class FeedbackPageState extends State<FeedbackPage> {
         title: Row(
           children:[
             Container(
-              child: Text('FEEDBACK',
+              child: Text(Translations.feedback.toUpperCase(),
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16.0,
@@ -112,7 +112,7 @@ class FeedbackPageState extends State<FeedbackPage> {
             children: <Widget>[
               Container(
                 margin: EdgeInsets.only(left: 15.0, top: 25.0, bottom: 15.0),
-                child: Text('I\'M TELLING YOU ABOUT',
+                child: Text(Translations.tellingYou.toUpperCase(),
                   style: TextStyle(
                     color: Colors.white.withOpacity(0.8),
                     fontSize: 16.0,
@@ -120,12 +120,12 @@ class FeedbackPageState extends State<FeedbackPage> {
                   ),
                 ),
               ),
-              buildSetting('A Bug'),
-              buildSetting('An Enchancement'),
-              buildSetting('Compliment'),
+              buildSetting(Translations.aBug),
+              buildSetting(Translations.anEnchancement),
+              buildSetting(Translations.compliment),
               Container(
                 margin: EdgeInsets.only(left: 15.0, top: 25.0, bottom: 5.0),
-                child: Text('DETAILS',
+                child: Text(Translations.details.toUpperCase(),
                   style: TextStyle(
                     color: Colors.white.withOpacity(0.8),
                     fontSize: 16.0,
@@ -168,7 +168,7 @@ class FeedbackPageState extends State<FeedbackPage> {
                 alignment: Alignment.center,
                 child: Column(
                   children: <Widget>[
-                    Text('HOW ARE WE DOING?',
+                    Text(Translations.howAreWe.toUpperCase(),
                       style: TextStyle(
                         color: Colors.white.withOpacity(0.8),
                         fontSize: 16.0,
@@ -176,7 +176,7 @@ class FeedbackPageState extends State<FeedbackPage> {
                       ),
                     ),
                     Padding(padding: EdgeInsets.only(top: 10.0)),
-                    Text('Please Rate Us',
+                    Text(Translations.pleaseRateUs,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 14.0,
@@ -193,7 +193,6 @@ class FeedbackPageState extends State<FeedbackPage> {
                               icon: Icon(Icons.star,
                                 color: Colors.yellow,
                               ),
-
                             )
                           );
                         }

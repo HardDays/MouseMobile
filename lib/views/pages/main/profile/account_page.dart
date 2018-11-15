@@ -49,8 +49,8 @@ class AccountPageState extends State<AccountPage> with SingleTickerProviderState
         (account) async {
           if (account.status != DataStatus.ok) { 
             Dialogs.showMessageDialog(context, 
-              title: 'Can\'t load account', 
-              body: 'Account is suspended',
+              title: Translations.cantLoadAccount, 
+              body: Translations.accountIsSuspended,
               ok: Translations.ok
             ).then(
               (res){
@@ -86,7 +86,7 @@ class AccountPageState extends State<AccountPage> with SingleTickerProviderState
           children:[
             Container(
               width: MediaQuery.of(context).size.width * 0.6,
-              child: Text(account == null ? 'ACCOUNT' : account.displayName?.toUpperCase() ?? '@${account.userName}',
+              child: Text(account == null ? Translations.account.toUpperCase() : account.displayName?.toUpperCase() ?? '@${account.userName}',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16.0,

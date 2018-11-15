@@ -81,7 +81,7 @@ class OtherFilterDialogState extends State<OtherFilterDialog> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text('TICKET TYPE', 
+            Text(Translations.ticketType.toUpperCase(), 
               style: TextStyle(
                 color: Colors.white,
                 fontFamily: 'Avenir-Heavy', 
@@ -133,7 +133,7 @@ class OtherFilterDialogState extends State<OtherFilterDialog> {
               )
             ),
             Padding(padding: EdgeInsets.only(top: 25.0)),
-            Text('VENUE TYPE', 
+            Text(Translations.venueType.toUpperCase(), 
               style: TextStyle(
                 color: Colors.white,
                 fontFamily: 'Avenir-Heavy', 
@@ -191,7 +191,7 @@ class OtherFilterDialogState extends State<OtherFilterDialog> {
               height: 40.0,
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.3,
-                child: MainButton('SAVE',
+                child: MainButton(Translations.save.toUpperCase(),
                   onTap: (){
                     Navigator.pop(context);     
                     if (widget.onSave != null){

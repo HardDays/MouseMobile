@@ -92,7 +92,7 @@ class LocationFilterDialogState extends State<LocationFilterDialog> {
                       fontSize: 16.0
                     ),
                     decoration: InputDecoration(
-                      hintText: 'Address',
+                      hintText: Translations.address,
                       hintStyle: TextStyle(
                         color: Colors.white.withOpacity(0.5),
                         fontFamily: 'Avenir-Book', 
@@ -139,7 +139,7 @@ class LocationFilterDialogState extends State<LocationFilterDialog> {
           ),
           Container(
             margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 40.0),
-            child: Text('Distance around (${radius.floor()} ${Translations.translateEnum(DataProvider.preferences.distance)})',
+            child: Text('${Translations.distanceAround} (${radius.floor()} ${Translations.translateEnum(DataProvider.preferences.distance)})',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 14.0,
@@ -169,7 +169,7 @@ class LocationFilterDialogState extends State<LocationFilterDialog> {
             height: 40.0,
             child: Container(
               width: MediaQuery.of(context).size.width * 0.3,
-              child: MainButton('SAVE',
+              child: MainButton(Translations.save.toUpperCase(),
                 onTap: (){
                   Navigator.pop(context);     
                   if (widget.onSave != null){

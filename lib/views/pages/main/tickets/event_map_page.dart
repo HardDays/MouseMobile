@@ -84,7 +84,7 @@ class EventMapPageState extends State<EventMapPage> {
         elevation: 0.0,
         title: Row(
           children:[
-            Text('MAP',
+            Text(Translations.map.toUpperCase(),
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16.0,
@@ -203,7 +203,7 @@ class EventMapPageState extends State<EventMapPage> {
                                 Container(
                                   padding: EdgeInsets.only(left: 7.0),
                                   width: 170.0,
-                                  child: Text(widget.event.name?.toUpperCase() ?? 'UNNAMED',
+                                  child: Text(widget.event.name?.toUpperCase() ?? Translations.unnamed.toUpperCase(),
                                     maxLines: 1,
                                     style: TextStyle(
                                       color: Colors.black,

@@ -256,7 +256,7 @@ class TicketsPageState extends State<TicketsPage> with SingleTickerProviderState
               height: 30.0,
               child: MainTagbox(filter.datesFilter.isNotEmpty ? 
                 '${Formatter.shortDate(filter.datesFilter.dateFrom)} - ${Formatter.shortDate(filter.datesFilter.dateTo)}' : 
-                'DATE',
+                Translations.date.toUpperCase(),
                 checked: filter.datesFilter.isNotEmpty,
                 onTap: showCalendar,
               ),
@@ -265,8 +265,8 @@ class TicketsPageState extends State<TicketsPage> with SingleTickerProviderState
               margin: EdgeInsets.only(right: 3.0, left: 3.0),
               height: 30.0,
               child: MainTagbox(filter.genresFilter.isNotEmpty ?
-                'GENRE • ${filter.genresFilter.genres.length}':
-                'GENRE',
+                '${Translations.genre.toUpperCase()} • ${filter.genresFilter.genres.length}':
+                Translations.genre.toUpperCase(),
                 checked: filter.genresFilter.isNotEmpty,
                 onTap: showGenres,
               ),
@@ -276,7 +276,7 @@ class TicketsPageState extends State<TicketsPage> with SingleTickerProviderState
               height: 30.0,
               child: MainTagbox(filter.locationFilter.isNotEmpty ?
                 '${filter.locationFilter.address}':
-                'LOCATION',
+                Translations.location.toUpperCase(),
                 checked: filter.locationFilter.isNotEmpty,
                 onTap: showLocation,
               ),
@@ -285,8 +285,8 @@ class TicketsPageState extends State<TicketsPage> with SingleTickerProviderState
               margin: EdgeInsets.only(right: 3.0, left: 3.0),
               height: 30.0,
               child: MainTagbox(filter.otherFilter.isNotEmpty ?
-                'OTHER FILTERS • ${filter.otherFilter.ticketTypes.length + filter.otherFilter.venueTypes.length}':
-                'OTHER FILTERS',
+                '${Translations.otherFilters.toUpperCase()} • ${filter.otherFilter.ticketTypes.length + filter.otherFilter.venueTypes.length}':
+                Translations.otherFilters.toUpperCase(),
                 checked: filter.otherFilter.isNotEmpty,
                 onTap: showOther
               ),
@@ -323,7 +323,7 @@ class TicketsPageState extends State<TicketsPage> with SingleTickerProviderState
                   tabs: <Widget>[
                     Container(
                       margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
-                      child: Text('UPCOMING',
+                      child: Text(Translations.upcoming.toUpperCase(),
                         style: TextStyle(
                           color: Colors.white, 
                           fontFamily: tabController.index == 0 ? 'Avenir-Black' : 'Avenir-Medium',
@@ -333,7 +333,7 @@ class TicketsPageState extends State<TicketsPage> with SingleTickerProviderState
                     ),
                     Container(
                       margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
-                      child: Text('PAST',
+                      child: Text(Translations.past.toUpperCase(),
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: tabController.index == 1 ? 'Avenir-Black' : 'Avenir-Medium',

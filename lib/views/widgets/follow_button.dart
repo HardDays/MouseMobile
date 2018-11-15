@@ -7,6 +7,7 @@ import '../../resources/app_colors.dart';
 import '../../models/api/account.dart';
 
 import '../../helpers/storage/data_provider.dart';
+import '../../resources/translations.dart';
 
 
 class FollowButton extends StatefulWidget {
@@ -51,7 +52,11 @@ class FollowButtonState extends State<FollowButton> {
         }
       }
     } else {
-      Dialogs.showMessageDialog(context, title: 'Unauthorized', body: 'Please, log in for this action', ok: 'Ok');
+      Dialogs.showMessageDialog(context, 
+        title: Translations.unauthorized, 
+        body: Translations.pleaseLogin, 
+        ok: Translations.ok
+      );
     }
   }
 
@@ -92,7 +97,7 @@ class FollowButtonState extends State<FollowButton> {
                   ),
                 ),
                 Padding(padding: EdgeInsets.only(left: 7.0)),
-                Text(followed ? 'Unollow' : 'Follow',
+                Text(followed ? Translations.unfollow : Translations.follow,
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
                     color: Colors.white,

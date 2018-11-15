@@ -97,7 +97,7 @@ class HoursDialogState extends State<HoursDialog> {
                         return begin[Hours.all[ind]] == null ||  end[Hours.all[ind]] == null ? 
                         Container(
                           margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
-                          child: Text('Closed',
+                          child: Text(Translations.closed,
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 14.0,
@@ -124,7 +124,7 @@ class HoursDialogState extends State<HoursDialog> {
             Container(
               height: 40.0,
               margin: EdgeInsets.only(top: 20.0, left: 10.0, right: 10.0, bottom: 10.0),
-              child: MainButton('DISMISS', 
+              child: MainButton(Translations.dismiss.toUpperCase(), 
                 onTap: () {
                   Navigator.pop(context);
                 }

@@ -70,7 +70,7 @@ class NotificationsPageState extends State<NotificationsPage> {
         title: Row(
           children:[
             Container(
-              child: Text('NOTIFICATIONS',
+              child: Text(Translations.notifications.toUpperCase(),
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16.0,
@@ -112,7 +112,7 @@ class NotificationsPageState extends State<NotificationsPage> {
             children: <Widget>[
               Container(
                 margin: EdgeInsets.only(left: 15.0, top: 25.0, bottom: 15.0),
-                child: Text('SHOWS AND MESSAGES',
+                child: Text(Translations.showsAndMessages.toUpperCase(),
                   style: TextStyle(
                     color: Colors.white.withOpacity(0.8),
                     fontSize: 16.0,
@@ -120,12 +120,12 @@ class NotificationsPageState extends State<NotificationsPage> {
                   ),
                 ),
               ),
-              buildSetting('New Shows Near You'),
-              buildSetting('New Shows From Favorite Artist'),
-              buildSetting('Messages Sent to You'),
+              buildSetting(Translations.newShowsNear),
+              buildSetting(Translations.newShowsNear),
+              buildSetting(Translations.messagesToYou),
               Container(
                 margin: EdgeInsets.only(left: 15.0, top: 25.0, bottom: 15.0),
-                child: Text('SHOWS NOTIFICATION FREQUENCY',
+                child: Text(Translations.showsNotificationsHistory.toUpperCase(),
                   style: TextStyle(
                     color: Colors.white.withOpacity(0.8),
                     fontSize: 16.0,
@@ -133,9 +133,9 @@ class NotificationsPageState extends State<NotificationsPage> {
                   ),
                 ),
               ),
-              buildSetting('Daily'),
-              buildSetting('Weekly'),
-              buildSetting('Monthly'),
+              buildSetting(Translations.daily),
+              buildSetting(Translations.weekly),
+              buildSetting(Translations.monthly),
             ]
           ),
         )

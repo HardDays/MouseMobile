@@ -151,7 +151,7 @@ class ArtistPageState extends State<ArtistPage> with SingleTickerProviderStateMi
                         Container(
                           width: MediaQuery.of(context).size.width * 0.9 - 20.0,
                           margin: EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-                          child: Text(account.videos[ind].name ?? 'Unnamed',
+                          child: Text(account.videos[ind].name ?? Translations.unnamed,
                             maxLines: 1,
                             style: TextStyle(
                               color: Colors.white,
@@ -163,7 +163,7 @@ class ArtistPageState extends State<ArtistPage> with SingleTickerProviderStateMi
                         Container(
                           width: MediaQuery.of(context).size.width * 0.9 - 20.0,
                           margin: EdgeInsets.only(left: 10.0, right: 10.0, top: 5.0),
-                          child: Text(account.videos[ind].albumName ?? 'Unnamed',
+                          child: Text(account.videos[ind].albumName ?? Translations.unnamed,
                             maxLines: 1,
                             style: TextStyle(
                               color: Colors.white,
@@ -233,7 +233,7 @@ class ArtistPageState extends State<ArtistPage> with SingleTickerProviderStateMi
                tabs: <Widget>[
                  Container(
                    margin: EdgeInsets.only(top: 12.0, bottom: 12.0),
-                   child: Text('UPCOMING SHOWS',
+                   child: Text(Translations.upcomingShows.toUpperCase(),
                      style: TextStyle(
                        color: Colors.white,
                        fontFamily: 'Avenir-Heavy',
@@ -243,7 +243,7 @@ class ArtistPageState extends State<ArtistPage> with SingleTickerProviderStateMi
                  ),
                  Container(
                    margin: EdgeInsets.only(top: 12.0, bottom: 12.0),
-                   child: Text('MEDIA',
+                   child: Text(Translations.media.toUpperCase(),
                      style: TextStyle(
                        color: Colors.white,
                        fontFamily: 'Avenir-Heavy',

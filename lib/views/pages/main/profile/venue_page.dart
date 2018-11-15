@@ -77,7 +77,7 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height * 0.5,
         child: Center(
-          child: Text('No upcoming shows',
+          child: Text(Translations.upcomingShows.toUpperCase(),
             style: TextStyle(
               color: Colors.grey,
               fontSize: 18.0,
@@ -106,7 +106,7 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height * 0.5,
         child: Center(
-          child: Text('No media',
+          child: Text(Translations.noMedia,
             style: TextStyle(
               color: Colors.grey,
               fontSize: 18.0,
@@ -152,7 +152,7 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
                         Container(
                           width: MediaQuery.of(context).size.width * 0.9 - 20.0,
                           margin: EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-                          child: Text(account.videos[ind].name ?? 'Unnamed',
+                          child: Text(account.videos[ind].name ?? Translations.unnamed,
                             maxLines: 1,
                             style: TextStyle(
                               color: Colors.white,
@@ -164,7 +164,7 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
                         Container(
                           width: MediaQuery.of(context).size.width * 0.9 - 20.0,
                           margin: EdgeInsets.only(left: 10.0, right: 10.0, top: 5.0),
-                          child: Text(account.videos[ind].albumName ?? 'Unnamed',
+                          child: Text(account.videos[ind].albumName ?? Translations.unnamed,
                             maxLines: 1,
                             style: TextStyle(
                               color: Colors.white,
@@ -239,7 +239,7 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
               ),
               title: Row(
                 children: <Widget>[
-                  Text('CONTACT INFO',
+                  Text(Translations.contactInfo.toUpperCase(),
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'Avenir-Book', 
@@ -267,7 +267,7 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
                       Row(
                         children: <Widget>[
                           Container(
-                            child: Text('Phone: ',
+                            child: Text('${Translations.phone}: ',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: 'Avenir-Medium', 
@@ -296,7 +296,7 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
                         child: Row(
                           children: <Widget>[
                             Container(
-                              child: Text('Fax: ',
+                              child: Text('${Translations.fax}: ',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontFamily: 'Avenir-Medium', 
@@ -396,7 +396,7 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
               children: <Widget>[
                 GestureDetector(
                   onTap: (){
-                    Dialogs.showHoursDialog(context, title: 'OFFICE HOURS', hours: account.officeHours);
+                    Dialogs.showHoursDialog(context, title: Translations.officeHours.toUpperCase(), hours: account.officeHours);
                   },
                   child: Container(
                     padding: EdgeInsets.only(bottom: 5.0),
@@ -405,7 +405,7 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
                         bottom: BorderSide(color: Colors.white, width: 2.0)
                       )
                     ),
-                    child: Text('OFFICE HOURS',
+                    child: Text(Translations.officeHours.toUpperCase(),
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 14.0,
@@ -416,7 +416,7 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
                 ),
                 GestureDetector(
                   onTap: (){
-                    Dialogs.showHoursDialog(context, title: 'OPERATING HOURS', hours: account.operatingHours);
+                    Dialogs.showHoursDialog(context, title: Translations.operatingHours.toUpperCase(), hours: account.operatingHours);
                   },
                   child: Container(
                     margin: EdgeInsets.only(left: 20.0),
@@ -426,7 +426,7 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
                         bottom: BorderSide(color: Colors.white, width: 2.0)
                       )
                     ),
-                    child: Text('OPERATING HOURS',
+                    child: Text(Translations.operatingHours.toUpperCase(),
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 14.0,
@@ -452,7 +452,7 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
                tabs: <Widget>[
                  Container(
                    margin: EdgeInsets.only(top: 12.0, bottom: 12.0),
-                   child: Text('UPCOMING SHOWS',
+                   child: Text(Translations.upcomingShows.toUpperCase(),
                      style: TextStyle(
                        color: Colors.white,
                        fontFamily: 'Avenir-Heavy',
@@ -462,7 +462,7 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
                  ),
                  Container(
                    margin: EdgeInsets.only(top: 12.0, bottom: 12.0),
-                   child: Text('MEDIA',
+                   child: Text(Translations.media.toUpperCase(),
                      style: TextStyle(
                        color: Colors.white,
                        fontFamily: 'Avenir-Heavy',

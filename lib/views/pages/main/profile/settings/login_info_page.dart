@@ -86,7 +86,7 @@ class LoginInfoPageState extends State<LoginInfoPage> {
         title: Row(
           children:[
             Container(
-              child: Text('LOGIN INFO',
+              child: Text(Translations.loginInfo,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16.0,
@@ -126,9 +126,9 @@ class LoginInfoPageState extends State<LoginInfoPage> {
           child: Column(
             children: <Widget>[
               Padding(padding: EdgeInsets.only(top: 15.0)),
-              buildSetting('EMAIL', DataProvider.currentUser.email, LoginInfoPage()),
-              buildSetting('PASSWORD', '', LoginInfoPage()),
-              buildSetting('PHONE NUMBER', '', LoginInfoPage()),
+              buildSetting(Translations.email.toUpperCase(), DataProvider.currentUser.email, LoginInfoPage()),
+              buildSetting(Translations.password.toUpperCase(), '', LoginInfoPage()),
+              buildSetting(Translations.phoneNumber.toUpperCase(), '', LoginInfoPage()),
             ]
           ),
         )

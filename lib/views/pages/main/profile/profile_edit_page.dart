@@ -77,11 +77,11 @@ class ProfileEditPageState extends State<ProfileEditPage> with SingleTickerProvi
           Navigator.pop(context);
           if (res.status == DataStatus.ok){
             account = res.result;
-            Dialogs.showMessageDialog(context, title: 'Success', body: 'Profile has been updated', ok: 'Ok').then((res){
+            Dialogs.showMessageDialog(context, title: Translations.success, body: Translations.profileUpdated, ok: Translations.ok).then((res){
               Navigator.pop(context);
             });
           } else {
-            Dialogs.showMessageDialog(context, title: 'Cannot update profile', body: 'Username already taken', ok: 'Ok');
+            Dialogs.showMessageDialog(context, title: Translations.cannotUpdate, body: Translations.usernameAlreadyTaken, ok: Translations.ok);
           }
         }
       );
@@ -120,7 +120,7 @@ class ProfileEditPageState extends State<ProfileEditPage> with SingleTickerProvi
         title: Row(
           children:[
             Container(
-              child: Text('EDIT PROFILE',
+              child: Text(Translations.editProfile.toUpperCase(),
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16.0,
@@ -136,7 +136,7 @@ class ProfileEditPageState extends State<ProfileEditPage> with SingleTickerProvi
           IconButton(
             onPressed: onSave,
             iconSize: 40.0,
-            icon: Text('SAVE',
+            icon: Text(Translations.save.toUpperCase(),
               style: TextStyle(
                 color: Colors.white,
                 fontFamily: 'Avenir-Medium', 
@@ -242,7 +242,7 @@ class ProfileEditPageState extends State<ProfileEditPage> with SingleTickerProvi
                         children: <Widget>[
                           Container(
                             width: MediaQuery.of(context).size.width * 0.3,
-                            child: Text('First name',
+                            child: Text(Translations.firstName,
                               style: TextStyle(
                                 color: Colors.white.withOpacity(0.5),
                                 fontSize: 14.0,
@@ -261,7 +261,7 @@ class ProfileEditPageState extends State<ProfileEditPage> with SingleTickerProvi
                                 fontFamily: 'Avenir-Book', 
                               ),
                               decoration: InputDecoration.collapsed(
-                                hintText: 'Enter first name',       
+                                hintText: Translations.firstName,       
                                 hintStyle: TextStyle(
                                   color: Colors.grey.withOpacity(0.5),
                                   fontFamily: 'Avenir-Book', 
@@ -286,7 +286,7 @@ class ProfileEditPageState extends State<ProfileEditPage> with SingleTickerProvi
                         children: <Widget>[
                           Container(
                             width: MediaQuery.of(context).size.width * 0.3,
-                            child: Text('Last name',
+                            child: Text(Translations.lastName,
                               style: TextStyle(
                                 color: Colors.white.withOpacity(0.5),
                                 fontSize: 14.0,
@@ -305,7 +305,7 @@ class ProfileEditPageState extends State<ProfileEditPage> with SingleTickerProvi
                                 fontFamily: 'Avenir-Book', 
                               ),
                               decoration: InputDecoration.collapsed(
-                                hintText: 'Enter last name',       
+                                hintText: Translations.lastName,       
                                 hintStyle: TextStyle(
                                   color: Colors.grey.withOpacity(0.5),
                                   fontFamily: 'Avenir-Book', 
@@ -330,7 +330,7 @@ class ProfileEditPageState extends State<ProfileEditPage> with SingleTickerProvi
                         children: <Widget>[
                           Container(
                             width: MediaQuery.of(context).size.width * 0.3,
-                            child: Text('Username',
+                            child: Text(Translations.username,
                               style: TextStyle(
                                 color: Colors.white.withOpacity(0.5),
                                 fontSize: 14.0,
@@ -361,7 +361,7 @@ class ProfileEditPageState extends State<ProfileEditPage> with SingleTickerProvi
                                     fontFamily: 'Avenir-Book', 
                                   ),
                                   decoration: InputDecoration.collapsed(
-                                    hintText: 'Enter username',       
+                                    hintText: Translations.enterUsername,       
                                     hintStyle: TextStyle(
                                       color: Colors.grey.withOpacity(0.5),
                                       fontFamily: 'Avenir-Book', 
@@ -388,7 +388,7 @@ class ProfileEditPageState extends State<ProfileEditPage> with SingleTickerProvi
                         children: <Widget>[
                           Container(
                             width: MediaQuery.of(context).size.width * 0.3,
-                            child: Text('Bio',
+                            child: Text(Translations.bio,
                               style: TextStyle(
                                 color: Colors.white.withOpacity(0.5),
                                 fontSize: 14.0,
@@ -407,7 +407,7 @@ class ProfileEditPageState extends State<ProfileEditPage> with SingleTickerProvi
                                 fontFamily: 'Avenir-Book', 
                               ),
                               decoration: InputDecoration.collapsed(
-                                hintText: 'Enter bio',       
+                                hintText: Translations.enterBio,       
                                 hintStyle: TextStyle(
                                   color: Colors.grey.withOpacity(0.5),
                                   fontFamily: 'Avenir-Book', 
@@ -433,7 +433,7 @@ class ProfileEditPageState extends State<ProfileEditPage> with SingleTickerProvi
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text('Genre',
+                    Text(Translations.genre,
                       style: TextStyle(
                         color: Colors.white.withOpacity(0.5),
                         fontSize: 14.0,

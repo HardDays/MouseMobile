@@ -142,9 +142,9 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
       });
     } else {
       Dialogs.showMessageDialog(context, 
-        title: 'No tickets left', 
-        body: 'Please, select another tickets', 
-        ok: 'OK'
+        title: Translations.noTicketsLeft, 
+        body: Translations.pleaseSelectTickets, 
+        ok: Translations.ok
       );
     }
   }
@@ -158,9 +158,9 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
     } 
     if (filtered.isEmpty){
       Dialogs.showMessageDialog(context, 
-      title: 's', 
-      body: 'Please, select some tickets', 
-      ok: 'Ok'
+      title: Translations.emptyCart, 
+      body: Translations.pleaseSelectTickets, 
+      ok: Translations.ok
     );
     } else {
       if (DataProvider.isAuthorized()){
@@ -169,7 +169,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
           DefaultPageRoute(builder: (context) => PaymentPage(event: event, tickets: filtered)),
         );   
       } else {
-        Dialogs.showMessageDialog(context, title: 'Unauthorized', body: 'Please, log in for this action', ok: 'Ok');
+        Dialogs.showMessageDialog(context, title: Translations.unauthorized, body: Translations.pleaseLogin, ok: Translations.ok);
       }
     }
   }
@@ -186,7 +186,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(account.displayName ?? 'Unnamed',
+              Text(account.displayName ?? Translations.unnamed,
                 maxLines: 1,
                 style: TextStyle(
                   color: Colors.white,
@@ -228,7 +228,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height * 0.6,
         child: Center(
-          child: Text('No tickets',
+          child: Text(Translations.noTickets,
             style: TextStyle(
               color: Colors.grey,
               fontSize: 18.0,
@@ -299,7 +299,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                                     child: Column(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: <Widget>[
-                                        Text(Translations.translateEnum(ticket.type).toUpperCase() + ' TICKET',
+                                        Text(Translations.translateEnum(ticket.type).toUpperCase() + ' ${Translations.ticket.toUpperCase()}',
                                           style: TextStyle(
                                             color: Colors.black,
                                             fontSize: 14.0,
@@ -313,7 +313,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                                             fontFamily: 'Avenir-Black', 
                                           ),
                                         ),
-                                        Text(ticket.isPromotional ? Translations.promo.toUpperCase() : 'GENERAL',
+                                        Text(ticket.isPromotional ? Translations.promo.toUpperCase() : '${Translations.general.toUpperCase()}',
                                           maxLines: 1,
                                           style: TextStyle(
                                             color: Colors.black,
@@ -321,7 +321,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                                             fontFamily: 'Avenir-Book', 
                                           ),
                                         ),
-                                        Text(ticket.isPersonal ? '(Special)' : '(Regular)',
+                                        Text(ticket.isPersonal ? '(${Translations.special})' : '(${Translations.regular})',
                                           maxLines: 1,
                                           style: TextStyle(
                                             color: Colors.black,
@@ -380,7 +380,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                                     Container(
                                       margin: EdgeInsets.only(left: 10.0, right: 10.0),
                                       alignment: Alignment.center,
-                                      child: Text('SOLD OUT',
+                                      child: Text(Translations.soldOut.toUpperCase(),
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: Colors.black,
@@ -404,7 +404,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
             Container(
               height: 45.0,
               margin: EdgeInsets.only(top: 30.0, bottom: 20.0, left: 15.0, right: 15.0),
-              child: MainButton('BUY TICKETS',
+              child: MainButton(Translations.buyTicket.toUpperCase(),
                 onTap: () {
                   onBuy();
                 }
@@ -422,7 +422,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height * 0.6,
         child: Center(
-          child: Text('No artists',
+          child: Text(Translations.noArtists,
             style: TextStyle(
               color: Colors.grey,
               fontSize: 18.0,
@@ -452,7 +452,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                       child: Container(
                         //width: MediaQuery.of(context).size.width * 0.4,
                         margin: EdgeInsets.only(right: 20.0, top: 5.0, bottom: 15.0),
-                        child: Text(event.artists[ind].displayName.toUpperCase() ?? 'UNNAMED',
+                        child: Text(event.artists[ind].displayName.toUpperCase() ?? Translations.unnamed.toUpperCase(),
                           maxLines: 1,
                           style: TextStyle(
                             color: ind == artistIndex ? AppColors.textRed : Colors.white,
@@ -500,7 +500,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text('VIDEO',
+                  Text(Translations.video.toUpperCase(),
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'Avenir-Black', 
@@ -525,7 +525,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text('PHOTOS',
+                  Text(Translations.photos.toUpperCase(),
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'Avenir-Black', 
@@ -566,7 +566,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height * 0.6,
         child: Center(
-          child: Text('Loading...',
+          child: Text('${Translations.loading}...',
             style: TextStyle(
               color: Colors.grey,
               fontSize: 18.0,
@@ -598,7 +598,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                         fontFamily: 'Avenir-Book', 
                       ),
                       decoration: InputDecoration.collapsed(
-                        hintText: 'Add comment',       
+                        hintText: Translations.addComment,       
                         hintStyle: TextStyle(
                           color: Colors.grey.withOpacity(0.5),
                           fontFamily: 'Avenir-Book', 
@@ -631,7 +631,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * 0.5,
               child: Center(
-                child: Text('No comments',
+                child: Text(Translations.noComments,
                   style: TextStyle(
                     color: Colors.grey,
                     fontSize: 18.0,
@@ -689,7 +689,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
         elevation: 0.0,
         title: Row(
           children:[
-            Text('SHOW PREVIEW',
+            Text(Translations.showPreview.toUpperCase(),
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16.0,
@@ -1004,7 +1004,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
-                                      Text('Goal: ${Translations.translateEnum(event.currency)}${NumberFormat('###,000').format(event.fundingGoal.toInt())}',
+                                      Text('${Translations.goal}: ${Translations.translateEnum(event.currency)}${NumberFormat('###,000').format(event.fundingGoal.toInt())}',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 14.0,
@@ -1021,7 +1021,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                                             ),
                                           ),
                                           Padding(padding: EdgeInsets.only(left: 5.0)),
-                                          Text('Backers',
+                                          Text(Translations.backers,
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 14.0,
@@ -1042,7 +1042,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                                             ),
                                           ),
                                           Padding(padding: EdgeInsets.only(left: 5.0)),
-                                          Text('Days to go',
+                                          Text(Translations.daysToGo,
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 14.0,
@@ -1052,7 +1052,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                                         ],
                                       ) : 
                                       Container(
-                                        child: Text('Finished',
+                                        child: Text(Translations.finished,
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 14.0,
@@ -1082,7 +1082,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                   tabs: <Widget>[
                     Container(
                       margin: EdgeInsets.only(top: 12.0, bottom: 12.0),
-                      child: Text('TICKETS',
+                      child: Text(Translations.tickets.toUpperCase(),
                         style: TextStyle(
                           color: Colors.white, 
                           fontFamily: 'Avenir-Heavy',
@@ -1092,7 +1092,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                     ),
                     Container(
                       margin: EdgeInsets.only(top: 12.0, bottom: 12.0),
-                      child: Text('INFO',
+                      child: Text(Translations.info.toUpperCase(),
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'Avenir-Heavy',
@@ -1102,7 +1102,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                     ) ,
                     Container(  
                       margin: EdgeInsets.only(top: 12.0, bottom: 12.0),
-                      child: Text('COMMENTS (${event.comments.length})',
+                      child: Text('${Translations.comments.toUpperCase()} (${event.comments.length})',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white,
@@ -1115,8 +1115,9 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                 )
               ),
               tabController.index == 0 ? buildTickets() : (
-              tabController.index == 1 ? buildArtists() : 
-              buildComments())
+                tabController.index == 1 ? buildArtists() : 
+                buildComments()
+              )
             ],
           ),
         ),

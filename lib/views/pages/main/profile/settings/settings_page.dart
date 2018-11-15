@@ -66,7 +66,7 @@ class SettingsPage extends StatelessWidget {
         title: Row(
           children:[
             Container(
-              child: Text('SETTINGS',
+              child: Text(Translations.settings.toUpperCase(),
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16.0,
@@ -106,15 +106,15 @@ class SettingsPage extends StatelessWidget {
           child: Column(
             children: <Widget>[
               Padding(padding: EdgeInsets.only(top: 15.0)),
-              buildSetting(context, 'Login Info', LoginInfoPage()),
-              buildSetting(context, 'App Preferences', AppPreferencesPage()),
-              buildSetting(context, 'Rewards', LoginInfoPage()),
-              buildSetting(context, 'Notifications', NotificationsPage()),
-              buildSetting(context, 'Feedback', FeedbackPage()),
-              buildSetting(context, 'Customer Support', LoginInfoPage()),
-              buildSetting(context, 'Terms of Service', LoginInfoPage()),
-              buildSetting(context, 'Privacy Policy', LoginInfoPage()),
-              buildSetting(context, 'Share MOUSE With Others', LoginInfoPage()),
+              buildSetting(context, Translations.loginInfo, LoginInfoPage()),
+              buildSetting(context, Translations.appPreferences, AppPreferencesPage()),
+              buildSetting(context, Translations.rewards, LoginInfoPage()),
+              buildSetting(context, Translations.notifications, NotificationsPage()),
+              buildSetting(context, Translations.feedback, FeedbackPage()),
+              buildSetting(context, Translations.customerSupport, LoginInfoPage()),
+              buildSetting(context, Translations.termsOfService, LoginInfoPage()),
+              buildSetting(context, Translations.privacyPolicy, LoginInfoPage()),
+              buildSetting(context, Translations.shareMouse, LoginInfoPage()),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -136,7 +136,7 @@ class SettingsPage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text('LOG OUT',
+                        Text(Translations.logout.toUpperCase(),
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 18.0,
@@ -154,7 +154,7 @@ class SettingsPage extends StatelessWidget {
                 ],
               ),
               Padding(padding: EdgeInsets.only(top: 20.0)),
-              Text('Version 1.0',
+              Text(Translations.version,
                 style: TextStyle(
                   color: Colors.white.withOpacity(0.7),
                   fontSize: 16.0,

@@ -16,6 +16,9 @@ import '../../routes/default_page_route.dart';
 import '../../../helpers/storage/data_provider.dart';
 import '../../../resources/app_colors.dart';
 
+import '../../../resources/translations.dart';
+
+
 class MainPage extends StatefulWidget {
 
   @override
@@ -42,10 +45,10 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
         if (tabController.index != 2){
           if (!DataProvider.isAuthorized()){
             Dialogs.showYesNoDialog(context, 
-              title: 'Unauthorized', 
-              body: 'Please, login for this action', 
-              yes: 'Yes', 
-              no: 'No', 
+              title: Translations.unauthorized, 
+              body: Translations.pleaseLogin, 
+              yes: Translations.yes, 
+              no: Translations.no, 
               onYes: (){
                 Navigator.pushReplacement(
                   this.context,

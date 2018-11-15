@@ -145,7 +145,7 @@ class ProfilePageState extends State<ProfilePage> with SingleTickerProviderState
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.5,
       child: Center(
-        child: Text('No rewards',
+        child: Text(Translations.noRewards,
           style: TextStyle(
             color: Colors.grey,
             fontSize: 18.0,
@@ -161,7 +161,7 @@ class ProfilePageState extends State<ProfilePage> with SingleTickerProviderState
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.5,
       child: Center(
-        child: Text('No favorites',
+        child: Text(Translations.noFavorites,
           style: TextStyle(
             color: Colors.grey,
             fontSize: 18.0,
@@ -177,7 +177,7 @@ class ProfilePageState extends State<ProfilePage> with SingleTickerProviderState
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.5,
       child: Center(
-        child: Text('No campaigns',
+        child: Text(Translations.noCampaigns,
           style: TextStyle(
             color: Colors.grey,
             fontSize: 18.0,
@@ -209,7 +209,7 @@ class ProfilePageState extends State<ProfilePage> with SingleTickerProviderState
                   tabs: <Widget>[
                     Container(
                       margin: EdgeInsets.only(top: 12.0, bottom: 12.0),
-                      child: Text('REWARDS',
+                      child: Text(Translations.rewards.toUpperCase(),
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'Avenir-Heavy',
@@ -219,7 +219,7 @@ class ProfilePageState extends State<ProfilePage> with SingleTickerProviderState
                     ),
                     Container(
                       margin: EdgeInsets.only(top: 12.0, bottom: 12.0),
-                      child: Text('FAVORITES',
+                      child: Text(Translations.favorites.toUpperCase(),
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'Avenir-Heavy',
@@ -229,7 +229,7 @@ class ProfilePageState extends State<ProfilePage> with SingleTickerProviderState
                     ),
                      Container(
                       margin: EdgeInsets.only(top: 12.0, bottom: 12.0),
-                      child: Text('CAMPAIGNS',
+                      child: Text(Translations.campaigns.toUpperCase(),
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'Avenir-Heavy',
@@ -240,7 +240,8 @@ class ProfilePageState extends State<ProfilePage> with SingleTickerProviderState
                   ],
                 )
               ),
-              tabController.index == 0 ? buildRewards() : (tabController.index == 1 ? buildFavorites() : buildCampaigns())
+              tabController.index == 0 ? 
+              buildRewards() : (tabController.index == 1 ? buildFavorites() : buildCampaigns())
             ],
           ),
         )

@@ -159,7 +159,7 @@ class AccountHeaderState extends State<AccountHeader> {
         ),
         Container(
           margin: EdgeInsets.only(right: 15.0, left: 15.0, top: 15.0),
-          child: Text(account.displayName ?? 'Unnamed',
+          child: Text(account.displayName ?? Translations.unnamed,
             style: TextStyle(
               color: Colors.white,
               fontSize: 16.0,

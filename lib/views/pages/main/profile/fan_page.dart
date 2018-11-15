@@ -64,7 +64,7 @@ class FanPageState extends State<FanPage> with SingleTickerProviderStateMixin {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.5,
       child: Center(
-        child: Text('No favorites',
+        child: Text(Translations.noFavorites,
           style: TextStyle(
             color: Colors.grey,
             fontSize: 18.0
@@ -79,7 +79,7 @@ class FanPageState extends State<FanPage> with SingleTickerProviderStateMixin {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.5,
       child: Center(
-        child: Text('No campaigns',
+        child: Text(Translations.noCampaigns,
           style: TextStyle(
             color: Colors.grey,
             fontSize: 18.0
@@ -105,7 +105,7 @@ class FanPageState extends State<FanPage> with SingleTickerProviderStateMixin {
                tabs: <Widget>[
                  Container(
                    margin: EdgeInsets.only(top: 12.0, bottom: 12.0),
-                   child: Text('FAVORITES',
+                   child: Text(Translations.favorites.toUpperCase(),
                      style: TextStyle(
                        color: Colors.white,
                        fontFamily: 'Avenir-Heavy',
@@ -115,7 +115,7 @@ class FanPageState extends State<FanPage> with SingleTickerProviderStateMixin {
                  ),
                  Container(
                    margin: EdgeInsets.only(top: 12.0, bottom: 12.0),
-                   child: Text('CAMPAIGNS',
+                   child: Text(Translations.campaigns.toUpperCase(),
                      style: TextStyle(
                        color: Colors.white,
                        fontFamily: 'Avenir-Heavy',

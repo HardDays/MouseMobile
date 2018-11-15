@@ -110,7 +110,7 @@ class FollowersPageState extends State<FollowersPage> with SingleTickerProviderS
           children:[
             Container(
               width: MediaQuery.of(context).size.width * 0.6,
-              child: Text(tabController.index == 0 ? 'FOLLOWERS' : 'FOLLOWING',
+              child: Text(tabController.index == 0 ? Translations.followers.toUpperCase() : Translations.following.toUpperCase(),
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16.0,
@@ -152,7 +152,7 @@ class FollowersPageState extends State<FollowersPage> with SingleTickerProviderS
                 tabs: <Widget>[
                   Container(
                     margin: EdgeInsets.only(top: 12.0, bottom: 10.0),
-                    child: Text('FOLLOWERS',
+                    child: Text(Translations.followers.toUpperCase(),
                       style: TextStyle(
                         color: tabController.index == 0 ? AppColors.textRed : Colors.grey.withOpacity(0.9),
                         fontFamily: 'Avenir-Heavy',
@@ -162,7 +162,7 @@ class FollowersPageState extends State<FollowersPage> with SingleTickerProviderS
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 12.0, bottom: 10.0),
-                    child: Text('FOLLOWING',
+                    child: Text(Translations.following.toUpperCase(),
                       style: TextStyle(
                         color: tabController.index == 1 ? AppColors.textRed : Colors.grey.withOpacity(0.9),
                         fontFamily: 'Avenir-Heavy',
@@ -173,7 +173,9 @@ class FollowersPageState extends State<FollowersPage> with SingleTickerProviderS
                 ],
               ),
               Divider(height: 1.0, color: Colors.grey.withOpacity(0.5)),
-              tabController.index == 0 ? buildList(followers, 'No followers') : buildList(following, 'No following')
+              tabController.index == 0 ? 
+              buildList(followers, Translations.noFollowers) : 
+              buildList(following, Translations.noFollowing)
             ]
           )
         )

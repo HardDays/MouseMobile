@@ -30,6 +30,12 @@ class AppPreferencesPageState extends State<AppPreferencesPage> {
     preferences = DataProvider.preferences;
   }
 
+  void update(){
+    setState(() {
+      DataProvider.setPreferences(preferences);
+    });
+  }
+
   Widget buildSetting(String text, Widget child, {Function onTap}){
     return GestureDetector(
       onTap: onTap,
@@ -88,7 +94,7 @@ class AppPreferencesPageState extends State<AppPreferencesPage> {
         title: Row(
           children:[
             Container(
-              child: Text('APP PREFERENCES',
+              child: Text(Translations.appPreferences.toUpperCase(),
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16.0,
@@ -130,7 +136,7 @@ class AppPreferencesPageState extends State<AppPreferencesPage> {
             children: <Widget>[
               Container(
                 margin: EdgeInsets.only(left: 15.0, top: 25.0, bottom: 15.0),
-                child: Text('REGIONAL OPTIONS',
+                child: Text(Translations.regionalOptions.toUpperCase(),
                   style: TextStyle(
                     color: Colors.white.withOpacity(0.8),
                     fontSize: 16.0,
@@ -138,74 +144,74 @@ class AppPreferencesPageState extends State<AppPreferencesPage> {
                   ),
                 ),
               ),
-              buildSetting('Language', buildTextSetting(preferences.language), 
+              buildSetting(Translations.language, buildTextSetting(preferences.language), 
                 onTap: (){
                   Dialogs.showSelectDialog(context, 
-                    title: 'Language', 
+                    title: Translations.language, 
                     options: Language.all,//['English', 'Russian'], 
                     singleSelect: true,
                     selected: [preferences.language],
                     onSave: (res){
                       setState(() {
                         preferences.language = res.first; 
-                        DataProvider.setPreferences(preferences);                                             
+                        update();
                       });
                     }
                   );
                 }
               ),
-              buildSetting('Date', buildTextSetting(preferences.dateFormat), 
+              buildSetting(Translations.date, buildTextSetting(preferences.dateFormat), 
                 onTap: (){
                   Dialogs.showSelectDialog(context, 
-                    title: 'Date format', 
+                    title: Translations.dateFormat, 
                     options: DateFormatting.all,// ['MMDDYYYY', 'DDMMYYYY'], 
                     singleSelect: true,
                     selected: [preferences.dateFormat],
                      onSave: (res){
                       setState(() {
                         preferences.dateFormat = res.first;
-                        DataProvider.setPreferences(preferences);                                              
+                        update();
                       });
                     }
                   );
                 }
               ),
-              buildSetting('Distance', buildTextSetting(preferences.distance), 
+              buildSetting(Translations.distance, buildTextSetting(preferences.distance), 
                 onTap: (){
                   Dialogs.showSelectDialog(context, 
-                    title: 'Distance', 
+                    title: Translations.distance, 
                     options: Distance.all, //['Miles', 'Kilometers'], 
                     singleSelect: true,
                     selected: [preferences.distance],
                      onSave: (res){
                       setState(() {
                         preferences.distance = res.first;
-                        DataProvider.setPreferences(preferences);                                              
+                        update();
                       });
                     }
                   );
                 }
               ),         
-              buildSetting('Currency', buildTextSetting(preferences.currency), 
+              buildSetting(Translations.currency, buildTextSetting(preferences.currency), 
                 onTap: (){
                   Dialogs.showSelectDialog(context,
-                    title: 'Currency', 
+                    title: Translations.currency, 
                     options: Currency.all, // ['US Dollar (\$)', 'Euro (€)', 'Ruble (₽)'], 
                     singleSelect: true,
                     selected: [preferences.currency],
                      onSave: (res){
                       setState(() {
                         preferences.currency = res.first;             
-                        DataProvider.setPreferences(preferences);                                 
+                        update();
                       });
                     }
                   );
                 }
               ),         
-              buildSetting('Time', 
+              buildSetting(Translations.time, 
                 Row(
                   children: <Widget>[
-                    Text('12 Hour',
+                    Text(Translations.hour12,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16.0,
@@ -225,11 +231,11 @@ class AppPreferencesPageState extends State<AppPreferencesPage> {
                           } else {
                             preferences.timeFormat = TimeFormatting.t24;
                           }                        
-                          DataProvider.setPreferences(preferences);
+                          update();
                         });
                       },
                     ),
-                    Text('24 Hour',
+                    Text(Translations.hour24,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16.0,

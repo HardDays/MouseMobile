@@ -6,6 +6,7 @@ import '../pages/main/profile/followers_page.dart';
 import '../routes/default_page_route.dart';
 
 import '../../resources/app_colors.dart';
+import '../../resources/translations.dart';
 
 class FollowersButton extends StatefulWidget {
   Account account;
@@ -45,7 +46,7 @@ class FollowersButtonState extends State<FollowersButton> {
                 ),
               ),
               Padding(padding: EdgeInsets.only(left: 5.0)),
-              Text('Followers',
+              Text(Translations.followers,
                 style: TextStyle(
                   color: Colors.white,
                   fontFamily: 'Avenir-Book',
@@ -73,7 +74,7 @@ class FollowersButtonState extends State<FollowersButton> {
                 ),
               ),
               Padding(padding: EdgeInsets.only(left: 5.0)),
-              Text('Following',
+              Text(Translations.following,
                 style: TextStyle(
                   color: Colors.white,
                   fontFamily: 'Avenir-Book',

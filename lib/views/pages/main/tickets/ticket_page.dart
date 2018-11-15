@@ -59,7 +59,7 @@ class TicketPageState extends State<TicketPage> {
         elevation: 0.0,
         title: Row(
           children:[
-            Text('TICKETS',
+            Text(Translations.tickets.toUpperCase(),
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16.0,
@@ -98,7 +98,7 @@ class TicketPageState extends State<TicketPage> {
                 //Padding(padding: EdgeInsets.only(top: 10.0)),
                 Container(
                   margin: EdgeInsets.only(left: 15.0),
-                  child: Text('${tickets.length} Tickets:',
+                  child: Text('${tickets.length} ${Translations.tickets}:',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 14.0,
@@ -164,7 +164,7 @@ class TicketPageState extends State<TicketPage> {
                                         child: Column(
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: <Widget>[
-                                            Text(Translations.translateEnum(ticket.type).toUpperCase() + ' TICKET',
+                                            Text(Translations.translateEnum(ticket.type).toUpperCase() + ' ${Translations.ticket.toUpperCase()}',
                                               style: TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 14.0,
@@ -178,7 +178,7 @@ class TicketPageState extends State<TicketPage> {
                                                 fontFamily: 'Avenir-Black', 
                                               ),
                                             ),
-                                            Text(ticket.isPromotional ? Translations.promo.toUpperCase() : 'GENERAL',
+                                            Text(ticket.isPromotional ? Translations.promo.toUpperCase() : Translations.general.toUpperCase(),
                                               maxLines: 1,
                                               style: TextStyle(
                                                 color: Colors.black,

@@ -136,7 +136,7 @@ class GenresFilterDialogState extends State<GenresFilterDialog> {
             margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
             width: MediaQuery.of(context).size.width * 0.3,
             height: 40.0,
-            child: MainButton('SAVE',
+            child: MainButton(Translations.save.toUpperCase(),
               onTap: (){
                 Navigator.pop(context);             
                 if (widget.onSave != null){

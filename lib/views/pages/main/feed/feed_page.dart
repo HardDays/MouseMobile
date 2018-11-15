@@ -34,7 +34,7 @@ import '../../../../helpers/view/formatter.dart';
 
 class FeedPage extends StatefulWidget  {
 
-  final String title = 'FEED';
+  final String title = Translations.feed.toUpperCase();
   final String icon = 'assets/images/main/feed_tab_icon.svg';
 
   TabController bottomController;
@@ -136,7 +136,7 @@ class FeedPageState extends State<FeedPage>  {
             },
             child: Container(
               margin: EdgeInsets.only(left: 3.0),
-              child: Text(item.event.name ?? 'Unnamed',
+              child: Text(item.event.name ?? Translations.unnamed,
                 maxLines: 1,
                 style: TextStyle(
                   color: AppColors.textRed,
@@ -155,7 +155,7 @@ class FeedPageState extends State<FeedPage>  {
   Widget buildUpdate(FeedItem item) {
     if (item.action == FeedAction.update) {
       if (item.field == FeedField.image) {
-        return buildItem(buildDefaultText('Added image', 'to', item),  
+        return buildItem(buildDefaultText(Translations.addedImage, Translations.to, item),  
           Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.width * 0.6,
@@ -163,7 +163,7 @@ class FeedPageState extends State<FeedPage>  {
           )
         );
       } else if (item.field == FeedField.video) {
-        return buildItem(buildDefaultText('Added video', 'to', item), 
+        return buildItem(buildDefaultText(Translations.addedVideo, Translations.to, item), 
           YoutubeImage(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.width * 0.6,
@@ -171,7 +171,7 @@ class FeedPageState extends State<FeedPage>  {
           )
         );
       } else {
-        return buildItem(buildDefaultText('Changed ${Translations.translateEnum(item.field).toLowerCase()}', 'of', item), 
+        return buildItem(buildDefaultText('${Translations.changed} ${Translations.translateEnum(item.field).toLowerCase()}', Translations.of, item), 
           Container(
             child: Text('${item.value}',
               style: TextStyle(
@@ -185,19 +185,19 @@ class FeedPageState extends State<FeedPage>  {
         );
       }
     } else if (item.action == FeedAction.addGenre) {
-      return buildItem(buildDefaultText('Added genre "${item.value}"', 'to', item), 
+      return buildItem(buildDefaultText('${Translations.addedGenre} "${item.value}"', Translations.to, item), 
         Container(
           margin: EdgeInsets.only(top: 5.0, left: 15.0, right: 15.0, bottom: 10.0)
         )
       );
     } else if (item.action == FeedAction.addTicket){
-      return buildItem(buildDefaultText('Added new ticket', 'to', item), 
+      return buildItem(buildDefaultText(Translations.addedNewTicket, Translations.to, item), 
         Container(
           margin: EdgeInsets.only(top: 5.0, left: 15.0, right: 15.0, bottom: 10.0)
         )
       );
     } else if (item.action == FeedAction.launchEvent){
-      return buildItem(buildDefaultText('Launched event', '', item), 
+      return buildItem(buildDefaultText(Translations.launchedEvent, '', item), 
         Container(
           margin: EdgeInsets.only(top: 5.0, left: 15.0, right: 15.0, bottom: 10.0)
         )
@@ -235,7 +235,7 @@ class FeedPageState extends State<FeedPage>  {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Text(item.account.displayName ?? 'Unnamed',
+                          Text(item.account.displayName ?? Translations.unnamed,
                             maxLines: 1,
                             style: TextStyle(
                               color: Colors.black,
@@ -397,7 +397,7 @@ class FeedPageState extends State<FeedPage>  {
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               alignment: Alignment.center,
-              child: Text('No feed updates',
+              child: Text(Translations.noFeedUpdates,
                 style: TextStyle(
                   color: Colors.grey,
                   fontSize: 16.0,

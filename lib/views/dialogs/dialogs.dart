@@ -120,19 +120,19 @@ class Dialogs {
   }
 
   static Future showDatesFilterDialog(BuildContext context, {DatesFilter filter, Function(DatesFilter) onSave}) async {
-    return await showThemedDialog(context, 'DATE', DatesFilterDialog(filter: filter, onSave: onSave));
+    return await showThemedDialog(context, Translations.date.toUpperCase(), DatesFilterDialog(filter: filter, onSave: onSave));
   }
 
   static void showGenresFilterDialog(BuildContext context, {GenresFilter filter, Function(GenresFilter) onSave}){
-    Dialogs.showThemedDialog(context, 'GENRE', GenresFilterDialog(filter: filter, onSave: onSave));
+    Dialogs.showThemedDialog(context, Translations.genre.toUpperCase(), GenresFilterDialog(filter: filter, onSave: onSave));
   }
 
   static void showLocationFilterDialog(BuildContext context, {LocationFilter filter, Function(LocationFilter) onSave}){
-    Dialogs.showThemedDialog(context, 'LOCATION', LocationFilterDialog(filter: filter, onSave: onSave));
+    Dialogs.showThemedDialog(context, Translations.location.toUpperCase(), LocationFilterDialog(filter: filter, onSave: onSave));
   }
 
   static void showOtherFilterDialog(BuildContext context, {OtherFilter filter, Function(OtherFilter) onSave}){
-    Dialogs.showThemedDialog(context, 'OTHER FILTERS', OtherFilterDialog(filter: filter, onSave: onSave));
+    Dialogs.showThemedDialog(context, Translations.otherFilters.toUpperCase(), OtherFilterDialog(filter: filter, onSave: onSave));
   }
 
   static void showHoursDialog(BuildContext context, {String title, List<Hour> hours}){

@@ -57,11 +57,11 @@ class PaymentPageState extends State<PaymentPage> {
       (res) async {
         Navigator.pop(context);
         if (res.status == DataStatus.ok){
-          await Dialogs.showMessageDialog(context, title: 'Success', body: 'Tickets were added', ok: 'Ok').then((res){
+          await Dialogs.showMessageDialog(context, title: Translations.success, body: Translations.ticketsWereAdded, ok: Translations.ok).then((res){
             Navigator.pop(context);
           });
         } else {
-          Dialogs.showMessageDialog(context, title: 'Error', body: 'Unknown error', ok: 'Ok');
+          Dialogs.showMessageDialog(context, title: Translations.error, body: Translations.unknownError, ok: Translations.ok);
         }
       }
     );
@@ -94,7 +94,7 @@ class PaymentPageState extends State<PaymentPage> {
                     )
                   ),
                 ),
-                Text('Credit Card',
+                Text(Translations.creditCard,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 16.0,
@@ -129,7 +129,7 @@ class PaymentPageState extends State<PaymentPage> {
                     )
                   ),
                 ),
-                Text('PayPal',
+                Text(Translations.paypal,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 16.0,
@@ -172,7 +172,7 @@ class PaymentPageState extends State<PaymentPage> {
                     color: Colors.grey.withOpacity(0.3),
                   )
                 ),
-                hintText: 'Credit Card',       
+                hintText: Translations.creditCard,       
                 hintStyle: TextStyle(
                   color: Colors.grey.withOpacity(0.7),
                   fontFamily: 'Avenir-Book', 
@@ -205,7 +205,7 @@ class PaymentPageState extends State<PaymentPage> {
                         color: Colors.grey.withOpacity(0.3)
                       )
                     ),
-                    hintText: 'Expiry Date',       
+                    hintText: Translations.expiryDate,       
                     hintStyle: TextStyle(
                       fontFamily: 'Avenir-Book', 
                       color: Colors.grey.withOpacity(0.7)
@@ -234,7 +234,7 @@ class PaymentPageState extends State<PaymentPage> {
                         color: Colors.grey.withOpacity(0.3)
                       )
                     ),
-                    hintText: 'CVV',       
+                    hintText: Translations.cvv,       
                     hintStyle: TextStyle(
                       fontFamily: 'Avenir-Book', 
                       color: Colors.grey.withOpacity(0.7)
@@ -265,7 +265,7 @@ class PaymentPageState extends State<PaymentPage> {
                     color: Colors.grey.withOpacity(0.3)
                   )
                 ),
-                hintText: 'Card Holder Name',       
+                hintText: Translations.cardHolder,       
                 hintStyle: TextStyle(
                   fontFamily: 'Avenir-Book', 
                   color: Colors.grey.withOpacity(0.7)
@@ -276,7 +276,7 @@ class PaymentPageState extends State<PaymentPage> {
           Container(
             height: 50.0,
             margin: EdgeInsets.only(top: 50.0, right: 30.0, left: 30.0, bottom: 20.0),
-            child: MainButton('PAY',
+            child: MainButton(Translations.pay.toUpperCase(),
               onTap: onBuy,
             )
           )
@@ -289,7 +289,7 @@ class PaymentPageState extends State<PaymentPage> {
     return Container(
       height: 50.0,
       margin: EdgeInsets.only(top: 50.0, right: 30.0, left: 30.0, bottom: 20.0),
-      child: MainButton('PAY WITH PAYPAL',
+      child: MainButton(Translations.payWithPaypal,
         onTap: onBuy,
       )
     );
@@ -303,7 +303,7 @@ class PaymentPageState extends State<PaymentPage> {
         elevation: 0.0,
         title: Row(
           children:[
-            Text('PAYMENT METHOD',
+            Text(Translations.paymentMethod.toUpperCase(),
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18.0,
@@ -389,7 +389,7 @@ class PaymentPageState extends State<PaymentPage> {
                                       ]
                                     ),
                                     Padding(padding: EdgeInsets.only(top: 5.0)),
-                                    Text(Translations.translateEnum(ticket.type) + ' ticket',
+                                    Text(Translations.translateEnum(ticket.type) + ' ${Translations.ticket.toLowerCase()}',
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 14.0,
@@ -397,7 +397,7 @@ class PaymentPageState extends State<PaymentPage> {
                                       ),
                                     ),
                                     Padding(padding: EdgeInsets.only(top: 5.0)),
-                                    Text(ticket.isPersonal ? '(Special)' : '(Regular)',
+                                    Text(ticket.isPersonal ? '(${Translations.special})' : '(${Translations.regular})',
                                       maxLines: 1,
                                       style: TextStyle(
                                         color: Colors.black,
@@ -461,7 +461,7 @@ class PaymentPageState extends State<PaymentPage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
-                            Text('Total: ',
+                            Text('${Translations.total}: ',
                               style: TextStyle(
                                 color: Colors.black,
                                 fontFamily: 'Avenir-Book', 
@@ -480,7 +480,9 @@ class PaymentPageState extends State<PaymentPage> {
                         )
                       ),
                       Padding(padding: EdgeInsets.only(top: 25.0)), 
-                      payemntMethod == 0 ? buildPaymmentMethod() : (payemntMethod == 1 ? buildCreditCard() : buildPayPal()),
+                      payemntMethod == 0 ?
+                       buildPaymmentMethod() : 
+                       (payemntMethod == 1 ? buildCreditCard() : buildPayPal()),
                       //Padding(padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom))
                     ],
                   )
