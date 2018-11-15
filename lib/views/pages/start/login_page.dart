@@ -39,6 +39,8 @@ class LoginPageState extends State<LoginPage> {
   @override
   void initState() {    
     super.initState(); 
+
+    DataProvider.init();
   }
 
 
@@ -54,16 +56,14 @@ class LoginPageState extends State<LoginPage> {
     }
   } 
 
-  void onLogin(){
-    DataProvider.init();
-    
+  void onLogin(){    
     formKey.currentState.save();
     if (formKey.currentState.validate()){
       Dialogs.showLoader(context);
       DataProvider.login(userName, password).timeout(Duration(seconds: 10), 
         onTimeout: (){
           Navigator.pop(context);
-          Dialogs.showMessage(context, title: Translations.serverNotRepsonding, body: Translations.pleaseTryAgain, ok: Translations.ok);
+          Dialogs.showMessageDialog(context, title: Translations.serverNotRepsonding, body: Translations.pleaseTryAgain, ok: Translations.ok);
         }
       ).then(
         (res) {
@@ -76,7 +76,7 @@ class LoginPageState extends State<LoginPage> {
               DefaultPageRoute(builder: (context) => MainPage()),
             );     
           } else {
-            Dialogs.showMessage(context, title: Translations.unauthorized, body: Translations.wrongUsernameOrPass, ok: Translations.ok);
+            Dialogs.showMessageDialog(context, title: Translations.unauthorized, body: Translations.wrongUsernameOrPass, ok: Translations.ok);
           }
         }
       );

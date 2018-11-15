@@ -12,7 +12,10 @@ import '../routes/default_page_route.dart';
 
 import '../../helpers/api/main_api.dart';
 
+import '../../helpers/storage/data_provider.dart';
+
 import '../../models/api/event.dart';
+import '../../models/api/preferences.dart';
 
 import '../../resources/app_colors.dart';
 import '../../resources/translations.dart';
@@ -100,7 +103,9 @@ class EventCard extends StatelessWidget {
                           children: <Widget>[
                             Container(
                               height: 26.0,
-                              child: Text(event.dateFrom.month.toString().padLeft(2, '0'),
+                              child: Text(DataProvider.preferences.dateFormat == DateFormatting.ddmmyyyy ? 
+                                event.dateFrom.day.toString().padLeft(2, '0') :
+                                event.dateFrom.month.toString().padLeft(2, '0'),
                                 style: TextStyle(
                                   color: AppColors.textRed,
                                   fontFamily: 'Avenir-Black',
@@ -110,7 +115,9 @@ class EventCard extends StatelessWidget {
                             ),
                             Container(
                               height: 30.0,
-                              child: Text(event.dateFrom.day.toString().padLeft(2, '0'),
+                              child: Text(DataProvider.preferences.dateFormat == DateFormatting.ddmmyyyy ? 
+                                event.dateFrom.month.toString().padLeft(2, '0') :
+                                event.dateFrom.day.toString().padLeft(2, '0'),
                                 style: TextStyle(
                                   color: AppColors.textRed,
                                   fontFamily: 'Avenir-Black',
@@ -227,7 +234,7 @@ class EventCard extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * 0.45,
                     margin: EdgeInsets.only(right: 15.0),
                     alignment: Alignment.centerRight,
-                    child: Text('${Translations.startingFrom} \$${event.tickets[0].price.floor()}',
+                    child: Text('${Translations.startingFrom} ${Translations.translateEnum(event.tickets[0].currency)}${event.tickets[0].price.floor()}',
                       maxLines: 1,
                       style: TextStyle(
                         color: Colors.white,

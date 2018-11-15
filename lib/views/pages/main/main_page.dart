@@ -41,7 +41,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
       (){
         if (tabController.index != 2){
           if (!DataProvider.isAuthorized()){
-            Dialogs.showYesNo(context, 
+            Dialogs.showYesNoDialog(context, 
               title: 'Unauthorized', 
               body: 'Please, login for this action', 
               yes: 'Yes', 

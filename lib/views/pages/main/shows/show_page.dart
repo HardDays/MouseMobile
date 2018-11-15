@@ -30,6 +30,7 @@ import '../../../../resources/app_colors.dart';
 import '../../../../resources/translations.dart';
 
 import '../../../../helpers/storage/data_provider.dart';
+import '../../../../helpers/view/formatter.dart';
 
 class ShowPage extends StatefulWidget {
 
@@ -140,8 +141,8 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
         tickets[ticket]++;                                                
       });
     } else {
-      Dialogs.showMessage(context, 
-        title: 'No tickets left!', 
+      Dialogs.showMessageDialog(context, 
+        title: 'No tickets left', 
         body: 'Please, select another tickets', 
         ok: 'OK'
       );
@@ -156,8 +157,8 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
       }
     } 
     if (filtered.isEmpty){
-      Dialogs.showMessage(context, 
-      title: 'Empty cart', 
+      Dialogs.showMessageDialog(context, 
+      title: 's', 
       body: 'Please, select some tickets', 
       ok: 'Ok'
     );
@@ -168,7 +169,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
           DefaultPageRoute(builder: (context) => PaymentPage(event: event, tickets: filtered)),
         );   
       } else {
-        Dialogs.showMessage(context, title: 'Unauthorized', body: 'Please, log in for this action', ok: 'Ok');
+        Dialogs.showMessageDialog(context, title: 'Unauthorized', body: 'Please, log in for this action', ok: 'Ok');
       }
     }
   }
@@ -630,7 +631,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * 0.5,
               child: Center(
-                child: Text('No comments yet...',
+                child: Text('No comments',
                   style: TextStyle(
                     color: Colors.grey,
                     fontSize: 18.0,
@@ -788,7 +789,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                             )
                           ),
                           Padding(padding: EdgeInsets.only(left: 2.0)),
-                          Text('${Translations.translateEnum(DateFormat.MMMM().format(event.dateFrom)).toUpperCase().substring(0, 3)} ${DateFormat('dd yyyy').format(event.dateFrom)}',
+                          Text(Formatter.long3Date(event.dateFrom),
                             style: TextStyle(
                               color: AppColors.textRed,
                               fontFamily: 'Avenir-Black',
@@ -796,7 +797,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                             )
                           ),
                           Padding(padding: EdgeInsets.only(left: 2.0)),
-                          Text('- ${DateFormat('h:mma').format(event.dateFrom).toUpperCase()}',
+                          Text('- ${Formatter.time(event.dateFrom)}',
                             style: TextStyle(
                               color: Colors.white,
                               fontFamily: 'Avenir-Black', 
@@ -971,7 +972,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                                     ),
                                     Padding(padding: EdgeInsets.only(left: 5.0)),   
                                     Container(
-                                      child: Text('(${NumberFormat('###,000').format(event.founded.toInt())} ${event.currency})',
+                                      child: Text('(${Translations.translateEnum(event.currency)}${NumberFormat('###,000').format(event.founded.toInt())})',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 14.0,
@@ -1003,7 +1004,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
-                                      Text('Goal: ${NumberFormat('###,000').format(event.fundingGoal.toInt())}${event.currency}',
+                                      Text('Goal: ${Translations.translateEnum(event.currency)}${NumberFormat('###,000').format(event.fundingGoal.toInt())}',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 14.0,
@@ -1113,27 +1114,9 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                   ],
                 )
               ),
-              tabController.index == 0 ? buildTickets() : (tabController.index == 1 ? buildArtists() : buildComments())
-              /*Container(
-                width: MediaQuery.of(context).size.width,
-                height: tabViewSize(),
-                child: TabBarView(
-                  physics: NeverScrollableScrollPhysics(),
-                  controller: tabController,
-                  children: <Widget>[
-                    buildTickets(),
-                    buildArtists(),
-                    Container( 
-                      margin: EdgeInsets.all(5.0), 
-                      child: Column(
-                        children: <Widget>[
-
-                        ],
-                      ),
-                    ),
-                  ],              
-                )
-              )*/
+              tabController.index == 0 ? buildTickets() : (
+              tabController.index == 1 ? buildArtists() : 
+              buildComments())
             ],
           ),
         ),

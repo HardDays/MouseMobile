@@ -27,11 +27,12 @@ import '../../../../resources/translations.dart';
 
 import '../../../../helpers/storage/data_provider.dart';
 import '../../../../helpers/storage/filters/shows_filter.dart';
+import '../../../../helpers/view/formatter.dart';
 
 class TicketsPage extends StatefulWidget  {
 
   TabController bottomController;
-  final String title = 'TICKETS';
+  String title = 'TICKETS';
   final String icon = 'assets/images/main/tickets_tab_icon.svg';
 
   Widget appBar;
@@ -254,7 +255,7 @@ class TicketsPageState extends State<TicketsPage> with SingleTickerProviderState
               margin: EdgeInsets.only(right: 3.0, left: 3.0),
               height: 30.0,
               child: MainTagbox(filter.datesFilter.isNotEmpty ? 
-                '${DateFormat('dd.MM.yyyy').format(filter.datesFilter.dateFrom)} - ${DateFormat('dd.MM.yyyy').format(filter.datesFilter.dateTo)}' : 
+                '${Formatter.shortDate(filter.datesFilter.dateFrom)} - ${Formatter.shortDate(filter.datesFilter.dateTo)}' : 
                 'DATE',
                 checked: filter.datesFilter.isNotEmpty,
                 onTap: showCalendar,

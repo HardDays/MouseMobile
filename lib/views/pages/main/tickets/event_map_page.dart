@@ -178,13 +178,13 @@ class EventMapPageState extends State<EventMapPage> {
                         borderRadius: BorderRadius.all(Radius.circular(5.0))
                       ),
                       width: 240.0,
-                      height: 75.0,
+                      height: 85.0,
                       child: Row(
                         children: <Widget>[
                           Container(
                             //margin: EdgeInsets.only(top: 5.0, left: 5.0, right: 5.0),
                             width: 70.0,
-                            height: 75.0,
+                            height: 85.0,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(8.0),

@@ -30,6 +30,7 @@ import '../../../../resources/translations.dart';
 
 import '../../../../helpers/storage/data_provider.dart';
 import '../../../../helpers/storage/filters/shows_filter.dart';
+import '../../../../helpers/view/formatter.dart';
 
 class FeedPage extends StatefulWidget  {
 
@@ -270,7 +271,7 @@ class FeedPageState extends State<FeedPage>  {
                  ),
                 Container(
                   margin: EdgeInsets.only(top: 3.0),
-                  child: Text('${DateFormat('dd.MM.yyyy').format(item.createdAt)}',
+                  child: Text(Formatter.shortDate(item.createdAt),
                     style: TextStyle(
                       color: Colors.grey,
                       fontFamily: 'Avenir-Book', 

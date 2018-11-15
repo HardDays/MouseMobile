@@ -75,9 +75,8 @@ class AccountHeaderState extends State<AccountHeader> {
               margin: EdgeInsets.only(top: 50.0, left: 15.0, right: 15.0),
               width: 100.0,
               height: 100.0,
-              child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                child: AccountImage(account: account)
+              child: Container(
+                child: AccountImage(account: account, clickable: false)                
               ),
             ),
             Container(

@@ -48,7 +48,7 @@ class AccountPageState extends State<AccountPage> with SingleTickerProviderState
       DataProvider.getAccount(widget.id).then(
         (account) async {
           if (account.status != DataStatus.ok) { 
-            Dialogs.showMessage(context, 
+            Dialogs.showMessageDialog(context, 
               title: 'Can\'t load account', 
               body: 'Account is suspended',
               ok: Translations.ok

@@ -16,7 +16,9 @@ class AccountImage extends StatelessWidget {
   
   final double size;
 
-  AccountImage({this.account, this.size = 60.0});
+  final bool clickable;
+
+  AccountImage({this.account, this.size = 60.0, this.clickable = true});
 
   Widget emptyImage(){
     return Container(
@@ -31,10 +33,12 @@ class AccountImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Navigator.push(
-          context,
-          DefaultPageRoute(builder: (context) =>AccountPage(id: account.id)),
-        );  
+        if (clickable){
+          Navigator.push(
+            context,
+            DefaultPageRoute(builder: (context) => AccountPage(id: account.id)),
+          );  
+        }
       },
       child: Container(
         height: size,

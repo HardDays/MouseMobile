@@ -10,6 +10,7 @@ import '../../models/api/event.dart';
 import '../../models/api/comment.dart';
 import '../../models/api/ticket.dart';
 import '../../models/api/feed_item.dart';
+import '../../models/api/preferences.dart';
 
 import '../../helpers/storage/filters/shows_filter.dart';
 
@@ -40,6 +41,7 @@ class MainAPI {
   static const String fanTickets = '/fan_tickets';
   static const String many = '/many';
   static const String feed = '/feed';
+  static const String preferences = '/preferences';
 
   static String token;
   static int accountId;
@@ -391,6 +393,18 @@ class MainAPI {
       return [];
     }
   }
+
+  // PREFERENCES
+
+  static Future<Preferences> getPreferences() async {
+    var res = await baseGetRequest(users + preferences);
+    //TODO: better error check
+    if (res.statusCode == HttpStatus.ok){
+      return Preferences.fromJson(json.decode(res.body));
+    } else {
+      return Preferences();
+    }
+  }  
 
   // IMAGES
 

@@ -91,7 +91,7 @@ class CreateUserPageState extends State<CreateUserPage> {
     DataProvider.createUser(User(email: email, password: password, passwordConfirmation: passwordConfirmation)).timeout(Duration(seconds: 10),
       onTimeout: (){
         Navigator.pop(context);
-        Dialogs.showMessage(context, title: Translations.serverNotRepsonding, body: Translations.pleaseTryAgain, ok: Translations.ok);
+        Dialogs.showMessageDialog(context, title: Translations.serverNotRepsonding, body: Translations.pleaseTryAgain, ok: Translations.ok);
       }
     ).then(
       (res){
@@ -102,7 +102,7 @@ class CreateUserPageState extends State<CreateUserPage> {
           createAccount();
         } else {
           Navigator.pop(context);
-          Dialogs.showMessage(context, title: Translations.cannotRegister, body: Translations.emailAlreadyTaken, ok: Translations.ok);
+          Dialogs.showMessageDialog(context, title: Translations.cannotRegister, body: Translations.emailAlreadyTaken, ok: Translations.ok);
         }
       }
     );
@@ -123,7 +123,7 @@ class CreateUserPageState extends State<CreateUserPage> {
             DefaultPageRoute(builder: (context) => MainPage()),
           );
         } else {
-          Dialogs.showMessage(context, 
+          Dialogs.showMessageDialog(context, 
             title: Translations.cannotRegister, 
             body: Translations.usernameAlreadyTaken, 
             ok: Translations.ok

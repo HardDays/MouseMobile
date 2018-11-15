@@ -7,6 +7,9 @@ import 'genres_filter_dialog.dart';
 import 'location_filter_dialog.dart';
 import 'other_filter_dialog.dart';
 import 'hours_dialog.dart';
+import 'message_dialog.dart';
+import 'yes_no_dialog.dart';
+import 'select_dialog.dart';
 
 import '../../resources/app_colors.dart';
 import '../../resources/translations.dart';
@@ -17,7 +20,6 @@ import '../../helpers/storage/filters/dates_filter.dart';
 import '../../helpers/storage/filters/genres_filter.dart';
 import '../../helpers/storage/filters/location_filter.dart';
 import '../../helpers/storage/filters/other_filter.dart';
-
 
 class Dialogs {
 
@@ -65,6 +67,7 @@ class Dialogs {
               //filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
               child: Container(
                 //color: AppColors.dialogBack,
+                alignment: Alignment.center,
                 padding: EdgeInsets.only(left: 20.0, right: 20.0),
                   child: Stack(
                     children:[
@@ -95,7 +98,7 @@ class Dialogs {
                             child: Text(title,
                             style: TextStyle(
                               fontFamily: 'Avenir-Black', 
-                              fontSize: 20.0,
+                              fontSize: 18.0,
                               color: Colors.white
                             ),
                           ),
@@ -136,47 +139,15 @@ class Dialogs {
     Dialogs.showThemedDialog(context, title, HoursDialog(hours: hours));
   }
 
-  static Future showMessage(BuildContext context, {String title, String body, String ok}) async {
-    return await showDialog(context: context, 
-      child: AlertDialog(
-        title: Text(title),
-        content: Text(body),
-        actions: [
-          FlatButton(
-            child: Text(ok),
-            onPressed: () {
-              Navigator.pop(context);
-            }
-          ),
-        ],
-      )
-    );
+  static Future showMessageDialog(BuildContext context, {String title, String body, String ok}) async {
+    await Dialogs.showThemedDialog(context, title.toUpperCase(), MessageDialog(body: body, ok: ok));
   }
 
-  static void showYesNo(BuildContext context, {String title, String body, String yes, String no, Function onYes, Function onNo}){
-    showDialog(context: context, 
-      child: AlertDialog(
-        title: Text(title),
-        content: Text(body),
-        actions: [
-          FlatButton(
-            child: Text(yes),
-            onPressed: (){
-              Navigator.pop(context);
-              onYes();
-            }           
-          ),
-          FlatButton(
-            child: Text(no),
-            onPressed: (){
-              Navigator.pop(context);
-              onNo();
-            }                               
-          ),               
-        ],
-      )
-    ).then((val){
-      onNo();
-    });;
+  static void showYesNoDialog(BuildContext context, {String title, String body, String yes, String no, Function onYes, Function onNo}){
+    Dialogs.showThemedDialog(context, title.toUpperCase(), YesNoDialog(body: body, yes: yes, no: no, onYes: onYes, onNo: onNo));
+  }
+
+  static Future showSelectDialog(BuildContext context, {String title, bool singleSelect, List<String> options, List<String> selected, Function(List<String>) onSave}) async {
+    await Dialogs.showThemedDialog(context, title.toUpperCase(), SelectDialog(singleSelect: singleSelect, options: options, selected: selected, onSave: onSave));
   }
 }

@@ -20,6 +20,7 @@ import '../../../../resources/app_colors.dart';
 import '../../../../resources/translations.dart';
 
 import '../../../../helpers/storage/data_provider.dart';
+import '../../../../helpers/view/formatter.dart';
 
 class PaymentPage extends StatefulWidget {
 
@@ -56,11 +57,11 @@ class PaymentPageState extends State<PaymentPage> {
       (res) async {
         Navigator.pop(context);
         if (res.status == DataStatus.ok){
-          await Dialogs.showMessage(context, title: 'Success', body: 'Tickets were added', ok: 'Ok').then((res){
+          await Dialogs.showMessageDialog(context, title: 'Success', body: 'Tickets were added', ok: 'Ok').then((res){
             Navigator.pop(context);
           });
         } else {
-          Dialogs.showMessage(context, title: 'Error', body: 'Unknown error', ok: 'Ok');
+          Dialogs.showMessageDialog(context, title: 'Error', body: 'Unknown error', ok: 'Ok');
         }
       }
     );
@@ -419,7 +420,7 @@ class PaymentPageState extends State<PaymentPage> {
                                       margin: EdgeInsets.only(top: 10.0),
                                       child: Row(
                                         children: <Widget>[
-                                          Text('${Translations.translateEnum(DateFormat.EEEE().format(widget.event.dateFrom)).toUpperCase()},',
+                                          Text('${Formatter.longDate(widget.event.dateFrom)},',
                                             style: TextStyle(
                                               color: Colors.black,
                                               fontFamily: 'Avenir-Medium', 
@@ -427,15 +428,7 @@ class PaymentPageState extends State<PaymentPage> {
                                             )
                                           ),
                                           Padding(padding: EdgeInsets.only(left: 2.0)),
-                                          Text('${Translations.translateEnum(DateFormat.MMMM().format(widget.event.dateFrom)).toUpperCase().substring(0, 3)} ${DateFormat('dd yyyy').format(widget.event.dateFrom)}',
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontFamily: 'Avenir-Medium', 
-                                              fontSize: 14.0
-                                            )
-                                          ),
-                                          Padding(padding: EdgeInsets.only(left: 2.0)),
-                                          Text('- ${DateFormat('h:mma').format(widget.event.dateFrom).toUpperCase()}',
+                                          Text('${Formatter.time(widget.event.dateFrom)}',
                                             style: TextStyle(
                                               color: Colors.black,
                                               fontFamily: 'Avenir-Medium', 

@@ -13,6 +13,8 @@ import '../../../../../models/api/event.dart';
 import '../../../../../resources/app_colors.dart';
 import '../../../../../resources/translations.dart';
 
+import '../../../../../helpers/view/formatter.dart';
+
 class TicketHeader extends StatelessWidget {
 
 
@@ -125,7 +127,7 @@ class TicketHeader extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Text('${Translations.translateEnum(DateFormat.MMMM().format(event.dateFrom))} ${DateFormat.d().format(event.dateFrom)}, ${DateFormat.y().format(event.dateFrom)}',
+                                  Text(Formatter.longDate(event.dateFrom),
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontFamily: 'Avenir-Medium',
@@ -133,7 +135,7 @@ class TicketHeader extends StatelessWidget {
                                     )
                                   ),
                                   Padding(padding: EdgeInsets.only(top: 5.0)),
-                                  Text('${DateFormat('h:mma').format(event.dateFrom)}',
+                                  Text(Formatter.time(event.dateFrom),
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontFamily: 'Avenir-Medium',

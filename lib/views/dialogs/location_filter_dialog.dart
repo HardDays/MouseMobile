@@ -19,6 +19,7 @@ import '../../resources/translations.dart';
 
 import '../../helpers/api/main_api.dart';
 import '../../helpers/storage/filters/location_filter.dart';
+import '../../helpers/storage/data_provider.dart';
 
 class LocationFilterDialog extends StatefulWidget  {
 
@@ -138,7 +139,7 @@ class LocationFilterDialogState extends State<LocationFilterDialog> {
           ),
           Container(
             margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 40.0),
-            child: Text('Distance around (${radius.floor()} km)',
+            child: Text('Distance around (${radius.floor()} ${Translations.translateEnum(DataProvider.preferences.distance)})',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 14.0,

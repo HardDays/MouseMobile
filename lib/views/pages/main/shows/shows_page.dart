@@ -25,10 +25,11 @@ import '../../../../resources/translations.dart';
 
 import '../../../../helpers/storage/data_provider.dart';
 import '../../../../helpers/storage/filters/shows_filter.dart';
+import '../../../../helpers/view/formatter.dart';
 
 class ShowsPage extends StatefulWidget  {
 
-  final String title = Translations.shows.toUpperCase();
+  String title = Translations.shows.toUpperCase();
   final String icon = 'assets/images/main/shows_tab_icon.svg';
 
   Widget appBar;
@@ -52,6 +53,8 @@ class ShowsPageState extends State<ShowsPage> with AutomaticKeepAliveClientMixin
   @override
   void initState() {
     super.initState();
+
+    widget.title = Translations.shows.toUpperCase();
 
     filter = DataProvider.getEventsFilter();
 
@@ -205,7 +208,7 @@ class ShowsPageState extends State<ShowsPage> with AutomaticKeepAliveClientMixin
               margin: EdgeInsets.only(right: 3.0, left: 3.0),
               height: 30.0,
               child: MainTagbox(filter.datesFilter.isNotEmpty ? 
-                '${DateFormat('dd.MM.yyyy').format(filter.datesFilter.dateFrom)} - ${DateFormat('dd.MM.yyyy').format(filter.datesFilter.dateTo)}' : 
+                '${Formatter.shortDate(filter.datesFilter.dateFrom)} - ${Formatter.shortDate(filter.datesFilter.dateTo)}' : 
                 'DATE',
                 checked: filter.datesFilter.isNotEmpty,
                 onTap: showCalendar,
@@ -284,11 +287,15 @@ class ShowsPageState extends State<ShowsPage> with AutomaticKeepAliveClientMixin
           child: Column(
             children: <Widget>[
               buildFilters(),
-              Column(
-                children: List.generate(events.length, 
-                  (ind){
-                    return EventCard(event: events[ind]);
-                  }
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height - 110 - (showFilters ? 55 : 0),
+                child: ListView(
+                  children: List.generate(events.length, 
+                    (ind){
+                      return EventCard(event: events[ind]);
+                    }
+                  )
                 )
               )
             ]

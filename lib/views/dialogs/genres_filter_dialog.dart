@@ -64,7 +64,7 @@ class GenresFilterDialogState extends State<GenresFilterDialog> {
                 fontSize: 16.0
               ),
               decoration: InputDecoration(
-                hintText: 'Search',
+                hintText: Translations.search,
                 hintStyle: TextStyle(
                   color: Colors.white.withOpacity(0.5),
                   fontFamily: 'Avenir-Book', 

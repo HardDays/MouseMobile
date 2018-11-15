@@ -77,11 +77,11 @@ class ProfileEditPageState extends State<ProfileEditPage> with SingleTickerProvi
           Navigator.pop(context);
           if (res.status == DataStatus.ok){
             account = res.result;
-            Dialogs.showMessage(context, title: 'Success', body: 'Profile was updated', ok: 'Ok').then((res){
+            Dialogs.showMessageDialog(context, title: 'Success', body: 'Profile has been updated', ok: 'Ok').then((res){
               Navigator.pop(context);
             });
           } else {
-            Dialogs.showMessage(context, title: 'Cannot update profile', body: 'Username already taken', ok: 'Ok');
+            Dialogs.showMessageDialog(context, title: 'Cannot update profile', body: 'Username already taken', ok: 'Ok');
           }
         }
       );

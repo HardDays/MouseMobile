@@ -6,9 +6,10 @@ import 'package:path_provider/path_provider.dart';
 
 import '../../models/api/user.dart';
 import '../../models/api/account.dart';
+import '../../models/api/preferences.dart';
+
 
 class Database {
-
 
   static Map<String, dynamic> _db = {};
 
@@ -65,4 +66,17 @@ class Database {
     _db.remove('current_account');
     _file.writeAsStringSync(json.encode(_db));
   }
-}
+
+  static Preferences getPreferences() {
+    if (_db.containsKey('preferences')) {
+      return Preferences.fromJson(json.decode(_db['preferences']));
+    } else {
+      return Preferences();
+    }
+  }
+
+  static void setPreferences(Preferences value) {
+    _db['preferences'] = json.encode(value.toJson());
+    _file.writeAsStringSync(json.encode(_db));
+  }
+} 

@@ -15,13 +15,18 @@ import '../../models/api/user.dart';
 import '../../models/api/comment.dart';
 import '../../models/api/ticket.dart';
 import '../../models/api/feed_item.dart';
+import '../../models/api/preferences.dart';
+
+import '../../resources/translations.dart';
+
+import '../../helpers/view/formatter.dart';
+
 
 enum DataStatus {
   ok, notFound, unknownError, unauthorized
 }
 
 class DataResult <T> {
-
   DataStatus status = DataStatus.ok;
   T result;
 }
@@ -30,16 +35,18 @@ class DataProvider {
 
   static Account currentAccount;
   static User currentUser;
+  static Preferences preferences;
 
   static Future init() async {
     await Database.init();
 
-    setCurrentUser(Database.getCurrentUser());
-    setCurrentAccount(Database.getCurrentAccount());
-    
     Cache.eventsFilter = EventsFilter();
     Cache.ticketsFilter = EventsFilter();
     Cache.fanTickets = {};
+
+    setCurrentUser(Database.getCurrentUser());
+    setCurrentAccount(Database.getCurrentAccount());
+    setPreferences(Database.getPreferences());
   }
 
   static void flush(){
@@ -57,6 +64,11 @@ class DataProvider {
     MainAPI.setToken(null);
   }
 
+  static void updatePreferences(Preferences preferences){
+    Translations.locale = preferences.language;
+    Formatter.dateSettings = preferences.dateFormat;
+    Formatter.timeSettings = preferences.timeFormat;
+  }
 
   static void setCurrentUser(User user){
     if (user != null){
@@ -80,6 +92,12 @@ class DataProvider {
         }
       );
     }
+  }
+
+  static void setPreferences(Preferences preferences){
+    DataProvider.preferences = preferences;
+    Database.setPreferences(preferences);
+    updatePreferences(preferences);
   }
 
   static Future<DataResult<Account>> getCurrentAccount() async {
@@ -118,7 +136,7 @@ class DataProvider {
   }
 
   static bool isAuthorized(){
-    return currentAccount != null && currentUser != null;
+    return currentAccount != null && currentUser != null && currentUser.token != null;
   }
 
   //AUTH
@@ -131,6 +149,7 @@ class DataProvider {
       MainAPI.setToken(res);
      
       var user = await MainAPI.getMe();
+      user.token = res;
       var account = await MainAPI.getMyAccount();
 
       if (user != null && account != null){
@@ -386,7 +405,7 @@ class DataProvider {
 
   // FEED
 
-   static Future<DataResult<List<FeedItem>>> getFeed() async {
+  static Future<DataResult<List<FeedItem>>> getFeed() async {
     var result = DataResult<List<FeedItem>>();
     if (Cache.feed != null) { 
       result.result = Cache.feed;
@@ -400,5 +419,6 @@ class DataProvider {
   static List<FeedItem> getCachedFeed() {
     return Cache.feed;
   }
+
 
 }

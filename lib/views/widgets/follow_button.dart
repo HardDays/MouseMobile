@@ -51,7 +51,7 @@ class FollowButtonState extends State<FollowButton> {
         }
       }
     } else {
-      Dialogs.showMessage(context, title: 'Unauthorized', body: 'Please, log in for this action', ok: 'Ok');
+      Dialogs.showMessageDialog(context, title: 'Unauthorized', body: 'Please, log in for this action', ok: 'Ok');
     }
   }
 

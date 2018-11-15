@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'settings/settings_page.dart';
+
 import 'widgets/account_header.dart';
 
 import '../../start/start_page.dart';
@@ -25,8 +27,8 @@ import '../../../../helpers/storage/data_provider.dart';
 
 class ProfilePage extends StatefulWidget  {
 
-  final String title = Translations.profile.toUpperCase();
-  final String icon = 'assets/images/main/profile_tab_icon.svg';
+  String title = Translations.profile.toUpperCase();
+  String icon = 'assets/images/main/profile_tab_icon.svg';
 
   TabController bottomController;
 
@@ -120,6 +122,17 @@ class ProfilePageState extends State<ProfilePage> with SingleTickerProviderState
                 DefaultPageRoute(builder: (context) => StartPage()),
               );              
             }
+          ),
+          IconButton(
+            icon: Icon(Icons.settings, color: Colors.white),
+            onPressed: () {   
+              //Database.deleteCurrentAccount();
+              //Database.deleteCurrentUser();
+              Navigator.push(
+                context, 
+                DefaultPageRoute(builder: (context) => SettingsPage()),
+              );              
+            }
           )
         ]
       )
@@ -132,7 +145,7 @@ class ProfilePageState extends State<ProfilePage> with SingleTickerProviderState
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.5,
       child: Center(
-        child: Text('No rewards yet',
+        child: Text('No rewards',
           style: TextStyle(
             color: Colors.grey,
             fontSize: 18.0,
@@ -148,7 +161,7 @@ class ProfilePageState extends State<ProfilePage> with SingleTickerProviderState
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.5,
       child: Center(
-        child: Text('No favorites yet',
+        child: Text('No favorites',
           style: TextStyle(
             color: Colors.grey,
             fontSize: 18.0,
@@ -164,7 +177,7 @@ class ProfilePageState extends State<ProfilePage> with SingleTickerProviderState
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.5,
       child: Center(
-        child: Text('No campaigns yet',
+        child: Text('No campaigns',
           style: TextStyle(
             color: Colors.grey,
             fontSize: 18.0,
@@ -177,6 +190,8 @@ class ProfilePageState extends State<ProfilePage> with SingleTickerProviderState
 
   @override 
   Widget build(BuildContext ctx) {
+    widget.title = Translations.profile.toUpperCase();
+    //buildAppBar(context);
     if (DataProvider.isAuthorized()){
       return Container(
         color: AppColors.mainBg,

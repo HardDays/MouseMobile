@@ -119,7 +119,7 @@ class DatesFilterDialogState extends State<DatesFilterDialog> {
             height: 40.0,
             child: Container(
               width: MediaQuery.of(context).size.width * 0.3,
-              child: MainButton('SAVE',
+              child: MainButton(Translations.save.toUpperCase(),
                 onTap: (){
                   Navigator.pop(context);     
                   if (widget.onSave != null){
