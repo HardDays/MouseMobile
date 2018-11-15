@@ -50,8 +50,11 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
               yes: Translations.yes, 
               no: Translations.no, 
               onYes: (){
-                Navigator.pushReplacement(
-                  this.context,
+                setState(() {
+                  tabController.index = 2;
+                });
+                Navigator.push(
+                  context,
                   DefaultPageRoute(builder: (context) => StartPage()),
                 );
               }, 

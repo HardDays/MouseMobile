@@ -40,7 +40,7 @@ class Event {
       this.venue, this.tickets, this.genres, this.artists, this.comments = const []
     }
   ) {
-    tickets.sort((t1, t2) => t1.price.compareTo(t2.price));
+    tickets.sort((t1, t2) => (t1.price ?? 0.0).compareTo(t2.price ?? 0.0));
   }
 
   factory Event.fromJson(Map<String, dynamic> json) {

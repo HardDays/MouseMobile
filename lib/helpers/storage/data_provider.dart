@@ -327,7 +327,12 @@ class DataProvider {
       result.result = Cache.events;
     } else {
       var res = await MainAPI.searchEvents(text: text, filter: filter);
-      result.result = res;
+      
+      res.sort((e1, e2) => (e1.dateFrom ?? DateTime(2970)).compareTo(e2.dateFrom ?? DateTime(2970)));
+      var now = res.where((e) => e.dateFrom != null && DateTime.now().compareTo(e.dateFrom) == -1).toList();
+      var past = res.where((e) => e.dateFrom == null || DateTime.now().compareTo(e.dateFrom) == 1).toList();
+      
+      result.result = now..addAll(past);
     }
     return result;
   }

@@ -163,13 +163,33 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
       ok: Translations.ok
     );
     } else {
-      if (DataProvider.isAuthorized()){
-        Navigator.push(
-          this.context,
-          DefaultPageRoute(builder: (context) => PaymentPage(event: event, tickets: filtered)),
-        );   
+      double price = 0.0;
+
+      for (var ticket in tickets.keys){
+        price += ticket.price * tickets[ticket];
+      }
+      
+      if (price == 0){
+        Dialogs.showLoader(context);
+        DataProvider.createTickets(tickets).then(
+          (res) async {
+            Navigator.pop(context);
+            if (res.status == DataStatus.ok){
+              await Dialogs.showMessageDialog(context, title: Translations.success, body: Translations.ticketsWereAdded, ok: Translations.ok).then((res){});
+            } else {
+              Dialogs.showMessageDialog(context, title: Translations.error, body: Translations.unknownError, ok: Translations.ok);
+            }
+          }
+        );
       } else {
-        Dialogs.showMessageDialog(context, title: Translations.unauthorized, body: Translations.pleaseLogin, ok: Translations.ok);
+        if (DataProvider.isAuthorized()){
+          Navigator.push(
+            this.context,
+            DefaultPageRoute(builder: (context) => PaymentPage(event: event, tickets: filtered)),
+          );   
+        } else {
+          Dialogs.showMessageDialog(context, title: Translations.unauthorized, body: Translations.pleaseLogin, ok: Translations.ok);
+        }
       }
     }
   }
@@ -306,7 +326,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                                             fontFamily: 'Avenir-Heavy', 
                                           ),
                                         ),
-                                        Text('${ticket.price.toStringAsFixed(2)} ${ticket.currency}',
+                                        Text('${ticket.price.toStringAsFixed(2)}${Translations.translateEnum(ticket.currency)}',
                                           style: TextStyle(
                                             color: AppColors.textRed,
                                             fontSize: 14.0,

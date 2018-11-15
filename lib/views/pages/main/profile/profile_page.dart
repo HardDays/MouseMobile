@@ -115,25 +115,21 @@ class ProfilePageState extends State<ProfilePage> with SingleTickerProviderState
             icon: Icon(Icons.exit_to_app, color: Colors.white),
             onPressed: () {   
               DataProvider.flush();
-              //Database.deleteCurrentAccount();
-              //Database.deleteCurrentUser();
               Navigator.pushReplacement(
                 context, 
                 DefaultPageRoute(builder: (context) => StartPage()),
               );              
             }
-          ),
+          ),/*
           IconButton(
             icon: Icon(Icons.settings, color: Colors.white),
             onPressed: () {   
-              //Database.deleteCurrentAccount();
-              //Database.deleteCurrentUser();
               Navigator.push(
                 context, 
                 DefaultPageRoute(builder: (context) => SettingsPage()),
               );              
             }
-          )
+          )*/
         ]
       )
     );

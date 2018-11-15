@@ -42,6 +42,7 @@ class MainAPI {
   static const String many = '/many';
   static const String feed = '/feed';
   static const String preferences = '/preferences';
+  static const String byEvent = '/by_event';
 
   static String token;
   static int accountId;
@@ -371,10 +372,10 @@ class MainAPI {
       'event_id': eventId
     };
 
-    var res = await baseGetRequest(fanTickets + search, params: params);
+    var res = await baseGetRequest(fanTickets + byEvent, params: params);
     //TODO: better error check
     if (res.statusCode == HttpStatus.ok){
-      List body = json.decode(res.body);
+      List body = json.decode(res.body)['tickets'];
       return  body.map<Ticket>((x) => Ticket.fromJson(x)).toList();
     } else {
       return [];

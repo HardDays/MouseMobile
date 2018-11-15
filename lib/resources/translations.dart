@@ -288,7 +288,13 @@ class Translations {
       //
 
       'km': 'Km',
-      'mi': 'Miles  '
+      'mi': 'Miles',
+
+      // currency
+
+      'USD': '\$',
+      'EUR': '€',
+      'RUB': '₽'
     },
     
     Language.russian: {
@@ -459,7 +465,7 @@ class Translations {
       'otherFilters': 'Другие фильтры', 
       'noShowsFound': 'Шоу не найдены', 
       'upcoming': 'Скоро', 
-      'past': 'Past', 
+      'past': 'Прошлые', 
       'follow': 'Follow', 
       'unfollow': 'Unfollow', 
       'search': 'Search',
@@ -571,7 +577,13 @@ class Translations {
       //
 
       'km': 'Km',
-      'mi': 'Miles  '
+      'mi': 'Miles',
+
+      //currency
+
+      'USD': '\$',
+      'EUR': '€',
+      'RUB': '₽'
     },
   };
 

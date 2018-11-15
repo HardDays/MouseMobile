@@ -70,10 +70,10 @@ class YesNoDialogState extends State<YesNoDialog> {
               children: <Widget>[
                 InkWell(
                   onTap: (){
+                    Navigator.pop(context);
                     if (widget.onYes != null){
                       widget.onYes();
                     }
-                    Navigator.pop(context);
                   },
                   child: Text(widget.yes.toUpperCase(),
                     style: TextStyle(
@@ -86,10 +86,10 @@ class YesNoDialogState extends State<YesNoDialog> {
                 Padding(padding: EdgeInsets.only(left: 30.0)),
                 InkWell(
                   onTap: (){
+                    Navigator.pop(context);
                     if (widget.onNo != null){
                       widget.onNo();
                     }
-                    Navigator.pop(context);
                   },
                   child: Text(widget.no.toUpperCase(),
                     style: TextStyle(
