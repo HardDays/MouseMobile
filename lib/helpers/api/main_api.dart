@@ -80,7 +80,7 @@ class MainAPI {
         if (val != null){
           if (val is List<String>){
             for (var arr in val){
-              queryParams += '$param%5B%5D=$arr';
+              queryParams += '$param%5B%5D=$arr&';
             }
           } else {
             queryParams += '$param=$val&';
