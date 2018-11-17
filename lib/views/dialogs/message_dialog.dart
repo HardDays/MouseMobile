@@ -60,15 +60,15 @@ class MessageDialogState extends State<MessageDialog> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(right: 40.0, top: 40.0),
+            margin: EdgeInsets.only(right: 40.0, top: 20.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                InkWell(
-                  onTap: (){
+                IconButton(
+                  onPressed: (){
                     Navigator.pop(context);
                   },
-                  child: Text(widget.ok.toUpperCase(),
+                  icon: Text(widget.ok.toUpperCase(),
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'Avenir-Book', 

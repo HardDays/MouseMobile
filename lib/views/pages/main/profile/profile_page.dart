@@ -120,16 +120,16 @@ class ProfilePageState extends State<ProfilePage> with SingleTickerProviderState
                 DefaultPageRoute(builder: (context) => StartPage()),
               );              
             }
-          ),/*
-          IconButton(
-            icon: Icon(Icons.settings, color: Colors.white),
-            onPressed: () {   
-              Navigator.push(
-                context, 
-                DefaultPageRoute(builder: (context) => SettingsPage()),
-              );              
-            }
-          )*/
+          ),
+          // IconButton(
+          //   icon: Icon(Icons.settings, color: Colors.white),
+          //   onPressed: () {   
+          //     Navigator.push(
+          //       context, 
+          //       DefaultPageRoute(builder: (context) => SettingsPage()),
+          //     );              
+          //   }
+          // )
         ]
       )
     );

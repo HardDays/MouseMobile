@@ -4,6 +4,8 @@ import '../../../../routes/default_page_route.dart';
 
 import '../../../../widgets/main_checkbox.dart';
 
+import '../../../../../models/api/preferences.dart';
+
 import '../../../../../helpers/storage/data_provider.dart';
 
 import '../../../../../resources/app_colors.dart';
@@ -16,13 +18,16 @@ class NotificationsPage extends StatefulWidget {
 
 class NotificationsPageState extends State<NotificationsPage> {
 
+  Preferences preferences;
+
   @override
   void initState(){
     super.initState();
 
+    preferences = DataProvider.preferences;
   }
 
-  Widget buildSetting(String text){
+  Widget buildSetting(String text, bool checked, Function onTap){
     return Container(
       color: AppColors.dialogBg,
       child: Column(
@@ -45,8 +50,8 @@ class NotificationsPageState extends State<NotificationsPage> {
                 ),
                 Container(
                   child: MainCheckbox(
-                    onTap: (){
-                    },
+                    checked: checked,
+                    onTap: onTap
                   ),
                 )
               ],
@@ -120,9 +125,33 @@ class NotificationsPageState extends State<NotificationsPage> {
                   ),
                 ),
               ),
-              buildSetting(Translations.newShowsNear),
-              buildSetting(Translations.newShowsNear),
-              buildSetting(Translations.messagesToYou),
+              buildSetting(Translations.newShowsNear, 
+                preferences.notifShowsNear,
+                () {
+                  setState(() {
+                    preferences.notifShowsNear = !preferences.notifShowsNear;
+                    DataProvider.setPreferences(preferences);
+                  });
+                }
+              ),
+              buildSetting(Translations.newShowsFavorite, 
+                preferences.notifShowsFavorite,
+                () {
+                  setState(() {
+                    preferences.notifShowsFavorite = !preferences.notifShowsFavorite;
+                    DataProvider.setPreferences(preferences);
+                  });
+                }
+              ),
+              buildSetting(Translations.messagesToYou, 
+                preferences.notifMessagesSent,
+                () {
+                  setState(() {
+                    preferences.notifMessagesSent = !preferences.notifMessagesSent; 
+                    DataProvider.setPreferences(preferences);                   
+                  });
+                }
+              ),
               Container(
                 margin: EdgeInsets.only(left: 15.0, top: 25.0, bottom: 15.0),
                 child: Text(Translations.showsNotificationsHistory.toUpperCase(),
@@ -133,9 +162,33 @@ class NotificationsPageState extends State<NotificationsPage> {
                   ),
                 ),
               ),
-              buildSetting(Translations.daily),
-              buildSetting(Translations.weekly),
-              buildSetting(Translations.monthly),
+              buildSetting(Translations.daily,
+                preferences.notifHistory == NotificationHistoty.daily,
+                () {
+                  setState(() {
+                    preferences.notifHistory = NotificationHistoty.daily; 
+                    DataProvider.setPreferences(preferences);         
+                  });
+                }
+              ),
+              buildSetting(Translations.weekly, 
+                preferences.notifHistory == NotificationHistoty.weekly,
+                () {
+                  setState(() {
+                    preferences.notifHistory = NotificationHistoty.weekly;
+                    DataProvider.setPreferences(preferences);
+                  });
+                }
+              ),
+              buildSetting(Translations.monthly, 
+                preferences.notifHistory == NotificationHistoty.monthly,
+                () {
+                  setState(() {
+                    preferences.notifHistory = NotificationHistoty.monthly; 
+                    DataProvider.setPreferences(preferences);
+                  });
+                }
+              ),
             ]
           ),
         )

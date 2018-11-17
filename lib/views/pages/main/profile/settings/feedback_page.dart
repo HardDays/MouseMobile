@@ -2,12 +2,18 @@ import 'package:flutter/material.dart';
 
 import '../../../../routes/default_page_route.dart';
 
+import '../../../../dialogs/dialogs.dart';
+
 import '../../../../widgets/main_checkbox.dart';
+import '../../../../widgets/main_button.dart';
 
 import '../../../../../helpers/storage/data_provider.dart';
 
+import '../../../../../models/api/feedback.dart' as API;
+
 import '../../../../../resources/app_colors.dart';
 import '../../../../../resources/translations.dart';
+
 
 class FeedbackPage extends StatefulWidget {
 
@@ -16,13 +22,33 @@ class FeedbackPage extends StatefulWidget {
 
 class FeedbackPageState extends State<FeedbackPage> {
 
+  API.Feedback feedback;
+
   @override
   void initState(){
     super.initState();
 
+    feedback = API.Feedback(score: 3);
   }
 
-  Widget buildSetting(String text){
+  void onSend(){
+    Dialogs.showLoader(context);
+    DataProvider.createFeedback(feedback).then(
+      (res){
+        Navigator.pop(context);
+        if (res.status == DataStatus.ok){
+          Dialogs.showMessageDialog(context, title: Translations.success, body: 'Thank you for your feedback!', ok: Translations.ok).then((res){
+            Navigator.pop(context);
+          });
+        } else {
+          Dialogs.showMessageDialog(context, title: Translations.error, body: Translations.pleaseTryAgain, ok: Translations.ok);
+        }
+      }
+    );
+    
+  }
+
+  Widget buildSetting(String text, String type){
     return Container(
       color: AppColors.dialogBg,
       child: Column(
@@ -45,7 +71,11 @@ class FeedbackPageState extends State<FeedbackPage> {
                 ),
                 Container(
                   child: MainCheckbox(
+                    checked: feedback.feedbackType == type,
                     onTap: (){
+                      setState(() {
+                        feedback.feedbackType = type;                        
+                      });
                     },
                   ),
                 )
@@ -120,9 +150,9 @@ class FeedbackPageState extends State<FeedbackPage> {
                   ),
                 ),
               ),
-              buildSetting(Translations.aBug),
-              buildSetting(Translations.anEnchancement),
-              buildSetting(Translations.compliment),
+              buildSetting(Translations.aBug, API.FeedbackType.bug),
+              buildSetting(Translations.anEnchancement, API.FeedbackType.enhancement),
+              buildSetting(Translations.compliment, API.FeedbackType.compliment),
               Container(
                 margin: EdgeInsets.only(left: 15.0, top: 25.0, bottom: 5.0),
                 child: Text(Translations.details.toUpperCase(),
@@ -161,10 +191,15 @@ class FeedbackPageState extends State<FeedbackPage> {
                       )
                     ),    
                   ),
+                  onChanged: (val){
+                    setState(() {
+                      feedback.message = val;                      
+                    });
+                  },
                 )
               ),
               Container(
-                margin: EdgeInsets.only(top: 20.0),
+                margin: EdgeInsets.only(top: 15.0),
                 alignment: Alignment.center,
                 child: Column(
                   children: <Widget>[
@@ -189,14 +224,27 @@ class FeedbackPageState extends State<FeedbackPage> {
                         (ind) {
                           return Container(
                             child: IconButton(
+                              onPressed: (){
+                                setState(() {
+                                  feedback.score = ind + 1;                                  
+                                });
+                              },
                               iconSize: 35.0,
-                              icon: Icon(Icons.star,
+                              icon: Icon(feedback.score < ind + 1 ? Icons.star_border : Icons.star,
                                 color: Colors.yellow,
                               ),
                             )
                           );
                         }
                       ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 25.0, bottom: 15.0),
+                      height: 45.0,
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      child: MainButton('SEND',
+                        onTap: onSend,
+                      )
                     )
                   ],
                 ),

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'change_email_page.dart';
+import 'change_password_page.dart';
+import 'change_phone_page.dart';
+
 import '../../../../routes/default_page_route.dart';
 
 import '../../../../../helpers/storage/data_provider.dart';
@@ -86,7 +90,7 @@ class LoginInfoPageState extends State<LoginInfoPage> {
         title: Row(
           children:[
             Container(
-              child: Text(Translations.loginInfo,
+              child: Text(Translations.loginInfo.toUpperCase(),
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16.0,
@@ -126,9 +130,9 @@ class LoginInfoPageState extends State<LoginInfoPage> {
           child: Column(
             children: <Widget>[
               Padding(padding: EdgeInsets.only(top: 15.0)),
-              buildSetting(Translations.email.toUpperCase(), DataProvider.currentUser.email, LoginInfoPage()),
-              buildSetting(Translations.password.toUpperCase(), '', LoginInfoPage()),
-              buildSetting(Translations.phoneNumber.toUpperCase(), '', LoginInfoPage()),
+              buildSetting(Translations.email.toUpperCase(), DataProvider.currentUser.email, ChangeEmailPage()),
+              buildSetting(Translations.password.toUpperCase(), '', ChangePasswordPage()),
+              buildSetting(Translations.phoneNumber.toUpperCase(), '', ChangePhonePage()),
             ]
           ),
         )

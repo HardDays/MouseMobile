@@ -57,6 +57,8 @@ class PaymentPageState extends State<PaymentPage> {
       (res) async {
         Navigator.pop(context);
         if (res.status == DataStatus.ok){
+          DataProvider.flushFanTickets(time: TicketTime.past);
+          DataProvider.flushFanTickets(time: TicketTime.current);
           await Dialogs.showMessageDialog(context, title: Translations.success, body: Translations.ticketsWereAdded, ok: Translations.ok).then((res){
             Navigator.pop(context);
           });

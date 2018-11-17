@@ -4,6 +4,7 @@ import 'login_info_page.dart';
 import 'notifications_page.dart';
 import 'app_preferences_page.dart';
 import 'feedback_page.dart';
+import 'terms_page.dart';
 
 import '../../../../routes/default_page_route.dart';
 
@@ -108,12 +109,21 @@ class SettingsPage extends StatelessWidget {
               Padding(padding: EdgeInsets.only(top: 15.0)),
               buildSetting(context, Translations.loginInfo, LoginInfoPage()),
               buildSetting(context, Translations.appPreferences, AppPreferencesPage()),
-              buildSetting(context, Translations.rewards, LoginInfoPage()),
+              //buildSetting(context, Translations.rewards, LoginInfoPage()),
               buildSetting(context, Translations.notifications, NotificationsPage()),
               buildSetting(context, Translations.feedback, FeedbackPage()),
               buildSetting(context, Translations.customerSupport, LoginInfoPage()),
-              buildSetting(context, Translations.termsOfService, LoginInfoPage()),
-              buildSetting(context, Translations.privacyPolicy, LoginInfoPage()),
+              buildSetting(context, Translations.termsOfService, 
+                TermsPage('Terms of service',
+                  'Mouse terms of service',
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mattis nunc sed blandit libero volutpat sed cras ornare. Volutpat sed cras ornare arcu dui. In tellus integer feugiat scelerisque varius morbi enim nunc faucibus. Elit sed vulputate mi sit amet mauris. Condimentum vitae sapien pellentesque habitant morbi tristique. Et egestas quis ipsum suspendisse. Sagittis vitae et leo duis ut diam quam nulla porttitor. Urna id volutpat lacus laoreet non curabitur gravida. Sed vulputate mi sit amet. Risus viverra adipiscing at in tellus integer feugiat scelerisque varius. Nunc mattis enim ut tellus elementum sagittis vitae. Lorem dolor sed viverra ipsum nunc aliquet bibendum. Malesuada proin libero nunc consequat. Felis eget nunc lobortis mattis. Fermentum et sollicitudin ac orci phasellus egestas tellus rutrum tellus. Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque viverra. At urna condimentum mattis pellentesque id nibh tortor id. Vulputate ut pharetra sit amet aliquam id diam maecenas. Tellus at urna condimentum mattis pellentesque id nibh tortor. Nulla facilisi etiam dignissim diam. A cras semper auctor neque vitae tempus quam. '
+                )
+              ),
+              buildSetting(context, Translations.privacyPolicy, TermsPage('Privacy policy',
+                  'Mouse privacy policy',
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mattis nunc sed blandit libero volutpat sed cras ornare. Volutpat sed cras ornare arcu dui. In tellus integer feugiat scelerisque varius morbi enim nunc faucibus. Elit sed vulputate mi sit amet mauris. Condimentum vitae sapien pellentesque habitant morbi tristique. Et egestas quis ipsum suspendisse. Sagittis vitae et leo duis ut diam quam nulla porttitor. Urna id volutpat lacus laoreet non curabitur gravida. Sed vulputate mi sit amet. Risus viverra adipiscing at in tellus integer feugiat scelerisque varius. Nunc mattis enim ut tellus elementum sagittis vitae. Lorem dolor sed viverra ipsum nunc aliquet bibendum. Malesuada proin libero nunc consequat. Felis eget nunc lobortis mattis. Fermentum et sollicitudin ac orci phasellus egestas tellus rutrum tellus. Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque viverra. At urna condimentum mattis pellentesque id nibh tortor id. Vulputate ut pharetra sit amet aliquam id diam maecenas. Tellus at urna condimentum mattis pellentesque id nibh tortor. Nulla facilisi etiam dignissim diam. A cras semper auctor neque vitae tempus quam. '
+                )
+              ),
               buildSetting(context, Translations.shareMouse, LoginInfoPage()),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

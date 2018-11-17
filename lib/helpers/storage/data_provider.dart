@@ -16,6 +16,7 @@ import '../../models/api/comment.dart';
 import '../../models/api/ticket.dart';
 import '../../models/api/feed_item.dart';
 import '../../models/api/preferences.dart';
+import '../../models/api/feedback.dart';
 
 import '../../resources/translations.dart';
 
@@ -181,6 +182,23 @@ class DataProvider {
       setCurrentUser(res);
     } else {
       result.status = DataStatus.unauthorized;
+    }
+
+    return result;
+  }
+
+  static Future<DataResult<User>> updateUser(User user) async {
+    var result = DataResult<User>();
+
+    var res = await MainAPI.updateUser(user);
+    if (res != null){
+      result.result = res;
+      res.token = MainAPI.token;
+
+      Database.setCurrentUser(res);
+      setCurrentUser(res);
+    } else {
+      result.status = DataStatus.unknownError;
     }
 
     return result;
@@ -366,7 +384,6 @@ class DataProvider {
     return result;
   }
 
-
   // TICKETS
 
   static Future<DataResult> createTickets(Map<Ticket, int> tickets) async {
@@ -423,6 +440,17 @@ class DataProvider {
 
   static List<FeedItem> getCachedFeed() {
     return Cache.feed;
+  }
+
+  // FEEDBACK
+
+  static Future<DataResult> createFeedback(Feedback feedback) async {
+    var result = DataResult();
+    
+    var res = await MainAPI.createFeedback(feedback);
+    result.status = res ? DataStatus.ok : DataStatus.unknownError;
+
+    return result;
   }
 
 

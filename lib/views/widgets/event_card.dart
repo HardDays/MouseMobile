@@ -190,7 +190,7 @@ class EventCard extends StatelessWidget {
                             ),
                             Container(
                               width: MediaQuery.of(context).size.width * 0.6,
-                              child: Text(event.venue != null ? (event.venue.displayName + ' - ' + event.venue.address) : event.address,
+                              child: Text(event.venue != null ? (event.venue.displayName  ?? '' + ' - ' + event.venue.address ?? '') : event.address,
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
                                 style: TextStyle(

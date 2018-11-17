@@ -34,6 +34,14 @@ class Currency {
   static const List<String> all = [ruble, dollar, euro];
 }
 
+class NotificationHistoty {
+  static const String daily = 'daily';
+  static const String weekly = 'weekly';
+  static const String monthly = 'monthly';
+
+  static const List<String> all = [daily, weekly, monthly];
+}
+
 class Preferences {
 
   String language;
@@ -42,13 +50,23 @@ class Preferences {
   String currency;
   String timeFormat;
 
+  bool notifShowsNear;
+  bool notifShowsFavorite;
+  bool notifMessagesSent;
+
+  String notifHistory;
+
   Preferences( 
     {
       this.language = Language.engilsh, 
       this.dateFormat = DateFormatting.mmddyyyy, 
       this.distance = Distance.miles, 
       this.currency = Currency.dollar,
-      this.timeFormat = TimeFormatting.t12
+      this.timeFormat = TimeFormatting.t12,
+      this.notifShowsNear = false,
+      this.notifShowsFavorite = false,
+      this.notifMessagesSent = false,
+      this.notifHistory
     }
   );
   
@@ -58,7 +76,11 @@ class Preferences {
       'preferred_distance': distance,
       'preferred_currency': currency,
       'preferred_date': dateFormat,
-      'preferred_time': timeFormat
+      'preferred_time': timeFormat,
+      'notif_shows_near': notifShowsNear,
+      'notif_shows_favorite': notifShowsFavorite,
+      'notif_messages_sent': notifMessagesSent,
+      'notif_history': notifHistory,
     };
   }
 
@@ -69,6 +91,10 @@ class Preferences {
       distance: json['preferred_distance'] ?? Distance.miles,
       dateFormat: json['preferred_date'] ?? DateFormatting.mmddyyyy,
       timeFormat: json['preferred_time'] ?? TimeFormatting.t12,
+      notifMessagesSent: json['notif_messages_sent'] ?? false,
+      notifShowsFavorite: json['notif_shows_favorite'] ?? false,
+      notifShowsNear: json['notif_shows_near'] ?? false,
+      notifHistory: json['notif_history'],
     );
   }
 }

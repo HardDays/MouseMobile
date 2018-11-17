@@ -64,18 +64,18 @@ class YesNoDialogState extends State<YesNoDialog> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(right: 40.0, top: 40.0),
+            margin: EdgeInsets.only(right: 40.0, top: 20.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                InkWell(
-                  onTap: (){
+                IconButton(
+                  onPressed: (){
                     Navigator.pop(context);
                     if (widget.onYes != null){
                       widget.onYes();
                     }
                   },
-                  child: Text(widget.yes.toUpperCase(),
+                  icon: Text(widget.yes.toUpperCase(),
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'Avenir-Book', 
@@ -84,14 +84,14 @@ class YesNoDialogState extends State<YesNoDialog> {
                   ),
                 ),
                 Padding(padding: EdgeInsets.only(left: 30.0)),
-                InkWell(
-                  onTap: (){
+                IconButton(
+                  onPressed: (){
                     Navigator.pop(context);
                     if (widget.onNo != null){
                       widget.onNo();
                     }
                   },
-                  child: Text(widget.no.toUpperCase(),
+                  icon: Text(widget.no.toUpperCase(),
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'Avenir-Book', 

@@ -144,16 +144,17 @@ class AppPreferencesPageState extends State<AppPreferencesPage> {
                   ),
                 ),
               ),
-              buildSetting(Translations.language, buildTextSetting(preferences.language), 
+              buildSetting(Translations.language, buildTextSetting(Translations.translateEnum(preferences.language)), 
                 onTap: (){
+                  var options = [Translations.translateEnum(Language.engilsh), Translations.translateEnum(Language.russian)];
                   Dialogs.showSelectDialog(context, 
                     title: Translations.language, 
-                    options: Language.all,//['English', 'Russian'], 
+                    options: options,
                     singleSelect: true,
-                    selected: [preferences.language],
+                    selected: [Translations.translateEnum(preferences.language)],
                     onSave: (res){
                       setState(() {
-                        preferences.language = res.first; 
+                        preferences.language = Language.all[options.indexOf(res.first)]; 
                         update();
                       });
                     }
@@ -164,7 +165,7 @@ class AppPreferencesPageState extends State<AppPreferencesPage> {
                 onTap: (){
                   Dialogs.showSelectDialog(context, 
                     title: Translations.dateFormat, 
-                    options: DateFormatting.all,// ['MMDDYYYY', 'DDMMYYYY'], 
+                    options: DateFormatting.all,
                     singleSelect: true,
                     selected: [preferences.dateFormat],
                      onSave: (res){
@@ -176,32 +177,36 @@ class AppPreferencesPageState extends State<AppPreferencesPage> {
                   );
                 }
               ),
-              buildSetting(Translations.distance, buildTextSetting(preferences.distance), 
+              buildSetting(Translations.distance, buildTextSetting(Translations.translateEnum(preferences.distance)), 
                 onTap: (){
+                  var options = [Translations.translateEnum(Distance.kilometers), Translations.translateEnum(Distance.miles)];
                   Dialogs.showSelectDialog(context, 
                     title: Translations.distance, 
-                    options: Distance.all, //['Miles', 'Kilometers'], 
+                    options: options,
                     singleSelect: true,
-                    selected: [preferences.distance],
+                    selected: [Translations.translateEnum(preferences.distance)],
                      onSave: (res){
                       setState(() {
-                        preferences.distance = res.first;
+                        preferences.distance = Distance.all[options.indexOf(res.first)];
                         update();
                       });
                     }
                   );
                 }
               ),         
-              buildSetting(Translations.currency, buildTextSetting(preferences.currency), 
+              buildSetting(Translations.currency, buildTextSetting(Translations.translateEnum('text${preferences.currency}')), 
                 onTap: (){
+                  var options = [Translations.translateEnum('text${Currency.ruble}'), 
+                                Translations.translateEnum('text${Currency.dollar}'),
+                                Translations.translateEnum('text${Currency.euro}')];
                   Dialogs.showSelectDialog(context,
                     title: Translations.currency, 
-                    options: Currency.all, // ['US Dollar (\$)', 'Euro (€)', 'Ruble (₽)'], 
+                    options: options,
                     singleSelect: true,
-                    selected: [preferences.currency],
+                    selected: [Translations.translateEnum('text${preferences.currency}')],
                      onSave: (res){
                       setState(() {
-                        preferences.currency = res.first;             
+                        preferences.currency = Currency.all[options.indexOf(res.first)];             
                         update();
                       });
                     }

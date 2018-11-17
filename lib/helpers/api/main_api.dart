@@ -11,6 +11,7 @@ import '../../models/api/comment.dart';
 import '../../models/api/ticket.dart';
 import '../../models/api/feed_item.dart';
 import '../../models/api/preferences.dart';
+import '../../models/api/feedback.dart';
 
 import '../../helpers/storage/filters/shows_filter.dart';
 
@@ -43,6 +44,7 @@ class MainAPI {
   static const String feed = '/feed';
   static const String preferences = '/preferences';
   static const String byEvent = '/by_event';
+  static const String feedbacks = '/feedbacks';
 
   static String token;
   static int accountId;
@@ -143,6 +145,17 @@ class MainAPI {
     if (res.statusCode == HttpStatus.created){
       return User.fromJson(json.decode(res.body));
     } 
+  }
+
+  static Future<User> updateUser(User user) async {
+    var res = await http.patch(url + users + me, 
+      body: json.encode(user.toJson()),
+      headers: defaultHeader
+    );
+    //TODO: better error check
+    if (res.statusCode == HttpStatus.ok){
+      return User.fromJson(json.decode(res.body));
+    }
   }
 
   // ACCOUNTS
@@ -406,6 +419,20 @@ class MainAPI {
       return Preferences();
     }
   }  
+
+  // FEEDBACK
+
+  static Future<bool> createFeedback(Feedback feedb) async {
+    var body = feedb.toJson();
+    body['account_id'] = accountId;
+    var res = await http.post(url + feedbacks, 
+      body: json.encode(body),
+      headers: defaultHeader
+    );
+    //TODO: better error check
+    return res.statusCode == HttpStatus.created;
+  }
+  
 
   // IMAGES
 

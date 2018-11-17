@@ -184,6 +184,9 @@ class Translations {
       'map': 'Map',
       'yes': 'Yes',
       'no': 'No',
+      'textUSD': 'Dollar (\$)',
+      'textRUB': 'Ruble (₽)',
+      'textEUR': 'Euro (€)',
 
       // enums
 
@@ -285,7 +288,7 @@ class Translations {
       'July': 'July',
       'August': 'August',
 
-      //
+      // dist
 
       'km': 'Km',
       'mi': 'Miles',
@@ -294,7 +297,12 @@ class Translations {
 
       'USD': '\$',
       'EUR': '€',
-      'RUB': '₽'
+      'RUB': '₽',
+
+      // lang
+
+      'en': 'English',
+      'ru': 'Russian',
     },
     
     Language.russian: {
@@ -474,6 +482,10 @@ class Translations {
       'map': 'Map',
       'yes': 'Yes',
       'no': 'No',
+      'textUSD': 'Доллары (\$)',
+      'textRUB': 'Рубли (₽)',
+      'textEUR': 'Евро (€)',
+
       // enums
 
       'fan': 'Fan',
@@ -574,7 +586,7 @@ class Translations {
       'July': 'July',
       'August': 'August',
 
-      //
+      //distance
 
       'km': 'Km',
       'mi': 'Miles',
@@ -583,7 +595,12 @@ class Translations {
 
       'USD': '\$',
       'EUR': '€',
-      'RUB': '₽'
+      'RUB': '₽',
+
+      //lang
+
+      'en': 'Английский',
+      'ru': 'Русский',
     },
   };
 
