@@ -412,6 +412,8 @@ class DataProvider {
       result.result = Cache.fanTickets[time];
     } else {
       result.result = await MainAPI.searchFanTickets(time: time, filter: filter);
+      result.result.sort((e1, e2) => (e1.dateFrom ?? DateTime(2970)).compareTo(e2.dateFrom ?? DateTime(2970)));
+
       Cache.fanTickets[time] = result.result;
     }
     return result;

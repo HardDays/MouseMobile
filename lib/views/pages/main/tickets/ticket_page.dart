@@ -187,7 +187,7 @@ class TicketPageState extends State<TicketPage> {
                                                     fontFamily: 'Avenir-Heavy', 
                                                   ),
                                                 ),
-                                                Text('${ticket.price.toStringAsFixed(2)} ${ticket.currency}',
+                                                Text('${Translations.translateEnum(ticket.currency)}${ticket.price.toStringAsFixed(2)}',
                                                   style: TextStyle(
                                                     color: AppColors.textRed,
                                                     fontSize: 14.0,
