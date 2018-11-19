@@ -17,6 +17,7 @@ import '../../models/api/ticket.dart';
 import '../../models/api/feed_item.dart';
 import '../../models/api/preferences.dart';
 import '../../models/api/feedback.dart';
+import '../../models/api/question.dart';
 
 import '../../resources/translations.dart';
 
@@ -98,6 +99,7 @@ class DataProvider {
   static void setPreferences(Preferences preferences){
     DataProvider.preferences = preferences;
     Database.setPreferences(preferences);
+    MainAPI.updatePreferences(preferences);
     updatePreferences(preferences);
   }
 
@@ -455,5 +457,25 @@ class DataProvider {
     return result;
   }
 
+  // QUESTIONS
+
+  static Future<DataResult> creatQuestion(Question question) async {
+    var result = DataResult();
+    
+    var res = await MainAPI.createQuestion(question);
+    result.status = res ? DataStatus.ok : DataStatus.unknownError;
+
+    return result;
+  }
+
+  static Future<DataResult<List<Question>>> getQuestions() async {
+    var result = DataResult<List<Question>>();
+    
+    var res = await MainAPI.getQuestions();
+    result.result = res;
+    result.result.sort((e1, e2) => (e2.createdAt ?? DateTime(2970)).compareTo(e1.createdAt ?? DateTime(2970)));
+
+    return result;
+  }
 
 }

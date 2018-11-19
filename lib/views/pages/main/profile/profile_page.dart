@@ -111,7 +111,7 @@ class ProfilePageState extends State<ProfilePage> with SingleTickerProviderState
         ),
         backgroundColor: AppColors.appBar,
         actions: [
-          IconButton(
+          /*IconButton(
             icon: Icon(Icons.exit_to_app, color: Colors.white),
             onPressed: () {   
               DataProvider.flush();
@@ -120,16 +120,16 @@ class ProfilePageState extends State<ProfilePage> with SingleTickerProviderState
                 DefaultPageRoute(builder: (context) => StartPage()),
               );              
             }
-          ),
-          // IconButton(
-          //   icon: Icon(Icons.settings, color: Colors.white),
-          //   onPressed: () {   
-          //     Navigator.push(
-          //       context, 
-          //       DefaultPageRoute(builder: (context) => SettingsPage()),
-          //     );              
-          //   }
-          // )
+          ),*/
+          IconButton(
+            icon: Icon(Icons.settings, color: Colors.white),
+            onPressed: () {   
+              Navigator.push(
+                context, 
+                DefaultPageRoute(builder: (context) => SettingsPage()),
+              );              
+            }
+          )
         ]
       )
     );

@@ -12,6 +12,7 @@ import '../../models/api/ticket.dart';
 import '../../models/api/feed_item.dart';
 import '../../models/api/preferences.dart';
 import '../../models/api/feedback.dart';
+import '../../models/api/question.dart';
 
 import '../../helpers/storage/filters/shows_filter.dart';
 
@@ -45,6 +46,7 @@ class MainAPI {
   static const String preferences = '/preferences';
   static const String byEvent = '/by_event';
   static const String feedbacks = '/feedbacks';
+  static const String questions = '/questions';
 
   static String token;
   static int accountId;
@@ -420,10 +422,23 @@ class MainAPI {
     }
   }  
 
+   static Future<Preferences> updatePreferences(Preferences pref) async {
+    var res = await http.patch(url + users + preferences, 
+      body: json.encode(pref.toJson()),
+      headers: defaultHeader
+    );
+    //TODO: better error check
+    if (res.statusCode == HttpStatus.ok){
+      return Preferences.fromJson(json.decode(res.body));
+    } else {
+      return Preferences();
+    }
+  }  
+
   // FEEDBACK
 
-  static Future<bool> createFeedback(Feedback feedb) async {
-    var body = feedb.toJson();
+  static Future<bool> createFeedback(Feedback feedback) async {
+    var body = feedback.toJson();
     body['account_id'] = accountId;
     var res = await http.post(url + feedbacks, 
       body: json.encode(body),
@@ -433,6 +448,29 @@ class MainAPI {
     return res.statusCode == HttpStatus.created;
   }
   
+  // QUESTION
+
+  static Future<bool> createQuestion(Question question) async {
+    var body = question.toJson();
+    body['account_id'] = accountId;
+    var res = await http.post(url + questions, 
+      body: json.encode(body),
+      headers: defaultHeader
+    );
+    //TODO: better error check
+    return res.statusCode == HttpStatus.created;
+  }
+
+  static Future<List<Question>> getQuestions() async {
+    var res = await baseGetRequest(questions);
+    //TODO: better error check
+    if (res.statusCode == HttpStatus.ok){
+      List body = json.decode(res.body);
+      return  body.map<Question>((x) => Question.fromJson(x)).toList();
+    } else {
+      return [];
+    }
+  }
 
   // IMAGES
 

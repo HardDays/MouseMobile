@@ -26,6 +26,8 @@ dependencies:
   google_maps_webservice: ^0.0.7
   flutter_youtube: ^1.1.2
   flutter_map: ^0.1.4
+  random_string: ^0.0.2
+  share: ^0.5.3
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +77,12 @@ flutter:
     - assets/images/main/shows/check_form.png
     - assets/images/main/shows/paypal_logo.png
     - assets/images/main/shows/credit_card.png
+
+    - assets/images/main/settings/conv.png
+    - assets/images/main/settings/copy.png
+    - assets/images/main/settings/google.png
+    - assets/images/main/settings/twitter.png
+    - assets/images/main/settings/facebook.png
 
     - assets/images/main/tickets/qr.png
 

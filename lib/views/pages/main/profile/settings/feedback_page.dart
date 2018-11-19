@@ -37,7 +37,7 @@ class FeedbackPageState extends State<FeedbackPage> {
       (res){
         Navigator.pop(context);
         if (res.status == DataStatus.ok){
-          Dialogs.showMessageDialog(context, title: Translations.success, body: 'Thank you for your feedback!', ok: Translations.ok).then((res){
+          Dialogs.showMessageDialog(context, title: Translations.success, body: Translations.thankForFeedback, ok: Translations.ok).then((res){
             Navigator.pop(context);
           });
         } else {
@@ -45,7 +45,6 @@ class FeedbackPageState extends State<FeedbackPage> {
         }
       }
     );
-    
   }
 
   Widget buildSetting(String text, String type){
@@ -242,7 +241,7 @@ class FeedbackPageState extends State<FeedbackPage> {
                       margin: EdgeInsets.only(top: 25.0, bottom: 15.0),
                       height: 45.0,
                       width: MediaQuery.of(context).size.width * 0.5,
-                      child: MainButton('SEND',
+                      child: MainButton(Translations.send.toUpperCase(),
                         onTap: onSend,
                       )
                     )
