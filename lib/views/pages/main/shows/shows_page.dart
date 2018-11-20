@@ -29,11 +29,17 @@ import '../../../../helpers/view/formatter.dart';
 
 class ShowsPage extends StatefulWidget  {
 
-  String title = Translations.shows.toUpperCase();
+  String get title => Translations.shows.toUpperCase();
   final String icon = 'assets/images/main/shows_tab_icon.svg';
 
-  Widget appBar;
-  Function(Widget) onLoad;
+  Function onBuildAppBar;
+  Function onAppBarUpdate;
+
+  Widget buildAppBar(){
+    if (onBuildAppBar != null){
+      return onBuildAppBar();
+    }
+  }
 
   @override
   ShowsPageState createState() => ShowsPageState();
@@ -54,7 +60,7 @@ class ShowsPageState extends State<ShowsPage> with AutomaticKeepAliveClientMixin
   void initState() {
     super.initState();
 
-    widget.title = Translations.shows.toUpperCase();
+    widget.onBuildAppBar = buildAppBar;
 
     filter = DataProvider.getEventsFilter();
 
@@ -71,7 +77,7 @@ class ShowsPageState extends State<ShowsPage> with AutomaticKeepAliveClientMixin
     WidgetsBinding.instance.addPostFrameCallback(
       (_) {
         if (context != null){
-          buildAppBar(context);
+          widget.onAppBarUpdate();
         }
       }
     );
@@ -129,69 +135,70 @@ class ShowsPageState extends State<ShowsPage> with AutomaticKeepAliveClientMixin
     );
   }
 
-  void buildAppBar(BuildContext context){
-    widget.appBar = PreferredSize( 
-      preferredSize: Size(MediaQuery.of(context).size.width, 45.0),
-      child: AppBar(
-        iconTheme: IconThemeData(color: Colors.white),
-        elevation: 0.0,
-        title: Row(
-          children:[
-            Container(
-              margin: EdgeInsets.all(0.0),
-              padding: EdgeInsets.all(0.0),
-              width: 25.0,
-              height: 20.0,
-              child: DecoratedBox(
-                decoration: BoxDecoration(                               
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage('assets/images/start/mouse_logo.png'),
+  Widget buildAppBar(){
+    if (context != null){
+      return PreferredSize( 
+        preferredSize: Size(MediaQuery.of(context).size.width, 45.0),
+        child: AppBar(
+          iconTheme: IconThemeData(color: Colors.white),
+          elevation: 0.0,
+          title: Row(
+            children:[
+              Container(
+                margin: EdgeInsets.all(0.0),
+                padding: EdgeInsets.all(0.0),
+                width: 25.0,
+                height: 20.0,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(                               
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage('assets/images/start/mouse_logo.png'),
+                    ),
                   ),
+                )
+              ),
+              Padding(padding: EdgeInsets.only(left: 10.0)),
+              Text(widget.title,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16.0,
+                  fontFamily: 'Avenir-Black', 
+                // fontStyle: FontStyle.italic
                 ),
               )
+            ]
+          ),
+          backgroundColor: AppColors.appBar,
+          actions: [
+            IconButton(
+              icon: Icon(Icons.search, color: Colors.white),
+              onPressed: () {    
+                Navigator.push(
+                  this.context,
+                  DefaultPageRoute(builder: (context) => SearchPage()),
+                );               
+              }
             ),
-            Padding(padding: EdgeInsets.only(left: 10.0)),
-            Text(widget.title,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16.0,
-                fontFamily: 'Avenir-Black', 
-               // fontStyle: FontStyle.italic
+            IconButton(
+              icon: Container(
+                width: 20.0,
+                height: 20.0,
+                child: SvgPicture.asset('assets/images/common/filters_icon.svg',
+                  color: showFilters ? AppColors.mainRed : Colors.white
+                ),
               ),
+              onPressed: () { 
+                setState(() {
+                  showFilters = !showFilters;         
+                  widget.onAppBarUpdate();
+                });                  
+              }
             )
           ]
-        ),
-        backgroundColor: AppColors.appBar,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.search, color: Colors.white),
-            onPressed: () {    
-              Navigator.push(
-                this.context,
-                DefaultPageRoute(builder: (context) => SearchPage()),
-              );               
-            }
-          ),
-          IconButton(
-            icon: Container(
-              width: 20.0,
-              height: 20.0,
-              child: SvgPicture.asset('assets/images/common/filters_icon.svg',
-                color: showFilters ? AppColors.mainRed : Colors.white
-              ),
-            ),
-            onPressed: () { 
-              setState(() {
-                showFilters = !showFilters;         
-                buildAppBar(context);       
-              });                  
-            }
-          )
-        ]
-      )
-    );
-    widget.onLoad(widget.appBar);
+        )
+      );
+    }
   } 
 
   Widget buildFilters(){

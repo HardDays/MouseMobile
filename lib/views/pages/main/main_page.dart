@@ -30,10 +30,6 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
   TabController tabController;
   List pages;
 
-  MainPageState(){
-
-  }
-
   @override
   void initState() {
     super.initState();
@@ -69,14 +65,15 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
       }
     );
 
-    pages = [TicketsPage(bottomController: tabController), FeedPage(bottomController: tabController), ShowsPage(), ProfilePage(bottomController: tabController)];
+    pages = [TicketsPage(), FeedPage(), ShowsPage(), ProfilePage()];
     for (var page in pages){
-      page.onLoad = onAppBarLoad;
+     // page.onLoad = onAppBarLoad;
+     page.onAppBarUpdate = onAppBarUpdate;
     }
 
   }
   
-  void onAppBarLoad(Widget appbar){
+  void onAppBarUpdate(){
     setState(() {
           
     });
@@ -137,7 +134,7 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
   Widget build(BuildContext context) {  
     return Scaffold(
       resizeToAvoidBottomPadding: false,
-      appBar: pages[tabController.index].appBar ?? buildAppBar(),
+      appBar: pages[tabController.index].buildAppBar() ?? buildAppBar(),
       body: TabBarView(
         physics: NeverScrollableScrollPhysics(),
         children: List<Widget>.from(pages),

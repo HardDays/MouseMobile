@@ -34,15 +34,19 @@ import '../../../../helpers/view/formatter.dart';
 
 class FeedPage extends StatefulWidget  {
 
-  final String title = Translations.feed.toUpperCase();
+  String get title => Translations.feed.toUpperCase();
   final String icon = 'assets/images/main/feed_tab_icon.svg';
 
-  TabController bottomController;
+  Function onBuildAppBar;
+  Function onAppBarUpdate;
 
-  Widget appBar;
-  Function(Widget) onLoad;
+  Widget buildAppBar(){
+    if (onBuildAppBar != null){
+      return onBuildAppBar();
+    }
+  }
 
-  FeedPage({this.bottomController});
+  FeedPage();
 
   @override
   FeedPageState createState() => FeedPageState();
@@ -53,6 +57,8 @@ class FeedPageState extends State<FeedPage>  {
   @override
   void initState() {
     super.initState();
+
+    widget.onBuildAppBar = buildAppBar;
   
     WidgetsBinding.instance.addPostFrameCallback(
       (_) {
@@ -65,7 +71,7 @@ class FeedPageState extends State<FeedPage>  {
                 }
               }
             );
-            buildAppBar(context);
+            widget.onAppBarUpdate();
           } 
         }
       }
@@ -208,7 +214,7 @@ class FeedPageState extends State<FeedPage>  {
     );
   }
 
-  Widget  buildCard(FeedItem item){
+  Widget buildCard(FeedItem item){
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -338,45 +344,46 @@ class FeedPageState extends State<FeedPage>  {
     );
   }
 
-  void buildAppBar(BuildContext context){
-    widget.appBar = PreferredSize( 
-      preferredSize: Size(MediaQuery.of(context).size.width, 45.0),
-      child: AppBar(
-        iconTheme: IconThemeData(color: Colors.white),
-        elevation: 0.0,
-        title: Row(
-          children:[
-            Container(
-              margin: EdgeInsets.all(0.0),
-              padding: EdgeInsets.all(0.0),
-              width: 25.0,
-              height: 20.0,
-              child: DecoratedBox(
-                decoration: BoxDecoration(                               
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage('assets/images/start/mouse_logo.png'),
+  Widget buildAppBar(){
+    if (context != null){
+      return PreferredSize( 
+        preferredSize: Size(MediaQuery.of(context).size.width, 45.0),
+        child: AppBar(
+          iconTheme: IconThemeData(color: Colors.white),
+          elevation: 0.0,
+          title: Row(
+            children:[
+              Container(
+                margin: EdgeInsets.all(0.0),
+                padding: EdgeInsets.all(0.0),
+                width: 25.0,
+                height: 20.0,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(                               
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage('assets/images/start/mouse_logo.png'),
+                    ),
                   ),
+                )
+              ),
+              Padding(padding: EdgeInsets.only(left: 10.0)),
+              Text(widget.title,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16.0,
+                  fontFamily: 'Avenir-Black', 
+                // fontStyle: FontStyle.italic
                 ),
               )
-            ),
-            Padding(padding: EdgeInsets.only(left: 10.0)),
-            Text(widget.title,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16.0,
-                fontFamily: 'Avenir-Black', 
-               // fontStyle: FontStyle.italic
-              ),
-            )
+            ]
+          ),
+          backgroundColor: AppColors.appBar,
+          actions: [
           ]
-        ),
-        backgroundColor: AppColors.appBar,
-        actions: [
-        ]
-      )
-    );
-    widget.onLoad(widget.appBar);
+        )
+      );
+    }
   } 
 
   @override 
