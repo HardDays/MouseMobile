@@ -9,7 +9,7 @@ PODS:
     - Flutter
   - shared_preferences (0.0.1):
     - Flutter
-  - XCDYouTubeKit (2.6.0)
+  - XCDYouTubeKit (2.7.1)
 
 DEPENDENCIES:
   - Flutter (from `.symlinks/flutter/ios-release`)
@@ -18,17 +18,21 @@ DEPENDENCIES:
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - XCDYouTubeKit
+
 EXTERNAL SOURCES:
   Flutter:
-    :path: .symlinks/flutter/ios-release
+    :path: ".symlinks/flutter/ios-release"
   flutter_youtube:
-    :path: .symlinks/plugins/flutter_youtube/ios
+    :path: ".symlinks/plugins/flutter_youtube/ios"
   image_picker:
-    :path: .symlinks/plugins/image_picker/ios
+    :path: ".symlinks/plugins/image_picker/ios"
   path_provider:
-    :path: .symlinks/plugins/path_provider/ios
+    :path: ".symlinks/plugins/path_provider/ios"
   shared_preferences:
-    :path: .symlinks/plugins/shared_preferences/ios
+    :path: ".symlinks/plugins/shared_preferences/ios"
 
 SPEC CHECKSUMS:
   Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
@@ -36,8 +40,8 @@ SPEC CHECKSUMS:
   image_picker: ee00aab0487cedc80a304085219503cc6d0f2e22
   path_provider: 09407919825bfe3c2deae39453b7a5b44f467873
   shared_preferences: 5a1d487c427ee18fcd3ea1f2a131569481834b53
-  XCDYouTubeKit: 76f14b161e9563541a3674b6b5bfb61c4b72b269
+  XCDYouTubeKit: c8567fd5cb388a3099fa26eee4b30df2a467847d
 
 PODFILE CHECKSUM: 7765ea4305eaab0b3dfd384c7de11902aa3195fd
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3
