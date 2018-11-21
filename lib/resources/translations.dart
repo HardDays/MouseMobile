@@ -188,6 +188,51 @@ class Translations {
       'textRUB': 'Ruble (₽)',
       'textEUR': 'Euro (€)',
 
+      'emailUpdated': 'Email successfully updated',
+      'changeEmail': 'Change email',
+      'currentEmail': 'Current email',
+      'update': 'Update',
+      'passwordUpdated': 'Password successfully updated',
+      'wrongCurrentPassword': 'Wrong current password',
+      'changePassword': 'Change Password',
+      'currentPassword': 'Current password',
+      'newPassword': 'New password',
+      'confrimPassword': 'Confirm password',
+      'phoneUpdated': 'Phone successfully updated',
+      'phoneAlreadyTaken': 'Phone already taken',
+      'changePhone': 'Change phone',
+      'currentPhone': 'Current phone',
+      'newPhone': 'New phone',
+      'thankForQuestion': 'Thank you for your question!',
+      'top5Questions': 'Top 5 questions',
+      'sendAQuestion': 'Send a question',
+      'howToCreateEvent': 'How to Create an Event',
+      'createEventAnswer': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mattis nunc sed blandit libero volutpat sed cras ornare. Volutpat sed cras ornare arcu dui. In tellus integer feugiat scelerisque varius morbi enim nunc faucibus. Elit sed vulputate mi sit amet mauris. Condimentum vitae sapien pellentesque habitant morbi tristique. Et egestas quis ipsum suspendisse. Sagittis vitae et leo duis ut diam quam nulla porttitor. Urna id volutpat lacus laoreet non curabitur gravida. Sed vulputate mi sit amet. Risus viverra adipiscing at in tellus integer feugiat scelerisque varius. Nunc mattis enim ut tellus elementum sagittis vitae. Lorem dolor sed viverra ipsum nunc aliquet bibendum. Malesuada proin libero nunc consequat. Felis eget nunc lobortis mattis. Fermentum et sollicitudin ac orci phasellus egestas tellus rutrum tellus. Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque viverra. At urna condimentum mattis pellentesque id nibh tortor id. Vulputate ut pharetra sit amet aliquam id diam maecenas. Tellus at urna condimentum mattis pellentesque id nibh tortor. Nulla facilisi etiam dignissim diam. A cras semper auctor neque vitae tempus quam. ',
+      'howToCreateCrowdfunding': 'How to Create a Crowdfunding Event',
+      'createCrowdfundingAnswer': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mattis nunc sed blandit libero volutpat sed cras ornare. Volutpat sed cras ornare arcu dui. In tellus integer feugiat scelerisque varius morbi enim nunc faucibus. Elit sed vulputate mi sit amet mauris. Condimentum vitae sapien pellentesque habitant morbi tristique. Et egestas quis ipsum suspendisse. Sagittis vitae et leo duis ut diam quam nulla porttitor. Urna id volutpat lacus laoreet non curabitur gravida. Sed vulputate mi sit amet. Risus viverra adipiscing at in tellus integer feugiat scelerisque varius. Nunc mattis enim ut tellus elementum sagittis vitae. Lorem dolor sed viverra ipsum nunc aliquet bibendum. Malesuada proin libero nunc consequat. Felis eget nunc lobortis mattis. Fermentum et sollicitudin ac orci phasellus egestas tellus rutrum tellus. Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque viverra. At urna condimentum mattis pellentesque id nibh tortor id. Vulputate ut pharetra sit amet aliquam id diam maecenas. Tellus at urna condimentum mattis pellentesque id nibh tortor. Nulla facilisi etiam dignissim diam. A cras semper auctor neque vitae tempus quam. ',
+      'howToSearch': 'How to Search for a Show in my Area',
+      'searchAnswer': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mattis nunc sed blandit libero volutpat sed cras ornare. Volutpat sed cras ornare arcu dui. In tellus integer feugiat scelerisque varius morbi enim nunc faucibus. Elit sed vulputate mi sit amet mauris. Condimentum vitae sapien pellentesque habitant morbi tristique. Et egestas quis ipsum suspendisse. Sagittis vitae et leo duis ut diam quam nulla porttitor. Urna id volutpat lacus laoreet non curabitur gravida. Sed vulputate mi sit amet. Risus viverra adipiscing at in tellus integer feugiat scelerisque varius. Nunc mattis enim ut tellus elementum sagittis vitae. Lorem dolor sed viverra ipsum nunc aliquet bibendum. Malesuada proin libero nunc consequat. Felis eget nunc lobortis mattis. Fermentum et sollicitudin ac orci phasellus egestas tellus rutrum tellus. Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque viverra. At urna condimentum mattis pellentesque id nibh tortor id. Vulputate ut pharetra sit amet aliquam id diam maecenas. Tellus at urna condimentum mattis pellentesque id nibh tortor. Nulla facilisi etiam dignissim diam. A cras semper auctor neque vitae tempus quam. ',
+      'howToUploadVideo': 'How to Upload my Videos (Artist)',
+      'uploadVideoAnswer': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mattis nunc sed blandit libero volutpat sed cras ornare. Volutpat sed cras ornare arcu dui. In tellus integer feugiat scelerisque varius morbi enim nunc faucibus. Elit sed vulputate mi sit amet mauris. Condimentum vitae sapien pellentesque habitant morbi tristique. Et egestas quis ipsum suspendisse. Sagittis vitae et leo duis ut diam quam nulla porttitor. Urna id volutpat lacus laoreet non curabitur gravida. Sed vulputate mi sit amet. Risus viverra adipiscing at in tellus integer feugiat scelerisque varius. Nunc mattis enim ut tellus elementum sagittis vitae. Lorem dolor sed viverra ipsum nunc aliquet bibendum. Malesuada proin libero nunc consequat. Felis eget nunc lobortis mattis. Fermentum et sollicitudin ac orci phasellus egestas tellus rutrum tellus. Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque viverra. At urna condimentum mattis pellentesque id nibh tortor id. Vulputate ut pharetra sit amet aliquam id diam maecenas. Tellus at urna condimentum mattis pellentesque id nibh tortor. Nulla facilisi etiam dignissim diam. A cras semper auctor neque vitae tempus quam. ',
+      'howToFindArtist': 'How to Find My Favorite Artist',
+      'findArtistAnswer': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mattis nunc sed blandit libero volutpat sed cras ornare. Volutpat sed cras ornare arcu dui. In tellus integer feugiat scelerisque varius morbi enim nunc faucibus. Elit sed vulputate mi sit amet mauris. Condimentum vitae sapien pellentesque habitant morbi tristique. Et egestas quis ipsum suspendisse. Sagittis vitae et leo duis ut diam quam nulla porttitor. Urna id volutpat lacus laoreet non curabitur gravida. Sed vulputate mi sit amet. Risus viverra adipiscing at in tellus integer feugiat scelerisque varius. Nunc mattis enim ut tellus elementum sagittis vitae. Lorem dolor sed viverra ipsum nunc aliquet bibendum. Malesuada proin libero nunc consequat. Felis eget nunc lobortis mattis. Fermentum et sollicitudin ac orci phasellus egestas tellus rutrum tellus. Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque viverra. At urna condimentum mattis pellentesque id nibh tortor id. Vulputate ut pharetra sit amet aliquam id diam maecenas. Tellus at urna condimentum mattis pellentesque id nibh tortor. Nulla facilisi etiam dignissim diam. A cras semper auctor neque vitae tempus quam. ',
+      'subject': 'Subject',
+      'message': 'Message',
+      'send': 'Send',
+      'noSubject': 'No subject',
+      'noMessage': 'No message',
+      'thankForFeedback': 'Thank you for your feedback!',
+      'mouseTerms': 'Mouse terms of service',
+      'mousePrivacy': 'Mouse privacy policy',
+      'termsText': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mattis nunc sed blandit libero volutpat sed cras ornare. Volutpat sed cras ornare arcu dui. In tellus integer feugiat scelerisque varius morbi enim nunc faucibus. Elit sed vulputate mi sit amet mauris. Condimentum vitae sapien pellentesque habitant morbi tristique. Et egestas quis ipsum suspendisse. Sagittis vitae et leo duis ut diam quam nulla porttitor. Urna id volutpat lacus laoreet non curabitur gravida. Sed vulputate mi sit amet. Risus viverra adipiscing at in tellus integer feugiat scelerisque varius. Nunc mattis enim ut tellus elementum sagittis vitae. Lorem dolor sed viverra ipsum nunc aliquet bibendum. Malesuada proin libero nunc consequat. Felis eget nunc lobortis mattis. Fermentum et sollicitudin ac orci phasellus egestas tellus rutrum tellus. Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque viverra. At urna condimentum mattis pellentesque id nibh tortor id. Vulputate ut pharetra sit amet aliquam id diam maecenas. Tellus at urna condimentum mattis pellentesque id nibh tortor. Nulla facilisi etiam dignissim diam. A cras semper auctor neque vitae tempus quam. ',
+      'privacyText': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mattis nunc sed blandit libero volutpat sed cras ornare. Volutpat sed cras ornare arcu dui. In tellus integer feugiat scelerisque varius morbi enim nunc faucibus. Elit sed vulputate mi sit amet mauris. Condimentum vitae sapien pellentesque habitant morbi tristique. Et egestas quis ipsum suspendisse. Sagittis vitae et leo duis ut diam quam nulla porttitor. Urna id volutpat lacus laoreet non curabitur gravida. Sed vulputate mi sit amet. Risus viverra adipiscing at in tellus integer feugiat scelerisque varius. Nunc mattis enim ut tellus elementum sagittis vitae. Lorem dolor sed viverra ipsum nunc aliquet bibendum. Malesuada proin libero nunc consequat. Felis eget nunc lobortis mattis. Fermentum et sollicitudin ac orci phasellus egestas tellus rutrum tellus. Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque viverra. At urna condimentum mattis pellentesque id nibh tortor id. Vulputate ut pharetra sit amet aliquam id diam maecenas. Tellus at urna condimentum mattis pellentesque id nibh tortor. Nulla facilisi etiam dignissim diam. A cras semper auctor neque vitae tempus quam. ',
+      'newEmail': 'New email',
+      'shareYourCode': 'Share your code',
+      'getYourFriends': 'Get your friends to use your code when joining Mouse or purchasing tickets to shows.',
+      'moreFriends': 'The more friends join or buy tickets using your code, the bigger your rewards are.',
+      'shareIn': 'Share in',
+      'share': 'Share',
+
       // enums
 
       'fan': 'Fan',
@@ -476,120 +521,165 @@ class Translations {
       'past': 'Прошлые', 
       'follow': 'Follow', 
       'unfollow': 'Unfollow', 
-      'search': 'Search',
-      'ticket': 'Ticket',
-      'pleaseLogin': 'Please, log in for this action',
-      'map': 'Map',
-      'yes': 'Yes',
-      'no': 'No',
+      'search': 'Поиск',
+      'ticket': 'Билет',
+      'pleaseLogin': 'Пожалуйста, войдите для этого действия',
+      'map': 'Карта',
+      'yes': 'Да',
+      'no': 'Нет',
       'textUSD': 'Доллары (\$)',
       'textRUB': 'Рубли (₽)',
       'textEUR': 'Евро (€)',
 
+      'emailUpdated': 'Почта успешно изменена',
+      'changeEmail': 'Старый email',
+      'currentEmail': 'Текущий email',
+      'update': 'Обновить',
+      'passwordUpdated': 'Пароль успешно обновлен',
+      'wrongCurrentPassword': 'Неверный текущий пароль',
+      'changePassword': 'Сменить пароль',
+      'currentPassword': 'Текущий пароль',
+      'newPassword': 'Новый пароль',
+      'confrimPassword': 'Подтверждение',
+      'phoneUpdated': 'Номер успешно обновлен',
+      'phoneAlreadyTaken': 'Номер уже занят',
+      'changePhone': 'Сменить номер',
+      'currentPhone': 'Текущий номер',
+      'newPhone': 'Новый номер',
+      'thankForQuestion': 'Спасибо за ваш вопрос!',
+      'top5Questions': 'Топ 5 вопросов',
+      'sendAQuestion': 'Задать вопрос',
+      'howToCreateEvent': 'Как создать мероприятие',
+      'createEventAnswer': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mattis nunc sed blandit libero volutpat sed cras ornare. Volutpat sed cras ornare arcu dui. In tellus integer feugiat scelerisque varius morbi enim nunc faucibus. Elit sed vulputate mi sit amet mauris. Condimentum vitae sapien pellentesque habitant morbi tristique. Et egestas quis ipsum suspendisse. Sagittis vitae et leo duis ut diam quam nulla porttitor. Urna id volutpat lacus laoreet non curabitur gravida. Sed vulputate mi sit amet. Risus viverra adipiscing at in tellus integer feugiat scelerisque varius. Nunc mattis enim ut tellus elementum sagittis vitae. Lorem dolor sed viverra ipsum nunc aliquet bibendum. Malesuada proin libero nunc consequat. Felis eget nunc lobortis mattis. Fermentum et sollicitudin ac orci phasellus egestas tellus rutrum tellus. Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque viverra. At urna condimentum mattis pellentesque id nibh tortor id. Vulputate ut pharetra sit amet aliquam id diam maecenas. Tellus at urna condimentum mattis pellentesque id nibh tortor. Nulla facilisi etiam dignissim diam. A cras semper auctor neque vitae tempus quam. ',
+      'howToCreateCrowdfunding': 'Как создать краудфандинговое мероприятие',
+      'createCrowdfundingAnswer': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mattis nunc sed blandit libero volutpat sed cras ornare. Volutpat sed cras ornare arcu dui. In tellus integer feugiat scelerisque varius morbi enim nunc faucibus. Elit sed vulputate mi sit amet mauris. Condimentum vitae sapien pellentesque habitant morbi tristique. Et egestas quis ipsum suspendisse. Sagittis vitae et leo duis ut diam quam nulla porttitor. Urna id volutpat lacus laoreet non curabitur gravida. Sed vulputate mi sit amet. Risus viverra adipiscing at in tellus integer feugiat scelerisque varius. Nunc mattis enim ut tellus elementum sagittis vitae. Lorem dolor sed viverra ipsum nunc aliquet bibendum. Malesuada proin libero nunc consequat. Felis eget nunc lobortis mattis. Fermentum et sollicitudin ac orci phasellus egestas tellus rutrum tellus. Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque viverra. At urna condimentum mattis pellentesque id nibh tortor id. Vulputate ut pharetra sit amet aliquam id diam maecenas. Tellus at urna condimentum mattis pellentesque id nibh tortor. Nulla facilisi etiam dignissim diam. A cras semper auctor neque vitae tempus quam. ',
+      'howToSearch': 'Как найти исполнителя рядом со мной',
+      'searchAnswer': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mattis nunc sed blandit libero volutpat sed cras ornare. Volutpat sed cras ornare arcu dui. In tellus integer feugiat scelerisque varius morbi enim nunc faucibus. Elit sed vulputate mi sit amet mauris. Condimentum vitae sapien pellentesque habitant morbi tristique. Et egestas quis ipsum suspendisse. Sagittis vitae et leo duis ut diam quam nulla porttitor. Urna id volutpat lacus laoreet non curabitur gravida. Sed vulputate mi sit amet. Risus viverra adipiscing at in tellus integer feugiat scelerisque varius. Nunc mattis enim ut tellus elementum sagittis vitae. Lorem dolor sed viverra ipsum nunc aliquet bibendum. Malesuada proin libero nunc consequat. Felis eget nunc lobortis mattis. Fermentum et sollicitudin ac orci phasellus egestas tellus rutrum tellus. Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque viverra. At urna condimentum mattis pellentesque id nibh tortor id. Vulputate ut pharetra sit amet aliquam id diam maecenas. Tellus at urna condimentum mattis pellentesque id nibh tortor. Nulla facilisi etiam dignissim diam. A cras semper auctor neque vitae tempus quam. ',
+      'howToUploadVideo': 'Как загрузить видео',
+      'uploadVideoAnswer': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mattis nunc sed blandit libero volutpat sed cras ornare. Volutpat sed cras ornare arcu dui. In tellus integer feugiat scelerisque varius morbi enim nunc faucibus. Elit sed vulputate mi sit amet mauris. Condimentum vitae sapien pellentesque habitant morbi tristique. Et egestas quis ipsum suspendisse. Sagittis vitae et leo duis ut diam quam nulla porttitor. Urna id volutpat lacus laoreet non curabitur gravida. Sed vulputate mi sit amet. Risus viverra adipiscing at in tellus integer feugiat scelerisque varius. Nunc mattis enim ut tellus elementum sagittis vitae. Lorem dolor sed viverra ipsum nunc aliquet bibendum. Malesuada proin libero nunc consequat. Felis eget nunc lobortis mattis. Fermentum et sollicitudin ac orci phasellus egestas tellus rutrum tellus. Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque viverra. At urna condimentum mattis pellentesque id nibh tortor id. Vulputate ut pharetra sit amet aliquam id diam maecenas. Tellus at urna condimentum mattis pellentesque id nibh tortor. Nulla facilisi etiam dignissim diam. A cras semper auctor neque vitae tempus quam. ',
+      'howToFindArtist': 'Как найти моего любимого исполнителя',
+      'findArtistAnswer': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mattis nunc sed blandit libero volutpat sed cras ornare. Volutpat sed cras ornare arcu dui. In tellus integer feugiat scelerisque varius morbi enim nunc faucibus. Elit sed vulputate mi sit amet mauris. Condimentum vitae sapien pellentesque habitant morbi tristique. Et egestas quis ipsum suspendisse. Sagittis vitae et leo duis ut diam quam nulla porttitor. Urna id volutpat lacus laoreet non curabitur gravida. Sed vulputate mi sit amet. Risus viverra adipiscing at in tellus integer feugiat scelerisque varius. Nunc mattis enim ut tellus elementum sagittis vitae. Lorem dolor sed viverra ipsum nunc aliquet bibendum. Malesuada proin libero nunc consequat. Felis eget nunc lobortis mattis. Fermentum et sollicitudin ac orci phasellus egestas tellus rutrum tellus. Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque viverra. At urna condimentum mattis pellentesque id nibh tortor id. Vulputate ut pharetra sit amet aliquam id diam maecenas. Tellus at urna condimentum mattis pellentesque id nibh tortor. Nulla facilisi etiam dignissim diam. A cras semper auctor neque vitae tempus quam. ',
+      'subject': 'Тема',
+      'message': 'Сообщение',
+      'send': 'Отправить',
+      'noSubject': 'Без темы',
+      'noMessage': 'Пустое сообщение',
+      'thankForFeedback': 'Спасибо за ваш отзыв!',
+      'mouseTerms': 'Условия использования MOUSE',
+      'mousePrivacy': 'Политика конфиденциальности MOUSE',
+      'termsText': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mattis nunc sed blandit libero volutpat sed cras ornare. Volutpat sed cras ornare arcu dui. In tellus integer feugiat scelerisque varius morbi enim nunc faucibus. Elit sed vulputate mi sit amet mauris. Condimentum vitae sapien pellentesque habitant morbi tristique. Et egestas quis ipsum suspendisse. Sagittis vitae et leo duis ut diam quam nulla porttitor. Urna id volutpat lacus laoreet non curabitur gravida. Sed vulputate mi sit amet. Risus viverra adipiscing at in tellus integer feugiat scelerisque varius. Nunc mattis enim ut tellus elementum sagittis vitae. Lorem dolor sed viverra ipsum nunc aliquet bibendum. Malesuada proin libero nunc consequat. Felis eget nunc lobortis mattis. Fermentum et sollicitudin ac orci phasellus egestas tellus rutrum tellus. Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque viverra. At urna condimentum mattis pellentesque id nibh tortor id. Vulputate ut pharetra sit amet aliquam id diam maecenas. Tellus at urna condimentum mattis pellentesque id nibh tortor. Nulla facilisi etiam dignissim diam. A cras semper auctor neque vitae tempus quam. ',
+      'privacyText': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mattis nunc sed blandit libero volutpat sed cras ornare. Volutpat sed cras ornare arcu dui. In tellus integer feugiat scelerisque varius morbi enim nunc faucibus. Elit sed vulputate mi sit amet mauris. Condimentum vitae sapien pellentesque habitant morbi tristique. Et egestas quis ipsum suspendisse. Sagittis vitae et leo duis ut diam quam nulla porttitor. Urna id volutpat lacus laoreet non curabitur gravida. Sed vulputate mi sit amet. Risus viverra adipiscing at in tellus integer feugiat scelerisque varius. Nunc mattis enim ut tellus elementum sagittis vitae. Lorem dolor sed viverra ipsum nunc aliquet bibendum. Malesuada proin libero nunc consequat. Felis eget nunc lobortis mattis. Fermentum et sollicitudin ac orci phasellus egestas tellus rutrum tellus. Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque viverra. At urna condimentum mattis pellentesque id nibh tortor id. Vulputate ut pharetra sit amet aliquam id diam maecenas. Tellus at urna condimentum mattis pellentesque id nibh tortor. Nulla facilisi etiam dignissim diam. A cras semper auctor neque vitae tempus quam. ',
+      'newEmail': 'Новый email',
+      'shareYourCode': 'Поделитесь Вашим кодом',
+      'getYourFriends': 'Поделитесь кодом с Вашими друзьями для покупки билетов.',
+      'moreFriends': 'Чем больше друзей вы приведете, тем больше награда.',
+      'shareIn': 'Поделиться в',
+      'share': 'Поделиться',
       // enums
 
-      'fan': 'Fan',
-      'artist': 'Artist',
-      'venue': 'Venue',
+      'fan': 'Фанат',
+      'artist': 'Исполнитель',
+      'venue': 'Площадки',
       'vr': 'VR',
       'in_person': 'In person',
-      'blues': 'Blues',
-      'children_music': 'Children music',
-      'classical': 'Classical',
-      'country': 'Country',
-      'electronic': 'Electronic',
-      'holiday': 'Holiday',
-      'opera': 'Opera',
-      'singer': 'Singer',
-      'latino': 'Latino',
-      'jazz': 'Jazz',
-      'pop': 'Pop',
-      'soul': 'Soul',
+      'blues': 'Блюз',
+      'children_music': 'Детская музыка',
+      'classical': 'Классика',
+      'country': 'Кантри',
+      'electronic': 'Электроника',
+      'holiday': 'Праздничная',
+      'opera': 'Опера',
+      'singer': 'Певец',
+      'latino': 'Латина',
+      'jazz': 'Джаз',
+      'pop': 'Поп',
+      'soul': 'Соул',
       'musicals': 'Musicals',
-      'dance': 'Dance',
-      'world': 'World',
-      'hip_hop': 'Hip hop',
-      'alternative': 'Alternative',
-      'christian_gospel': 'Christian gospel',
-      'rock': 'Rock',
-      'vocal': 'Vocal',
-      'reggae': 'Reggae',
-      'easy_listening': 'Easy listening',
-      'j_pop': 'J-pop',
-      'enka': 'Enka',
-      'anime': 'Anime',
-      'kayokyoku': 'Kayokyoku',
-      'k_pop': 'K-pop',
-      'karaoke': 'Karaoke',
-      'instrumental': 'Instrumental',
-      'brazilian': 'Brazilian',
+      'dance': 'Танцевальная',
+      'world': 'Фолк',
+      'hip_hop': 'Хип-хоп',
+      'alternative': 'Альтернатива',
+      'christian_gospel': 'Госпел',
+      'rock': 'Рок',
+      'vocal': 'Вокальная',
+      'reggae': 'Регги',
+      'easy_listening': 'Лёгкая музыка',
+      'j_pop': 'J-поп',
+      'enka': 'Енка',
+      'anime': 'Аниме',
+      'kayokyoku': 'Каёкёку',
+      'k_pop': 'K-поп',
+      'karaoke': 'Караоке',
+      'instrumental': 'Инструментальная',
+      'brazilian': 'Бразильская',
       'spoken_word': 'Spoken word',
-      'disney': 'Disney',
-      'french_pop': 'French pop',
-      'german_pop': 'German pop',
-      'german_folk': 'German folk',
-      'new_age': 'New age',
-      'night_club': 'Night club',
-      'concert_hall': 'Concert hall',
-      'event_space': 'Event space',
-      'additional_room': 'Additional room',
-      'theatre': 'Theatre',
-      'other': 'Other',
-      'stadium_arena': 'Stadium arena',
-      'outdoor_space': 'Outdoor space',
-      'restaurant': 'Restaurant',
-      'bar': 'Bar',
-      'private_residence': 'Private residence',
+      'disney': 'Дисней',
+      'french_pop': 'Французский поп',
+      'german_pop': 'Немецкий поп',
+      'german_folk': 'Немецкий фолк',
+      'new_age': 'Нью эйдж',
+
+      'night_club': 'Ночной клуб',
+      'concert_hall': 'Концертный холл',
+      'event_space': 'Место площадки',
+      'additional_room': 'Доп. комнаты',
+      'theatre': 'Театр',
+      'other': 'Другое',
+      'stadium_arena': 'Стадион',
+      'outdoor_space': 'Открытое пространство',
+      'restaurant': 'Ресторан',
+      'bar': 'Бар',
+      'private_residence': 'Приватная резиденция',
 
 
       //fields
 
-      'description': 'Description',
-      'address': 'Address',
-      'phone': 'Phone',
-      'about': 'About',
-      'user_name': 'Username',
-      'display_name': 'Name',
-      'stage_name': 'Stage name',
-      'genre': 'Genre',
+      'description': 'Описание',
+      'address': 'Адрес',
+      'phone': 'Номер',
+      'about': 'Инфо',
+      'user_name': 'Юзернейм',
+      'display_name': 'Имя',
+      'stage_name': 'Имя',
+      'genre': 'Жанр',
       
       //weekdays
 
-      'Sunday': 'Sunday',
-      'Monday': 'Monday',
-      'Tuesday': 'Tuesday',
-      'Wednesday': 'Wednesday',
-      'Thursday': 'Thursday',
-      'Friday': 'Friday',
-      'Saturday': 'Saturday',
+      'Sunday': 'Воскресенье',
+      'Monday': 'Понедельник',
+      'Tuesday': 'Вторник',
+      'Wednesday': 'Среда',
+      'Thursday': 'Четверг',
+      'Friday': 'Пятница',
+      'Saturday': 'Суббота',
 
-      'sunday': 'Sunday',
-      'monday': 'Monday',
-      'tuesday': 'Tuesday',
-      'wednesday': 'Wednesday',
-      'thursday': 'Thursday',
-      'friday': 'Friday',
-      'saturday': 'Saturday',
+      'sunday': 'Воскресенье',
+      'monday': 'Понедельник',
+      'tuesday': 'Вторник',
+      'wednesday': 'Среда',
+      'thursday': 'Четверг',
+      'friday': 'Пятница',
+      'saturday': 'Суббота',
 
       //months
 
-      'September': 'September',
-      'October': 'October',
-      'November': 'November',
-      'December': 'December',
-      'January': 'January',
-      'February': 'February',
-      'March': 'March',
-      'April': 'April',
-      'May': 'May',
-      'June': 'June',
-      'July': 'July',
-      'August': 'August',
+      'September': 'Сентябрь',
+      'October': 'Октябрь',
+      'November': 'Ноябрь',
+      'December': 'Декабрь',
+      'January': 'Январь',
+      'February': 'Февраль',
+      'March': 'Март',
+      'April': 'Апрель',
+      'May': 'Май',
+      'June': 'Июнь',
+      'July': 'Июль',
+      'August': 'Август',
 
       //distance
 
-      'km': 'Km',
-      'mi': 'Miles',
+      'km': 'Км',
+      'mi': 'Мили',
 
       //currency
 
@@ -783,6 +873,50 @@ class Translations {
   static String get map => words[locale]['map'];
   static String get yes => words[locale]['yes'];
   static String get no => words[locale]['no'];
+  static String get emailUpdated => words[locale]['emailUpdated'];
+  static String get changeEmail => words[locale]['changeEmail'];
+  static String get currentEmail => words[locale]['currentEmail'];
+  static String get update => words[locale]['update'];
+  static String get passwordUpdated => words[locale]['passwordUpdated'];
+  static String get wrongCurrentPassword => words[locale]['wrongCurrentPassword'];
+  static String get changePassword => words[locale]['changePassword'];
+  static String get currentPassword => words[locale]['currentPassword'];
+  static String get newPassword => words[locale]['newPassword'];
+  static String get confrimPassword => words[locale]['confrimPassword'];
+  static String get phoneUpdated => words[locale]['phoneUpdated'];
+  static String get phoneAlreadyTaken => words[locale]['phoneAlreadyTaken'];
+  static String get changePhone => words[locale]['changePhone'];
+  static String get currentPhone => words[locale]['currentPhone'];
+  static String get newPhone => words[locale]['newPhone'];
+  static String get thankForQuestion => words[locale]['thankForQuestion'];
+  static String get top5Questions => words[locale]['top5Questions'];
+  static String get sendAQuestion => words[locale]['sendAQuestion'];
+  static String get howToCreateEvent => words[locale]['howToCreateEvent'];
+  static String get createEventAnswer => words[locale]['createEventAnswer'];
+  static String get howToCreateCrowdfunding => words[locale]['howToCreateCrowdfunding'];
+  static String get createCrowdfundingAnswer => words[locale]['createCrowdfundingAnswer'];
+  static String get howToSearch => words[locale]['howToSearch'];
+  static String get searchAnswer => words[locale]['searchAnswer'];
+  static String get howToUploadVideo => words[locale]['howToUploadVideo'];
+  static String get uploadVideoAnswer => words[locale]['uploadVideoAnswer'];
+  static String get howToFindArtist => words[locale]['howToFindArtist'];
+  static String get findArtistAnswer => words[locale]['findArtistAnswer'];
+  static String get subject => words[locale]['subject'];
+  static String get message => words[locale]['message'];
+  static String get send => words[locale]['send'];
+  static String get noSubject => words[locale]['noSubject'];
+  static String get noMessage => words[locale]['noMessage'];
+  static String get thankForFeedback => words[locale]['thankForFeedback'];
+  static String get mouseTerms => words[locale]['mouseTerms'];
+  static String get mousePrivacy => words[locale]['mousePrivacy'];
+  static String get termsText => words[locale]['termsText'];
+  static String get privacyText => words[locale]['privacyText'];
+  static String get newEmail => words[locale]['newEmail'];
+  static String get share => words[locale]['share'];
+  static String get shareYourCode => words[locale]['shareYourCode'];
+  static String get getYourFriends => words[locale]['getYourFriends'];
+  static String get moreFriends => words[locale]['moreFriends'];
+  static String get shareIn => words[locale]['shareIn'];
 
   static String translateEnum(String word){
     if (words[locale].containsKey(word)){

@@ -471,7 +471,7 @@ class PaymentPageState extends State<PaymentPage> {
                               ),
                             ),
                             Padding(padding: EdgeInsets.only(left: 5.0)),
-                            Text('${totalPrice().toStringAsFixed(2)} ${widget.tickets.keys.toList()[0].currency}',
+                            Text('${Translations.translateEnum(widget.tickets.keys.toList()[0].currency)}${totalPrice().toStringAsFixed(2)}',
                               style: TextStyle(
                                 color: Colors.black,
                                 fontFamily: 'Avenir-Heavy', 

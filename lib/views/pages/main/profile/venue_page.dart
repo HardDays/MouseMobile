@@ -319,7 +319,6 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
                         )
                       ) : 
                       Container(),
-
                       Column(
                         children: List.generate(account.emails.length, 
                           (ind) {
@@ -352,7 +351,6 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
                           }
                         )
                       ),
-
                       account.address != null ?
                       Row(
                         children: <Widget>[
@@ -389,7 +387,6 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
               ],
             )
           ),
-          
           Container(
             margin: EdgeInsets.only(left: 15.0, right: 15.0),
             child: Row(
@@ -438,7 +435,6 @@ class VenuePageState extends State<VenuePage> with SingleTickerProviderStateMixi
               ],
             ),
           ),
-
           Container(
             margin: EdgeInsets.only(right: 15.0, left: 15.0, top: 20.0),
             child: FollowersButton(account: account)

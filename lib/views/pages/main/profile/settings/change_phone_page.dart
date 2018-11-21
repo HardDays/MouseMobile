@@ -34,15 +34,15 @@ class ChangePhonePageState extends State<ChangePhonePage> {
     formKey.currentState.save();
     if (formKey.currentState.validate()){
       Dialogs.showLoader(context);
-      DataProvider.updateUser(User(email:  DataProvider.currentUser.email, registerPhone: phone)).then(
+      DataProvider.updateUser(User(registerPhone: phone)).then(
         (res){
           Navigator.pop(context);
           if (res.status == DataStatus.ok){
-            Dialogs.showMessageDialog(context, title: Translations.success, body: 'Email successfully updated', ok: Translations.ok).then((res){
+            Dialogs.showMessageDialog(context, title: Translations.success, body: Translations.phoneUpdated, ok: Translations.ok).then((res){
               Navigator.pop(context);
             });
           } else {
-            Dialogs.showMessageDialog(context, title: Translations.error, body: Translations.emailAlreadyTaken, ok: Translations.ok);
+            Dialogs.showMessageDialog(context, title: Translations.error, body: Translations.phoneAlreadyTaken, ok: Translations.ok);
           }
         }
       );
@@ -81,7 +81,7 @@ class ChangePhonePageState extends State<ChangePhonePage> {
         title: Row(
           children:[
             Container(
-              child: Text('CHANGE PHONE',
+              child: Text(Translations.changePhone.toUpperCase(),
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16.0,
@@ -130,7 +130,7 @@ class ChangePhonePageState extends State<ChangePhonePage> {
                     Container(
                       margin: EdgeInsets.only(left: 10.0, top: 15.0, bottom: 15.0),
                       alignment: Alignment.topLeft,
-                      child: Text('CURRENT PHONE:',
+                      child: Text('${Translations.currentPhone.toUpperCase()}:',
                         style: TextStyle(
                           color: Colors.white.withOpacity(0.8),
                           fontSize: 16.0,
@@ -139,7 +139,7 @@ class ChangePhonePageState extends State<ChangePhonePage> {
                       ),
                     ),
                     buildSetting(
-                      Text(DataProvider.currentUser.registerPhone ?? 'Phone is empty',
+                      Text(DataProvider.currentUser.registerPhone ?? '-------',
                         maxLines: 1,
                         style: TextStyle(
                           color: Colors.white,
@@ -151,7 +151,7 @@ class ChangePhonePageState extends State<ChangePhonePage> {
                     Container(
                       margin: EdgeInsets.only(left: 10.0, top: 15.0, bottom: 15.0),
                       alignment: Alignment.topLeft,
-                      child: Text('NEW PHONE:',
+                      child: Text('${Translations.newPhone.toUpperCase()}:',
                         style: TextStyle(
                           color: Colors.white.withOpacity(0.8),
                           fontSize: 16.0,
@@ -186,7 +186,7 @@ class ChangePhonePageState extends State<ChangePhonePage> {
                   margin: EdgeInsets.only(bottom: 30.0),
                   height: 45.0,
                   width: MediaQuery.of(context).size.width * 0.5,
-                  child: MainButton('UPDATE', onTap: onUpdate),
+                  child: MainButton(Translations.update.toUpperCase(), onTap: onUpdate),
                 )
               ]
             ),

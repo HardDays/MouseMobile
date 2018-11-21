@@ -13,16 +13,23 @@ class User {
 
   User({this.id, this.email, this.password, this.oldPassword, this.passwordConfirmation, this.token, this.registerPhone});
   
-   Map <String, dynamic> toJson(){
-    return {
+  void field(Map <String, dynamic> res, String name, String field){
+    if (field != null){
+      res[name] = field;
+    }
+  }
+
+  Map <String, dynamic> toJson(){
+    Map <String, dynamic> res = {
       'id': id,
-      'email': email,
-      'password': password,
-      'password_confirmation': passwordConfirmation,
       'token': token,
-      'register_phone': registerPhone,
-      'old_password': oldPassword
     };
+    field(res, 'email', email);
+    field(res, 'password', password);
+    field(res, 'password_confirmation', passwordConfirmation);
+    field(res, 'register_phone', registerPhone);
+    field(res, 'old_password', oldPassword);
+    return res;
   }
 
   factory User.fromJson(Map<String, dynamic> json) {

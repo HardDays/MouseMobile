@@ -189,7 +189,7 @@ class TicketInfoPageState extends State<TicketInfoPage> {
                                       ),
                                     ),
                                     Padding(padding: EdgeInsets.only(left: 5.0)),
-                                    Text('${widget.ticket.price.toStringAsFixed(2)} ${Translations.translateEnum(widget.ticket.currency)}',
+                                    Text('${Translations.translateEnum(widget.ticket.currency)}${widget.ticket.price.toStringAsFixed(2)}',
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontFamily: 'Avenir-Heavy', 

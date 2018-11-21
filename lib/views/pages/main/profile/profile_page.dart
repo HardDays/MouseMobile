@@ -27,15 +27,19 @@ import '../../../../helpers/storage/data_provider.dart';
 
 class ProfilePage extends StatefulWidget  {
 
-  String title = Translations.profile.toUpperCase();
+  String get title => Translations.profile.toUpperCase();
   String icon = 'assets/images/main/profile_tab_icon.svg';
 
-  TabController bottomController;
+  Function onBuildAppBar;
+  Function onAppBarUpdate;
 
-  Widget appBar;
-  Function(Widget) onLoad;
+  Widget buildAppBar(){
+    if (onBuildAppBar != null){
+      return onBuildAppBar();
+    }
+  }
 
-  ProfilePage({this.bottomController});
+  ProfilePage();
 
   @override
   ProfilePageState createState() => ProfilePageState();
@@ -55,6 +59,8 @@ class ProfilePageState extends State<ProfilePage> with SingleTickerProviderState
       setState(() { });
     });
 
+    widget.onBuildAppBar = buildAppBar;
+
     account = DataProvider.getCachedCurrentAccount();
     
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -71,69 +77,70 @@ class ProfilePageState extends State<ProfilePage> with SingleTickerProviderState
               }
             }
           );
-          buildAppBar(context);
+          widget.onAppBarUpdate();
         } 
       }
     });
   }
 
-  void buildAppBar(BuildContext context){
-    widget.appBar = PreferredSize( 
-      preferredSize: Size(MediaQuery.of(context).size.width, 45.0),
-      child: AppBar(
-        iconTheme: IconThemeData(color: Colors.white),
-        elevation: 1.0,
-        title: Row(
-          children:[
-            Container(
-              margin: EdgeInsets.all(0.0),
-              padding: EdgeInsets.all(0.0),
-              width: 25.0,
-              height: 20.0,
-              child: DecoratedBox(
-                decoration: BoxDecoration(                               
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage('assets/images/start/mouse_logo.png'),
+  Widget buildAppBar(){
+    if (context != null){
+      return PreferredSize( 
+        preferredSize: Size(MediaQuery.of(context).size.width, 45.0),
+        child: AppBar(
+          iconTheme: IconThemeData(color: Colors.white),
+          elevation: 1.0,
+          title: Row(
+            children:[
+              Container(
+                margin: EdgeInsets.all(0.0),
+                padding: EdgeInsets.all(0.0),
+                width: 25.0,
+                height: 20.0,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(                               
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage('assets/images/start/mouse_logo.png'),
+                    ),
                   ),
+                )
+              ),
+              Padding(padding: EdgeInsets.only(left: 10.0)),
+              Text(widget.title,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16.0,
+                  fontFamily: 'Avenir-Black', 
                 ),
               )
-            ),
-            Padding(padding: EdgeInsets.only(left: 10.0)),
-            Text(widget.title,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16.0,
-                fontFamily: 'Avenir-Black', 
-              ),
+            ]
+          ),
+          backgroundColor: AppColors.appBar,
+          actions: [
+            /*IconButton(
+              icon: Icon(Icons.exit_to_app, color: Colors.white),
+              onPressed: () {   
+                DataProvider.flush();
+                Navigator.pushReplacement(
+                  context, 
+                  DefaultPageRoute(builder: (context) => StartPage()),
+                );              
+              }
+            ),*/  
+            IconButton(
+              icon: Icon(Icons.settings, color: Colors.white),
+              onPressed: () {   
+                Navigator.push(
+                  context, 
+                  DefaultPageRoute(builder: (context) => SettingsPage()),
+                );              
+              }
             )
           ]
-        ),
-        backgroundColor: AppColors.appBar,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.exit_to_app, color: Colors.white),
-            onPressed: () {   
-              DataProvider.flush();
-              Navigator.pushReplacement(
-                context, 
-                DefaultPageRoute(builder: (context) => StartPage()),
-              );              
-            }
-          ),
-          // IconButton(
-          //   icon: Icon(Icons.settings, color: Colors.white),
-          //   onPressed: () {   
-          //     Navigator.push(
-          //       context, 
-          //       DefaultPageRoute(builder: (context) => SettingsPage()),
-          //     );              
-          //   }
-          // )
-        ]
-      )
-    );
-    widget.onLoad(widget.appBar);
+        )
+      );
+    }
   } 
 
   Widget buildRewards(){
@@ -186,7 +193,6 @@ class ProfilePageState extends State<ProfilePage> with SingleTickerProviderState
 
   @override 
   Widget build(BuildContext ctx) {
-    widget.title = Translations.profile.toUpperCase();
     //buildAppBar(context);
     if (DataProvider.isAuthorized()){
       return Container(

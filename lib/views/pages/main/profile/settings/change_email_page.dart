@@ -41,11 +41,11 @@ class ChangeEmailPageState extends State<ChangeEmailPage> {
     formKey.currentState.save();
     if (formKey.currentState.validate()){
       Dialogs.showLoader(context);
-      DataProvider.updateUser(User(email: email, registerPhone: DataProvider.currentUser.registerPhone)).then(
+      DataProvider.updateUser(User(email: email)).then(
         (res){
           Navigator.pop(context);
           if (res.status == DataStatus.ok){
-            Dialogs.showMessageDialog(context, title: Translations.success, body: 'Email successfully updated', ok: Translations.ok).then((res){
+            Dialogs.showMessageDialog(context, title: Translations.success, body: Translations.emailUpdated, ok: Translations.ok).then((res){
               Navigator.pop(context);
             });
           } else {
@@ -88,7 +88,7 @@ class ChangeEmailPageState extends State<ChangeEmailPage> {
         title: Row(
           children:[
             Container(
-              child: Text('CHANGE EMAIL',
+              child: Text(Translations.changeEmail.toUpperCase(),
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16.0,
@@ -137,7 +137,7 @@ class ChangeEmailPageState extends State<ChangeEmailPage> {
                     Container(
                       margin: EdgeInsets.only(left: 10.0, top: 15.0, bottom: 15.0),
                       alignment: Alignment.topLeft,
-                      child: Text('CURRENT EMAIL:',
+                      child: Text('${Translations.currentEmail.toUpperCase()}:',
                         style: TextStyle(
                           color: Colors.white.withOpacity(0.8),
                           fontSize: 16.0,
@@ -158,7 +158,7 @@ class ChangeEmailPageState extends State<ChangeEmailPage> {
                     Container(
                       margin: EdgeInsets.only(left: 10.0, top: 15.0, bottom: 15.0),
                       alignment: Alignment.topLeft,
-                      child: Text('NEW EMAIL:',
+                      child: Text('${Translations.newEmail.toUpperCase()}:',
                         style: TextStyle(
                           color: Colors.white.withOpacity(0.8),
                           fontSize: 16.0,
@@ -194,7 +194,7 @@ class ChangeEmailPageState extends State<ChangeEmailPage> {
                   margin: EdgeInsets.only(bottom: 30.0),
                   height: 45.0,
                   width: MediaQuery.of(context).size.width * 0.5,
-                  child: MainButton('UPDATE', onTap: onUpdate),
+                  child: MainButton(Translations.update.toUpperCase(), onTap: onUpdate),
                 )
               ]
             ),

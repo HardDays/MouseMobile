@@ -48,8 +48,6 @@ class ChangePasswordPageState extends State<ChangePasswordPage> {
       Dialogs.showLoader(context);
       DataProvider.updateUser(
         User(
-          email: DataProvider.currentUser.email, 
-          registerPhone: DataProvider.currentUser.registerPhone,
           password: newPassword, passwordConfirmation: 
           passwordConfirmation, 
           oldPassword: oldPassword)
@@ -57,11 +55,11 @@ class ChangePasswordPageState extends State<ChangePasswordPage> {
           (res){
             Navigator.pop(context);
             if (res.status == DataStatus.ok){
-              Dialogs.showMessageDialog(context, title: Translations.success, body: 'Password successfully updated', ok: Translations.ok).then((res){
+              Dialogs.showMessageDialog(context, title: Translations.success, body: Translations.passwordUpdated, ok: Translations.ok).then((res){
                 Navigator.pop(context);
               });
             } else {
-              Dialogs.showMessageDialog(context, title: Translations.error, body: 'Wrong old password', ok: Translations.ok);
+              Dialogs.showMessageDialog(context, title: Translations.error, body: Translations.wrongCurrentPassword, ok: Translations.ok);
             }
           }
       );
@@ -135,7 +133,7 @@ class ChangePasswordPageState extends State<ChangePasswordPage> {
         title: Row(
           children:[
             Container(
-              child: Text('CHANGE PASSWORD',
+              child: Text(Translations.changePassword.toUpperCase(),
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16.0,
@@ -181,17 +179,17 @@ class ChangePasswordPageState extends State<ChangePasswordPage> {
               children: <Widget>[
                 Column(
                   children: <Widget>[
-                    buildSetting('CURRENT PASSWORD', 
+                    buildSetting(Translations.currentPassword.toUpperCase(), 
                       (val){
                         oldPassword = val;                                                  
                       }
                     ),
-                    buildSetting('NEW PASSWORD', 
+                    buildSetting(Translations.newPassword.toUpperCase(), 
                       (val){
                         newPassword = val;                                                  
                       }
                     ),
-                    buildSetting('CONFIRM PASSWORD', 
+                    buildSetting(Translations.confirmPassword.toUpperCase(), 
                       (val){
                         passwordConfirmation = val;                                                  
                       }
@@ -202,7 +200,7 @@ class ChangePasswordPageState extends State<ChangePasswordPage> {
                   margin: EdgeInsets.only(bottom: 30.0),
                   height: 45.0,
                   width: MediaQuery.of(context).size.width * 0.5,
-                  child: MainButton('UPDATE', onTap: onUpdate),
+                  child: MainButton(Translations.update.toUpperCase(), onTap: onUpdate),
                 )
               ]
             ),
