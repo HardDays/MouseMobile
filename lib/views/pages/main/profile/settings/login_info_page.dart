@@ -130,7 +130,7 @@ class LoginInfoPageState extends State<LoginInfoPage> {
           child: Column(
             children: <Widget>[
               Padding(padding: EdgeInsets.only(top: 15.0)),
-              buildSetting(Translations.email.toUpperCase(), DataProvider.currentUser.email, ChangeEmailPage()),
+              buildSetting(Translations.email.toUpperCase(), DataProvider.currentUser.email ?? '**@**.**', ChangeEmailPage()),
               buildSetting(Translations.password.toUpperCase(), '', ChangePasswordPage()),
               buildSetting(Translations.phoneNumber.toUpperCase(), '', ChangePhonePage()),
             ]

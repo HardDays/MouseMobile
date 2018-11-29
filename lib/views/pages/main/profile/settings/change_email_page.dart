@@ -146,7 +146,7 @@ class ChangeEmailPageState extends State<ChangeEmailPage> {
                       ),
                     ),
                     buildSetting(
-                      Text(DataProvider.currentUser.email,
+                      Text(DataProvider.currentUser.email ?? '**@**.**',
                         maxLines: 1,
                         style: TextStyle(
                           color: Colors.white,

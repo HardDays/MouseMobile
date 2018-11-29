@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:convert';
 
+import 'package:random_string/random_string.dart' as random;
+
 import 'filters/shows_filter.dart';
 
 import 'cache.dart';
@@ -155,6 +157,117 @@ class DataProvider {
       user.token = res;
       var account = await MainAPI.getMyAccount();
 
+      if (user != null && account != null){
+        Database.setCurrentUser(user);
+        setCurrentUser(user);
+
+        Database.setCurrentAccount(account);
+        setCurrentAccount(account);
+      } else {
+        result.status = DataStatus.unauthorized;
+      }
+    } else {
+      result.status = DataStatus.unauthorized;
+    }
+
+    return result;
+  }
+
+  static Future<DataResult> loginVk(String accessToken) async {
+    var result = DataResult();
+
+    var res = await MainAPI.authorizeVk(accessToken);
+    if (res != null){
+      MainAPI.setToken(res);
+     
+      var user = await MainAPI.getMe();
+      user.token = res;
+
+      var account = await MainAPI.getMyAccount();
+      if (account == null){
+        account = await MainAPI.createAccount(
+          Account(
+            firstName: 'unnamed', 
+            lastName: 'unnamed', 
+            displayName: 'unnamed unnamed', 
+            accountType: AccountType.fan,
+            userName: random.randomAlpha(10))
+        );
+      }
+      if (user != null && account != null){
+        Database.setCurrentUser(user);
+        setCurrentUser(user);
+
+        Database.setCurrentAccount(account);
+        setCurrentAccount(account);
+      } else {
+        result.status = DataStatus.unauthorized;
+      }
+    } else {
+      result.status = DataStatus.unauthorized;
+    }
+
+    return result;
+  }
+
+  static Future<DataResult> loginTwitter(String accessToken, String accessTokenSecret) async {
+    var result = DataResult();
+
+    var res = await MainAPI.authorizeTwitter(accessToken, accessTokenSecret);
+    if (res != null){
+      MainAPI.setToken(res);
+     
+      var user = await MainAPI.getMe();
+      user.token = res;
+
+      var account = await MainAPI.getMyAccount();
+      if (account == null){
+        account = await MainAPI.createAccount(
+          Account(
+            firstName: 'unnamed', 
+            lastName: 'unnamed', 
+            displayName: 'unnamed unnamed', 
+            accountType: AccountType.fan,
+            userName: random.randomAlpha(10))
+        );
+      }
+      if (user != null && account != null){
+        Database.setCurrentUser(user);
+        setCurrentUser(user);
+
+        Database.setCurrentAccount(account);
+        setCurrentAccount(account);
+      } else {
+        result.status = DataStatus.unauthorized;
+      }
+    } else {
+      result.status = DataStatus.unauthorized;
+    }
+
+    return result;
+  }
+
+  static Future<DataResult> loginFb(String accessToken) async {
+    var result = DataResult();
+
+    var res = await MainAPI.authorizeFb(accessToken);
+    if (res != null){
+      MainAPI.setToken(res);
+     
+      var user = await MainAPI.getMe();
+      user.token = res;
+
+      var account = await MainAPI.getMyAccount();
+      if (account == null){
+        account = await MainAPI.createAccount(
+          Account(
+            firstName: 'unnamed', 
+            lastName: 'unnamed', 
+            displayName: 'unnamed unnamed', 
+            accountType: AccountType.fan,
+            userName: random.randomAlpha(10))
+        );
+      }
       if (user != null && account != null){
         Database.setCurrentUser(user);
         setCurrentUser(user);

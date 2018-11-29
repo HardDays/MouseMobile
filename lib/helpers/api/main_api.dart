@@ -47,6 +47,7 @@ class MainAPI {
   static const String byEvent = '/by_event';
   static const String feedbacks = '/feedbacks';
   static const String questions = '/questions';
+  static const String twitter = '/twitter';
 
   static String token;
   static int accountId;
@@ -121,8 +122,56 @@ class MainAPI {
     //TODO: better error check
     if (res.statusCode == HttpStatus.ok){
      return json.decode(res.body)['token'];
-   } 
- }
+    } 
+  }
+
+  static Future<String> authorizeVk(String accessToken) async {
+    var res = await http.post(url + auth + vk, 
+      body: json.encode({
+        'access_token': accessToken
+      }),
+      headers: {
+        'Content-type' : 'application/json', 
+      }
+    );
+    //TODO: better error check
+    if (res.statusCode == HttpStatus.ok){
+     return json.decode(res.body)['token'];
+    } 
+  }
+
+  static Future<String> authorizeTwitter(String accessToken, String accessTokenSecret) async {
+    var res = await http.post(url + auth + twitter, 
+      body: json.encode({
+        'access_token': accessToken,
+        'access_token_secret': accessTokenSecret
+      }),
+      headers: {
+        'Content-type' : 'application/json', 
+      }
+    );
+    //TODO: better error check
+    if (res.statusCode == HttpStatus.ok){
+     return json.decode(res.body)['token'];
+    } 
+  }
+
+  
+  static Future<String> authorizeFb(String accessToken) async {
+    var res = await http.post(url + auth + fb, 
+      body: json.encode({
+        'access_token': accessToken
+      }),
+      headers: {
+        'Content-type' : 'application/json', 
+      }
+    );
+    //TODO: better error check
+    if (res.statusCode == HttpStatus.ok){
+     return json.decode(res.body)['token'];
+    } 
+  }
+
 
   // USERS
 
