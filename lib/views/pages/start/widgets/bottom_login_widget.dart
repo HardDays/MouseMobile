@@ -6,6 +6,8 @@ import '../fb_login_page.dart';
 
 import '../../main/main_page.dart';
 
+import '../../main/shows/player_page.dart';
+
 import '../../../dialogs/dialogs.dart';
 
 import '../../../routes/default_page_route.dart';
@@ -130,9 +132,14 @@ class BottomLoginWidget extends StatelessWidget {
           ),
           FlatButton(
             onPressed: (){
-              if (Navigator.canPop(context)){
+              while (Navigator.canPop(context)){
                 Navigator.pop(context);
               }
+              // Navigator.push(
+              //   context, 
+              //   DefaultPageRoute(builder: (context) => PlayerPage()),
+              // );
+              // return;
               Navigator.pushReplacement(
                 context, 
                 DefaultPageRoute(builder: (context) => MainPage()),

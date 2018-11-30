@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_youtube/flutter_youtube.dart';
 
+import '../pages/main/shows/player_page.dart';
+
+import '../routes/default_page_route.dart';
+
 import '../../models/api/account.dart';
 
 import '../../helpers/api/main_api.dart';
@@ -51,6 +55,11 @@ class YoutubeImage extends StatelessWidget {
             iconSize: 50.0,
             icon: Icon(Icons.play_circle_filled, color: Colors.white,),
             onPressed: (){
+              // var id = FlutterYoutube.getIdFromUrl(link);
+              // Navigator.push(
+              //   context, 
+              //   DefaultPageRoute(builder: (context) => PlayerPage(url: 'https://www.youtube.com/embed/$id?start=1')),
+              // );
               FlutterYoutube.playYoutubeVideoByUrl(
                 apiKey: 'AIzaSyBbKu_WyOweV8sfMmp3WSlEadHD1Vj4jUo',
                 videoUrl: link,
