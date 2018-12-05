@@ -12,7 +12,7 @@ class Feedback {
 
   int score;
 
-  Feedback({this.feedbackType = FeedbackType.bug, this.message, this.score});
+  Feedback({this.feedbackType, this.message, this.score=0});
 
   Map <String, dynamic> toJson(){
     return {

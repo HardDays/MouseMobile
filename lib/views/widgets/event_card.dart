@@ -28,6 +28,12 @@ class EventCard extends StatelessWidget {
   EventCard({this.event});
   
   Widget build(BuildContext context) {
+    bool isPromo = false;
+    for (var tk in event.tickets){
+      if (tk.isPromotional){
+        isPromo = true;
+      }
+    }
     return Container(
       margin: EdgeInsets.only(top: 10.0, left: 7.0, right: 7.0),
       decoration: BoxDecoration(
@@ -166,7 +172,7 @@ class EventCard extends StatelessWidget {
                                 ],
                               ),
                             ) :
-                            Container(
+                            isPromo ? Container(
                               padding: EdgeInsets.only(left: 2.0, right: 2.0),
                               color: AppColors.promoBg,
                               child: Text(Translations.promo.toUpperCase(),
@@ -176,9 +182,11 @@ class EventCard extends StatelessWidget {
                                   fontSize: 13.0
                                 ),
                               ),
-                            ),                             
+                            ) : 
+                            Container(),                            
                             Container(
                               width: MediaQuery.of(context).size.width * 0.6,
+                              //margin: EdgeInsets.only(bottom: !isPromo && !event.isCrowdfunding ? 10.0 : 0.0),
                               child: Text(event.name.toUpperCase(),
                                 maxLines: 1,
                                 style: TextStyle(

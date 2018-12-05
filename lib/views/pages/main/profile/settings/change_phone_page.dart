@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import '../../../../routes/default_page_route.dart';
@@ -46,6 +48,12 @@ class ChangePhonePageState extends State<ChangePhonePage> {
           }
         }
       );
+    }
+  }
+
+  String validatePhone(String phone){
+    if (phone == null || phone.length < 4){
+      return Translations.wrongPhoneFormat;
     }
   }
 
@@ -101,7 +109,7 @@ class ChangePhonePageState extends State<ChangePhonePage> {
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomPadding: true,
       backgroundColor: AppColors.mainBg,
       appBar: buildAppBar(),
       body: Container(
@@ -139,7 +147,7 @@ class ChangePhonePageState extends State<ChangePhonePage> {
                       ),
                     ),
                     buildSetting(
-                      Text(DataProvider.currentUser.registerPhone ?? '-------',
+                      Text(DataProvider.currentUser.registerPhone != null ? List.filled(max(0,  DataProvider.currentUser.registerPhone.length - 3), '*').join('') + DataProvider.currentUser.registerPhone.substring(max(0,  DataProvider.currentUser.registerPhone.length - 3)) : 'No phone',
                         maxLines: 1,
                         style: TextStyle(
                           color: Colors.white,
@@ -175,6 +183,7 @@ class ChangePhonePageState extends State<ChangePhonePage> {
                             fontFamily: 'Avenir-Book', 
                           )     
                         ),
+                        validator: validatePhone,
                         onSaved: (val){
                           phone = val;
                         },

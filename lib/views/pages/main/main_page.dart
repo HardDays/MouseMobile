@@ -22,7 +22,7 @@ import '../../../resources/translations.dart';
 class MainPage extends StatefulWidget {
 
   @override
-  MainPageState createState() => new MainPageState();
+  MainPageState createState() => MainPageState();
 }
 
 class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin {

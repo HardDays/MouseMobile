@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'change_email_page.dart';
@@ -132,7 +134,7 @@ class LoginInfoPageState extends State<LoginInfoPage> {
               Padding(padding: EdgeInsets.only(top: 15.0)),
               buildSetting(Translations.email.toUpperCase(), DataProvider.currentUser.email ?? '**@**.**', ChangeEmailPage()),
               buildSetting(Translations.password.toUpperCase(), '', ChangePasswordPage()),
-              buildSetting(Translations.phoneNumber.toUpperCase(), '', ChangePhonePage()),
+              buildSetting(Translations.phoneNumber.toUpperCase(), DataProvider.currentUser.registerPhone != null ? List.filled(max(0,  DataProvider.currentUser.registerPhone.length - 3), '*').join('') + DataProvider.currentUser.registerPhone.substring(max(0,  DataProvider.currentUser.registerPhone.length - 3)) : 'No phone', ChangePhonePage()),
             ]
           ),
         )

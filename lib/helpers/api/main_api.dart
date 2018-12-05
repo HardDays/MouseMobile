@@ -515,7 +515,7 @@ class MainAPI {
     //TODO: better error check
     if (res.statusCode == HttpStatus.ok){
       List body = json.decode(res.body);
-      return  body.map<Question>((x) => Question.fromJson(x)).toList();
+      return  body.map<Question>((x) => Question.fromJson(x)).toList().where((q)=>q.senderId == accountId).toList();
     } else {
       return [];
     }

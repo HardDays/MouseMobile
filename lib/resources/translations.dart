@@ -49,6 +49,7 @@ class Translations {
       'cannotRegister': 'Cannot register',
       'emailAlreadyTaken': 'Email already taken',
       'usernameAlreadyTaken': 'Username already taken',
+      'wrongPhoneFormat': 'Wrong phone format',
       'promo': 'PROMO',
       'startingFrom': 'Starting from',
       'buyTicket': 'Buy ticket',
@@ -69,8 +70,8 @@ class Translations {
       'distanceAround': 'Distance around',
       'ticketType': 'Ticket type',
       'venueType': 'Venue type',
-      'appPreferences': 'App preferences',
-      'regionalOptions': 'regionalOptions',
+      'appPreferences': 'App Preferences',
+      'regionalOptions': 'Regional options',
       'language': 'Language',
       'date': 'Date',
       'dateFormat': 'Date format',
@@ -87,7 +88,7 @@ class Translations {
       'details': 'Details',
       'howAreWe': 'How are we doing',
       'pleaseRateUs': 'Please Rate Us',
-      'loginInfo': 'Login info',
+      'loginInfo': 'Login Info',
       'phoneNumber': 'Phone number',
       'notifications': 'Notifications',
       'showsAndMessages': 'Shows and messages',
@@ -232,6 +233,8 @@ class Translations {
       'moreFriends': 'The more friends join or buy tickets using your code, the bigger your rewards are.',
       'shareIn': 'Share in',
       'share': 'Share',
+      'pleaseSelectFeedback': 'Please, select feedback type',
+      'pleaseRate': 'Please, rate our app',
 
       // enums
 
@@ -391,6 +394,7 @@ class Translations {
       'cannotRegister': 'Ошибка',
       'emailAlreadyTaken': 'Почта уже занята',
       'usernameAlreadyTaken': 'Юзернейм используется',
+      'wrongPhoneFormat': 'Wrong phone format',
       'promo': 'PROMO',
       'startingFrom': 'От',
       'buyTicket': 'Купить',
@@ -575,6 +579,9 @@ class Translations {
       'moreFriends': 'Чем больше друзей вы приведете, тем больше награда.',
       'shareIn': 'Поделиться в',
       'share': 'Поделиться',
+      'pleaseSelectFeedback': 'Выберите тип отзыва',
+      'pleaseRate': 'Оцените наше приложение',
+
       // enums
 
       'fan': 'Фанат',
@@ -917,6 +924,9 @@ class Translations {
   static String get getYourFriends => words[locale]['getYourFriends'];
   static String get moreFriends => words[locale]['moreFriends'];
   static String get shareIn => words[locale]['shareIn'];
+  static String get wrongPhoneFormat => words[locale]['wrongPhoneFormat'];
+  static String get pleaseSelectFeedback => words[locale]['pleaseSelectFeedback'];
+  static String get pleaseRate => words[locale]['pleaseRate'];
 
   static String translateEnum(String word){
     if (words[locale].containsKey(word)){

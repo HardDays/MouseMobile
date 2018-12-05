@@ -28,23 +28,29 @@ class FeedbackPageState extends State<FeedbackPage> {
   void initState(){
     super.initState();
 
-    feedback = API.Feedback(score: 3);
+    feedback = API.Feedback();
   }
 
   void onSend(){
-    Dialogs.showLoader(context);
-    DataProvider.createFeedback(feedback).then(
-      (res){
-        Navigator.pop(context);
-        if (res.status == DataStatus.ok){
-          Dialogs.showMessageDialog(context, title: Translations.success, body: Translations.thankForFeedback, ok: Translations.ok).then((res){
-            Navigator.pop(context);
-          });
-        } else {
-          Dialogs.showMessageDialog(context, title: Translations.error, body: Translations.pleaseTryAgain, ok: Translations.ok);
+    if (feedback.score == 0){
+      Dialogs.showMessageDialog(context, title: Translations.error, body: Translations.pleaseRate, ok: Translations.ok);
+    } else if (feedback.feedbackType == null){
+      Dialogs.showMessageDialog(context, title: Translations.error, body: Translations.pleaseSelectFeedback, ok: Translations.ok);
+    } else {
+      Dialogs.showLoader(context);
+      DataProvider.createFeedback(feedback).then(
+        (res){
+          Navigator.pop(context);
+          if (res.status == DataStatus.ok){
+            Dialogs.showMessageDialog(context, title: Translations.success, body: Translations.thankForFeedback, ok: Translations.ok).then((res){
+              Navigator.pop(context);
+            });
+          } else {
+            Dialogs.showMessageDialog(context, title: Translations.error, body: Translations.pleaseTryAgain, ok: Translations.ok);
+          }
         }
-      }
-    );
+      );
+    }
   }
 
   Widget buildSetting(String text, String type){

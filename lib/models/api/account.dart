@@ -31,6 +31,7 @@ class Account {
   String firstName;
   String lastName;
   String displayName;
+  String stageName;
   String about;
   String bio;
   String description;
@@ -53,13 +54,18 @@ class Account {
 
   Account({
       this.error, this.id, this.imageid, this.followersCount, this.followingCount, this.phone, this.fax,
-      this.userName, this.firstName, this.displayName, this.lastName, this.about, this.bio, this.description,
+      this.userName, this.firstName, this.displayName, this.stageName, this.lastName, this.about, this.bio, this.description,
       this.address, this.preferredAddress, this.lat, this.lng,  this.accountType,
       this.genres, this.images, this.videos, this.upcomingShows, this.emails, this.officeHours, this.operatingHours
     }
   ) { 
     if (videos != null){
       videos = videos?.where((v) => v.link.contains('youtu'))?.toList();
+    }
+    if (accountType == AccountType.artist){
+      if (stageName != null){
+        displayName = stageName;
+      }
     }
   }
   
@@ -102,6 +108,7 @@ class Account {
       lastName: json['last_name'],
       accountType: json['account_type'],
       displayName: json['display_name'],
+      stageName: json['stage_name'],
       address: json['address'],
       preferredAddress: json['preferred_address'],
       imageid: json['image_id'],
