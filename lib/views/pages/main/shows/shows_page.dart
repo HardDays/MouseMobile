@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 
 import 'search_page.dart';
+import 'player_page.dart';
 
 import '../../../widgets/main_button.dart';
 import '../../../widgets/main_tagbox.dart';
@@ -171,6 +172,15 @@ class ShowsPageState extends State<ShowsPage> with AutomaticKeepAliveClientMixin
           ),
           backgroundColor: AppColors.appBar,
           actions: [
+            IconButton(
+              icon: Icon(Icons.play_arrow, color: Colors.white),
+              onPressed: () {    
+                Navigator.push(
+                  this.context,
+                  DefaultPageRoute(builder: (context) => PlayerPage(url: 'https://www.omnivirt.com/view/29070')),
+                );               
+              }
+            ),
             IconButton(
               icon: Icon(Icons.search, color: Colors.white),
               onPressed: () {    
