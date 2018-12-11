@@ -235,7 +235,7 @@ class Translations {
       'share': 'Share',
       'pleaseSelectFeedback': 'Please, select feedback type',
       'pleaseRate': 'Please, rate our app',
-
+      'reset': 'Reset',
       // enums
 
       'fan': 'Fan',
@@ -581,6 +581,7 @@ class Translations {
       'share': 'Поделиться',
       'pleaseSelectFeedback': 'Выберите тип отзыва',
       'pleaseRate': 'Оцените наше приложение',
+      'reset': 'Сброс',
 
       // enums
 
@@ -927,6 +928,7 @@ class Translations {
   static String get wrongPhoneFormat => words[locale]['wrongPhoneFormat'];
   static String get pleaseSelectFeedback => words[locale]['pleaseSelectFeedback'];
   static String get pleaseRate => words[locale]['pleaseRate'];
+  static String get reset => words[locale]['reset'];
 
   static String translateEnum(String word){
     if (words[locale].containsKey(word)){

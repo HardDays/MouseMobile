@@ -133,18 +133,41 @@ class GenresFilterDialogState extends State<GenresFilterDialog> {
             )
           ),
           Container(
+            alignment: Alignment.center,
             margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
-            width: MediaQuery.of(context).size.width * 0.3,
+            width: MediaQuery.of(context).size.width * 1.0,
             height: 40.0,
-            child: MainButton(Translations.save.toUpperCase(),
-              onTap: (){
-                Navigator.pop(context);             
-                if (widget.onSave != null){
-                  widget.onSave(GenresFilter(genres: selected.toList()));
-                }   
-              },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                InkWell(
+                  child: Text(Translations.reset.toUpperCase(),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'Avenir-Heavy', 
+                      fontSize: 16.0
+                    ),
+                  ),
+                  onTap: (){
+                    setState(() {
+                      selected = Set();           
+                    });
+                  },
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  child: MainButton(Translations.save.toUpperCase(),
+                    onTap: (){
+                      Navigator.pop(context);     
+                      if (widget.onSave != null){
+                        widget.onSave(GenresFilter(genres: selected.toList()));
+                      }
+                    },
+                  )
+                ),
+              ]
             )
-          )
+          ),
         ],
       )
     );

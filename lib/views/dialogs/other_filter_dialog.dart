@@ -185,22 +185,42 @@ class OtherFilterDialogState extends State<OtherFilterDialog> {
               )
             ),
             Container(
-              alignment: Alignment.topCenter,
-              margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
+              alignment: Alignment.center,
+              margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
               width: MediaQuery.of(context).size.width * 1.0,
               height: 40.0,
-              child: Container(
-                width: MediaQuery.of(context).size.width * 0.3,
-                child: MainButton(Translations.save.toUpperCase(),
-                  onTap: (){
-                    Navigator.pop(context);     
-                    if (widget.onSave != null){
-                      widget.onSave(OtherFilter(ticketTypes: ticketTypes.toList(), venueTypes: venueTypes.toList()));
-                    }
-                  }
-                )
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  InkWell(
+                    child: Text(Translations.reset.toUpperCase(),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'Avenir-Heavy', 
+                        fontSize: 16.0
+                      ),
+                    ),
+                    onTap: (){
+                      setState(() {
+                        ticketTypes = Set();
+                        venueTypes = Set();
+                      });
+                    },
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.3,
+                    child: MainButton(Translations.save.toUpperCase(),
+                      onTap: (){
+                        Navigator.pop(context);     
+                        if (widget.onSave != null){
+                          widget.onSave(OtherFilter(ticketTypes: ticketTypes.toList(), venueTypes: venueTypes.toList()));
+                        }
+                      },
+                    )
+                  ),
+                ]
               )
-            )
+            ),
           ],
         )
       )

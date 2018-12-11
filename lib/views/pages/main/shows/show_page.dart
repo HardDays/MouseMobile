@@ -734,6 +734,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
 
   @override 
   Widget build(BuildContext ctx) {
+    
     if (event == null) {
       return Scaffold(
         backgroundColor: AppColors.mainBg,
@@ -743,6 +744,12 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
         ),        
       );
     } else {
+      bool isPromo = false;
+      for (var tk in event.tickets){
+        if (tk.isPromotional){
+          isPromo = true;
+        }
+      }
       return Scaffold(
         resizeToAvoidBottomPadding: false,
         backgroundColor: AppColors.mainBg,
@@ -781,7 +788,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                         ),
                       ),
                     ),
-                    !event.isCrowdfunding ? 
+                    isPromo ? 
                     Container(
                       margin: EdgeInsets.only(top: 0.0),
                       padding: EdgeInsets.only(left: 2.0, right: 2.0),
