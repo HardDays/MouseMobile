@@ -24,8 +24,9 @@ import '../../resources/translations.dart';
 class EventCard extends StatelessWidget {
   
   final Event event;
+  final bool clickable;
 
-  EventCard({this.event});
+  EventCard({this.event, this.clickable = true});
   
   Widget build(BuildContext context) {
     bool isPromo = false;
@@ -49,10 +50,12 @@ class EventCard extends StatelessWidget {
       height: MediaQuery.of(context).size.width,
       child: GestureDetector( 
         onTap: () {
-          Navigator.push(
-            context,
-            DefaultPageRoute(builder: (context) => ShowPage(event.id)),
-          );   
+          if (clickable){
+            Navigator.push(
+              context,
+              DefaultPageRoute(builder: (context) => ShowPage(event.id)),
+            );   
+          }
         },
         child: Stack(
           children: <Widget>[

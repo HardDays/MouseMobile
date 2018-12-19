@@ -97,6 +97,8 @@ flutter:
     - assets/images/common/filters_icon.svg
     - assets/images/common/blured_rect.png
     - assets/images/common/empty_account.png
+    
+    - assets/content.json
 
   fonts:
     - family: Avenir-Black
