@@ -1,5 +1,7 @@
 PODS:
   - Flutter (1.0.0)
+  - flutter_webview_plugin (0.0.1):
+    - Flutter
   - flutter_youtube (0.0.1):
     - Flutter
     - XCDYouTubeKit
@@ -15,6 +17,7 @@ PODS:
 
 DEPENDENCIES:
   - Flutter (from `.symlinks/flutter/ios-release`)
+  - flutter_webview_plugin (from `.symlinks/plugins/flutter_webview_plugin/ios`)
   - flutter_youtube (from `.symlinks/plugins/flutter_youtube/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
@@ -28,6 +31,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   Flutter:
     :path: ".symlinks/flutter/ios-release"
+  flutter_webview_plugin:
+    :path: ".symlinks/plugins/flutter_webview_plugin/ios"
   flutter_youtube:
     :path: ".symlinks/plugins/flutter_youtube/ios"
   image_picker:
@@ -41,6 +46,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
+  flutter_webview_plugin: 0b491d31c34ab5c86a71c9f1a57ac000dd1b75e9
   flutter_youtube: e237870de392a5ee800e9c36a13796ed887718b2
   image_picker: ee00aab0487cedc80a304085219503cc6d0f2e22
   path_provider: 09407919825bfe3c2deae39453b7a5b44f467873
