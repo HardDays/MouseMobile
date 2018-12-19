@@ -177,7 +177,7 @@ class ShowsPageState extends State<ShowsPage> with AutomaticKeepAliveClientMixin
               onPressed: () {    
                 Navigator.push(
                   this.context,
-                  DefaultPageRoute(builder: (context) => PlayerPage(url: 'https://www.omnivirt.com/view/29070')),
+                  DefaultPageRoute(builder: (context) => PlayerPage(url: 'http://mouse-up.herokuapp.com/system/vr')),
                 );               
               }
             ),
