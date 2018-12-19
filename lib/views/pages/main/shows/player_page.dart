@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_youtube/flutter_youtube.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
-
+import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter/services.dart';
 
 import '../../../../resources/app_colors.dart';
@@ -50,9 +50,18 @@ class PlayerPageState extends State<PlayerPage> {
 
   @override 
   Widget build(BuildContext ctx) {
-    return WebviewScaffold(
-      appBar: null,   
+    return SafeArea(child: WebviewScaffold(
+      appBar: PreferredSize(
+        preferredSize: Size(40, 40),
+        child: AppBar(
+          brightness: Brightness.dark,
+          backgroundColor: Colors.black,
+          primary: false,
+          //backgroundColor: Colors.bl,
+        )
+      ),   
       url: widget.url,
+    )
     );
   }
 }
