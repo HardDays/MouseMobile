@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 
 import 'search_page.dart';
 import 'player_page.dart';
+import 'content_page.dart';
 
 import '../../../widgets/main_button.dart';
 import '../../../widgets/main_tagbox.dart';
@@ -172,6 +173,15 @@ class ShowsPageState extends State<ShowsPage> with AutomaticKeepAliveClientMixin
           ),
           backgroundColor: AppColors.appBar,
           actions: [
+            IconButton(
+              icon: Icon(Icons.calendar_today, color: Colors.white),
+              onPressed: () {    
+                Navigator.push(
+                  this.context,
+                  DefaultPageRoute(builder: (context) => ContentPage())
+                );               
+              }
+            ),
             IconButton(
               icon: Icon(Icons.play_arrow, color: Colors.white),
               onPressed: () {    
