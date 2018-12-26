@@ -61,7 +61,8 @@ class FollowButtonState extends State<FollowButton> {
   }
 
   Widget build(BuildContext context) {
-    bool followed = DataProvider.getMyFollowing().contains(widget.account.id);
+    var following = DataProvider.getMyFollowing();
+    bool followed = following != null ? following.contains(widget.account.id) : false;
     
     return GestureDetector(
       onTap: onFollow,
