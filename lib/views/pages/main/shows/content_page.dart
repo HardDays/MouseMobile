@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 
 import 'search_page.dart';
 import 'player_page.dart';
+import 'ticket_page.dart';
 
 import '../../../widgets/main_button.dart';
 import '../../../widgets/main_tagbox.dart';
@@ -72,6 +73,7 @@ class ContentPageState extends State<ContentPage> with AutomaticKeepAliveClientM
           Event(
             name: res['title'],
             tickets: [],
+            link: res['kassir'],
             isCrowdfunding: false,
             address: res['venue']['address'],
             description: res['image'],
@@ -365,7 +367,14 @@ class ContentPageState extends State<ContentPage> with AutomaticKeepAliveClientM
                                       margin: EdgeInsets.only(right: 15.0),
                                       //width: MediaQuery.of(context).size.width * 0.4,
                                       height: 36.0,
-                                      child: MainButton(Translations.buyTicket.toUpperCase()),
+                                      child: MainButton(Translations.buyTicket.toUpperCase(),
+                                      onTap: () {    
+                                        Navigator.push(
+                                          this.context,
+                                          DefaultPageRoute(builder: (context) => new TicketPage(url: event.link)),
+                                        );               
+                                      }
+                                      ),
                                     )
                                   ],
                                 ),

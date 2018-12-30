@@ -13,6 +13,8 @@ PODS:
     - Flutter
   - shared_preferences (0.0.1):
     - Flutter
+  - webview_flutter (0.0.1):
+    - Flutter
   - XCDYouTubeKit (2.7.1)
 
 DEPENDENCIES:
@@ -23,6 +25,7 @@ DEPENDENCIES:
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - share (from `.symlinks/plugins/share/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
+  - webview_flutter (from `.symlinks/plugins/webview_flutter/ios`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -43,6 +46,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/share/ios"
   shared_preferences:
     :path: ".symlinks/plugins/shared_preferences/ios"
+  webview_flutter:
+    :path: ".symlinks/plugins/webview_flutter/ios"
 
 SPEC CHECKSUMS:
   Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
@@ -52,6 +57,7 @@ SPEC CHECKSUMS:
   path_provider: 09407919825bfe3c2deae39453b7a5b44f467873
   share: 222b5dcc8031238af9d7de91149df65bad1aef75
   shared_preferences: 5a1d487c427ee18fcd3ea1f2a131569481834b53
+  webview_flutter: 9bd234c07e99632356cba112df56fd1d47d6b6e3
   XCDYouTubeKit: c8567fd5cb388a3099fa26eee4b30df2a467847d
 
 PODFILE CHECKSUM: 7765ea4305eaab0b3dfd384c7de11902aa3195fd
