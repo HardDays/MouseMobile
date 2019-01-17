@@ -13,6 +13,7 @@ class Event {
   String address;
   String hashtag;
   String currency;
+  String link;
 
   bool isCrowdfunding;
 
@@ -37,7 +38,7 @@ class Event {
   Event({this.id, this.name, this.description, this.address, this.hashtag,
       this.imageId, this.fundingGoal, this.founded, this.backers, this.currency,
       this.fundingFrom, this.fundingTo, this.dateFrom, this.dateTo, this.isCrowdfunding,
-      this.venue, this.tickets, this.genres, this.artists, this.comments = const []
+      this.venue, this.tickets, this.genres, this.artists, this.comments = const [], this.link
     }
   ) {
     tickets.sort((t1, t2) => (t1.price ?? 0.0).compareTo(t2.price ?? 0.0));
