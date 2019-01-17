@@ -13,7 +13,7 @@ class Translations {
       'discoverMusic': 'DISCOVER MUSIC\n SHARE SHOWS\n GET REWARDS',
       'login': 'Login',
       'signUp': 'Sign Up',
-      'continueAsGuest': 'Continue as guest',
+      'continueAsGuest': 'Continue as Guest',
       'loginWith': 'Login with',
       'mouse': 'Mouse',
       'search': 'Search',
@@ -38,6 +38,7 @@ class Translations {
       'pleaseTryAgain': 'Please, try again later',
       'unauthorized': 'Unauthorized',
       'ok': 'OK',
+      'referralCode': 'Referral Code',
       'wrongUsernameOrPass': 'Wrong username or password',
       'wrongEmailFormat': 'Wrong email format',
       'wrongPassSize': 'Enter more than 6 symbols',
@@ -188,6 +189,7 @@ class Translations {
       'textUSD': 'Dollar (\$)',
       'textRUB': 'Ruble (₽)',
       'textEUR': 'Euro (€)',
+      'createAccount': 'Create Account',
 
       'emailUpdated': 'Email successfully updated',
       'changeEmail': 'Change email',
@@ -534,6 +536,8 @@ class Translations {
       'textUSD': 'Доллары (\$)',
       'textRUB': 'Рубли (₽)',
       'textEUR': 'Евро (€)',
+      'createAccount': 'Регистрация',
+      'referralCode': 'Реферальный Код',
 
       'emailUpdated': 'Почта успешно изменена',
       'changeEmail': 'Старый email',
@@ -722,6 +726,7 @@ class Translations {
   static String get checkEmail => words[locale]['checkEmail'];
   static String get weSentInstruction => words[locale]['weSentInstruction'];
   static String get continuew => words[locale]['continue'];
+  static String get createAccount => words[locale]['createAccount'];
   static String get profile => words[locale]['profile'];
   static String get shows => words[locale]['shows'];
   static String get emptyUsername => words[locale]['emptyUsername'];
@@ -929,6 +934,7 @@ class Translations {
   static String get pleaseSelectFeedback => words[locale]['pleaseSelectFeedback'];
   static String get pleaseRate => words[locale]['pleaseRate'];
   static String get reset => words[locale]['reset'];
+  static String get referralCode => words[locale]['referralCode'];
 
   static String translateEnum(String word){
     if (words[locale].containsKey(word)){

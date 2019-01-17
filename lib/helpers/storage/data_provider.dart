@@ -286,6 +286,11 @@ class DataProvider {
 
   //USERS
 
+  static Future remindPassword(String email) async {
+    await MainAPI.remindPassword(email);
+  }
+
+
   static Future<DataResult<User>> createUser(User user) async {
     var result = DataResult<User>();
 

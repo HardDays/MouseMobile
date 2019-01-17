@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'views/pages/start/start_page.dart';
 import 'views/pages/main/main_page.dart';
@@ -32,6 +33,10 @@ class AppState extends State<App> {
         }
       );
     });
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
   }
 
   @override

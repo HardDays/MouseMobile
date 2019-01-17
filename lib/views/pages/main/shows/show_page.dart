@@ -113,6 +113,26 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
       );
     }
   }
+  
+  String formatAddress(String address) {
+    try {
+      var tokens = address.split(',');
+      var cnt = tokens.length - 1;
+      if (cnt == 4) {
+        return tokens[cnt].trim() + '\n' + 
+             tokens[cnt - 1].trim() + ', ' + tokens[cnt - 2].trim() + ', ' + tokens[0].trim() + '\n' +
+             tokens[1].trim();
+      } else if (cnt == 3) {
+        return tokens[cnt].trim() + '\n' + 
+             tokens[cnt - 1].trim() + ', ' + tokens[0].trim() + '\n' +
+             tokens[1].trim();
+      } else {
+        return address;
+      }
+    } catch (ex){
+      return address;
+    }
+  }
 
   void onAddComment(){
     if (comment != null && comment.isNotEmpty){
@@ -868,7 +888,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                               Container(
                                 width: MediaQuery.of(context).size.width * 0.8,
                                 padding: EdgeInsets.only(left: 15.0),
-                                child: Text(event?.venue?.displayName?.toUpperCase() ?? '',
+                                child: Text(event?.venue?.displayName?.toUpperCase() ?? 'Private Residence',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontFamily: 'Avenir-Black', 
@@ -881,7 +901,7 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
                           Container(
                             width: MediaQuery.of(context).size.width * 0.8,
                             padding: EdgeInsets.only(left: 35.0, top: 5.0),
-                            child: Text(event.venue.address ?? '',
+                            child: Text(formatAddress(event.venue.address) ?? '',
                               style: TextStyle(
                                 height: 16.0 / 14.0,
                                 fontSize: 14.0,

@@ -6,6 +6,8 @@ import 'check_email_page.dart';
 import '../../routes/default_page_route.dart';
 import '../../widgets/main_button.dart';
 
+import '../../../helpers/storage/data_provider.dart';
+
 import '../../../resources/app_colors.dart';
 import '../../../resources/translations.dart';
 
@@ -16,6 +18,9 @@ class ForgotPasswordPage extends StatefulWidget {
 }
 
 class ForgotPasswordPageState extends State<ForgotPasswordPage> {
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  String email;
 
   @override
   void initState() {    
@@ -90,6 +95,7 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       )
                     ),
                     Form(
+                      key: formKey,
                       child: Container(
                         margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 50.0),
                         child: Column(
@@ -124,8 +130,13 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                 enabledBorder: UnderlineInputBorder(      
                                   borderSide: BorderSide(color: Colors.white.withOpacity(0.5)),   
                                 ),   
-                                hintText: Translations.email
+                                hintText: Translations.email,
                               ),
+                              onSaved: (value){
+                                setState(() {
+                                  email = value;                                  
+                                });
+                              },
                             ),   
                             Container(
                               margin: EdgeInsets.only(top: 70.0),
@@ -136,6 +147,8 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                     height: 50.0,
                                     child: MainButton(Translations.restore.toUpperCase(),
                                       onTap: (){
+                                        formKey.currentState.save();
+                                        DataProvider.remindPassword(email);
                                         Navigator.push(
                                           this.context,
                                           DefaultPageRoute(builder: (context) => CheckEmailPage()),

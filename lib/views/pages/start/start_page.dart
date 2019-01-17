@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';  
 
@@ -25,12 +27,26 @@ class StartPageState extends State<StartPage> with SingleTickerProviderStateMixi
   List <String> texts = [Translations.campaingToBring.toUpperCase(), Translations.watchLiveShows.toUpperCase(), Translations.discoverMusic.toUpperCase()];
 
   TabController tabController;
+  Timer timer;
 
   @override
   void initState() {    
     super.initState();
     
     tabController = TabController(vsync: this, length: 3);
+    
+    timer = Timer.periodic(Duration(seconds: 3), (t){
+      tabController.index = (tabController.index + 1) % 3;
+    });
+  }
+
+  @override
+  void dispose(){
+    super.dispose();
+    
+    if (timer != null){
+      timer.cancel();
+    }
   }
 
   @override

@@ -39,6 +39,7 @@ class CreateUserPageState extends State<CreateUserPage> {
   FocusNode passwordNode = FocusNode();
   FocusNode passwordConfirmNode = FocusNode();
   FocusNode userNameNode = FocusNode();
+  FocusNode codeNode = FocusNode();
 
   String email;
   String password;
@@ -177,7 +178,7 @@ class CreateUserPageState extends State<CreateUserPage> {
               ),
               image: DecorationImage(
                 image: AssetImage('assets/images/start/signup_bg.png'),
-                fit: BoxFit.cover,
+                fit: BoxFit.fitHeight,
               )
             ),  
             child: Container(
@@ -223,8 +224,8 @@ class CreateUserPageState extends State<CreateUserPage> {
                         Container(
                           alignment: Alignment.topCenter,
                           child: Container(
-                            width: 140.0,
-                            height: 140.0, 
+                            width: 120.0,
+                            height: 120.0, 
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               image: DecorationImage(
@@ -235,9 +236,9 @@ class CreateUserPageState extends State<CreateUserPage> {
                           ),
                         ),
                         Container(
-                          height: 140.0,
+                          height: 120.0,
                           alignment: Alignment.bottomCenter,
-                          margin: EdgeInsets.only(left: 100.0),
+                          margin: EdgeInsets.only(left: 85.0),
                           child: IconButton(
                             onPressed: onImageSelect,
                             icon: Container(
@@ -268,7 +269,7 @@ class CreateUserPageState extends State<CreateUserPage> {
                               ),
                               decoration: InputDecoration(
                                 hintStyle: TextStyle(
-                                  color: Colors.white.withOpacity(0.5),
+                                  color: AppColors.orangeText,
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w500
                                 ),
@@ -302,7 +303,7 @@ class CreateUserPageState extends State<CreateUserPage> {
                               ),
                               decoration: InputDecoration(
                                 hintStyle: TextStyle(
-                                  color: Colors.white.withOpacity(0.5),
+                                  color: AppColors.orangeText,
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w500
                                 ),
@@ -333,7 +334,7 @@ class CreateUserPageState extends State<CreateUserPage> {
                               ),
                               decoration: InputDecoration(
                                 hintStyle: TextStyle(
-                                  color: Colors.white.withOpacity(0.5),
+                                  color: AppColors.orangeText,
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w500
                                 ),
@@ -363,7 +364,7 @@ class CreateUserPageState extends State<CreateUserPage> {
                               ),
                               decoration: InputDecoration(
                                 hintStyle: TextStyle(
-                                  color: Colors.white.withOpacity(0.5),
+                                  color: AppColors.orangeText,
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w500
                                 ),
@@ -393,7 +394,7 @@ class CreateUserPageState extends State<CreateUserPage> {
                               ),
                               decoration: InputDecoration(
                                 hintStyle: TextStyle(
-                                  color: Colors.white.withOpacity(0.5),
+                                  color: AppColors.orangeText,
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w500
                                 ),
@@ -423,7 +424,7 @@ class CreateUserPageState extends State<CreateUserPage> {
                               ),
                               decoration: InputDecoration(
                                 hintStyle: TextStyle(
-                                  color: Colors.white.withOpacity(0.5),
+                                  color: AppColors.orangeText,
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w500
                                 ),
@@ -440,14 +441,37 @@ class CreateUserPageState extends State<CreateUserPage> {
                               },
                               validator: validateName,
                             ),
-                            Padding(padding: EdgeInsets.only(top: 40.0)),
+                            Padding(padding: EdgeInsets.only(top: 15.0)),
+                            TextFormField(
+                              focusNode: codeNode,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.w500
+                              ),
+                              decoration: InputDecoration(
+                                hintStyle: TextStyle(
+                                  color: Colors.white.withOpacity(0.5),
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.w500
+                                ),
+                                focusedBorder: UnderlineInputBorder(      
+                                  borderSide: BorderSide(color: Colors.white, width: 1.7),   
+                                ),
+                                enabledBorder: UnderlineInputBorder(      
+                                  borderSide: BorderSide(color: Colors.white.withOpacity(0.5)),   
+                                ),   
+                                hintText: Translations.referralCode
+                              ),
+                            ),
+                            Padding(padding: EdgeInsets.only(top: 30.0)),
                             Container(
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   Container(
                                     height: 50.0,
-                                    child: MainButton(Translations.continuew.toUpperCase(),
+                                    child: MainButton(Translations.createAccount.toUpperCase(),
                                       onTap: onContinue
                                     )
                                   ),

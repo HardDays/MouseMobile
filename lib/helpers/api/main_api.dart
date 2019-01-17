@@ -48,6 +48,7 @@ class MainAPI {
   static const String feedbacks = '/feedbacks';
   static const String questions = '/questions';
   static const String twitter = '/twitter';
+  static const String forgotPassword = '/forgot_password';
 
   static String token;
   static int accountId;
@@ -196,6 +197,16 @@ class MainAPI {
     if (res.statusCode == HttpStatus.created){
       return User.fromJson(json.decode(res.body));
     } 
+  }
+
+   static Future remindPassword(String email) async {
+    var res = await http.post(url + auth + forgotPassword, 
+      body: json.encode({'email': email}),
+      headers: {
+        'Content-type' : 'application/json', 
+      }
+    );    
+    var t = 0;
   }
 
   static Future<User> updateUser(User user) async {
