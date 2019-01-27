@@ -117,14 +117,13 @@ class ShowPageState extends State<ShowPage> with SingleTickerProviderStateMixin 
   String formatAddress(String address) {
     try {
       var tokens = address.split(',');
-      var cnt = tokens.length - 1;
-      if (cnt == 4) {
-        return tokens[cnt].trim() + '\n' + 
-             tokens[cnt - 1].trim() + ', ' + tokens[cnt - 2].trim() + ', ' + tokens[0].trim() + '\n' +
+      if (tokens.length == 5) {
+        return tokens[4].trim() + '\n' + 
+             tokens[3].trim() + ', ' + tokens[2].trim() + ', ' + tokens[0].trim() + '\n' +
              tokens[1].trim();
-      } else if (cnt == 3) {
-        return tokens[cnt].trim() + '\n' + 
-             tokens[cnt - 1].trim() + ', ' + tokens[0].trim() + '\n' +
+      } else if (tokens.length == 4) {
+        return tokens[3].trim() + '\n' + 
+             tokens[2].trim() + ', ' + tokens[0].trim() + '\n' +
              tokens[1].trim();
       } else {
         return address;

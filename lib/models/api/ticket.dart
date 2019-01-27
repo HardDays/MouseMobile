@@ -37,7 +37,7 @@ class Ticket {
       name: json['name'] ?? '',
       price: json['price'] != null ? json['price'].toDouble() : 0.0,
       description: json['description'] ?? '',
-      currency: json['currency'] ?? '',
+      currency: json['currency'] ?? 'USD',
       isPromotional: json['is_promotional'] ?? false,
       ticketsLeft: json['tickets_left'] ?? 0,
       type: json['type'] ?? TicketType.inPerson,

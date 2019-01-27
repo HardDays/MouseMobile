@@ -49,7 +49,7 @@ class AddressAutocompleteState extends State<AddressAutocomplete> {
   
   List<PredictPlace> list = [];
 
-  GoogleMapsPlaces places = GoogleMapsPlaces();//('AIzaSyAsj_-JGBuK2AQVGagT3pAT-uzQvnUKfrg', null, null);
+  GoogleMapsPlaces places = GoogleMapsPlaces('AIzaSyAsj_-JGBuK2AQVGagT3pAT-uzQvnUKfrg');//('AIzaSyAsj_-JGBuK2AQVGagT3pAT-uzQvnUKfrg', null, null);
 
   String address;
 

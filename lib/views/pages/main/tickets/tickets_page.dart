@@ -163,7 +163,7 @@ class TicketsPageState extends State<TicketsPage> with SingleTickerProviderState
     } else {
       return Container(
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height - 160 - (showFilters ? 55 : 0),
+        height: MediaQuery.of(context).size.height - 165 - (showFilters ? 55 : 0),
         child: ListView(
           children: List.generate(events.length, 
             (ind) {
